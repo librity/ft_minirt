@@ -29,7 +29,10 @@
 	"limits.h": "c",
 	"stdarg.h": "c",
 	"unistd.h": "c",
-	"stdlib.h": "c"
+	"stdlib.h": "c",
+	"*.tcc": "cpp",
+	"cmath": "cpp",
+	"streambuf": "cpp"
 },
   "editor.detectIndentation": false
 }
