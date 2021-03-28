@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 02:58:38 by lpaulo-m@st       #+#    #+#              #
-#    Updated: 2021/03/26 03:08:49 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2021/03/28 03:27:01 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,4 +102,6 @@ gitm:
 	git commit -m $m
 	git push
 
-.PHONY: all build_libft example re libft_fclean clean fclean example_clean norme git gitm
+.PHONY: all build_libft example \
+		libft_fclean clean fclean example_clean \
+		re norm git gitm
