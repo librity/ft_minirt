@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/02/24 02:58:38 by lpaulo-m@st       #+#    #+#              #
-#    Updated: 2021/03/28 03:27:01 by lpaulo-m         ###   ########.fr        #
+#    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
+#    Updated: 2021/04/04 21:58:39 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,15 @@ NAME = minirt.a
 
 CC = gcc
 CC_FLAGS = -Wall -Wextra -Werror
+# CC_FLAGS = -g
 CC_DEBUG_FLAGS = -g
+
+EXTERNAL_LIBS = -lm
 
 MAKE_EXTERNAL = make -C
 SAFE_MAKEDIR = mkdir -p
 ARCHIVE_AND_INDEX = ar -rcs
+COPY = cp
 
 REMOVE = /bin/rm -f
 REMOVE_RECURSIVE = /bin/rm -rf
@@ -27,61 +31,97 @@ OBJECTS_PATH = ./objects
 SOURCES_PATH = ./sources
 INCLUDES_PATH = ./includes
 LIBS_PATH = ./libs
+ARCHIVES_PATH = ./archives
+EXAMPLES_PATH = ./examples
 
-LIBFT = libft
-LIBFT_PATH = $(LIBS_PATH)/$(LIBFT)
-COPY_LIBFT = cp $(LIBFT_PATH)/libft.a
-
-HEADER_FILE = ft_printf.h
+HEADER_FILE = minirt.h
 HEADER = $(addprefix $(INCLUDES_PATH)/,$(HEADER_FILE))
 
-SOURCE_FILES = ft_printf.c ft_vprintf.c \
+SOURCE_FILES = algebra.c \
 	\
-	pf_parse_flags.c pf_parse_wildcars.c \
+	vector.c vector_meta.c vector_scalar.c \
+	vector_operations.c vector_geometry.c \
+	point.c \
 	\
-	pf_handled_no_conversion.c pf_handled_percent.c pf_handled_s.c \
-	pf_handled_c.c pf_handled_int.c pf_handled_u.c \
-	pf_handled_hex.c pf_handled_p.c \
+	random.c random_utils.c random_geometry.c \
 	\
-	pf_initializers.c \
+	color.c pixel.c \
 	\
-	pf_percent.c pf_c.c pf_s.c pf_int.c pf_u.c pf_p.c pf_hex.c
+	ray.c ray_caster.c ray_effects.c hittable.c \
+	\
+	sphere.c hittable_sphere.c \
+	\
+	material.c matte.c metallic.c dielectric.c \
+	\
+	world.c camera.c ray_tracer.c errors.c
 SOURCES = $(addprefix $(SOURCES_PATH)/,$(SOURCE_FILES))
 
 OBJECTS = $(addprefix $(OBJECTS_PATH)/,$(subst .c,.o,$(SOURCE_FILES)))
 
-EXAMPLE_MAIN = example.c
-EXECUTE_EXAMPLE = ./a.out
-EXAMPLE_GARBAGE = a.out a.out.dSYM
+LIBFT = libft.a
+LIBFT_PATH = $(LIBS_PATH)/libft
+LIBFT_ARCHIVE = $(ARCHIVES_PATH)/$(LIBFT)
+
+FT_LIBBMP = ft_libbmp.a
+FT_LIBBMP_PATH = $(LIBS_PATH)/ft_libbmp
+FT_LIBBMP_ARCHIVE = $(ARCHIVES_PATH)/$(FT_LIBBMP)
+
+EXAMPLE_MAIN = $(EXAMPLES_PATH)/example.c
+BLUE_GRADIENT_MAIN = $(EXAMPLES_PATH)/blue_gradient.c
+IMAGE_NAME = hello.bmp
+EXECUTE_EXAMPLE = ./a.out $(IMAGE_NAME)
+OPEN_IMAGE = ffplay
+EXAMPLE_GARBAGE = a.out a.out.dSYM $(IMAGE_NAME)
 
 all: $(NAME)
 
-$(NAME): build_libft $(OBJECTS) $(HEADER)
+$(NAME): build_libft build_ft_libbmp $(OBJECTS) $(HEADER)
 	$(ARCHIVE_AND_INDEX) $(NAME) $(OBJECTS) 
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)
-	$(CC) $(CC_FLAGS) -I $(INCLUDES_PATH) -o $@ -c $<
+	$(CC) $(CC_FLAGS) -I $(INCLUDES_PATH) -o $@ -c $< $(EXTERNAL_LIBS)
+
+build_example: $(NAME)
+	$(CC) $(CC_DEBUG_FLAGS) -I $(INCLUDES_PATH) \
+	$(EXAMPLE_MAIN) $(NAME) $(FT_LIBBMP_ARCHIVE) $(LIBFT_ARCHIVE) $(EXTERNAL_LIBS)
+
+example: build_example
+	$(EXECUTE_EXAMPLE)
+	$(OPEN_IMAGE) $(IMAGE_NAME)
 
 build_libft:
 	$(MAKE_EXTERNAL) $(LIBFT_PATH)
-	$(COPY_LIBFT) ./$(NAME)
+	$(SAFE_MAKEDIR) $(ARCHIVES_PATH)
+	$(COPY) $(LIBFT_PATH)/$(LIBFT) $(LIBFT_ARCHIVE)
 
-example: $(NAME)
-	$(CC) $(CC_DEBUG_FLAGS) -I $(INCLUDES_PATH) $(EXAMPLE_MAIN) $(NAME)
-	$(EXECUTE_EXAMPLE)
+build_ft_libbmp:
+	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH)
+	$(SAFE_MAKEDIR) $(ARCHIVES_PATH)
+	$(COPY) $(FT_LIBBMP_PATH)/$(FT_LIBBMP) $(FT_LIBBMP_ARCHIVE)
 
-libft_fclean:
-	$(MAKE_EXTERNAL) $(LIBFT_PATH) fclean
+test:
+	$(MAKE_EXTERNAL) $(TESTS_PATH)
 
 clean:
 	$(REMOVE) $(OBJECTS)
 
-fclean: clean libft_fclean
+fclean: clean libft_clean ft_libbmp_clean test_clean
 	$(REMOVE) $(NAME)
 
 example_clean: fclean
 	$(REMOVE_RECURSIVE) $(EXAMPLE_GARBAGE)
+
+libft_clean:
+	$(MAKE_EXTERNAL) $(LIBFT_PATH) fclean
+	$(REMOVE) $(LIBFT_ARCHIVE)
+
+ft_libbmp_clean:
+	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) fclean
+	$(REMOVE) $(FT_LIBBMP_ARCHIVE)
+
+test_clean:
+	$(MAKE_EXTERNAL) $(TESTS_PATH) fclean
 
 re: fclean all
 
@@ -102,6 +142,6 @@ gitm:
 	git commit -m $m
 	git push
 
-.PHONY: all build_libft example \
-		libft_fclean clean fclean example_clean \
+.PHONY: all build_example example build_libft build_ft_libbmp test \
+		clean fclean example_clean ft_libbmp_clean test_clean \
 		re norm git gitm
