@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   example.c                                          :+:      :+:    :+:   */
+/*   minilibx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 03:39:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:59:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2021/04/04 22:44:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// clang -I ./includes example.c -lbsd -lmlx -lXext -lX11 && ./a.out
-// gcc -I ./includes example.c -lbsd -lmlx -lXext -lX11 && ./a.out
+// clang -I ./includes minilibx.c -lbsd -lmlx -lXext -lX11 && ./a.out
+// gcc -I ./includes minilibx.c -lbsd -lmlx -lXext -lX11 && ./a.out
 
-#include "mlx.h"
-#include "mlx_int.h"
+#include <mlx.h>
+#include <mlx_int.h>
 
 #define WIN1_SX 242
 #define WIN1_SY 242
