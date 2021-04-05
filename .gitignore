@@ -50,7 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-example.c
 
 # Image files
 *.ppm
