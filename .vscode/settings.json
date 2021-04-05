@@ -32,7 +32,11 @@
 	"stdlib.h": "c",
 	"*.tcc": "cpp",
 	"cmath": "cpp",
-	"streambuf": "cpp"
+	"streambuf": "cpp",
+	"limits": "cpp",
+	"memory": "cpp",
+	"new": "cpp",
+	"numeric": "cpp"
 },
   "editor.detectIndentation": false
 }
