@@ -187,42 +187,6 @@ and we can solve for `t` with the quadratic formula:
   <img src=".github/ray_sphere_intersection.jpg" />
 </p>
 
-### 🕶️ Ray Reflection
-
-The reflection **`r`** of an incident ray **`v`**
-on an arbitrary point with a normal **`n`**
-can be calculated with:
-
-<p align="center">
-  <img src="https://latex.codecogs.com/png.image?\dpi{150}&space;\inline&space;\displaystyle&space;\mathbf{r}&space;=&space;\mathbf{v}&space;&plus;&space;2\mathbf{b}&space;=&space;\mathbf{v}&space;-&space;2&space;(\mathbf{r}&space;\cdot&space;\mathbf{n})&space;\mathbf{n}&space;\quad&space;(V)" title="\inline \displaystyle \mathbf{r} = \mathbf{v} + 2\mathbf{b} = \mathbf{v} - 2 (\mathbf{r} \cdot \mathbf{n}) \mathbf{n} \quad (V)" />
-</p>
-
-<p align="center">
-  <img src=".github/ray_reflection.jpg" />
-</p>
-
-### 🐌 Ray Refraction - Snell's law
-
-Given an angle of `θ` of an incident ray **`R`**,
-and the refractive indices of the two surfaces `η` and `η'`,
-we calculate the angle `θ'` of the refracted ray **`R'`** with:
-
-<p align="center">
-  <img src="https://latex.codecogs.com/png.image?\dpi{150}&space;\inline&space;\displaystyle&space;\sin\theta'&space;=&space;\frac{\eta}{\eta'}&space;\cdot&space;\sin\theta&space;\quad&space;(VI)" title="\inline \displaystyle \sin\theta' = \frac{\eta}{\eta'} \cdot \sin\theta \quad (VI)" />
-</p>
-
-The refracted ray **`R'`** has a perpendicular component **`R′⊥`**
-and a parallel component **`R′∥`**,
-which we can calculate with:
-
-<p align="center">
-  <img src="https://latex.codecogs.com/png.image?\dpi{150}&space;\inline&space;\displaystyle&space;\mathbf{R'}&space;=&space;\mathbf{R'}_{\bot}&space;&plus;&space;\mathbf{R'}_{\parallel}&space;=&space;\frac{\eta}{\eta'}&space;(\mathbf{R}&space;&plus;&space;(\mathbf{-R}&space;\cdot&space;\mathbf{n})&space;\mathbf{n})&space;-&space;\sqrt{1&space;-&space;|\mathbf{R'}_{\bot}|^2}&space;\mathbf{n}&space;\quad&space;(VII)" title="\inline \displaystyle \mathbf{R'} = \mathbf{R'}_{\bot} + \mathbf{R'}_{\parallel} = \frac{\eta}{\eta'} (\mathbf{R} + (\mathbf{-R} \cdot \mathbf{n}) \mathbf{n}) - \sqrt{1 - |\mathbf{R'}_{\bot}|^2} \mathbf{n} \quad (VII)" />
-</p>
-
-<p align="center">
-  <img src=".github/snells_law.jpg" />
-</p>
-
 ## 🐙 Github Actions <a name = "github_actions"></a>
 
 [Norminette Github Action](https://github.com/AdrianWR/libft/blob/master/.github/workflows/norminette.yaml)

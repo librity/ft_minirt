@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 01:46:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2021/04/09 23:02:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_sphere	*new_sphere(t_point_3d center, double radius, t_material *material)
 {
 	t_sphere *new;
 
-	new = (t_sphere *)malloc(sizeof(t_sphere));
+	new = (t_sphere *)ft_salloc(sizeof(t_sphere));
 	if (new == NULL)
 		return (NULL);
 	new->center = center;

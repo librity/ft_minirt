@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.c                                         :+:      :+:    :+:   */
+/*   ft_salloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 15:06:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/09 23:02:00 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/04/09 22:57:20 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2021/04/09 23:15:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include <libft.h>
 
-t_material	*prototype_material(t_scatter_callback scattered)
+void	*ft_salloc(size_t size)
 {
-	t_material *new;
+	void *pointer;
 
-	new = (t_material *)ft_salloc(sizeof(t_material));
-	if (new == NULL)
-		return (NULL);
-	new->scattered = scattered;
-	return (new);
-}
-
-void		free_materials(t_list **materials)
-{
-	ft_lstclear(materials, &free);
+	pointer = malloc(size);
+	if (pointer == NULL && (size > 0))
+	{
+		perror("Unable to allocate required memory.");
+		exit(EXIT_FAILURE);
+	}
+	return (pointer);
 }
