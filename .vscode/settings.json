@@ -36,7 +36,10 @@
 	"limits": "cpp",
 	"memory": "cpp",
 	"new": "cpp",
-	"numeric": "cpp"
+	"numeric": "cpp",
+	"minirt.h": "c",
+	"random.h": "c",
+	"vector.h": "c"
 },
   "editor.detectIndentation": false
 }

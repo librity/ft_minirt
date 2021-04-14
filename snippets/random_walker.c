@@ -6,14 +6,16 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 03:39:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/13 23:44:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2021/04/14 00:18:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// clang -I ../includes random_walker.c -lbsd -lmlx -lXext -lX11 && ./a.out
-// gcc -I ../includes random_walker.c -lbsd -lmlx -lXext -lX11 && ./a.out
+// clang -I ../includes random_walker.c -lbsd -lm -lmlx -lXext -lX11 && ./a.out
+// gcc -I ../includes random_walker.c -lbsd -lm -lmlx -lXext -lX11 && ./a.out
 
-#include "stdbool.h"
+#include <stdbool.h>
+#include <math.h>
+#include <time.h>
 
 #include "mlx_int.h"
 #include "mlx_int.h"
@@ -21,8 +23,11 @@
 void *mlx;
 
 void *window;
-const int width = 500;
-const int height = 300;
+const int height = 1000;
+const int width = 1000;
+
+const int step = 5;
+const int speed = 10000;
 
 void fill_window(int color)
 {
@@ -75,8 +80,8 @@ void initialize(void)
 	// printf(" OK\n");
 
 	printf(" => Clearing window ...");
-	// mlx_clear_window(mlx, window);
-	clear_window();
+	mlx_clear_window(mlx, window);
+	// clear_window();
 	printf(" OK\n");
 }
 
@@ -99,15 +104,53 @@ void draw_square(int x, int y, int size, int color)
 	}
 }
 
+void draw_circle(int x, int y, int size, int color)
+{
+	int half = size / 2;
+	int i;
+	int j;
+	double radius;
+
+	i = -half;
+	while (i < half)
+	{
+		j = -half;
+		while (j < half)
+		{
+			radius = pow(i, 2) + pow(j, 2);
+			radius = sqrt(radius);
+			if (radius < half)
+				mlx_pixel_put(mlx, window, x + i, y + j, color);
+			j++;
+		}
+		i++;
+	}
+}
+
+double random_double(void)
+{
+	return (rand() / (RAND_MAX + 1.0));
+}
+
+double random_from(double min, double max)
+{
+	return (min + (max - min) * random_double());
+}
+
 void walk(void)
 {
-	int x = width / 2;
-	int y = height / 2;
+	double x;
+	double y;
 
+	x = width / 2;
+	y = height / 2;
 	while (true)
 	{
-		draw_square(x, y, 10, 0x00999999);
-		sleep(0.2);
+		mlx_clear_window(mlx, window);
+		draw_circle(x, y, 50, 0x00AAAAAA);
+		usleep(speed);
+		x = x + random_from(-step, step);
+		y = y + random_from(-step, step);
 	}
 }
 

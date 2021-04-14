@@ -254,6 +254,7 @@ It's an amazing school, and I'm enjoying every second of it.
 - https://github.com/MetalheadKen/RayTracingInOneWeekend
 - https://github.com/carld/ray-tracer
 - https://github.com/AngusLang/rayt
+- https://github.com/42Paris/minilibx-linux
 
 ## 🏫 References <a name="references"></a>
 
@@ -282,6 +283,7 @@ It's an amazing school, and I'm enjoying every second of it.
 - https://www.cplusplus.com/reference/cstdio/printf/
 - https://linux.die.net/man/3/random
 - https://cplusplus.com/reference/cmath/fmin/
+- https://harm-smits.github.io/42docs/libs/minilibx
 
 ## 📝 Resources <a name="resources"></a>
 
@@ -299,6 +301,7 @@ It's an amazing school, and I'm enjoying every second of it.
 - https://stackoverflow.com/questions/5834635/how-do-i-get-double-max
 - https://stackoverflow.com/questions/33058848/generate-a-random-double-between-1-and-1
 - https://stackoverflow.com/questions/9912151/math-constant-pi-value-in-c#9912169
+- https://stackoverflow.com/questions/1157209/is-there-an-alternative-sleep-function-in-c-to-milliseconds
 - https://askubuntu.com/questions/749882/how-to-recursively-and-automatically-convert-all-bmp-images-to-png-files-in-a-gi
 - https://www.codeproject.com/tips/800474/function-pointer-in-c-struct
 - https://aticleworld.com/function-pointer-in-c-struct/
