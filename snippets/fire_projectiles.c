@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projectile.c                                       :+:      :+:    :+:   */
+/*   projectiles.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// clang -I ../includes projectile.c -lbsd -lmlx -lXext -lX11 && ./a.out
-// gcc -I ../includes projectile.c -lbsd -lmlx -lXext -lX11 && ./a.out
+// clang -I ../includes fire_projectiles.c -lbsd -lmlx -lXext -lX11 && ./a.out
+// gcc -I ../includes fire_projectiles.c -lbsd -lmlx -lXext -lX11 && ./a.out
 
 #include "mlx.h"
 #include "mlx_int.h"

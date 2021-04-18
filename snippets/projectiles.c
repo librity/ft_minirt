@@ -1,24 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   random_walker.c                                    :+:      :+:    :+:   */
+/*   projectiles.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 03:39:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/18 02:14:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2021/04/13 23:01:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// clang -I ../includes random_walker.c -lbsd -lm -lmlx -lXext -lX11 && ./a.out
-// gcc -I ../includes random_walker.c -lbsd -lm -lmlx -lXext -lX11 && ./a.out
+// clang -I ../includes projectiles.c -lm -lbsd -lmlx -lXext -lX11 && ./a.out
+// gcc -I ../includes projectiles.c -lm -lbsd -lmlx -lXext -lX11 && ./a.out
 
 #include <stdbool.h>
 #include <math.h>
 #include <time.h>
+#include <limits.h>
 
 #include "mlx.h"
 #include "mlx_int.h"
+
+typedef struct s_vector_3d
+{
+	double x;
+	double y;
+	double z;
+} t_vector_3d;
+
+typedef t_vector_3d t_point_3d;
+
+t_vector_3d add(t_vector_3d first, t_vector_3d second)
+{
+	t_vector_3d result;
+
+	result.x = first.x + second.x;
+	result.y = first.y + second.y;
+	result.z = first.z + second.z;
+	return (result);
+}
 
 void *mlx;
 
@@ -26,32 +46,9 @@ void *window;
 const int height = 1000;
 const int width = 1000;
 
-const int step = 5;
-const int speed = 10000;
+const int speed = 0;
 
-void fill_window(int color)
-{
-	int x;
-	int y;
-
-	x = width;
-	while (x--)
-	{
-		y = height;
-		while (y--)
-			mlx_pixel_put(mlx, window, x, y, color);
-	}
-}
-
-void clear_window(void)
-{
-	fill_window(0x00000000);
-}
-
-void blank_window(void)
-{
-	fill_window(0x00FFFFFF);
-}
+const t_vector_3d gravity = (t_vector_3d){0, 0.002, 0};
 
 void die(void)
 {
@@ -75,33 +72,10 @@ void initialize(void)
 		die();
 	printf(" OK\n");
 
-	// printf(" => Blanking window ...");
-	// blank_window();
-	// printf(" OK\n");
-
 	printf(" => Clearing window ...");
 	mlx_clear_window(mlx, window);
 	// clear_window();
 	printf(" OK\n");
-}
-
-void draw_square(int x, int y, int size, int color)
-{
-	int half = size / 2;
-	int i;
-	int j;
-
-	i = -half;
-	while (i < half)
-	{
-		j = -half;
-		while (j < half)
-		{
-			mlx_pixel_put(mlx, window, x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
 }
 
 void draw_circle(int x, int y, int size, int color)
@@ -137,26 +111,57 @@ double random_from(double min, double max)
 	return (min + (max - min) * random_double());
 }
 
-void walk(void)
+int random_color(void)
 {
-	double x;
-	double y;
+	return ((int)random_from(INT_MIN, INT_MAX));
+}
 
-	x = width / 2;
-	y = height / 2;
-	while (true)
+t_point_3d new_position(t_point_3d position, t_vector_3d velocity)
+{
+	return (add(position, velocity));
+}
+
+t_point_3d new_velocity(t_vector_3d velocity)
+{
+	return (add(velocity, gravity));
+}
+
+bool in_window(t_point_3d position)
+{
+	if (position.x < 0)
+		return (false);
+	if (position.x > width)
+		return (false);
+	if (position.y < 0)
+		return (false);
+	if (position.y > height)
+		return (false);
+	return (true);
+}
+
+void fire(void)
+{
+	t_point_3d position = (t_point_3d){0, height, 0};
+	// t_vector_3d velocity = (t_vector_3d){1, -1, 0};
+	t_vector_3d velocity = (t_vector_3d){random_from(0.7, 1.3), -random_from(0.7, 1.3), 0};
+	int color = random_color();
+
+	while (in_window(position))
 	{
-		mlx_clear_window(mlx, window);
-		draw_circle(x, y, 50, 0x00AAAAAA);
+		draw_circle(position.x, position.y, 5, color);
 		usleep(speed);
-		x = x + random_from(-step, step);
-		y = y + random_from(-step, step);
+		position = new_position(position, velocity);
+		velocity = new_velocity(velocity);
 	}
 }
 
 int main(void)
 {
+	int shells = 100;
+
 	initialize();
-	walk();
+	while (shells--)
+		fire();
+	getchar();
 	return (0);
 }
