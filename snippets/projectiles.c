@@ -44,9 +44,9 @@ void *mlx;
 
 void *window;
 const int height = 1000;
-const int width = 1000;
+const int width = 1400;
 
-const int speed = 0;
+const int speed = 1;
 
 const t_vector_3d gravity = (t_vector_3d){0, 0.002, 0};
 
@@ -143,7 +143,7 @@ void fire(void)
 {
 	t_point_3d position = (t_point_3d){0, height, 0};
 	// t_vector_3d velocity = (t_vector_3d){1, -1, 0};
-	t_vector_3d velocity = (t_vector_3d){random_from(0.7, 1.3), -random_from(0.7, 1.3), 0};
+	t_vector_3d velocity = (t_vector_3d){random_from(0.5, 1.5), -random_from(0.5, 1.5), 0};
 	int color = random_color();
 
 	while (in_window(position))
@@ -157,7 +157,7 @@ void fire(void)
 
 int main(void)
 {
-	int shells = 100;
+	int shells = 3000;
 
 	initialize();
 	while (shells--)
