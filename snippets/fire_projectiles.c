@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 03:39:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/18 03:26:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2021/04/18 20:00:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void fire(void)
 	}
 }
 
-void key_press_hook(int keycode)
+void handle_keypress(int keycode)
 {
 	if (keycode == ESC_KEY)
 		exit(0);
@@ -211,7 +211,7 @@ void key_press_hook(int keycode)
 
 void await_orders(void)
 {
-	mlx_hook(window, KeyPress, KeyPressMask, key_press_hook, mlx);
+	mlx_hook(window, KeyPress, KeyPressMask, handle_keypress, mlx);
 	mlx_loop(mlx);
 }
 
