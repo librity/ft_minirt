@@ -18,10 +18,10 @@
 
 ---
 
-## 📝 Table of Contents
+## 📜 Table of Contents
 
 - [About](#about)
-- [Installation](#getting_started)
+- [Getting Started](#getting_started)
 - [Gallery](#gallery)
 - [Math](#math)
 - [Github Actions](#github_actions)
@@ -30,7 +30,7 @@
 - [References](#references)
 - [Docs](#docs)
 - [Resources](#resources)
-- [Markdown References](#markdown)
+- [Markdown Resources](#markdown)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -235,18 +235,20 @@ which we can calculate with:
 [Norminette Github Action](https://github.com/AdrianWR/libft/blob/master/.github/workflows/norminette.yaml)
 by [@AdrianWR](https://github.com/AdrianWR)
 
-## 🏫 42 São Paulo <a name = "ft_sp"></a>
+## 🛸 42 São Paulo <a name = "ft_sp"></a>
 
 Part of the larger [42 Network](https://www.42.fr/42-network/),
 [42 São Paulo](https://www.42sp.org.br/) is a software engineering school
 that offers a healthy alternative to traditional education:
 
-- It doesn't have any teachers or classrooms.
-- Students learn from and correct each other's work (peer-to-peer learning).
-- The method develops technical and social skills.
-- It's completely free to anyone that passes its selection process - **The Piscine**
+- It doesn't have any teachers and classes.
+- Students learn by cooperating
+  and correcting each other's work (peer-to-peer learning).
+- Its focus is as much on social skills as it is on technical skills.
+- It's completely free to anyone that passes its selection process -
+  [**The Piscine**](https://42.fr/en/admissions/42-piscine/)
 
-It's an amazing school, and I'm enjoying every second of it.
+It's an amazing school, and I'm grateful for the opportunity.
 
 ## ☁️ Repos <a name="repos"></a>
 
@@ -306,7 +308,7 @@ It's an amazing school, and I'm enjoying every second of it.
 - https://www.codeproject.com/tips/800474/function-pointer-in-c-struct
 - https://aticleworld.com/function-pointer-in-c-struct/
 
-## ⬇️ Markdown References <a name="markdown"></a>
+## ⬇️ Markdown Resources <a name="markdown"></a>
 
 - https://casual-effects.com/markdeep/
 - https://github.github.com/gfm/
