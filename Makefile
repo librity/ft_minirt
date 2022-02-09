@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/02/08 22:18:14 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/02/08 22:26:37 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ INCLUDES_PATH = ./includes
 LIBS_PATH = ./libs
 ARCHIVES_PATH = ./archives
 EXAMPLES_PATH = ./examples
-TESTS_PATH = ./tests
 
 HEADER_FILE = minirt.h
 HEADER = $(addprefix $(INCLUDES_PATH)/,$(HEADER_FILE))
@@ -102,9 +101,6 @@ build_ft_libbmp:
 	$(SAFE_MAKEDIR) $(ARCHIVES_PATH)
 	$(COPY) $(FT_LIBBMP_PATH)/$(FT_LIBBMP) $(FT_LIBBMP_ARCHIVE)
 
-test:
-	$(MAKE_EXTERNAL) $(TESTS_PATH)
-
 clean:
 	$(REMOVE) $(OBJECTS)
 
@@ -121,9 +117,6 @@ libft_clean:
 ft_libbmp_clean:
 	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) fclean
 	$(REMOVE) $(FT_LIBBMP_ARCHIVE)
-
-test_clean:
-	$(MAKE_EXTERNAL) $(TESTS_PATH) fclean
 
 re: fclean all
 
@@ -144,6 +137,6 @@ gitm:
 	git commit -m $m
 	git push
 
-.PHONY: all build_example example build_libft build_ft_libbmp test \
-		clean fclean example_clean ft_libbmp_clean test_clean \
+.PHONY: all build_example example build_libft build_ft_libbmp \
+		clean fclean example_clean ft_libbmp_clean \
 		re norm git gitm
