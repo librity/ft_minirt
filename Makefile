@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2021/04/04 22:40:51 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/02/08 22:18:14 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC_FLAGS = -Wall -Wextra -Werror
 # CC_FLAGS = -g
 CC_DEBUG_FLAGS = -g
 
-EXTERNAL_LIBS = -lm -lXext -lX11
+SYSTEM_LIBS = -lm -lbsd -lmlx -lXext -lX11
 
 MAKE_EXTERNAL = make -C
 SAFE_MAKEDIR = mkdir -p
@@ -33,6 +33,7 @@ INCLUDES_PATH = ./includes
 LIBS_PATH = ./libs
 ARCHIVES_PATH = ./archives
 EXAMPLES_PATH = ./examples
+TESTS_PATH = ./tests
 
 HEADER_FILE = minirt.h
 HEADER = $(addprefix $(INCLUDES_PATH)/,$(HEADER_FILE))
@@ -66,10 +67,6 @@ FT_LIBBMP = ft_libbmp.a
 FT_LIBBMP_PATH = $(LIBS_PATH)/ft_libbmp
 FT_LIBBMP_ARCHIVE = $(ARCHIVES_PATH)/$(FT_LIBBMP)
 
-LIBMLX = libmlx.a
-LIBMLX_PATH = $(LIBS_PATH)/minilibx
-LIBMLX_ARCHIVE = $(ARCHIVES_PATH)/$(LIBMLX)
-
 EXAMPLE_MAIN = $(EXAMPLES_PATH)/example.c
 BLUE_GRADIENT_MAIN = $(EXAMPLES_PATH)/blue_gradient.c
 IMAGE_NAME = hello.bmp
@@ -79,17 +76,17 @@ EXAMPLE_GARBAGE = a.out a.out.dSYM $(IMAGE_NAME)
 
 all: $(NAME)
 
-$(NAME): build_libft build_ft_libbmp build_libmlx $(OBJECTS) $(HEADER)
+$(NAME): build_libft build_ft_libbmp $(OBJECTS) $(HEADER)
 	$(ARCHIVE_AND_INDEX) $(NAME) $(OBJECTS) 
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)
-	$(CC) $(CC_FLAGS) -I $(INCLUDES_PATH) -o $@ -c $< $(EXTERNAL_LIBS)
+	$(CC) $(CC_FLAGS) -I $(INCLUDES_PATH) -o $@ -c $< $(SYSTEM_LIBS)
 
 build_example: $(NAME)
 	$(CC) $(CC_DEBUG_FLAGS) -I $(INCLUDES_PATH) \
 	$(EXAMPLE_MAIN) $(NAME) \
-	$(FT_LIBBMP_ARCHIVE) $(LIBFT_ARCHIVE) $(LIBMLX_ARCHIVE) $(EXTERNAL_LIBS)
+	$(FT_LIBBMP_ARCHIVE) $(LIBFT_ARCHIVE) $(SYSTEM_LIBS)
 
 example: build_example
 	$(EXECUTE_EXAMPLE)
@@ -105,18 +102,13 @@ build_ft_libbmp:
 	$(SAFE_MAKEDIR) $(ARCHIVES_PATH)
 	$(COPY) $(FT_LIBBMP_PATH)/$(FT_LIBBMP) $(FT_LIBBMP_ARCHIVE)
 
-build_libmlx:
-	$(MAKE_EXTERNAL) $(LIBMLX_PATH)
-	$(SAFE_MAKEDIR) $(ARCHIVES_PATH)
-	$(COPY) $(LIBMLX_PATH)/$(LIBMLX) $(LIBMLX_ARCHIVE)
-
 test:
 	$(MAKE_EXTERNAL) $(TESTS_PATH)
 
 clean:
 	$(REMOVE) $(OBJECTS)
 
-fclean: clean libft_clean ft_libbmp_clean libmlx_clean
+fclean: clean libft_clean ft_libbmp_clean
 	$(REMOVE) $(NAME)
 
 example_clean: fclean
@@ -129,10 +121,6 @@ libft_clean:
 ft_libbmp_clean:
 	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) fclean
 	$(REMOVE) $(FT_LIBBMP_ARCHIVE)
-
-libmlx_clean:
-	$(MAKE_EXTERNAL) $(LIBMLX_PATH) clean
-	$(REMOVE) $(LIBMLX_ARCHIVE)
 
 test_clean:
 	$(MAKE_EXTERNAL) $(TESTS_PATH) fclean
@@ -156,6 +144,6 @@ gitm:
 	git commit -m $m
 	git push
 
-.PHONY: all build_example example build_libft build_ft_libbmp build_libmlx test \
-		clean fclean example_clean ft_libbmp_clean libmlx_clean test_clean \
+.PHONY: all build_example example build_libft build_ft_libbmp test \
+		clean fclean example_clean ft_libbmp_clean test_clean \
 		re norm git gitm
