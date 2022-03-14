@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_scalar.c                                    :+:      :+:    :+:   */
+/*   scalar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:22:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ t_vector_3d	scalar_div(double number, t_vector_3d vector)
 	return (vector);
 }
 
-double		dot(t_vector_3d first, t_vector_3d second)
+double	dot(t_vector_3d first, t_vector_3d second)
 {
-	double x;
-	double y;
-	double z;
+	double	x;
+	double	y;
+	double	z;
 
 	x = first.x * second.x;
 	y = first.y * second.y;

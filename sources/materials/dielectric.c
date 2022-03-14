@@ -6,24 +6,24 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:23:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:27:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_material		*make_dielectric(double refraction_index)
+t_material	*make_dielectric(double refraction_index)
 {
-	t_material *new;
+	t_material	*new;
 
 	new = prototype_material(&scatter_dielectric);
 	new->refraction_index = refraction_index;
 	return (new);
 }
 
-static bool		refract_ray(t_vector_3d unit_direction,
-							t_vector_3d normal,
-							double refraction)
+static bool	refract_ray(t_vector_3d unit_direction,
+						t_vector_3d normal,
+						double refraction)
 {
 	double	cos_theta;
 	double	sin_theta;
@@ -47,10 +47,10 @@ static double	refraction_ratio(double refraction_index, bool front_face)
 	return (refraction_index);
 }
 
-bool			scatter_dielectric(t_ray incident_ray,
-									void *void_record,
-									t_color_3d *attenuation,
-									t_ray *scattered_ray)
+bool	scatter_dielectric(t_ray incident_ray,
+						void *void_record,
+						t_color_3d *attenuation,
+						t_ray *scattered_ray)
 {
 	const t_hit_record	*record = void_record;
 	const t_material	*material = record->material;
@@ -60,7 +60,7 @@ bool			scatter_dielectric(t_ray incident_ray,
 
 	*attenuation = color(0.99, 0.99, 0.99);
 	refraction = refraction_ratio(material->refraction_index,
-									record->front_face);
+			record->front_face);
 	if (refract_ray(unit_direction, record->normal, refraction))
 		direction = reflect(unit_direction, record->normal);
 	else

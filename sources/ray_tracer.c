@@ -12,9 +12,9 @@
 
 #include <minirt.h>
 
-clock_t		log_start(t_ray_tracer rt)
+clock_t	log_start(t_ray_tracer rt)
 {
-	clock_t timer;
+	clock_t	timer;
 
 	ft_putstr("\nMaterials: ");
 	ft_putnbr(ft_lstsize(rt.materials));
@@ -25,9 +25,9 @@ clock_t		log_start(t_ray_tracer rt)
 	return (timer);
 }
 
-clock_t		log_end(clock_t timer)
+clock_t	log_end(clock_t timer)
 {
-	double elapsed_time;
+	double	elapsed_time;
 
 	timer = clock() - timer;
 	elapsed_time = ((double)timer) / CLOCKS_PER_SEC;
@@ -61,9 +61,9 @@ t_color_3i	trace_sample_rays(const t_ray_tracer rt,
 	return (pixel_color);
 }
 
-void		generate_image(t_bitmap_image *image,
-							const t_ray_tracer rt,
-							const t_camera camera)
+void	generate_image(t_bitmap_image *image,
+					const t_ray_tracer rt,
+					const t_camera camera)
 {
 	t_color_3i	pixel_color;
 	int			row;
@@ -84,7 +84,7 @@ void		generate_image(t_bitmap_image *image,
 	}
 }
 
-void		cleanup_ray_tracer(t_ray_tracer *rt)
+void	cleanup_ray_tracer(t_ray_tracer *rt)
 {
 	free_spheres(&(rt->spheres));
 	free_materials(&(rt->materials));

@@ -6,15 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:23:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:28:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_material			*make_metallic(t_color_3d albedo, double fuzziness)
+t_material	*make_metallic(t_color_3d albedo, double fuzziness)
 {
-	t_material *new;
+	t_material	*new;
 
 	new = prototype_material(&scatter_metallic);
 	new->albedo = albedo;
@@ -37,18 +37,20 @@ static t_vector_3d	calulate_fuzzed_reflected(t_vector_3d direction,
 	return (fuzzed_reflected);
 }
 
-bool				scatter_metallic(t_ray incident_ray,
-										void *void_record,
-										t_color_3d *attenuation,
-										t_ray *scattered_ray)
+bool	scatter_metallic(t_ray incident_ray,
+						void *void_record,
+						t_color_3d *attenuation,
+						t_ray *scattered_ray)
 {
-	const t_hit_record	*record = void_record;
-	const t_material	*material = record->material;
+	const t_hit_record	*record;
+	const t_material	*material;
 	t_vector_3d			fuzzed_reflected;
 
+	record = void_record;
+	material = record->material;
 	fuzzed_reflected = calulate_fuzzed_reflected(incident_ray.direction,
-													record->normal,
-													material->fuzziness);
+			record->normal,
+			material->fuzziness);
 	*scattered_ray = ray(record->intersection, fuzzed_reflected);
 	*attenuation = material->albedo;
 	return (dot(scattered_ray->direction, record->normal) > 0);

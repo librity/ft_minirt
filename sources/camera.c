@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:25:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,37 @@ static void	set_orthonormal_basis(t_camera *camera, t_camera_params p)
 }
 
 static void	set_position(t_camera *camera,
-						t_camera_params p,
-						double viewport_width,
-						double viewport_height)
+							t_camera_params p,
+							double viewport_width,
+							double viewport_height)
 {
 	camera->origin = p.look_from;
 	camera->horizontal = scalar_times(p.focus_distance * viewport_width,
-										camera->basis_u);
+			camera->basis_u);
 	camera->vertical = scalar_times(p.focus_distance * viewport_height,
-										camera->basis_v);
+			camera->basis_v);
 }
 
 static void	set_lower_left_corner(t_camera *camera, t_camera_params p)
 {
-	t_point_3d lower_left_corner;
+	t_point_3d	lower_left_corner;
 
 	lower_left_corner = sub(camera->origin,
-							scalar_div(2.0, camera->horizontal));
+			scalar_div(2.0, camera->horizontal));
 	lower_left_corner = sub(lower_left_corner,
-							scalar_div(2.0, camera->vertical));
+			scalar_div(2.0, camera->vertical));
 	lower_left_corner = sub(lower_left_corner,
-							scalar_times(p.focus_distance, camera->basis_w));
+			scalar_times(p.focus_distance, camera->basis_w));
 	camera->lower_left_corner = lower_left_corner;
 }
 
-void		initialize_camera(t_camera *camera,
-								double aspect_ratio,
-								t_camera_params p)
+void	initialize_camera(t_camera *camera,
+						double aspect_ratio,
+						t_camera_params p)
 {
-	double height;
-	double viewport_height;
-	double viewport_width;
+	double	height;
+	double	viewport_height;
+	double	viewport_width;
 
 	height = degrees_to_radians(p.vertical_fov_degrees);
 	height = tan(height / 2);

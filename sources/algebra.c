@@ -14,7 +14,7 @@
 
 double	infinity(void)
 {
-	double inf;
+	double	inf;
 
 	inf = DBL_MAX;
 	return (inf);
@@ -22,7 +22,7 @@ double	infinity(void)
 
 double	pi(void)
 {
-	double yum;
+	double	yum;
 
 	yum = M_PI;
 	return (yum);
@@ -30,15 +30,16 @@ double	pi(void)
 
 double	degrees_to_radians(double degrees)
 {
-	const double pi = M_PI;
+	const double	pi;
 
+	pi = M_PI;
 	return ((degrees * pi) / 180.0);
 }
 
 bool	quadratic(t_quadratic_result r,
-					double min_translation,
-					double max_translation,
-					double *root)
+				double min_translation,
+				double max_translation,
+				double *root)
 {
 	r.discriminant = r.half_b * r.half_b - r.a * r.c;
 	if (r.discriminant < 0)
@@ -57,7 +58,7 @@ bool	quadratic(t_quadratic_result r,
 
 double	schlicks_approximation(double cosine, double refraction_ratio)
 {
-	double coefficient;
+	double	coefficient;
 
 	coefficient = (1 - refraction_ratio) / (1 + refraction_ratio);
 	coefficient = coefficient * coefficient;

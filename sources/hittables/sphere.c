@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hittable_sphere.c                                  :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:35:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:26:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static bool	vectorial_quadratic(t_vectorial_quadratic_params p)
 {
-	const t_vector_3d	center_to_origin = sub(p.ray.origin, p.sphere->center);
+	const t_vector_3d	center_to_origin;
 	t_quadratic_result	r;
 
+	center_to_origin = sub(p.ray.origin, p.sphere->center);
 	r.a = length_squared(p.ray.direction);
 	r.half_b = dot(center_to_origin, p.ray.direction);
 	r.c = length_squared(center_to_origin);
@@ -24,15 +25,14 @@ static bool	vectorial_quadratic(t_vectorial_quadratic_params p)
 	return (quadratic(r, p.min_translation, p.max_translation, p.root));
 }
 
-bool		ray_hits_sphere(t_ray_hits_sphere_params p)
+bool	ray_hits_sphere(t_ray_hits_sphere_params p)
 {
 	t_vector_3d	outward_normal;
 	double		root;
 	bool		has_real_roots;
 
 	has_real_roots = vectorial_quadratic((t_vectorial_quadratic_params){
-		p.ray, p.sphere, p.t_min, p.t_max, &root
-	});
+			p.ray, p.sphere, p.t_min, p.t_max, &root});
 	if (unless(has_real_roots))
 		return (false);
 	p.record->translation = root;

@@ -12,8 +12,8 @@
 
 #include <minirt.h>
 
-t_color_3d		hit_gradient_background(const t_ray ray,
-										t_color_3d background_tone)
+t_color_3d	hit_gradient_background(const t_ray ray,
+									t_color_3d background_tone)
 {
 	t_color_3d	ambient_light;
 	t_color_3d	cast;
@@ -29,10 +29,10 @@ t_color_3d		hit_gradient_background(const t_ray ray,
 	return (cast);
 }
 
-static void		handle_hit(t_hit_record *record,
-							t_hit_record current_record,
-							double *closest_so_far,
-							bool *hit_anything)
+static void	handle_hit(t_hit_record *record,
+						t_hit_record current_record,
+						double *closest_so_far,
+						bool *hit_anything)
 {
 	*hit_anything = true;
 	if (current_record.translation < *closest_so_far)
@@ -42,9 +42,9 @@ static void		handle_hit(t_hit_record *record,
 	}
 }
 
-bool			hit_any_spheres(const t_ray ray,
-									t_list *spheres,
-									t_hit_record *record)
+bool	hit_any_spheres(const t_ray ray,
+						t_list *spheres,
+						t_hit_record *record)
 {
 	t_hit_record	current_record;
 	double			closest_so_far;
@@ -59,14 +59,14 @@ bool			hit_any_spheres(const t_ray ray,
 	while (sphere_count--)
 	{
 		if (ray_hits_sphere((t_ray_hits_sphere_params){
-			ray, spheres->content, &current_record, 0.001, closest_so_far}))
+				ray, spheres->content, &current_record, 0.001, closest_so_far}))
 			handle_hit(record, current_record, &closest_so_far, &hit_anything);
 		spheres = spheres->next;
 	}
 	return (hit_anything);
 }
 
-t_color_3d		cast_ray(const t_ray ray, t_list *spheres, int depth)
+t_color_3d	cast_ray(const t_ray ray, t_list *spheres, int depth)
 {
 	t_hit_record	record;
 

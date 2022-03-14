@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_operations.c                                :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:43:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:22:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vector_3d	add(t_vector_3d first, t_vector_3d second)
 {
-	t_vector_3d result;
+	t_vector_3d	result;
 
 	result.x = first.x + second.x;
 	result.y = first.y + second.y;
@@ -24,7 +24,7 @@ t_vector_3d	add(t_vector_3d first, t_vector_3d second)
 
 t_vector_3d	sub(t_vector_3d first, t_vector_3d second)
 {
-	t_vector_3d result;
+	t_vector_3d	result;
 
 	result.x = first.x - second.x;
 	result.y = first.y - second.y;
@@ -34,7 +34,7 @@ t_vector_3d	sub(t_vector_3d first, t_vector_3d second)
 
 t_vector_3d	cross(t_vector_3d first, t_vector_3d second)
 {
-	t_vector_3d result;
+	t_vector_3d	result;
 
 	result.x = first.y * second.z - first.z * second.y;
 	result.y = first.z * second.x - first.x * second.z;
@@ -44,7 +44,7 @@ t_vector_3d	cross(t_vector_3d first, t_vector_3d second)
 
 t_vector_3d	product(t_vector_3d first, t_vector_3d second)
 {
-	t_vector_3d result;
+	t_vector_3d	result;
 
 	result.x = first.x * second.x;
 	result.y = first.y * second.y;
@@ -54,7 +54,7 @@ t_vector_3d	product(t_vector_3d first, t_vector_3d second)
 
 t_vector_3d	division(t_vector_3d first, t_vector_3d second)
 {
-	t_vector_3d result;
+	t_vector_3d	result;
 
 	result.x = first.x / second.x;
 	result.y = first.y / second.y;

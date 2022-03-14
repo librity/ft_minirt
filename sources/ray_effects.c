@@ -6,15 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:49:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:25:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_vector_3d		point_ray(t_camera camera,
-							double horizontal,
-							double vertical)
+t_vector_3d	point_ray(t_camera camera,
+						double horizontal,
+						double vertical)
 {
 	t_vector_3d	direction;
 
@@ -25,9 +25,9 @@ t_vector_3d		point_ray(t_camera camera,
 	return (direction);
 }
 
-t_ray			set_ray(t_camera camera,
-						double horizontal,
-						double vertical)
+t_ray	set_ray(t_camera camera,
+				double horizontal,
+				double vertical)
 {
 	t_ray	ray;
 
@@ -36,10 +36,10 @@ t_ray			set_ray(t_camera camera,
 	return (ray);
 }
 
-t_vector_3d		point_ray_dof(t_camera camera,
-								t_vector_3d offset,
-								double horizontal,
-								double vertical)
+t_vector_3d	point_ray_dof(t_camera camera,
+							t_vector_3d offset,
+							double horizontal,
+							double vertical)
 {
 	t_vector_3d	direction;
 
@@ -48,17 +48,17 @@ t_vector_3d		point_ray_dof(t_camera camera,
 	return (direction);
 }
 
-t_ray			set_ray_dof(t_camera camera,
-							double horizontal,
-							double vertical)
+t_ray	set_ray_dof(t_camera camera,
+					double horizontal,
+					double vertical)
 {
 	t_ray		ray;
 	t_vector_3d	offset;
 
 	offset = scalar_times(camera.lens_radius, random_in_unit_disk());
 	offset = add(
-		scalar_times(offset.x, camera.basis_u),
-		scalar_times(offset.y, camera.basis_v));
+			scalar_times(offset.x, camera.basis_u),
+			scalar_times(offset.y, camera.basis_v));
 	ray.origin = add(camera.origin, offset);
 	ray.direction = point_ray_dof(camera, offset, horizontal, vertical);
 	return (ray);

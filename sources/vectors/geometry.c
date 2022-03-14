@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_geometry.c                                  :+:      :+:    :+:   */
+/*   geometry.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:29:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-bool		near_zero(t_vector_3d vector)
+bool	near_zero(t_vector_3d vector)
 {
 	const float	cuttoff = 1e-8;
 	const bool	cuts_off_x = ft_abs_d(vector.x) < cuttoff;
@@ -44,7 +44,7 @@ t_vector_3d	refract(t_vector_3d incident,
 	cos_theta = ft_min_d(cos_theta, 1.0);
 	refracted_perpendicular = add(incident, scalar_times(cos_theta, normal));
 	refracted_perpendicular = scalar_times(
-		refration_ration, refracted_perpendicular);
+			refration_ration, refracted_perpendicular);
 	parallel_magnitude = 1.0 - length_squared(refracted_perpendicular);
 	parallel_magnitude = ft_abs_d(parallel_magnitude);
 	parallel_magnitude = -sqrt(parallel_magnitude);

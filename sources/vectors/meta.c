@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_meta.c                                      :+:      :+:    :+:   */
+/*   meta.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:49:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:22:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-double		length_squared(t_vector_3d vector)
+double	length_squared(t_vector_3d vector)
 {
-	double x;
-	double y;
-	double z;
+	double	x;
+	double	y;
+	double	z;
 
 	x = vector.x * vector.x;
 	y = vector.y * vector.y;
@@ -24,9 +24,9 @@ double		length_squared(t_vector_3d vector)
 	return (x + y + z);
 }
 
-double		length(t_vector_3d vector)
+double	length(t_vector_3d vector)
 {
-	double length_sqrd;
+	double	length_sqrd;
 
 	length_sqrd = length_squared(vector);
 	return (sqrt(length_sqrd));
@@ -39,7 +39,7 @@ t_vector_3d	negative(t_vector_3d vector)
 
 t_vector_3d	unit(t_vector_3d vector)
 {
-	double magnitude;
+	double	magnitude;
 
 	magnitude = length(vector);
 	return (scalar_div(magnitude, vector));

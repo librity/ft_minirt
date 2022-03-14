@@ -29,7 +29,7 @@ t_color_3i	color_3i(int red, int green, int blue)
 
 t_color_3i	color_3d_to_i3(t_color_3d color_3d)
 {
-	t_color_3i color_3i;
+	t_color_3i	color_3i;
 
 	color_3i.red = (int)(255.999 * color_3d.x);
 	color_3i.green = (int)(255.999 * color_3d.y);

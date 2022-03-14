@@ -6,18 +6,18 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 00:51:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 17:51:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:22:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-double		rp(void)
+double	rp(void)
 {
 	return (random_from(-1.0, 1.0));
 }
 
-double		rr(void)
+double	rr(void)
 {
 	return (random_from(0.0, 0.1));
 }

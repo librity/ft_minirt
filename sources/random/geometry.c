@@ -6,23 +6,23 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:10:04 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 17:51:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:22:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_vector_3d		random_unit_vector(void)
+t_vector_3d	random_unit_vector(void)
 {
-	t_vector_3d normalized_in_sphere;
+	t_vector_3d	normalized_in_sphere;
 
 	normalized_in_sphere = unit(random_in_unit_sphere());
 	return (normalized_in_sphere);
 }
 
-t_point_3d		random_in_unit_sphere(void)
+t_point_3d	random_in_unit_sphere(void)
 {
-	t_point_3d random;
+	t_point_3d	random;
 
 	while (true)
 	{
@@ -33,9 +33,9 @@ t_point_3d		random_in_unit_sphere(void)
 	}
 }
 
-t_point_3d		random_in_unit_disk(void)
+t_point_3d	random_in_unit_disk(void)
 {
-	t_point_3d random;
+	t_point_3d	random;
 
 	while (true)
 	{
@@ -46,9 +46,9 @@ t_point_3d		random_in_unit_disk(void)
 	}
 }
 
-t_vector_3d		random_in_hemisphere(const t_vector_3d normal)
+t_vector_3d	random_in_hemisphere(const t_vector_3d normal)
 {
-	t_vector_3d in_unit_sphere;
+	t_vector_3d	in_unit_sphere;
 
 	in_unit_sphere = random_in_unit_sphere();
 	if (dot(in_unit_sphere, normal) > 0.0)
