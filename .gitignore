@@ -56,3 +56,6 @@ dkms.conf
 *.bmp
 !gallery/*.ppm
 !gallery/*.bmp
+
+# MiniRT
+minirt
