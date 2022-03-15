@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 18:25:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:35:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	print_error(char *message)
 	ft_putstr("\n");
 }
 
-static char	*fetch_error_message(t_rt_error code)
+static char	*fetch_error_message(t_errors code)
 {
 	static char	*error_messages[GENERIC_RAY_TRACER_ERROR] = {
 		"Expected one argument as a filename.",
@@ -30,7 +30,7 @@ static char	*fetch_error_message(t_rt_error code)
 	return (error_messages[code]);
 }
 
-void	kill_ray_tracer(t_rt_error code)
+void	kill_ray_tracer(t_errors code)
 {
 	print_error(fetch_error_message(code));
 	exit(EXIT_FAILURE);

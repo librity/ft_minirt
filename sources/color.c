@@ -6,30 +6,30 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 15:06:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:49:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_color_3d	color(double red, double green, double blue)
+t_c3d	color(double red, double green, double blue)
 {
 	return (color_3d(red, green, blue));
 }
 
-t_color_3d	color_3d(double red, double green, double blue)
+t_c3d	color_3d(double red, double green, double blue)
 {
-	return ((t_color_3d){red, green, blue});
+	return ((t_c3d){red, green, blue});
 }
 
-t_color_3i	color_3i(int red, int green, int blue)
+t_c3i	color_3i(int red, int green, int blue)
 {
-	return ((t_color_3i){red, green, blue});
+	return ((t_c3i){red, green, blue});
 }
 
-t_color_3i	color_3d_to_i3(t_color_3d color_3d)
+t_c3i	color_3d_to_i3(t_c3d color_3d)
 {
-	t_color_3i	color_3i;
+	t_c3i	color_3i;
 
 	color_3i.red = (int)(255.999 * color_3d.x);
 	color_3i.green = (int)(255.999 * color_3d.y);

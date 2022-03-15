@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 18:29:42 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:48:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-bool	near_zero(t_vector_3d vector)
+bool	near_zero(t_v3d vector)
 {
 	const float	cuttoff = 1e-8;
 	const bool	cuts_off_x = ft_abs_d(vector.x) < cuttoff;
@@ -22,21 +22,21 @@ bool	near_zero(t_vector_3d vector)
 	return (cuts_off_x && cuts_off_y && cuts_off_z);
 }
 
-t_vector_3d	reflect(t_vector_3d incident, t_vector_3d normal)
+t_v3d	reflect(t_v3d incident, t_v3d normal)
 {
 	const double		factor = 2.0 * dot(incident, normal);
-	const t_vector_3d	complement = scalar_times(factor, normal);
+	const t_v3d	complement = scalar_times(factor, normal);
 
 	return (sub(incident, complement));
 }
 
-t_vector_3d	refract(t_vector_3d incident,
-					t_vector_3d normal,
+t_v3d	refract(t_v3d incident,
+					t_v3d normal,
 					double refration_ration)
 {
-	t_vector_3d	refracted_perpendicular;
-	t_vector_3d	refracted_parallel;
-	t_vector_3d	refracted;
+	t_v3d	refracted_perpendicular;
+	t_v3d	refracted_parallel;
+	t_v3d	refracted;
 	double		cos_theta;
 	double		parallel_magnitude;
 

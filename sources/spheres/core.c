@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 01:46:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 18:26:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 22:22:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_sphere	*new_sphere(t_point_3d center, double radius, t_material *material)
+t_sphere	*new_sphere(t_p3d center, double radius, t_material *material)
 {
 	t_sphere	*new;
 
@@ -30,17 +30,18 @@ void	free_spheres(t_list **spheres)
 	ft_lstclear(spheres, &free);
 }
 
-t_color_3d	render_sphere(t_ray ray,
+t_c3d	render_sphere(t_ray ray,
 							t_hit_record *record,
 							t_list *spheres,
 							int depth)
 {
 	t_ray						scattered;
-	t_color_3d					attenuation;
-	t_color_3d					scattered_color;
-	t_color_3d					attenuated;
-	const t_scatter_callback	scatteres_ray = record->material->scattered;
+	t_c3d					attenuation;
+	t_c3d					scattered_color;
+	t_c3d					attenuated;
+	t_scatter_callback	scatteres_ray;
 
+	scatteres_ray = record->material->scattered;
 	if (scatteres_ray(ray, record, &attenuation, &scattered))
 	{
 		scattered_color = cast_ray(scattered, spheres, depth - 1);

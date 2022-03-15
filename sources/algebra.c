@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 03:23:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:37:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ double	pi(void)
 
 double	degrees_to_radians(double degrees)
 {
-	const double	pi;
+	double	pi;
 
 	pi = M_PI;
 	return ((degrees * pi) / 180.0);
 }
 
-bool	quadratic(t_quadratic_result r,
+bool	quadratic(t_quadratic r,
 				double min_translation,
 				double max_translation,
 				double *root)
@@ -54,14 +54,4 @@ bool	quadratic(t_quadratic_result r,
 	}
 	*root = r.root;
 	return (true);
-}
-
-double	schlicks_approximation(double cosine, double refraction_ratio)
-{
-	double	coefficient;
-
-	coefficient = (1 - refraction_ratio) / (1 + refraction_ratio);
-	coefficient = coefficient * coefficient;
-	coefficient = coefficient + (1 - coefficient) * pow((1 - cosine), 5);
-	return (coefficient);
 }

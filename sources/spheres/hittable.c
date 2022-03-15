@@ -6,16 +6,16 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:35:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 18:26:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:28:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static bool	vectorial_quadratic(t_vectorial_quadratic_params p)
+static bool	vectorial_quadratic(t_vectorial_quadratic p)
 {
-	const t_vector_3d	center_to_origin;
-	t_quadratic_result	r;
+	t_v3d	center_to_origin;
+	t_quadratic	r;
 
 	center_to_origin = sub(p.ray.origin, p.sphere->center);
 	r.a = length_squared(p.ray.direction);
@@ -25,13 +25,13 @@ static bool	vectorial_quadratic(t_vectorial_quadratic_params p)
 	return (quadratic(r, p.min_translation, p.max_translation, p.root));
 }
 
-bool	ray_hits_sphere(t_ray_hits_sphere_params p)
+bool	ray_hits_sphere(t_ray_hits_sphere p)
 {
-	t_vector_3d	outward_normal;
+	t_v3d	outward_normal;
 	double		root;
 	bool		has_real_roots;
 
-	has_real_roots = vectorial_quadratic((t_vectorial_quadratic_params){
+	has_real_roots = vectorial_quadratic((t_vectorial_quadratic){
 			p.ray, p.sphere, p.t_min, p.t_max, &root});
 	if (unless(has_real_roots))
 		return (false);

@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:49:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 18:22:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:48:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-double	length_squared(t_vector_3d vector)
+double	length_squared(t_v3d vector)
 {
 	double	x;
 	double	y;
@@ -24,7 +24,7 @@ double	length_squared(t_vector_3d vector)
 	return (x + y + z);
 }
 
-double	length(t_vector_3d vector)
+double	length(t_v3d vector)
 {
 	double	length_sqrd;
 
@@ -32,12 +32,12 @@ double	length(t_vector_3d vector)
 	return (sqrt(length_sqrd));
 }
 
-t_vector_3d	negative(t_vector_3d vector)
+t_v3d	negative(t_v3d vector)
 {
 	return (scalar_times(-1.0, vector));
 }
 
-t_vector_3d	unit(t_vector_3d vector)
+t_v3d	unit(t_v3d vector)
 {
 	double	magnitude;
 
@@ -45,7 +45,7 @@ t_vector_3d	unit(t_vector_3d vector)
 	return (scalar_div(magnitude, vector));
 }
 
-t_vector_3d	vsqrt(t_vector_3d vector)
+t_v3d	vsqrt(t_v3d vector)
 {
 	vector.x = sqrt(vector.x);
 	vector.y = sqrt(vector.y);

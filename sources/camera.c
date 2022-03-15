@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 18:25:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:10:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static void	set_orthonormal_basis(t_camera *camera, t_camera_params p)
+static void	set_orthonormal_basis(t_camera *camera, t_initialize_camera p)
 {
 	camera->basis_w = unit(sub(p.look_from, p.look_at));
 	camera->basis_u = unit(cross(p.view_up, camera->basis_w));
@@ -20,7 +20,7 @@ static void	set_orthonormal_basis(t_camera *camera, t_camera_params p)
 }
 
 static void	set_position(t_camera *camera,
-							t_camera_params p,
+							t_initialize_camera p,
 							double viewport_width,
 							double viewport_height)
 {
@@ -31,9 +31,9 @@ static void	set_position(t_camera *camera,
 			camera->basis_v);
 }
 
-static void	set_lower_left_corner(t_camera *camera, t_camera_params p)
+static void	set_lower_left_corner(t_camera *camera, t_initialize_camera p)
 {
-	t_point_3d	lower_left_corner;
+	t_p3d	lower_left_corner;
 
 	lower_left_corner = sub(camera->origin,
 			scalar_div(2.0, camera->horizontal));
@@ -46,7 +46,7 @@ static void	set_lower_left_corner(t_camera *camera, t_camera_params p)
 
 void	initialize_camera(t_camera *camera,
 						double aspect_ratio,
-						t_camera_params p)
+						t_initialize_camera p)
 {
 	double	height;
 	double	viewport_height;

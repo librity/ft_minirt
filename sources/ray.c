@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:21:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:30:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_ray	ray(t_point_3d origin, t_vector_3d direction)
+t_ray	ray(t_p3d origin, t_v3d direction)
 {
 	t_ray	new_ray;
 
@@ -21,36 +21,36 @@ t_ray	ray(t_point_3d origin, t_vector_3d direction)
 	return (new_ray);
 }
 
-t_point_3d	ray_at_t(double translation, t_ray ray)
+t_p3d	ray_at_t(double translation, t_ray ray)
 {
-	t_vector_3d	reach;
+	t_v3d	reach;
 
 	reach = scalar_times(translation, ray.direction);
 	return (add(ray.origin, reach));
 }
 
-t_ray	get_ray(const t_ray_tracer rt,
-				const t_camera camera,
+t_ray	get_ray(t_minirt *ctl,
+				t_camera camera,
 				int row,
 				int column)
 {
 	double	horizontal_direction;
 	double	vertical_direction;
 
-	horizontal_direction = (double)(column) / (rt.width - 1);
-	vertical_direction = (double)(row) / (rt.height - 1);
+	horizontal_direction = (double)(column) / (ctl->width - 1);
+	vertical_direction = (double)(row) / (ctl->height - 1);
 	return (set_ray_dof(camera, horizontal_direction, vertical_direction));
 }
 
-t_ray	get_sample_ray(const t_ray_tracer rt,
-						const t_camera camera,
+t_ray	get_sample_ray(t_minirt *ctl,
+						t_camera camera,
 						int row,
 						int column)
 {
 	double	horizontal_direction;
 	double	vertical_direction;
 
-	horizontal_direction = (double)(column - random_double()) / (rt.width - 1);
-	vertical_direction = (double)(row - random_double()) / (rt.height - 1);
+	horizontal_direction = (double)(column - random_double()) / (ctl->width - 1);
+	vertical_direction = (double)(row - random_double()) / (ctl->height - 1);
 	return (set_ray_dof(camera, horizontal_direction, vertical_direction));
 }

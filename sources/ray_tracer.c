@@ -6,77 +6,65 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 21:49:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:27:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-clock_t	log_start(t_ray_tracer rt)
+void	log_start(t_minirt *ctl)
 {
-	clock_t	timer;
-
 	ft_putstr("\nMaterials: ");
-	ft_putnbr(ft_lstsize(rt.materials));
+	ft_putnbr(ft_lstsize(ctl->materials));
 	ft_putstr("\nSpheres: ");
-	ft_putnbr(ft_lstsize(rt.spheres));
+	ft_putnbr(ft_lstsize(ctl->spheres));
 	ft_putstr("\nScaning lines: ");
-	timer = clock();
-	return (timer);
 }
 
-clock_t	log_end(clock_t timer)
+void	log_end(void)
 {
-	double	elapsed_time;
-
-	timer = clock() - timer;
-	elapsed_time = ((double)timer) / CLOCKS_PER_SEC;
 	ft_putstr(" Done!");
-	ft_putstr("\nElapsed time: ");
-	ft_putnbr((int)elapsed_time);
-	ft_putstr(" seconds\n\n");
-	return (timer);
 }
 
-t_color_3i	trace_sample_rays(const t_ray_tracer rt,
-								const t_camera camera,
+t_c3i	trace_sample_rays(t_minirt *ctl,
+								t_camera camera,
 								int row,
 								int column)
 {
-	t_ray		ray;
-	t_color_3d	sample_result;
-	t_color_3d	sample_color;
-	t_color_3i	pixel_color;
-	int			samples;
+	t_ray	ray;
+	t_c3d	sample_result;
+	t_c3d	sample_color;
+	t_c3i	pixel_color;
+	int		samples;
 
-	sample_result = (t_color_3d){0, 0, 0};
-	samples = rt.samples_per_pixel;
+	sample_result = (t_c3d){0, 0, 0};
+	samples = ctl->samples_per_pixel;
 	while (samples--)
 	{
-		ray = get_sample_ray(rt, camera, row, column);
-		sample_color = cast_ray(ray, rt.spheres, rt.max_depth);
+		ray = get_sample_ray(ctl, camera, row, column);
+		sample_color = cast_ray(ray, ctl->spheres, ctl->max_depth);
 		sample_result = add(sample_result, sample_color);
 	}
-	pixel_color = sample_pixel_color(sample_result, rt.samples_per_pixel);
+	pixel_color = sample_pixel_color(sample_result, ctl->samples_per_pixel);
 	return (pixel_color);
 }
 
 void	generate_image(t_bitmap_image *image,
-					const t_ray_tracer rt,
-					const t_camera camera)
+					t_minirt *ctl,
+					t_camera camera)
 {
-	t_color_3i	pixel_color;
+	t_c3i	pixel_color;
 	int			row;
 	int			column;
 
-	row = rt.height - 1;
+	row = ctl->height - 1;
 	while (row >= 0)
 	{
 		ft_putstr("⌛");
 		column = 0;
-		while (column < rt.width)
+		while (column < ctl->width)
 		{
-			pixel_color = trace_sample_rays(rt, camera, row, column);
+			pixel_color = trace_sample_rays(ctl, camera, row, column);
 			set_image_pixel(image, pixel_color, row, column);
 			column++;
 		}
@@ -84,8 +72,8 @@ void	generate_image(t_bitmap_image *image,
 	}
 }
 
-void	cleanup_ray_tracer(t_ray_tracer *rt)
+void	cleanup_ray_tracer(t_minirt *ctl)
 {
-	free_spheres(&(rt->spheres));
-	free_materials(&(rt->materials));
+	free_spheres(&(ctl->spheres));
+	free_materials(&(ctl->materials));
 }

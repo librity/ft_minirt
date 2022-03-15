@@ -6,17 +6,17 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 23:49:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 18:25:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:48:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_vector_3d	point_ray(t_camera camera,
+t_v3d	point_ray(t_camera camera,
 						double horizontal,
 						double vertical)
 {
-	t_vector_3d	direction;
+	t_v3d	direction;
 
 	direction = camera.lower_left_corner;
 	direction = add(direction, scalar_times(horizontal, camera.horizontal));
@@ -36,12 +36,12 @@ t_ray	set_ray(t_camera camera,
 	return (ray);
 }
 
-t_vector_3d	point_ray_dof(t_camera camera,
-							t_vector_3d offset,
+t_v3d	point_ray_dof(t_camera camera,
+							t_v3d offset,
 							double horizontal,
 							double vertical)
 {
-	t_vector_3d	direction;
+	t_v3d	direction;
 
 	direction = point_ray(camera, horizontal, vertical);
 	direction = sub(direction, offset);
@@ -53,7 +53,7 @@ t_ray	set_ray_dof(t_camera camera,
 					double vertical)
 {
 	t_ray		ray;
-	t_vector_3d	offset;
+	t_v3d	offset;
 
 	offset = scalar_times(camera.lens_radius, random_in_unit_disk());
 	offset = add(

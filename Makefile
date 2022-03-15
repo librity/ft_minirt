@@ -6,11 +6,11 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/03/14 18:06:06 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/03/14 18:57:48 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minirt
+NAME = miniRT
 
 MINIRT_HEADER = $(INCLUDES_PATH)/minirt.h
 MINIRT_ARCHIVE = $(ARCHIVES_PATH)/minirt.a
