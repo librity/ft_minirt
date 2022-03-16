@@ -6,38 +6,38 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 22:35:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/15 00:35:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static void initialize_world(t_list **materials, t_list **spheres)
+static void initialize_world(t_list **spheres)
 {
-	create_matte_sphere(
-		(t_sphere_params){
-			materials, spheres,
+	add_sphere(
+		(t_add_sphere){
+			spheres,
 			point(0.0, -100.5, -1.0),
 			100.0,
 			color(0.8, 0.8, 0.0)});
 
-	add_matte_sphere(
-		(t_sphere_params){
-			materials, spheres,
+	add_sphere(
+		(t_add_sphere){
+			spheres,
 			point(-1.0, 0.0, -1.0),
 			0.5,
 			color(0.5, 0.1, 0.3)});
 
-	add_matte_sphere(
-		(t_sphere_params){
-			materials, spheres,
+	add_sphere(
+		(t_add_sphere){
+			spheres,
 			point(0.0, 0.0, -1.0),
 			0.5,
 			color(0.1, 0.2, 0.5)});
 
-	add_matte_sphere(
-		(t_sphere_params){
-			materials, spheres,
+	add_sphere(
+		(t_add_sphere){
+			spheres,
 			point(1.0, 0.0, -1.0),
 			0.5,
 			color(0.8, 0.6, 0.2)});
@@ -58,19 +58,18 @@ static void configure_camera(t_minirt *ctl)
 	initialize_camera(&(ctl->camera), ctl->aspect_ratio, camera_params);
 }
 
-static void initialize_ray_tracer(t_minirt *ctl, char **arguments)
+static void initialize(t_minirt *ctl, char **arguments)
 {
 	ctl->file_name = arguments[1];
 
 	ctl->aspect_ratio = 16.0 / 9.0;
-	// ctl->width = 1920;
 	ctl->width = 400;
 	ctl->height = (int)(ctl->width / ctl->aspect_ratio);
-	ctl->samples_per_pixel = 10;
-	ctl->max_depth = 50;
 
 	configure_camera(ctl);
-	initialize_world(&(ctl->materials), &(ctl->spheres));
+
+	ctl->spheres = NULL;
+	initialize_world(&(ctl->spheres));
 }
 
 int main(int argc, char **argv)
@@ -79,7 +78,7 @@ int main(int argc, char **argv)
 	t_bitmap_image image;
 
 	handle_arguments(argc);
-	initialize_ray_tracer(&ctl, argv);
+	initialize(&ctl, argv);
 	bm_initialize_bitmap(&image, ctl.width, ctl.height);
 
 	log_start(&ctl);

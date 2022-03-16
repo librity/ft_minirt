@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_caster.c                                       :+:      :+:    :+:   */
+/*   caster.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:21:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 22:33:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/16 00:44:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_c3d	hit_gradient_background(t_ray ray,
-									t_c3d background_tone)
-{
-	t_c3d	ambient_light;
-	t_c3d	cast;
-	t_v3d	unit_direction;
-	double		gradient;
+// static t_c3d	hit_background(t_ray ray, t_c3d background_tone)
+// {
+// 	t_c3d	ambient_light;
+// 	t_c3d	cast;
+// 	t_v3d	unit_direction;
+// 	double	gradient;
 
-	unit_direction = unit(ray.direction);
-	gradient = 0.5 * (unit_direction.y + 1.0);
-	ambient_light = color(1.0, 1.0, 1.0);
-	ambient_light = scalar_times(1.0 - gradient, ambient_light);
-	background_tone = scalar_times(gradient, background_tone);
-	cast = add(ambient_light, background_tone);
-	return (cast);
-}
+// 	unit_direction = unit(ray.direction);
+// 	gradient = 0.5 * (unit_direction.y + 1.0);
+// 	ambient_light = color(1.0, 1.0, 1.0);
+// 	ambient_light = scalar_times(1.0 - gradient, ambient_light);
+// 	background_tone = scalar_times(gradient, background_tone);
+// 	cast = add(ambient_light, background_tone);
+// 	return (cast);
+// }
 
 static void	handle_hit(t_hit_record *record,
 						t_hit_record current_record,
@@ -42,15 +41,17 @@ static void	handle_hit(t_hit_record *record,
 	}
 }
 
-bool	hit_any_spheres(t_ray ray,
-						t_list *spheres,
+bool	hit_any_spheres(t_minirt *ctl,
+						t_ray ray,
 						t_hit_record *record)
 {
 	t_hit_record	current_record;
 	double			closest_so_far;
 	int				sphere_count;
 	bool			hit_anything;
+	t_list			*spheres;
 
+	spheres = ctl->spheres;
 	if (spheres == NULL || spheres->content == NULL)
 		return (false);
 	closest_so_far = infinity();
@@ -66,13 +67,12 @@ bool	hit_any_spheres(t_ray ray,
 	return (hit_anything);
 }
 
-t_c3d	cast_ray(t_ray ray, t_list *spheres, int depth)
+t_c3d	cast_ray(t_minirt *ctl, t_ray ray)
 {
 	t_hit_record	record;
 
-	if (depth <= 0)
-		return ((t_c3d){0.0, 0.0, 0.0});
-	if (hit_any_spheres(ray, spheres, &record))
-		return (render_sphere(ray, &record, spheres, depth));
-	return (hit_gradient_background(ray, (t_c3d){0.5, 0.7, 1.0}));
+	if (hit_any_spheres(ctl, ray, &record))
+		return (render_sphere(ctl, ray, &record));
+	// return (hit_background(ray, (t_c3d){0.5, 0.7, 1.0}));
+	return (ctl->amb_light);
 }

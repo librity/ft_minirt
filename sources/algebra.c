@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 03:23:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 21:37:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 23:00:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@ double	infinity(void)
 
 	inf = DBL_MAX;
 	return (inf);
-}
-
-double	pi(void)
-{
-	double	yum;
-
-	yum = M_PI;
-	return (yum);
 }
 
 double	degrees_to_radians(double degrees)

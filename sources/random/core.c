@@ -35,6 +35,6 @@ t_v3d	random_vector(void)
 t_v3d	random_vector_in(double min, double max)
 {
 	return (vector(random_from(min, max),
-			random_from(min, max),
-			random_from(min, max)));
+					random_from(min, max),
+					random_from(min, max)));
 }

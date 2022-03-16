@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:21:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 21:30:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/14 23:25:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,5 @@ t_ray	get_ray(t_minirt *ctl,
 
 	horizontal_direction = (double)(column) / (ctl->width - 1);
 	vertical_direction = (double)(row) / (ctl->height - 1);
-	return (set_ray_dof(camera, horizontal_direction, vertical_direction));
-}
-
-t_ray	get_sample_ray(t_minirt *ctl,
-						t_camera camera,
-						int row,
-						int column)
-{
-	double	horizontal_direction;
-	double	vertical_direction;
-
-	horizontal_direction = (double)(column - random_double()) / (ctl->width - 1);
-	vertical_direction = (double)(row - random_double()) / (ctl->height - 1);
-	return (set_ray_dof(camera, horizontal_direction, vertical_direction));
+	return (set_ray(camera, horizontal_direction, vertical_direction));
 }

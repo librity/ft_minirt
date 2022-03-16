@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   hittable.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:35:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 21:28:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/15 00:35:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	vectorial_quadratic(t_vectorial_quadratic p)
 {
-	t_v3d	center_to_origin;
+	t_v3d		center_to_origin;
 	t_quadratic	r;
 
 	center_to_origin = sub(p.ray.origin, p.sphere->center);
@@ -28,8 +28,8 @@ static bool	vectorial_quadratic(t_vectorial_quadratic p)
 bool	ray_hits_sphere(t_ray_hits_sphere p)
 {
 	t_v3d	outward_normal;
-	double		root;
-	bool		has_real_roots;
+	double	root;
+	bool	has_real_roots;
 
 	has_real_roots = vectorial_quadratic((t_vectorial_quadratic){
 			p.ray, p.sphere, p.t_min, p.t_max, &root});
@@ -40,6 +40,6 @@ bool	ray_hits_sphere(t_ray_hits_sphere p)
 	outward_normal = sub(p.record->intersection, p.sphere->center);
 	outward_normal = scalar_div(p.sphere->radius, outward_normal);
 	set_face_normal(p.ray, outward_normal, p.record);
-	p.record->material = p.sphere->material;
+	p.record->color = p.sphere->color;
 	return (true);
 }

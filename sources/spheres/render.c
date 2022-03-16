@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 15:06:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 22:18:25 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/03/28 01:46:52 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/03/16 00:36:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_material	*prototype_material(t_scatter_callback scattered)
+// TODO: IMPLEMENT HARD SHADOWS:
+// CAST RAY TOWARDS ALL LIGHTS AND ATENUATE COLOR FOR EVERY HIT.
+// SEE AWFL'S raytrace.c
+t_c3d	render_sphere(t_minirt *ctl, t_ray ray, t_hit_record *record)
 {
-	t_material	*new;
-
-	new = (t_material *)ft_salloc(sizeof(t_material));
-	if (new == NULL)
-		return (NULL);
-	new->scattered = scattered;
-	return (new);
-}
-
-void	free_materials(t_list **materials)
-{
-	ft_lstclear(materials, &free);
+	ray = ray;
+	ctl = ctl;
+	return (record->color);
 }
