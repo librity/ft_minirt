@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/02/17 21:08:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/18 00:00:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_bitmap_pixel
 	unsigned char	red;
 }					t_bitmap_pixel;
 
+typedef t_bitmap_pixel	t_rgb;
+
 typedef struct s_trgb
 {
 	unsigned char	transparency;
@@ -63,14 +65,16 @@ int					bm_trgb_chars_to_int(unsigned char transparency,
 int					bm_rgb_chars_to_int(unsigned char red, unsigned char green,
 						unsigned char blue);
 int					bm_trgb_to_int(t_trgb color);
+int					bm_rgb_to_int(t_rgb color);
+
 t_trgb				bm_int_to_trgb(int color);
 t_bitmap_pixel		bm_int_to_rgb(int color);
-
-# define BITMAP_MAGIC_BITS "BM"
 
 /******************************************************************************\
  * BITMAP
 \******************************************************************************/
+
+# define BITMAP_MAGIC_BITS "BM"
 
 typedef struct s_bitmap_header
 {
@@ -107,14 +111,6 @@ typedef struct s_write_pixels
 	unsigned char	padding[3];
 }					t_write_pixels;
 
-typedef enum e_bitmap_error
-{
-	FILE_NOT_OPENED = 1,
-	HEADER_NOT_INITIALIZED,
-	BAD_MALLOC,
-	GENERIC_BITMAP_ERROR
-}					t_bitmap_error;
-
 void				bm_initialize_bitmap(t_bitmap_image *image,
 						int width,
 						int height);
@@ -134,7 +130,6 @@ void				bm_free_bitmap(t_bitmap_image *img);
 
 int					bm_calculate_padding(int number);
 int					bm_abs(int number);
-void				bm_kill(t_bitmap_error code);
 
 /******************************************************************************\
  * MLX
@@ -155,10 +150,30 @@ typedef struct s_mlx_image
 	int		endian;
 }					t_mlx_image;
 
-void				bm_draw_to_mlx_image(t_mlx_image *buffer, int x, int y,
-						int color);
-int					bm_get_mlx_image_pixel(t_mlx_image *buffer, int x, int y);
+void				initialize_mlx_image(t_mlx_image *image, void *mlx,
+						int width, int height);
 
-void				bm_save_mlx_image(t_mlx_image *mlx_img, char *filename);
+void				bm_draw_to_mlx_image(t_mlx_image *image, int x, int y,
+						int color);
+void				bm_draw_rgb_to_mlx_image(t_mlx_image *image, int x, int y,
+						t_rgb color);
+
+int					bm_get_mlx_image_pixel(t_mlx_image *image, int x, int y);
+
+void				bm_save_mlx_image(t_mlx_image *image, char *filename);
+
+/******************************************************************************\
+ * ERRORS
+\******************************************************************************/
+
+typedef enum e_bitmap_error
+{
+	FILE_NOT_OPENED = 1,
+	HEADER_NOT_INITIALIZED,
+	BAD_MALLOC,
+	MLX_IMAGE_INIT,
+	GENERIC_BITMAP_ERROR
+}					t_bitmap_error;
+void				bm_kill(t_bitmap_error code);
 
 #endif

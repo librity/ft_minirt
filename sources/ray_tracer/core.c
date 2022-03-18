@@ -6,17 +6,17 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/16 00:35:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/17 23:20:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static t_c3i	trace_ray(t_minirt *ctl, t_camera camera, int row, int column)
+static t_rgb	trace_ray(t_minirt *ctl, t_camera camera, int row, int column)
 {
 	t_ray	ray;
 	t_c3d	cast;
-	t_c3i	color;
+	t_rgb	color;
 
 
 	ray = get_ray(ctl, camera, row, column);
@@ -29,7 +29,7 @@ void	generate_image(t_bitmap_image *image,
 					t_minirt *ctl,
 					t_camera camera)
 {
-	t_c3i	pixel_color;
+	t_rgb	pixel_color;
 	int		row;
 	int		column;
 

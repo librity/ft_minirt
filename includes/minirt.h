@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/16 00:46:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/17 23:34:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,15 @@ t_p3d					point_3d(double x, double y, double z);
 
 typedef t_v3d			t_c3d;
 
-typedef struct s_c3i
-{
-	int					red;
-	int					green;
-	int					blue;
-}						t_c3i;
-
 t_c3d					color(double red, double green, double blue);
 t_c3d					color_3d(double red, double green, double blue);
-t_c3i					color_3i(int red, int green, int blue);
+t_rgb					color_rgb(unsigned char red, unsigned char green,
+							unsigned char blue);
 
-t_c3i					color_3d_to_i3(t_c3d color_3d);
+t_rgb					color_3d_to_rgb(t_c3d color_3d);
 
-t_c3i					get_gamma2_pixel(t_c3d sampled_color);
-void					set_image_pixel(t_bitmap_image *image, t_c3i color,
+t_rgb					get_gamma2_pixel(t_c3d sampled_color);
+void					set_image_pixel(t_bitmap_image *image, t_rgb color,
 							int row, int column);
 
 /******************************************************************************\
@@ -190,9 +184,10 @@ typedef struct s_minirt
 	double				aspect_ratio;
 
 	t_camera			camera;
+	t_mlx_image			buffer;
 	t_list				*cameras;
 
-	t_c3i				amb_color;
+	t_rgb				amb_color;
 	double				amb_brightness;
 	t_c3d				amb_light;
 
