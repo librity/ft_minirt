@@ -6,13 +6,14 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/17 23:34:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/18 01:21:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include <X11/Xlib.h>
 # include <defines.h>
 # include <float.h>
 # include <ft_libbmp.h>
@@ -128,19 +129,6 @@ t_p3d					random_in_unit_disk(void);
 t_v3d					random_in_hemisphere(t_v3d normal);
 
 /******************************************************************************\
- * ERRORS
-\******************************************************************************/
-
-typedef enum e_errors
-{
-	BAD_ARGUMENTS = 1,
-	GENERIC_RAY_TRACER_ERROR
-}						t_errors;
-
-void					kill_ray_tracer(t_errors code);
-void					handle_arguments(int argument_count);
-
-/******************************************************************************\
  * CAMERAS
 \******************************************************************************/
 
@@ -155,7 +143,7 @@ typedef struct s_camera
 	t_v3d				vertical;
 	t_p3d				lower_left_corner;
 
-	double				lens_radius;
+	t_mlx_image			buffer;
 }						t_camera;
 
 typedef struct s_initialize_camera
@@ -183,8 +171,9 @@ typedef struct s_minirt
 	int					height;
 	double				aspect_ratio;
 
-	t_camera			camera;
-	t_mlx_image			buffer;
+	void				*mlx;
+	void				*window;
+
 	t_list				*cameras;
 
 	t_rgb				amb_color;
@@ -198,12 +187,9 @@ typedef struct s_minirt
 	t_list				*cylinders;
 }						t_minirt;
 
-void					log_start(t_minirt *ctl);
-void					log_end(void);
+void					generate_image(t_minirt *ctl, t_camera *camera);
 
-void					generate_image(t_bitmap_image *image, t_minirt *ctl,
-							t_camera camera);
-void					cleanup_ray_tracer(t_minirt *rt);
+void					cleanup_ray_tracer(t_minirt *ctl);
 
 /******************************************************************************\
  * RAYS
@@ -217,14 +203,14 @@ typedef struct s_ray
 
 t_ray					ray(t_p3d origin, t_v3d direction);
 t_p3d					ray_at_t(double translation, t_ray ray);
-t_ray					get_ray(t_minirt *ctl, t_camera camera, int row,
+t_ray					get_ray(t_minirt *ctl, t_camera *camera, int row,
 							int column);
 
 t_c3d					cast_ray(t_minirt *ctl, t_ray ray);
 
-t_v3d					point_ray(t_camera camera, double horizontal,
+t_v3d					point_ray(t_camera *camera, double horizontal,
 							double vertical);
-t_ray					set_ray(t_camera camera, double horizontal,
+t_ray					set_ray(t_camera *camera, double horizontal,
 							double vertical);
 
 /******************************************************************************\
@@ -256,7 +242,7 @@ typedef struct s_sphere
 }						t_sphere;
 
 t_sphere				*new_sphere(t_p3d center, double radius, t_c3d color);
-void					free_spheres(t_list **spheres);
+void					free_spheres(t_minirt *ctl);
 
 typedef struct s_add_sphere
 {
@@ -295,5 +281,55 @@ t_c3d					render_sphere(t_minirt *ctl, t_ray ray,
 /******************************************************************************\
  * SCENE
 \******************************************************************************/
+
+void					handle_arguments(int argument_count);
+
+/******************************************************************************\
+ * MLX
+\******************************************************************************/
+
+void					initialize_mlx(t_minirt *ctl);
+
+int						handle_destroy(t_minirt *ctl);
+int						handle_keypress(int keycode, t_minirt *ctl);
+
+void					handle_close(int keycode, t_minirt *ctl);
+void					handle_navigation(int keycode, t_minirt *ctl);
+void					handle_save_to_bitmap(int keycode, t_minirt *ctl);
+
+/******************************************************************************\
+ * LOGGERS
+\******************************************************************************/
+
+void					log_msg(char *message);
+void					log_endl(char *message);
+
+void					log_keycode(int keycode);
+void					log_camera(int keycode);
+
+void					log_scene(t_minirt *ctl);
+
+/******************************************************************************\
+ * EXIT
+\******************************************************************************/
+
+void					clean(t_minirt *ctl);
+void					clean_and_exit(t_minirt *ctl);
+
+/******************************************************************************\
+ * ERRORS
+\******************************************************************************/
+
+typedef enum e_errors
+{
+	BAD_ARGUMENTS = 1,
+	GENERIC_RAY_TRACER_ERROR
+}						t_errors;
+
+void					kill_ray_tracer(t_errors code);
+
+void					help_and_die(void);
+void					die(void);
+void					die_if_null(void *ptr);
 
 #endif

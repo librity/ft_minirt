@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/18 00:00:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/18 00:21:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ typedef struct s_mlx_image
 	int		endian;
 }					t_mlx_image;
 
-void				initialize_mlx_image(t_mlx_image *image, void *mlx,
+void				bm_initialize_mlx_image(t_mlx_image *image, void *mlx,
 						int width, int height);
 
 void				bm_draw_to_mlx_image(t_mlx_image *image, int x, int y,
