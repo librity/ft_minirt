@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:28:23 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/18 00:48:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/18 23:37:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ static void	initialize_mlx_window(t_minirt *ctl)
 	log_endl(SUCCESS_MSG);
 }
 
-static void	initialize_mlx_buffer(t_minirt *ctl)
-{
-	log_msg(BUFFER_MSG);
-	bm_initialize_mlx_image(&(ctl->buffer), ctl->mlx, ctl->width, ctl->height);
-	log_endl(SUCCESS_MSG);
-}
-
 static void	initialize_mlx_hooks(t_minirt *ctl)
 {
 	log_msg(HOOKS_MSG);
@@ -50,6 +43,5 @@ void	initialize_mlx(t_minirt *ctl)
 {
 	initialize_mlx_core(ctl);
 	initialize_mlx_window(ctl);
-	initialize_mlx_buffer(ctl);
 	initialize_mlx_hooks(ctl);
 }

@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/17 23:20:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/18 01:11:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static t_rgb	trace_ray(t_minirt *ctl, t_camera camera, int row, int column)
+static t_rgb	trace_ray(t_minirt *ctl, t_camera *camera, int row, int column)
 {
 	t_ray	ray;
 	t_c3d	cast;
@@ -25,9 +25,7 @@ static t_rgb	trace_ray(t_minirt *ctl, t_camera camera, int row, int column)
 	return (color);
 }
 
-void	generate_image(t_bitmap_image *image,
-					t_minirt *ctl,
-					t_camera camera)
+void	generate_image(t_minirt *ctl, t_camera *camera)
 {
 	t_rgb	pixel_color;
 	int		row;
@@ -41,14 +39,10 @@ void	generate_image(t_bitmap_image *image,
 		while (column < ctl->width)
 		{
 			pixel_color = trace_ray(ctl, camera, row, column);
-			set_image_pixel(image, pixel_color, row, column);
+			bm_draw_rgb_to_mlx_image(&(camera->buffer), row, column,
+				pixel_color);
 			column++;
 		}
 		row--;
 	}
-}
-
-void	cleanup_ray_tracer(t_minirt *ctl)
-{
-	free_spheres(&(ctl->spheres));
 }

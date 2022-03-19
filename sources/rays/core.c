@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:21:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 23:25:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/18 01:12:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_p3d	ray_at_t(double translation, t_ray ray)
 }
 
 t_ray	get_ray(t_minirt *ctl,
-				t_camera camera,
+				t_camera *camera,
 				int row,
 				int column)
 {
