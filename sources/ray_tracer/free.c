@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 00:58:04 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/19 00:09:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/19 00:47:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	cleanup_ray_tracer(t_minirt *ctl)
 {
-	// FOR EACH CAMERA
-	// mlx_destroy_image(ctl->mlx, ctl->buffer.img);
+	free_cameras(ctl);
 	free_spheres(ctl);
 }

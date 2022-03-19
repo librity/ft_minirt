@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/18 00:21:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/19 00:33:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int					bm_abs(int number);
 
 typedef struct s_mlx_image
 {
+	void	*mlx;
 	void	*img;
 	char	*data;
 
@@ -161,6 +162,8 @@ void				bm_draw_rgb_to_mlx_image(t_mlx_image *image, int x, int y,
 int					bm_get_mlx_image_pixel(t_mlx_image *image, int x, int y);
 
 void				bm_save_mlx_image(t_mlx_image *image, char *filename);
+
+void				bm_destroy_mlx_image(t_mlx_image *image);
 
 /******************************************************************************\
  * ERRORS
