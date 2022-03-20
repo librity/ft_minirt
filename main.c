@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/19 00:48:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:49:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ static void initialize_world(t_minirt *ctl)
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(0.0, -100.5, -1.0),
-			100.0,
-			color(0.8, 0.8, 0.0)});
+			200.0,
+			color_rgb(100, 100, 100)});
 
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(-1.0, 0.0, -1.0),
-			0.5,
-			color(0.5, 0.1, 0.3)});
+			1.0,
+			color_rgb(255, 0, 0)});
 
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(0.0, 0.0, -1.0),
-			0.5,
-			color(0.1, 0.2, 0.5)});
+			1.0,
+			color_rgb(0, 255, 0)});
 
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(1.0, 0.0, -1.0),
-			0.5,
-			color(0.8, 0.6, 0.2)});
+			1.0,
+			color_rgb(0, 0, 255)});
 }
 
 static void configure_camera(t_minirt *ctl)
@@ -62,10 +62,6 @@ static void configure_camera(t_minirt *ctl)
 static void initialize(t_minirt *ctl, char **arguments)
 {
 	ctl->file_name = arguments[1];
-
-	ctl->aspect_ratio = 16.0 / 9.0;
-	ctl->width = 400;
-	ctl->height = (int)(ctl->width / ctl->aspect_ratio);
 
 	configure_camera(ctl);
 	initialize_world(ctl);

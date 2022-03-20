@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 01:46:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/19 00:00:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:35:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ t_sphere	*new_sphere(t_new_sphere p)
 	if (new == NULL)
 		return (NULL);
 	new->center = p.center;
-	new->radius = p.radius;
-	new->color = p.color;
+	new->diameter = p.diameter;
+	new->radius = p.diameter / 2.0;
+	new->color_rgb = p.color_rgb;
+	new->color_3d = rgb_to_c3d(p.color_rgb);
 	return (new);
 }
 

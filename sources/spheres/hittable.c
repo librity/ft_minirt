@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 12:35:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/15 00:35:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:43:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ bool	ray_hits_sphere(t_ray_hits_sphere p)
 	outward_normal = sub(p.record->intersection, p.sphere->center);
 	outward_normal = scalar_div(p.sphere->radius, outward_normal);
 	set_face_normal(p.ray, outward_normal, p.record);
-	p.record->color = p.sphere->color;
+	p.record->color_3d = p.sphere->color_3d;
 	return (true);
 }

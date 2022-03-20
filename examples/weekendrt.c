@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   example.c                                          :+:      :+:    :+:   */
+/*   weekendrt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2021/04/04 22:26:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 12:45:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 	timer = log_start(rt);
 	generate_image(&image, rt, rt.camera);
 	log_end(timer);
-	cleanup_ray_tracer(&rt);
+	cleanup_ctl(&rt);
 
 	bm_save_bitmap(&image, rt.file_name);
 	bm_free_bitmap(&image);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 02:44:49 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/15 00:29:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:41:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	set_record(t_hit_record *target, t_hit_record record)
 	target->normal = record.normal;
 	target->translation = record.translation;
 	target->front_face = record.front_face;
-	target->color = record.color;
+	target->color_3d = record.color_3d;
 }
 
 void	set_face_normal(t_ray ray,

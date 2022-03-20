@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:21:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/16 00:44:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:43:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ t_c3d	cast_ray(t_minirt *ctl, t_ray ray)
 	if (hit_any_spheres(ctl, ray, &record))
 		return (render_sphere(ctl, ray, &record));
 	// return (hit_background(ray, (t_c3d){0.5, 0.7, 1.0}));
-	return (ctl->amb_light);
+	return (ctl->ambient.color_3d);
 }

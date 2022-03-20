@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   ambient.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/28 01:46:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 16:44:14 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/03/20 12:47:38 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/03/20 16:38:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-// TODO: IMPLEMENT HARD SHADOWS:
-// CAST RAY TOWARDS ALL LIGHTS AND ATENUATE COLOR FOR EVERY HIT.
-// SEE AWFL'S raytrace.c
-t_c3d	render_sphere(t_minirt *ctl, t_ray ray, t_hit_record *record)
+void	set_ambient_light(t_minirt *ctl, double brightness, t_rgb color_rgb)
 {
-	ray = ray;
-	ctl = ctl;
-	return (record->color_3d);
+	ctl->ambient.brightness = brightness;
+	ctl->ambient.color_rgb = color_rgb;
+	ctl->ambient.color_3d = scalar_times(brightness, rgb_to_c3d(color_rgb));
 }
