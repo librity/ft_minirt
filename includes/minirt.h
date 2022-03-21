@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:06:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:46:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void			set_ambient_light(t_minirt *ctl, double brightness,
 
 typedef struct s_new_camera
 {
+	int			number;
+
 	t_p3d		origin;
 	t_v3d		orientation;
 
@@ -73,6 +75,8 @@ void			add_camera(t_minirt *ctl, t_add_camera p);
 void			generate_image(t_minirt *ctl, t_camera *camera);
 
 void			free_cameras(t_minirt *ctl);
+
+void			save_camera_buffer(t_camera *camera);
 
 /******************************************************************************\
  * RAYS

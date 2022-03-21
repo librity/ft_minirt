@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/03/14 18:57:48 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/03/20 22:47:42 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,7 @@ tclean: clean_libs fclean example_clean vglog_clean
 
 run: re
 	./$(NAME) $(IMAGE_NAME)
-	$(OPEN_IMAGE) $(IMAGE_NAME)
+	$(OPEN_IMAGE) bitmaps/camera_1.bmp
 
 ################################################################################
 # LIBS

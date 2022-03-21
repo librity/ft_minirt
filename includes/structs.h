@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:05:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:37:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_light
 
 typedef struct s_camera
 {
+	int			number;
+
 	t_p3d		origin;
 
 	t_v3d		orientation;

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 01:46:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 16:35:14 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:18:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_sphere	*new_sphere(t_new_sphere p)
 	t_sphere	*new;
 
 	new = (t_sphere *)ft_salloc(sizeof(t_sphere));
-	if (new == NULL)
-		return (NULL);
 	new->center = p.center;
 	new->diameter = p.diameter;
 	new->radius = p.diameter / 2.0;

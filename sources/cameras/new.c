@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 21:21:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:40:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_camera	*new_camera(t_new_camera p)
 	t_camera	*new;
 
 	new = (t_camera *)ft_salloc(sizeof(t_camera));
+	new->number = p.number;
 	new->origin = p.origin;
 	new->orientation = scalar_times(-1, p.orientation);
 	calculate_basis(new, &p);
