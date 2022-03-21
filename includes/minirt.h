@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 16:50:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:28:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,35 +187,48 @@ void				set_ambient_light(t_minirt *ctl, double brightness,
 
 typedef struct s_camera
 {
-	t_v3d			basis_u;
-	t_v3d			basis_v;
-	t_v3d			basis_w;
-
 	t_p3d			origin;
+
+	t_v3d			orientation;
+
 	t_v3d			horizontal;
 	t_v3d			vertical;
-	t_p3d			lower_left_corner;
+	t_p3d			ll_corner;
 
 	t_mlx_image		buffer;
 }					t_camera;
 
 typedef struct s_new_camera
 {
-	t_p3d			look_from;
-	t_p3d			look_at;
-	t_v3d			view_up;
+	t_p3d			origin;
+	t_v3d			orientation;
 
-	double			vertical_fov_degrees;
-	double			aperture;
-	double			focus_distance;
-	double			aspect_ratio;
+	double			horz_fov_deg;
+	double			horz_fov_rad;
+
+	double			view_width;
+	double			view_height;
+
+	t_v3d			base_u;
+	t_v3d			base_v;
+	t_v3d			base_w;
 
 	void			*mlx;
 	int				width;
 	int				height;
+	double			aspect_ratio;
 }					t_new_camera;
 t_camera			*new_camera(t_new_camera p);
-void				add_camera(t_minirt *ctl, t_new_camera p);
+
+typedef struct s_add_camera
+{
+	t_p3d			origin;
+
+	t_v3d			orientation;
+
+	double			horz_fov_deg;
+}					t_add_camera;
+void				add_camera(t_minirt *ctl, t_add_camera p);
 
 void				generate_image(t_minirt *ctl, t_camera *camera);
 
@@ -232,16 +245,12 @@ typedef struct s_ray
 }					t_ray;
 
 t_ray				ray(t_p3d origin, t_v3d direction);
+
+t_ray				get_ray(t_minirt *ctl, t_camera *camera, int x, int y);
+
 t_p3d				ray_at_t(double translation, t_ray ray);
-t_ray				get_ray(t_minirt *ctl, t_camera *camera, int row,
-					int column);
 
 t_c3d				cast_ray(t_minirt *ctl, t_ray ray);
-
-t_v3d				point_ray(t_camera *camera, double horizontal,
-					double vertical);
-t_ray				set_ray(t_camera *camera, double horizontal,
-					double vertical);
 
 /******************************************************************************\
  * HIT RECORD

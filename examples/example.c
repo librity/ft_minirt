@@ -6,91 +6,84 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 12:45:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 17:12:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static void initialize_world(t_list **materials, t_list **spheres)
+static void initialize_world(t_minirt *ctl)
 {
-	create_matte_sphere(
-		(t_sphere_params){
-			materials, spheres,
-			point(0.0, -100.5, -1.0), 100.0,
-			color(0.8, 0.8, 0.0), 0.0, 0.0});
+	add_sphere(ctl,
+		(t_new_sphere){
+			point(0.0, -100.5, -1.0),
+			200.0,
+			color_rgb(100, 100, 100)});
 
-	add_dielectric_sphere(
-		(t_sphere_params){
-			materials, spheres,
-			point(-1.0, 0.0, -1.0), 0.5,
-			color(0.0, 0.0, 0.0), 0.0, 1.5});
+	add_sphere(ctl,
+		(t_new_sphere){
+			point(-1.0, 0.0, -1.0),
+			1.0,
+			color_rgb(255, 0, 0)});
 
-	add_dielectric_sphere(
-		(t_sphere_params){
-			materials, spheres,
-			point(-1.0, 0.0, -1.0), -0.45,
-			color(0.0, 0.0, 0.0), 0.0, 1.5});
+	add_sphere(ctl,
+		(t_new_sphere){
+			point(0.0, 0.0, -1.0),
+			1.0,
+			color_rgb(0, 255, 0)});
 
-	add_matte_sphere(
-		(t_sphere_params){
-			materials, spheres,
-			point(0.0, 0.0, -1.0), 0.5,
-			color(0.1, 0.2, 0.5), 0.0, 0.0});
-
-	add_metallic_sphere(
-		(t_sphere_params){
-			materials, spheres,
-			point(1.0, 0.0, -1.0), 0.5,
-			color(0.8, 0.6, 0.2), 0.0, 0.0});
+	add_sphere(ctl,
+		(t_new_sphere){
+			point(1.0, 0.0, -1.0),
+			1.0,
+			color_rgb(0, 0, 255)});
 }
 
-static void configure_camera(t_ray_tracer *rt)
+static void configure_camera(t_minirt *ctl)
 {
-	t_camera_params camera_params;
+	t_new_camera p;
 
-	camera_params.look_from = (t_point_3d){-2, 2, 1};
-	camera_params.look_at = (t_point_3d){0, 0, -1};
-	camera_params.view_up = (t_vector_3d){0, 1, 0};
+	p.look_from = (t_p3d){-2, 2, 1};
+	p.look_at = (t_p3d){0, 0, -1};
+	p.view_up = (t_v3d){0, 1, 0};
 
-	camera_params.vertical_fov_degrees = 40.0;
-	camera_params.aperture = 0.0;
-	camera_params.focus_distance = 2.0;
+	p.vertical_fov_degrees = 40.0;
+	p.aperture = 0.0;
+	p.focus_distance = 2.0;
+	p.aspect_ratio = ctl->aspect_ratio;
 
-	initialize_camera(&(rt->camera), rt->aspect_ratio, camera_params);
+	p.mlx = ctl->mlx;
+	p.width = ctl->width;
+	p.height = ctl->height;
+
+	add_camera(ctl, p);
 }
 
-static void initialize_ray_tracer(t_ray_tracer *rt, char **arguments)
+static void initialize(t_minirt *ctl, char **arguments)
 {
-	rt->file_name = arguments[1];
+	ctl->file_name = arguments[1];
 
-	rt->aspect_ratio = 16.0 / 9.0;
-	// rt->width = 1920;
-	rt->width = 400;
-	rt->height = (int)(rt->width / rt->aspect_ratio);
-	rt->samples_per_pixel = 10;
-	rt->max_depth = 50;
-
-	configure_camera(rt);
-	initialize_world(&(rt->materials), &(rt->spheres));
+	configure_camera(ctl);
+	initialize_world(ctl);
 }
 
 int main(int argc, char **argv)
 {
-	t_ray_tracer rt;
-	t_bitmap_image image;
-	clock_t timer;
+	t_minirt		ctl;
+	t_camera		*camera;
 
+	initialize_ctl(&ctl);
 	handle_arguments(argc);
-	initialize_ray_tracer(&rt, argv);
-	bm_initialize_bitmap(&image, rt.width, rt.height);
+	initialize_mlx(&ctl);
+	initialize(&ctl, argv);
 
-	timer = log_start(rt);
-	generate_image(&image, rt, rt.camera);
-	log_end(timer);
-	cleanup_ctl(&rt);
+	log_scene(&ctl);
+	log_msg(TRACING_MSG);
+	camera = ctl.cameras->content;
+	generate_image(&ctl, camera);
+	log_endl(SUCCESS_MSG);
 
-	bm_save_bitmap(&image, rt.file_name);
-	bm_free_bitmap(&image);
-	return 0;
+	bm_save_mlx_image(&(camera->buffer), ctl.file_name);
+	clean(&ctl);
+	return (EXIT_SUCCESS);
 }
