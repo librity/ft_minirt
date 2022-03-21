@@ -30,7 +30,6 @@
 - [References](#references)
 - [Docs](#docs)
 - [Resources](#resources)
-- [Markdown Resources](#markdown)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -62,16 +61,39 @@ Based on my implementation of
 
 ### ⚙️ Prerequisites
 
-All you need is a shell and a C compiler like `gcc` or `clang`.
+This project will only compile on Linux and FreeBSD.
+
+You will need a C compiler (`gcc` or `clang`)
+and [minilibx](https://github.com/42Paris/minilibx-linux),
+an X-Window API made by 42 Paris:
+
+```bash
+# Clone the repo
+git clone https://github.com/42Paris/minilibx-linux.git
+cd minilibx-linux
+
+# Install dependencies and build
+sudo apt install libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev
+make
+
+# Copy archive and headers to system path
+sudo cp libmlx.a /usr/local/lib/
+sudo cp mlx.h /usr/local/include/
+
+# Add pages to man (optional)
+sudo mkdir /usr/local/man/man1
+sudo cp man/man1/* /usr/local/man/man1/
+man mlx
+```
 
 ### 🖥️ Installing
 
-Just clone the repo and run `make`:
+Clone the repo and run `make`:
 
 ```bash
 $ git clone https://github.com/librity/ft_minirt.git
 $ cd ft_minirt
-$ make example
+$ make run
 ```
 
 A beautiful image should pop out of your terminal like _magic_.
@@ -308,7 +330,63 @@ It's an amazing school, and I'm grateful for the opportunity.
 - https://www.codeproject.com/tips/800474/function-pointer-in-c-struct
 - https://aticleworld.com/function-pointer-in-c-struct/
 
-## ⬇️ Markdown Resources <a name="markdown"></a>
+### minilibx
+
+- https://harm-smits.github.io/42docs/libs/minilibx
+- https://gontjarow.github.io/MiniLibX/
+- https://aurelienbrabant.fr/blog/managing-events-with-the-minilibx
+- https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx
+- https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx
+- https://github.com/42sp/minilibx-linux
+- https://github.com/42Paris/minilibx-linux/issues/24
+- http://cyber.dabamos.de/unix/x11/
+- https://qst0.github.io/ft_libgfx/man_mlx.html
+- https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html
+- https://elearning.intra.42.fr/notions/minilibx/subnotions
+- https://elearning.intra.42.fr/tags/716/notions
+
+### minilibx functions
+
+```c
+void	*mlx_init();
+void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
+int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
+int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
+void	*mlx_new_image(void *mlx_ptr,int width,int height);
+char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel,
+			   int *size_line, int *endian);
+int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr,
+				int x, int y);
+int	mlx_get_color_value(void *mlx_ptr, int color);
+int	mlx_mouse_hook (void *win_ptr, int (*funct_ptr)(), void *param);
+int	mlx_key_hook (void *win_ptr, int (*funct_ptr)(), void *param);
+int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param);
+int	mlx_loop_hook (void *mlx_ptr, int (*funct_ptr)(), void *param);
+int	mlx_loop (void *mlx_ptr);
+int mlx_loop_end (void *mlx_ptr);
+int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color,
+		       char *string);
+void	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
+void	*mlx_xpm_to_image(void *mlx_ptr, char **xpm_data,
+			  int *width, int *height);
+void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename,
+			       int *width, int *height);
+int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
+int	mlx_destroy_image(void *mlx_ptr, void *img_ptr);
+int	mlx_destroy_display(void *mlx_ptr);
+int	mlx_hook(void *win_ptr, int x_event, int x_mask,
+                 int (*funct)(), void *param);
+int	mlx_do_key_autorepeatoff(void *mlx_ptr);
+int	mlx_do_key_autorepeaton(void *mlx_ptr);
+int	mlx_do_sync(void *mlx_ptr);
+int	mlx_mouse_get_pos(void *mlx_ptr, void *win_ptr, int *x, int *y);
+int	mlx_mouse_move(void *mlx_ptr, void *win_ptr, int x, int y);
+int	mlx_mouse_hide(void *mlx_ptr, void *win_ptr);
+int	mlx_mouse_show(void *mlx_ptr, void *win_ptr);
+int	mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
+```
+
+### ⬇️ Markdown
 
 - https://casual-effects.com/markdeep/
 - https://github.github.com/gfm/

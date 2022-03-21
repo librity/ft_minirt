@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:17:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 14:56:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ void	generate_image(t_minirt *ctl, t_camera *camera)
 		while (y--)
 		{
 			pixel_color = trace_ray(ctl, camera, x, y);
-			bm_draw_rgb_to_mlx_image(&(camera->buffer),
-				ctl->width - x - 1, y,
-				pixel_color);
+			mlx_image_draw_rgb(&(camera->buffer), pixel_color,
+				ctl->width - x - 1, y);
 		}
 	}
 }

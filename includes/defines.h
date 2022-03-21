@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 21:52:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:14:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * MATH
 \******************************************************************************/
 
-# define TOLERANCE 1e-8
+# define NEAR_ZERO_TOLERANCE 1e-8
 
 /******************************************************************************\
  * QUIT
@@ -63,7 +63,7 @@
 # define HELP_MSG "Welcome to lpaulo-m's miniRT!\n\
 \n\
 USAGE:\n\
-	miniRT [scene file path]\n\
+	miniRT ./path/to/scene.rt\n\
 \n\
 EXAMPLES:\n\
 	miniRT scenes/demo.rt\n\
@@ -96,8 +96,41 @@ EXAMPLES:\n\
 
 typedef enum e_errors
 {
-	BAD_ARGUMENTS = 1,
-	GENERIC_RAY_TRACER_ERROR
+	EC_MLX_INIT = 1,
+	EC_MLX_WINDOW,
+	EC_GENERIC
 }	t_errors;
+
+# define EKEYEXPIRED 127
+# define EKEYEXPIRED_STR "127\n"
+
+# define ERR_INDICATOR "ERROR"
+
+/******************************************************************************\
+ * COLORS
+\******************************************************************************/
+
+/* Black, Red, Green, Yellow, Blue, Purple, Cyan, White */
+# define BK "\033[0;30m"
+# define R "\033[0;31m"
+# define G "\033[0;32m"
+# define Y "\033[0;33m"
+# define B "\033[0;34m"
+# define P "\033[0;35m"
+# define C "\033[0;36m"
+# define W "\033[0;37m"
+
+/* Bold */
+# define BKB "\033[1;30m"
+# define RB "\033[1;31m"
+# define GB "\033[1;32m"
+# define YB "\033[1;33m"
+# define BB "\033[1;34m"
+# define PB "\033[1;35m"
+# define CB "\033[1;36m"
+# define WB "\033[1;37m"
+
+/* Reset Color */
+# define RC "\033[0m"
 
 #endif

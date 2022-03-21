@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/19 00:33:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 14:50:17 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <fcntl.h>
 # include <mlx.h>
-# include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -35,14 +34,12 @@
 # define GREEN 0x0000FF00
 # define BLUE 0x000000FF
 
-typedef struct s_bitmap_pixel
+typedef struct s_rgb
 {
 	unsigned char	blue;
 	unsigned char	green;
 	unsigned char	red;
-}					t_bitmap_pixel;
-
-typedef t_bitmap_pixel	t_rgb;
+}					t_rgb;
 
 typedef struct s_trgb
 {
@@ -52,84 +49,38 @@ typedef struct s_trgb
 	unsigned char	red;
 }					t_trgb;
 
-int					bm_get_t(int color);
-int					bm_get_r(int color);
-int					bm_get_g(int color);
-int					bm_get_b(int color);
-int					bm_zero_transparency(int color);
+int					int_get_t(int color);
+int					int_get_r(int color);
+int					int_get_g(int color);
+int					int_get_b(int color);
+int					int_zero_transparency(int color);
 
-int					bm_trgb_chars_to_int(unsigned char transparency,
+int					trgb_chars_to_int(unsigned char transparency,
 						unsigned char red,
 						unsigned char green,
 						unsigned char blue);
-int					bm_rgb_chars_to_int(unsigned char red, unsigned char green,
-						unsigned char blue);
-int					bm_trgb_to_int(t_trgb color);
-int					bm_rgb_to_int(t_rgb color);
+int					trgb_to_int(t_trgb color);
 
-t_trgb				bm_int_to_trgb(int color);
-t_bitmap_pixel		bm_int_to_rgb(int color);
+t_rgb				color_rgb(unsigned char red, unsigned char green,
+						unsigned char blue);
+int					rgb_to_int(t_rgb color);
+int					rgb_chars_to_int(unsigned char red, unsigned char green,
+						unsigned char blue);
+
+t_trgb				int_to_trgb(int color);
+t_rgb				int_to_rgb(int color);
 
 /******************************************************************************\
  * BITMAP
 \******************************************************************************/
 
-# define BITMAP_MAGIC_BITS "BM"
+extern void			*bm_initialize(int width, int height);
 
-typedef struct s_bitmap_header
-{
-	unsigned int	buffer_size;
-	unsigned int	buffer_reserved;
-	unsigned int	buffer_offset;
+extern void			bm_draw(void *bitmap, t_rgb color, int x, int y);
 
-	unsigned int	total_size;
-	int				width;
-	int				height;
+extern void			bm_save(void *bitmap, char *filename);
 
-	unsigned short	planes;
-	unsigned short	bit_count;
-	unsigned int	compression;
-	unsigned int	image_size;
-	int				x_resolution_ppm;
-	int				y_resolution_ppm;
-	unsigned int	colors_used;
-	unsigned int	important_colors;
-}					t_bitmap_header;
-
-typedef struct s_bitmap_image
-{
-	t_bitmap_header	header;
-	t_bitmap_pixel	**pixels;
-}					t_bitmap_image;
-
-typedef struct s_write_pixels
-{
-	size_t			height;
-	size_t			offset;
-	size_t			row_width;
-	size_t			padding_width;
-	unsigned char	padding[3];
-}					t_write_pixels;
-
-void				bm_initialize_bitmap(t_bitmap_image *image,
-						int width,
-						int height);
-
-void				bm_set_pixel(t_bitmap_pixel *pxl,
-						unsigned char red,
-						unsigned char green,
-						unsigned char blue);
-void				bm_set_image_pixel(t_bitmap_image *image,
-						t_bitmap_pixel color,
-						int row,
-						int column);
-
-void				bm_save_bitmap(t_bitmap_image *image, char *filename);
-
-void				bm_free_bitmap(t_bitmap_image *img);
-
-int					bm_calculate_padding(int number);
-int					bm_abs(int number);
+extern void			bm_free(void *bitmap);
 
 /******************************************************************************\
  * MLX
@@ -137,46 +88,32 @@ int					bm_abs(int number);
 
 typedef struct s_mlx_image
 {
-	void	*mlx;
-	void	*img;
-	char	*data;
+	void			*mlx;
+	void			*img;
+	char			*data;
 
-	int		width;
-	int		height;
-	int		half_width;
-	int		half_height;
+	int				width;
+	int				height;
+	int				half_width;
+	int				half_height;
 
-	int		line_length;
-	int		bits_per_pixel;
-	int		endian;
+	int				line_length;
+	int				bits_per_pixel;
+	int				endian;
 }					t_mlx_image;
 
-void				bm_initialize_mlx_image(t_mlx_image *image, void *mlx,
+void				mlx_image_initialize(t_mlx_image *image, void *mlx,
 						int width, int height);
 
-void				bm_draw_to_mlx_image(t_mlx_image *image, int x, int y,
-						int color);
-void				bm_draw_rgb_to_mlx_image(t_mlx_image *image, int x, int y,
-						t_rgb color);
+void				mlx_image_draw_int(t_mlx_image *image, int color,
+						int x, int y);
+void				mlx_image_draw_rgb(t_mlx_image *image, t_rgb color,
+						int x, int y);
 
-int					bm_get_mlx_image_pixel(t_mlx_image *image, int x, int y);
+int					mlx_image_get_pixel_int(t_mlx_image *image, int x, int y);
 
-void				bm_save_mlx_image(t_mlx_image *image, char *filename);
+void				mlx_image_save_bm(t_mlx_image *image, char *filename);
 
-void				bm_destroy_mlx_image(t_mlx_image *image);
-
-/******************************************************************************\
- * ERRORS
-\******************************************************************************/
-
-typedef enum e_bitmap_error
-{
-	FILE_NOT_OPENED = 1,
-	HEADER_NOT_INITIALIZED,
-	BAD_MALLOC,
-	MLX_IMAGE_INIT,
-	GENERIC_BITMAP_ERROR
-}					t_bitmap_error;
-void				bm_kill(t_bitmap_error code);
+void				mlx_image_destroy(t_mlx_image *image);
 
 #endif

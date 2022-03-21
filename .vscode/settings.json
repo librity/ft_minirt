@@ -30,6 +30,7 @@
     "streambuf": "c",
     "functional": "c",
     "errno.h": "c",
-    "minirt.h": "c"
+    "minirt.h": "c",
+    "ft_libbmp.h": "c"
   }
 }

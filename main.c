@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:46:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:50:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ int	main(int argc, char **argv)
 	initialize(&ctl, argc, argv);
 	trace_current_cam(&ctl);
 
-	// mlx_loop(ctl.mlx);
-
-	// bm_save_mlx_image(&(ctl.current_cam->buffer), ctl.file_name);
 	save_camera_buffer(ctl.current_cam);
+	mlx_loop(ctl.mlx);
+
 	clean(&ctl);
 	return (EXIT_SUCCESS);
 }

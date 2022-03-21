@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:28:23 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/18 23:37:39 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:10:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	initialize_mlx_core(t_minirt *ctl)
 {
 	log_msg(MLX_MSG);
 	ctl->mlx = mlx_init();
-	die_if_null(ctl->mlx);
+	die_if_null(ctl->mlx, EC_MLX_INIT);
 	log_endl(SUCCESS_MSG);
 }
 
@@ -27,7 +27,7 @@ static void	initialize_mlx_window(t_minirt *ctl)
 			ctl->width,
 			ctl->height,
 			WINDOW_NAME);
-	die_if_null(ctl->window);
+	die_if_null(ctl->window, EC_MLX_WINDOW);
 	log_endl(SUCCESS_MSG);
 }
 

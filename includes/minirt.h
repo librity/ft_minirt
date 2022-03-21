@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:46:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:06:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include <X11/Xlib.h>
+# include <algebra.h>
 # include <defines.h>
 # include <float.h>
 # include <libft.h>
@@ -186,10 +187,9 @@ void			clean_and_exit(t_minirt *ctl);
  * ERRORS
 \******************************************************************************/
 
-void			kill_ray_tracer(t_errors code);
+void			die(t_errors code);
+void			die_if_null(void *ptr, t_errors code);
 
 void			help_and_die(void);
-void			die(void);
-void			die_if_null(void *ptr);
 
 #endif

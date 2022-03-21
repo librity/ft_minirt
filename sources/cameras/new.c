@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:40:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 14:52:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	set_lower_left_corner(t_camera *new, t_new_camera *p)
 static void	initialize_mlx_buffer(t_camera *new, t_new_camera *p)
 {
 	log_msg(BUFFER_MSG);
-	bm_initialize_mlx_image(&(new->buffer), p->mlx, p->width, p->height);
+	mlx_image_initialize(&(new->buffer), p->mlx, p->width, p->height);
 	log_endl(SUCCESS_MSG);
 }
 

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   algebra.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/03 00:51:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 20:49:43 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/03/21 13:10:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#ifndef ALGEBRA_H
+# define ALGEBRA_H
 
-double	rp(void)
-{
-	return (random_from(-1.0, 1.0));
-}
+# include <stdbool.h>
 
-double	rr(void)
-{
-	return (random_from(0.0, 0.1));
-}
+double			infinity(void);
 
-t_c3d	rc(void)
-{
-	return (random_vector_in(0.0, 1.0));
-}
+double			degrees_to_radians(double degrees);
 
-t_c3d	rcr(double min, double max)
+typedef struct s_quadratic
 {
-	return (random_vector_in(min, max));
-}
+	double		a;
+	double		half_b;
+	double		c;
+	double		discriminant;
+	double		d_sqrt;
+	double		root;
+}				t_quadratic;
+bool			quadratic(t_quadratic r, double min_translation,
+					double max_translation, double *root);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:02:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:07:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,6 @@
 # define VECTORS_H
 
 # include <ft_libbmp.h>
-
-/******************************************************************************\
- * ALGEBRA
-\******************************************************************************/
-
-double			infinity(void);
-
-double			degrees_to_radians(double degrees);
-
-typedef struct s_quadratic
-{
-	double		a;
-	double		half_b;
-	double		c;
-	double		discriminant;
-	double		d_sqrt;
-	double		root;
-}				t_quadratic;
-bool			quadratic(t_quadratic r, double min_translation,
-				double max_translation, double *root);
 
 /******************************************************************************\
  * VECTORS
@@ -88,36 +68,11 @@ t_p3d			point_3d(double x, double y, double z);
 
 typedef t_v3d	t_c3d;
 
-t_c3d			color(double red, double green, double blue);
 t_c3d			color_3d(double red, double green, double blue);
-t_rgb			color_rgb(unsigned char red, unsigned char green,
-				unsigned char blue);
 
 t_rgb			c3d_to_rgb(t_c3d color_3d);
 t_c3d			rgb_to_c3d(t_rgb color_rgb);
 
 t_rgb			get_gamma2_pixel(t_c3d color_3d);
-
-/******************************************************************************\
- * RANDOM
-\******************************************************************************/
-
-double			random_double(void);
-double			random_from(double min, double max);
-double			canonical_random(void);
-
-t_v3d			random_vector(void);
-t_v3d			random_vector_in(double min, double max);
-
-double			rp(void);
-double			rr(void);
-t_c3d			rc(void);
-t_c3d			rcr(double min, double max);
-
-t_v3d			random_unit_vector(void);
-
-t_p3d			random_in_unit_sphere(void);
-t_p3d			random_in_unit_disk(void);
-t_v3d			random_in_hemisphere(t_v3d normal);
 
 #endif
