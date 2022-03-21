@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 02:44:49 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 16:41:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:05:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	set_record(t_hit_record *target, t_hit_record record)
+void	set_record(t_hit_rec *target, t_hit_rec record)
 {
 	target->intersection = record.intersection;
 	target->normal = record.normal;
@@ -23,7 +23,7 @@ void	set_record(t_hit_record *target, t_hit_record record)
 
 void	set_face_normal(t_ray ray,
 						t_v3d outward_normal,
-						t_hit_record *record)
+						t_hit_rec *record)
 {
 	record->front_face = dot(ray.direction, outward_normal) < 0;
 	if (record->front_face)

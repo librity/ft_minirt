@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   caster.c                                           :+:      :+:    :+:   */
+/*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:21:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 16:43:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:05:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 // 	return (cast);
 // }
 
-static void	handle_hit(t_hit_record *record,
-						t_hit_record current_record,
+static void	handle_hit(t_hit_rec *record,
+						t_hit_rec current_record,
 						double *closest_so_far,
 						bool *hit_anything)
 {
@@ -43,9 +43,9 @@ static void	handle_hit(t_hit_record *record,
 
 bool	hit_any_spheres(t_minirt *ctl,
 						t_ray ray,
-						t_hit_record *record)
+						t_hit_rec *record)
 {
-	t_hit_record	current_record;
+	t_hit_rec	current_record;
 	double			closest_so_far;
 	int				sphere_count;
 	bool			hit_anything;
@@ -69,7 +69,7 @@ bool	hit_any_spheres(t_minirt *ctl,
 
 t_c3d	cast_ray(t_minirt *ctl, t_ray ray)
 {
-	t_hit_record	record;
+	t_hit_rec	record;
 
 	if (hit_any_spheres(ctl, ray, &record))
 		return (render_sphere(ctl, ray, &record));

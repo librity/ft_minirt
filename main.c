@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 21:32:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:55:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	configure_camera(t_minirt *ctl)
 	p.orientation = (t_v3d){1, 0.0, 0.0};
 	p.horz_fov_deg = 70;
 	add_camera(ctl, p);
+	ctl->current_cam = ctl->cameras->content;
 }
 
 static void	initialize(t_minirt *ctl, int argc, char **argv)
@@ -55,23 +56,25 @@ static void	initialize(t_minirt *ctl, int argc, char **argv)
 	initialize_world(ctl);
 }
 
+static void	trace_current_cam(t_minirt *ctl)
+{
+	log_scene(ctl);
+	log_msg(TRACING_MSG);
+	generate_image(ctl, ctl->current_cam);
+	log_endl(SUCCESS_MSG);
+}
+
 int	main(int argc, char **argv)
 {
 	t_minirt	ctl;
-	t_camera	*camera;
 
 	initialize(&ctl, argc, argv);
-
-	log_scene(&ctl);
-	log_msg(TRACING_MSG);
-	camera = ctl.cameras->content;
-	generate_image(&ctl, camera);
-	log_endl(SUCCESS_MSG);
+	trace_current_cam(&ctl);
 
 	// mlx_put_image_to_window(ctl.mlx, ctl.window, camera->buffer.img, 0, 0);
 	// mlx_loop(ctl.mlx);
 
-	bm_save_mlx_image(&(camera->buffer), ctl.file_name);
+	bm_save_mlx_image(&(ctl.current_cam->buffer), ctl.file_name);
 	clean(&ctl);
 	return (EXIT_SUCCESS);
 }

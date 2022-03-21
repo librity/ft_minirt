@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 20:44:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:52:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,7 @@
 # define BM_SEPARATOR "_"
 
 # define BM_DIRECTORY "./bitmaps/"
-# define BM_MBT "./bitmaps/mbt_"
-# define BM_JULIA "./bitmaps/julia_"
-# define BM_JULIA_REAL "real_"
-# define BM_JULIA_IMAGINARY "imgry_"
-# define BM_NEWTON "./bitmaps/newton_"
-
-# define BM_X "x_"
-# define BM_Y "y_"
-# define BM_ZOOM "zoom_"
-# define BM_ITERATIONS "iter_"
-# define BM_INFINITY "inf_"
-# define BM_COLOR_MODE "cmode_"
-# define BM_DYE "dye_"
-# define BM_LERP_FROM "lerpfr_"
-# define BM_LERP_TO "lerpto_"
+# define BM_CAMERA "camera_"
 # define BM_EXTENSION ".bmp"
 
 /******************************************************************************\
@@ -103,5 +89,15 @@ EXAMPLES:\n\
 # define BM_MSG " => Saving viewport to bitmap file: "
 
 # define SUCCESS_MSG " DONE"
+
+/******************************************************************************\
+ * ERRORS
+\******************************************************************************/
+
+typedef enum e_errors
+{
+	BAD_ARGUMENTS = 1,
+	GENERIC_RAY_TRACER_ERROR
+}	t_errors;
 
 #endif
