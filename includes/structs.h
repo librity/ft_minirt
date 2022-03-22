@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 22:09:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 01:04:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef struct s_cylinder
 
 typedef struct s_minirt
 {
-	char		*file_name;
+	char		*scene_path;
 
 	int			width;
 	int			height;
