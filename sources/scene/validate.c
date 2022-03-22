@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 01:43:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:02:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 static void	validate_line(char *line)
 {
+	char	*free_me_before_dying;
+
+	free_me_before_dying = line;
 	line = ft_skip_whitespace(line);
+	if (*line == '\0')
+		return ;
 	if (ft_starts_with(line, "#"))
 		return ;
 	// if (ft_starts_with(line, "A"))
@@ -29,6 +34,7 @@ static void	validate_line(char *line)
 	// 	return (validate_plane(line));
 	// if (ft_starts_with(line, "cy"))
 	// 	return (validate_cylinder(line));
+	free(free_me_before_dying);
 	die(EC_GENERIC);
 }
 
