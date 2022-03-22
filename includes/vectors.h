@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 23:38:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 00:36:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_c3d			color_3d(double red, double green, double blue);
 
 t_rgb			c3d_to_rgb(t_c3d color_3d);
 t_c3d			rgb_to_c3d(t_rgb color_rgb);
+t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
 
 t_rgb			gamma2_correct_pixel(t_c3d color_3d);
 

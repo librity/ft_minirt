@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 21:48:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 00:44:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ void			cleanup_ctl(t_minirt *ctl);
 
 void			set_ambient_light(t_minirt *ctl, double brightness,
 					t_rgb color_rgb);
+
+typedef struct s_new_light
+{
+	t_p3d		origin;
+	double		brightness;
+	t_rgb		color_rgb;
+}				t_new_light;
+t_light			*new_light(t_new_light p);
+typedef t_new_light	t_add_light;
+void			add_light(t_minirt *ctl, t_add_light p);
+void			free_lights(t_minirt *ctl);
 
 /******************************************************************************\
  * CAMERAS
