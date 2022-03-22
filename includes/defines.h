@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 16:14:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:15:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WINDOW_NAME "lpaulo-m's miniRT"
 
 # define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
+# define WINDOW_HEIGHT 400
 
 /******************************************************************************\
  * MATH

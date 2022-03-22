@@ -6,19 +6,21 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 14:52:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:07:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static void	calculate_basis(t_camera *new, t_new_camera *p)
+static void	calculate_basis(t_new_camera *p)
 {
+	const t_v3d	up = vector_3d(0, 1, 0);
+
 	p->horz_fov_rad = degrees_to_radians(p->horz_fov_deg);
 	p->view_width = 2.0 * tan(p->horz_fov_rad / 2.0);
-	p->view_height = p->view_width * p->aspect_ratio;
-	p->base_w = unit(new->orientation);
-	p->base_u = cross(vector(0, 1, 0), p->base_w);
+	p->view_height = p->view_width / p->aspect_ratio;
+	p->base_w = unit(sub(p->look_from, p->look_at));
+	p->base_u = unit(cross(up, p->base_w));
 	p->base_v = cross(p->base_w, p->base_u);
 }
 
@@ -30,9 +32,12 @@ static void	set_offset_factors(t_camera *new, t_new_camera *p)
 
 static void	set_lower_left_corner(t_camera *new, t_new_camera *p)
 {
-	new->ll_corner = sub(new->origin, scalar_div(2.0, new->horizontal));
-	new->ll_corner = sub(new->ll_corner, scalar_div(2.0, new->vertical));
-	new->ll_corner = sub(new->ll_corner, p->base_w);
+	t_p3d	ll_corner;
+
+	ll_corner = sub(new->origin, scalar_div(2.0, new->horizontal));
+	ll_corner = sub(ll_corner, scalar_div(2.0, new->vertical));
+	ll_corner = sub(ll_corner, p->base_w);
+	new->ll_corner = ll_corner;
 }
 
 static void	initialize_mlx_buffer(t_camera *new, t_new_camera *p)
@@ -48,9 +53,8 @@ t_camera	*new_camera(t_new_camera p)
 
 	new = (t_camera *)ft_salloc(sizeof(t_camera));
 	new->number = p.number;
-	new->origin = p.origin;
-	new->orientation = scalar_times(-1, p.orientation);
-	calculate_basis(new, &p);
+	new->origin = p.look_from;
+	calculate_basis(&p);
 	set_offset_factors(new, &p);
 	set_lower_left_corner(new, &p);
 	initialize_mlx_buffer(new, &p);

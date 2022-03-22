@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 15:50:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:07:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,32 @@ static void	initialize_world(t_minirt *ctl)
 		color_rgb(255, 255, 255));
 	add_sphere(ctl,
 		(t_new_sphere){
-		point(0, 0, 20.0),
-		20,
-		color_rgb(255,0,0)});
+			point(0.0, -100.5, -1.0),
+			100.0,
+			color_rgb(200,200,0)});
 	add_sphere(ctl,
 		(t_new_sphere){
-		point(0, 0, 0),
-		20,
-		color_rgb(0,255,0)});
+			point(-1.0, 0.0, -1.0),
+			0.5,
+			color_rgb(255,0,0)});
 	add_sphere(ctl,
 		(t_new_sphere){
-		point(0, 0, -20),
-		20,
-		color_rgb(0,0,255)});
+			point(0.0, 0.0, -1.0),
+			0.5,
+			color_rgb(25, 50, 125)});
+	add_sphere(ctl,
+		(t_new_sphere){
+			point(1.0, 0.0, -1.0),
+			0.5,
+			color_rgb(200, 150, 50)});
 }
 
 static void	configure_camera(t_minirt *ctl)
 {
 	t_add_camera	p;
 
-	p.origin = (t_p3d){-50.0, 0.0, 20.0};
-	p.orientation = (t_v3d){1, 0.0, 0.0};
+	p.look_from = point_3d(-2, 2, 1);
+	p.look_at = vector_3d(0, 0, -1);
 	p.horz_fov_deg = 70;
 	add_camera(ctl, p);
 	ctl->current_cam = ctl->cameras->content;
@@ -74,7 +79,7 @@ int	main(int argc, char **argv)
 	trace_current_cam(&ctl);
 
 	save_camera_buffer(ctl.current_cam);
-	mlx_loop(ctl.mlx);
+	// mlx_loop(ctl.mlx);
 
 	clean(&ctl);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 00:17:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 16:11:14 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:00:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ const char	*g_error_messages[EC_GENERIC] = {
 	"Couldn't create mlx window.",
 	"Generic miniRT error.",
 };
-
-void	help_and_die(void)
-{
-	ft_putstr(HELP_MSG);
-	exit(EXIT_FAILURE);
-}
 
 static void	print_error(char *message)
 {
@@ -42,4 +36,10 @@ void	die_if_null(void *ptr, t_errors code)
 {
 	if (ptr == NULL)
 		die(code);
+}
+
+void	help_and_die(void)
+{
+	ft_putstr(HELP_MSG);
+	exit(EXIT_FAILURE);
 }

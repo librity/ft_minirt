@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:37:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:09:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ typedef struct s_camera
 	int			number;
 
 	t_p3d		origin;
-
-	t_v3d		orientation;
 
 	t_v3d		horizontal;
 	t_v3d		vertical;
@@ -107,7 +105,7 @@ typedef struct s_plane
 {
 	t_p3d		center;
 
-	t_v3d		orientation;
+	t_v3d		normal;
 
 	t_rgb		color_rgb;
 	t_c3d		color_3d;
@@ -121,7 +119,7 @@ typedef struct s_cylinder
 {
 	t_p3d		center;
 
-	t_v3d		orientation;
+	t_v3d		normal;
 
 	double		diameter;
 	double		radius;

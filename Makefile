@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/03/20 22:47:42 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/03/21 20:28:19 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,15 +187,15 @@ VALGRIND_LOG_FLAGS = --log-file=$(VALGRIND_LOG) \
 	--trace-children=yes \
 	--track-origins=yes \
 	--verbose
-VALGRIND_TARGET = ./$(NAME) $(IMAGE_NAME)
+VALGRIND_TARGET = ./$(NAME) bitmaps/camera_1.bmp
 
-vg: vg_build
+vg: re vg_build
 	$(VALGRIND) $(VALGRIND_FLAGS) $(VALGRIND_TARGET)
-	$(OPEN_IMAGE) $(IMAGE_NAME)
+	$(OPEN_IMAGE) bitmaps/camera_1.bmp
 
-vglog: vg_build
+vglog: re vg_build
 	$(VALGRIND) $(VALGRIND_LOG_FLAGS) $(VALGRIND_TARGET)
-	$(OPEN_IMAGE) $(IMAGE_NAME)
+	$(OPEN_IMAGE) bitmaps/camera_1.bmp
 
 vg_build: $(MINIRT_ARCHIVE)
 	$(CC_STRICT) \

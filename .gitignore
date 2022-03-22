@@ -60,3 +60,6 @@ dkms.conf
 # MiniRT
 minirt
 miniRT
+
+# Valgrind
+valgrind_leaks.log

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 13:06:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:48:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			cleanup_ctl(t_minirt *ctl);
 \******************************************************************************/
 
 void			set_ambient_light(t_minirt *ctl, double brightness,
-				t_rgb color_rgb);
+					t_rgb color_rgb);
 
 /******************************************************************************\
  * CAMERAS
@@ -43,8 +43,8 @@ typedef struct s_new_camera
 {
 	int			number;
 
-	t_p3d		origin;
-	t_v3d		orientation;
+	t_p3d		look_from;
+	t_v3d		look_at;
 
 	double		horz_fov_deg;
 	double		horz_fov_rad;
@@ -65,9 +65,9 @@ t_camera		*new_camera(t_new_camera p);
 
 typedef struct s_add_camera
 {
-	t_p3d		origin;
+	t_p3d		look_from;
 
-	t_v3d		orientation;
+	t_v3d		look_at;
 
 	double		horz_fov_deg;
 }				t_add_camera;

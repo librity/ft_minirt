@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 21:31:16 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/20 22:40:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:48:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	set_params(t_minirt *ctl, t_add_camera add_p, t_new_camera *new_p)
 {
 	new_p->number = ft_lstsize(ctl->cameras) + 1;
-	new_p->origin = add_p.origin;
-	new_p->orientation = add_p.orientation;
+	new_p->look_from = add_p.look_from;
+	new_p->look_at = add_p.look_at;
 	new_p->horz_fov_deg = add_p.horz_fov_deg;
 	new_p->mlx = ctl->mlx;
 	new_p->width = ctl->width;
