@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 22:07:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:03:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ static void	initialize_world(t_minirt *ctl)
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(0.0, -100.5, -1.0),
-			100.0,
+			200.0,
 			color_rgb(200,200,0)});
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(-1.0, 0.0, -1.0),
-			0.5,
+			1.0,
 			color_rgb(255,0,0)});
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(0.0, 0.0, -1.0),
-			0.5,
+			1.0,
 			color_rgb(25, 50, 125)});
 	add_sphere(ctl,
 		(t_new_sphere){
 			point(1.0, 0.0, -1.0),
-			0.5,
+			1.0,
 			color_rgb(200, 150, 50)});
 }
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	trace_current_cam(&ctl);
 
 	save_camera_buffer(ctl.current_cam);
-	// mlx_loop(ctl.mlx);
+	mlx_loop(ctl.mlx);
 
 	clean(&ctl);
 	return (EXIT_SUCCESS);

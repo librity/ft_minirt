@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:21:01 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 21:52:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:19:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_ray	get_ray(t_minirt *ctl, t_camera *camera, int x, int y)
 	double	vert_offset;
 
 	ray.origin = camera->origin;
-	horz_offset = (double)(x) / (ctl->width);
-	vert_offset = (double)(y) / (ctl->height);
+	horz_offset = (double)(x) / (double)(ctl->width);
+	vert_offset = (double)(y) / (double)(ctl->height);
 	ray.direction = point_ray(camera, horz_offset, vert_offset);
 	return (ray);
 }

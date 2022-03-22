@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 22:07:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:11:56 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	calculate_basis(t_new_camera *p)
 {
-	const t_v3d	up = vector_3d(0, 1, 0);
+	const t_v3d	up = vector_3d(0.0, 1.0, 0.0);
 
 	p->horz_fov_rad = degrees_to_radians(p->horz_fov_deg);
 	p->view_width = 2.0 * tan(p->horz_fov_rad / 2.0);
