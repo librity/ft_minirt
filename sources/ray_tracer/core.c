@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:51:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 23:20:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:38:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_rgb	trace_ray(t_minirt *ctl, t_camera *camera, int x, int y)
 
 	ray = get_ray(ctl, camera, x, y);
 	cast = cast_ray(ctl, ray);
-	color = get_gamma2_pixel(cast);
+	color = gamma2_correct_pixel(cast);
 	return (color);
 }
 

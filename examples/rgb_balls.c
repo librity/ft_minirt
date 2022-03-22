@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   example.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 00:12:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:48:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,27 @@ static void	initialize_world(t_minirt *ctl)
 		color_rgb(255, 255, 255));
 	add_sphere(ctl,
 		(t_new_sphere){
-			point(0.0, -100.5, -1.0),
-			200.0,
-			color_rgb(200,200,0)});
+		point(0, 0, 20.0),
+		20,
+		color_rgb(255,0,0)});
 	add_sphere(ctl,
 		(t_new_sphere){
-			point(-1.0, 0.0, -1.0),
-			1.0,
-			color_rgb(255,0,0)});
+		point(0, 0, 0),
+		20,
+		color_rgb(0,255,0)});
 	add_sphere(ctl,
 		(t_new_sphere){
-			point(0.0, 0.0, -1.0),
-			1.0,
-			color_rgb(25, 50, 125)});
-	add_sphere(ctl,
-		(t_new_sphere){
-			point(1.0, 0.0, -1.0),
-			1.0,
-			color_rgb(20, 150, 50)});
+		point(0, 0, -20),
+		20,
+		color_rgb(0,0,255)});
 }
 
 static void	configure_camera(t_minirt *ctl)
 {
 	t_add_camera	p;
 
-	p.look_from = point_3d(-2, 2, 1);
-	p.look_at = vector_3d(0, 0, -1);
+	p.look_from = (t_p3d){-50.0, 0.0, 20.0};
+	p.look_at = (t_v3d){1, 0.0, 0.0};
 	p.horz_fov_deg = 70;
 	add_camera(ctl, p);
 	ctl->current_cam = ctl->cameras->content;
@@ -53,7 +48,6 @@ static void	configure_camera(t_minirt *ctl)
 
 static void	initialize(t_minirt *ctl, int argc, char **argv)
 {
-	log_msg(WELCOME_BANNER);
 	handle_arguments(argc);
 	initialize_ctl(ctl);
 	initialize_mlx(ctl);
@@ -80,7 +74,7 @@ int	main(int argc, char **argv)
 	trace_current_cam(&ctl);
 
 	save_camera_buffer(ctl.current_cam);
-	mlx_loop(ctl.mlx);
+	// mlx_loop(ctl.mlx);
 
 	clean(&ctl);
 	return (EXIT_SUCCESS);

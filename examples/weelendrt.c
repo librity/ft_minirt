@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   weelendrt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 00:12:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:40:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	initialize_world(t_minirt *ctl)
 		(t_new_sphere){
 			point(1.0, 0.0, -1.0),
 			1.0,
-			color_rgb(20, 150, 50)});
+			color_rgb(200, 150, 50)});
 }
 
 static void	configure_camera(t_minirt *ctl)
@@ -53,7 +53,6 @@ static void	configure_camera(t_minirt *ctl)
 
 static void	initialize(t_minirt *ctl, int argc, char **argv)
 {
-	log_msg(WELCOME_BANNER);
 	handle_arguments(argc);
 	initialize_ctl(ctl);
 	initialize_mlx(ctl);
