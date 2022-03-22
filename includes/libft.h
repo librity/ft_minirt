@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 21:58:19 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/21 16:49:42 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 01:39:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,8 @@ char				*ft_strjoin_del_del(char **delete_me, char **delete_me_too);
 
 void				ft_free_string_array(char **free_me);
 
+bool				ft_starts_with(char *string, char *prefix);
+
 /******************************************************************************\
  * STRING TO NUMBER
 \******************************************************************************/
@@ -346,6 +348,10 @@ void				ft_free_lalloc(t_list **free_me);
 /******************************************************************************\
  * FT_GET_NEXT_LINE
 \******************************************************************************/
+
+# define GNL_FOUND_LINEBREAK 1
+# define GNL_FOUND_EOF 0
+# define GNL_ERROR -1
 
 int					ft_get_next_line(int fd, char **line);
 

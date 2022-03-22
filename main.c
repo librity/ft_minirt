@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 01:05:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 01:44:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ static void	initialize_world(t_minirt *ctl)
 
 static void	configure_camera(t_minirt *ctl)
 {
-	t_add_camera	p;
-
-	p.look_from = point_3d(-2, 2, 1);
-	p.look_at = vector_3d(0, 0, -1);
-	p.horz_fov_deg = 70;
 	add_camera(ctl,
 		(t_add_camera){
 		point_3d(-2, 2, 1),
