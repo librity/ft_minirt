@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 15:25:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:15:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,12 @@ static void	configure_camera(t_minirt *ctl)
 static void	initialize(t_minirt *ctl, int argc, char **argv)
 {
 	handle_arguments(argc);
-	ft_putstr(WELCOME_BANNER);
 	initialize_ctl(ctl);
-	initialize_mlx(ctl);
 	ctl->scene_path = argv[1];
+	validate_scene(ctl->scene_path);
+	// parse_scene(ctl->scene_path);
+	ft_putstr(WELCOME_BANNER);
+	initialize_mlx(ctl);
 	configure_camera(ctl);
 	initialize_world(ctl);
 }

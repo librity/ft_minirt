@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 00:17:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 22:38:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:06:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	die(t_errors code)
-{
-	print_error(code);
-	exit(EXIT_FAILURE);
-}
+const char	*g_error_messages[EC_GENERIC] = {
+	"Couldn't initialize mlx.",
+	"Couldn't create mlx window.",
+	"Couldn't open scene file.",
+	"Couldn't read scene file (GNL).",
+	"Invalid scene identifier.",
+	"Ambient light brightness should be a double in range [0.0,1.0].",
+	"Ambient light color should be three comma-separated ints in range\
+[0-255].",
+	"Generic miniRT error.",
+};
 
-void	die_if_null(void *ptr, t_errors code)
+void	print_error(int code)
 {
-	if (ptr == NULL)
-		die(code);
-}
-
-void	help_and_die(void)
-{
-	ft_putstr(HELP_MSG);
-	exit(EXIT_FAILURE);
-}
-
-void	freestr_and_die(char *free_me, t_errors code)
-{
-	free(free_me);
-	die(code);
+	ft_redb_endl(ERR_INDICATOR);
+	ft_red_endl((char *)g_error_messages[code - 1]);
 }

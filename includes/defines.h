@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 15:29:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:06:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@
 # define BM_EXTENSION ".bmp"
 
 /******************************************************************************\
+ * SCENE
+\******************************************************************************/
+
+# define BRIGHTNESS_MIN 0.0
+# define BRIGHTNESS_MAX 1.0
+
+# define COLOR_MIN 0
+# define COLOR_MAX 255
+
+/******************************************************************************\
  * MESSAGES
 \******************************************************************************/
 
@@ -88,6 +98,11 @@ typedef enum e_errors
 {
 	EC_MLX_INIT = 1,
 	EC_MLX_WINDOW,
+	EC_OPEN_SCENE_FILE,
+	EC_GNL,
+	EC_SCENE_IDENTIFIER,
+	EC_AMBIENT_LIGHT_BRIGHTNESS,
+	EC_AMBIENT_LIGHT_COLOR,
 	EC_GENERIC
 }	t_errors;
 

@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 00:17:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 22:38:02 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/03/22 23:13:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	die(t_errors code)
+void	validate_ambient_light(char *line, char *free_me)
 {
-	print_error(code);
-	exit(EXIT_FAILURE);
-}
-
-void	die_if_null(void *ptr, t_errors code)
-{
-	if (ptr == NULL)
-		die(code);
-}
-
-void	help_and_die(void)
-{
-	ft_putstr(HELP_MSG);
-	exit(EXIT_FAILURE);
-}
-
-void	freestr_and_die(char *free_me, t_errors code)
-{
-	free(free_me);
-	die(code);
+	line = ft_skip_whitespace(line);
+	if (invalid_brightness(line))
+		freestr_and_die(free_me, EC_AMBIENT_LIGHT_BRIGHTNESS);
+	line = ft_skip_float_whitespace(line);
+	if (invalid_rgb(line))
+		freestr_and_die(free_me, EC_AMBIENT_LIGHT_COLOR);
 }

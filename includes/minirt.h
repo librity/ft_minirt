@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 00:44:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:14:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,22 @@ t_c3d			render_sphere(t_minirt *ctl, t_ray ray, t_hit_rec *record);
 void			handle_arguments(int argument_count);
 
 /******************************************************************************\
+ * SCENE VALIDATOR
+\******************************************************************************/
+
+void			validate_scene(char *scene_path);
+
+void			validate_ambient_light(char *line, char *free_me);
+
+bool			invalid_brightness(char *line);
+bool			invalid_color(char *line);
+bool			invalid_rgb(char *line);
+
+/******************************************************************************\
+ * SCENE PARSER
+\******************************************************************************/
+
+/******************************************************************************\
  * MLX
 \******************************************************************************/
 
@@ -198,9 +214,13 @@ void			clean_and_exit(t_minirt *ctl);
  * ERRORS
 \******************************************************************************/
 
-void			die(t_errors code);
-void			die_if_null(void *ptr, t_errors code);
+void			print_error(int code);
 
+void			die(t_errors code);
 void			help_and_die(void);
+void			die_if_null(void *ptr, t_errors code);
+void			freestr_and_die(char *free_me, t_errors code);
+
+int				open_scene_or_die(char *scene_path);
 
 #endif
