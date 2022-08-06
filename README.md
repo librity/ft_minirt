@@ -12,7 +12,7 @@
 
 </div>
 
-<p align="center"> A ray tracer that renders spheres, planes, squares, cylinders and triangles.
+<p align="center"> A ray tracer that renders spheres, planes and cylinders.
   <br>
 </p>
 
@@ -83,19 +83,16 @@
 
 A ray tracer written in C that handles:
 
-- [ ] Validation of `.rt` files
-- [ ] Loading scenes from `.rt` files
+- [ ] Validate `.rt` scene files
+- [ ] Parse `.rt` scene files
 - [x] Vectors and Linear Algebra
 - [x] Ray tracing logic
 - [x] Spheres
 - [ ] Planes
-- [ ] Squares
 - [ ] Cylinders
+- [ ] Ambient light
 - [ ] Multiple lights
-- [x] Matte materials
-- [x] Metallic materials
-- [x] Dielectric materials
-- [ ] Triangles
+- [ ] Hard shadows
 - [ ] Multiple cameras
 - [ ] Minilibx user interface
 - [x] Saving to `.bmp` file
