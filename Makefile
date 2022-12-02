@@ -6,25 +6,33 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/12/01 20:57:36 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/12/01 21:26:09 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
-
-MINIRT_HEADER = $(INCLUDES_PATH)/minirt.h
-MINIRT_ARCHIVE = $(ARCHIVES_PATH)/minirt.a
 
 # CC = cc
 # CC = gcc
 # CC = clang
 CC = clang-12
 
-CC_STRICT = $(CC) $(CCF_STRICT) $(CCF_OPTIMIZATION)
+CC_BASIC = $(CC) \
+	$(CCF_INCLUDES)
 
+CC_STRICT = $(CC_BASIC) \
+	$(CCF_STRICT)
+
+CC_FULL = $(CC_STRICT) \
+	$(CCF_LEAK) \
+	$(CCF_DEBUG)
+#	$(CCF_OPTIMIZATION) \
+
+CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(FT_LIBBMP_INCLUDES) -I $(INCLUDES_PATH)
 CCF_STRICT = -Wall -Wextra -Werror
 CCF_OPTIMIZATION = -O3
-CCF_DEBUG = -g -fsanitize=leak
+CCF_DEBUG = -g
+CCF_LEAK = -fsanitize=leak
 
 CCF_LIBS = -lm -lbsd -lmlx -lXext -lX11
 
@@ -41,73 +49,100 @@ OBJECTS_PATH = ./objects
 SOURCES_PATH = ./sources
 INCLUDES_PATH = ./includes
 ARCHIVES_PATH = ./archives
-BITMAPS_PATH = ./bitmaps
 
-SOURCES = $(wildcard $(SOURCES_PATH)/**/*.c) $(wildcard $(SOURCES_PATH)/*.c)
+LIBS_PATH = ./libs
 
-OBJECTS = $(patsubst $(SOURCES_PATH)/%.c, $(OBJECTS_PATH)/%.o, $(SOURCES))
-OBJECT_DIRECTORIES = $(sort $(dir $(OBJECTS)))
+LIBFT_PATH = $(LIBS_PATH)/libft
+LIBFT = $(LIBFT_PATH)/libft.a
+LIBFT_INCLUDES = $(LIBFT_PATH)/includes
 
-ARCHIVES = $(MINIRT_ARCHIVE) $(FT_LIBBMP_ARCHIVE) $(LIBFT_ARCHIVE)
+FT_LIBBMP_PATH = $(LIBS_PATH)/ft_libbmp
+FT_LIBBMP = $(FT_LIBBMP_PATH)/ft_libbmp.a
+FT_LIBBMP_INCLUDES = $(FT_LIBBMP_PATH)/includes
 
 ################################################################################
-# REQUIRED
+# MANDATORY
 ################################################################################
 
-REQUIRED_MAIN = ./main.c
+M_HEADER = $(INCLUDES_PATH)/minirt.h
+M_ARCHIVE = $(ARCHIVES_PATH)/minirt.a
+
+M_SOURCES_PATH = $(SOURCES_PATH)/mandatory
+M_OBJECTS_PATH = $(OBJECTS_PATH)/mandatory
+
+M_SOURCES = $(wildcard $(M_SOURCES_PATH)/**/*.c) $(wildcard $(M_SOURCES_PATH)/*.c)
+# M_SOURCES =
+
+M_OBJECTS = $(patsubst $(M_SOURCES_PATH)/%.c, $(M_OBJECTS_PATH)/%.o, $(M_SOURCES))
+M_OBJECT_DIRECTORIES = $(sort $(dir $(M_OBJECTS)))
+
+M_MAIN = ./main.c
+
+M_ARCHIVES = $(M_ARCHIVE) $(FT_LIBBMP) $(LIBFT)
 
 all: $(NAME)
 
-$(NAME): $(MINIRT_ARCHIVE)
-	$(CC_STRICT) $(CCF_DEBUG) \
-		-I $(INCLUDES_PATH) \
-		$(REQUIRED_MAIN) \
-		$(ARCHIVES) \
+$(NAME): $(LIBFT) $(FT_LIBBMP) $(M_ARCHIVE)
+	$(CC_FULL) \
+		$(M_MAIN) \
+		$(M_ARCHIVES) \
 		$(CCF_LIBS) \
 		-o $(NAME)
 
-$(MINIRT_ARCHIVE): initialize $(MINIRT_HEADER) $(OBJECTS)
-	$(ARCHIVE_AND_INDEX) $(MINIRT_ARCHIVE) $(OBJECTS)
+$(M_ARCHIVE): $(M_HEADER) $(M_OBJECTS)
+	$(ARCHIVE_AND_INDEX) $(M_ARCHIVE) $(M_OBJECTS)
 
-$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c
-	$(CC_STRICT) -I $(INCLUDES_PATH) -c -o $@ $<
+$(M_OBJECTS_PATH)/%.o: $(M_SOURCES_PATH)/%.c
+	$(CC_FULL) -c -o $@ $<
+
+clean:
+	$(REMOVE) $(M_OBJECTS)
+	$(REMOVE) $(M_ARCHIVE)
+
+fclean: clean
+	$(REMOVE) $(NAME)
 
 re: fclean all
 
 ################################################################################
-# INITIALIZE
+# DIRS
 ################################################################################
 
-initialize: make_dirs build_libs
-
-make_dirs: $(ARCHIVES_PATH) $(OBJECTS_PATH) $(OBJECT_DIRECTORIES) $(BITMAPS_PATH)
+dirs: $(ARCHIVES_PATH) $(OBJECTS_PATH) \
+	$(M_OBJECT_DIRECTORIES) $(B_OBJECT_DIRECTORIES)
 
 $(ARCHIVES_PATH):
-	$(SAFE_MAKEDIR) $@
+	$(SAFE_MAKEDIR) $@ && touch "$@.keep"
 
 $(OBJECTS_PATH):
-	$(SAFE_MAKEDIR) $@
+	$(SAFE_MAKEDIR) $@ && touch "$@.keep"
 
-$(OBJECT_DIRECTORIES):
-	$(SAFE_MAKEDIR) $@
-
-$(BITMAPS_PATH):
-	$(SAFE_MAKEDIR) $@
-
-build_libs: build_libft build_ft_libbmp
+$(M_OBJECT_DIRECTORIES):
+	$(SAFE_MAKEDIR) $@ && touch "$@.keep"
 
 ################################################################################
 # CLEAN
 ################################################################################
 
-clean:
-	$(REMOVE) $(OBJECTS)
-	$(REMOVE) $(MINIRT_ARCHIVE)
+tclean: clean_libs fclean fcleanb tests_clean example_clean vglog_clean
 
-fclean: clean
-	$(REMOVE) $(NAME)
+################################################################################
+# LIBS
+################################################################################
 
-tclean: clean_libs fclean example_clean vglog_clean
+$(LIBFT):
+	$(MAKE_EXTERNAL) $(LIBFT_PATH) all
+
+libft_clean:
+	$(MAKE_EXTERNAL) $(LIBFT_PATH) fclean
+
+$(FT_LIBBMP):
+	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) all
+
+ft_libbmp_clean:
+	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) fclean
+
+clean_libs: libft_clean ft_libbmp_clean
 
 ################################################################################
 # RUN
@@ -118,40 +153,51 @@ run: re
 	$(OPEN_IMAGE) bitmaps/camera_1.bmp
 
 ################################################################################
-# LIBS
+# TESTS
 ################################################################################
 
-LIBS_PATH = ./libs
+CC_TEST = $(CC_BASIC) \
+	$(CCF_DEBUG) \
+	$(CCF_LEAK)
 
-LIBFT = libft.a
-LIBFT_PATH = $(LIBS_PATH)/libft
-LIBFT_ARCHIVE = $(ARCHIVES_PATH)/$(LIBFT)
-LIBFT_HEADER = $(LIBFT_PATH)/includes/libft.h
+CC_VGTEST = $(CC_BASIC) \
+	$(CCF_DEBUG)
 
-build_libft:
-	$(MAKE_EXTERNAL) $(LIBFT_PATH) all
-	$(COPY) $(LIBFT_PATH)/$(LIBFT) $(LIBFT_ARCHIVE)
-	$(COPY) $(LIBFT_HEADER) $(INCLUDES_PATH)
+TESTS_PATH = ./tests
 
-libft_clean:
-	$(MAKE_EXTERNAL) $(LIBFT_PATH) fclean
-	$(REMOVE) $(LIBFT_ARCHIVE)
+TEST_SOURCES = $(wildcard $(TESTS_PATH)/**/*.c) $(wildcard $(TESTS_PATH)/*.c)
 
-FT_LIBBMP = ft_libbmp.a
-FT_LIBBMP_PATH = $(LIBS_PATH)/ft_libbmp
-FT_LIBBMP_ARCHIVE = $(ARCHIVES_PATH)/$(FT_LIBBMP)
-FT_LIBBMP_HEADER = $(FT_LIBBMP_PATH)/includes/ft_libbmp.h
+TESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.out, $(TEST_SOURCES))
+VGTESTS = $(patsubst $(TESTS_PATH)/%.c, $(TESTS_PATH)/%.vg.out, $(TEST_SOURCES))
 
-build_ft_libbmp:
-	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) all
-	$(COPY) $(FT_LIBBMP_PATH)/$(FT_LIBBMP) $(FT_LIBBMP_ARCHIVE)
-	$(COPY) $(FT_LIBBMP_HEADER) $(INCLUDES_PATH)
+tests: test_re $(TESTS)
 
-ft_libbmp_clean:
-	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) fclean
-	$(REMOVE) $(FT_LIBBMP_ARCHIVE)
+test: test_re $(TESTS_PATH)/$t.out
 
-clean_libs: libft_clean ft_libbmp_clean
+$(TESTS_PATH)/%.out: $(TESTS_PATH)/%.c
+	$(CC_TEST)\
+		$< \
+		$(M_ARCHIVES) \
+		$(CCF_LIBS) \
+		-o $@
+	./$@
+
+vgtests: test_re $(VGTESTS)
+
+vgtest: test_re $(TESTS_PATH)/$t.vg.out
+
+$(TESTS_PATH)/%.vg.out: $(TESTS_PATH)/%.c
+	$(CC_VGTEST)\
+		$< \
+		$(M_ARCHIVES) \
+		$(CCF_LIBS) \
+		-o $@
+	$(VG) $(VG_FLAGS) ./$@
+
+test_re: re tests_clean
+
+tests_clean:
+	$(REMOVE_RECURSIVE) $(TESTS) $(VGTESTS)
 
 ################################################################################
 # EXAMPLE
@@ -160,20 +206,16 @@ clean_libs: libft_clean ft_libbmp_clean
 EXAMPLES_PATH = ./examples
 
 EXAMPLE_MAIN = $(EXAMPLES_PATH)/example.c
-IMAGE_NAME = hello.bmp
-EXECUTE_EXAMPLE = ./a.out $(IMAGE_NAME)
-EXAMPLE_GARBAGE = a.out a.out.dSYM $(IMAGE_NAME)
-
-build_example: $(MINIRT_ARCHIVE)
-	$(CC) $(CCF_DEBUG) \
-		-I $(INCLUDES_PATH) \
-		$(EXAMPLE_MAIN) \
-		$(ARCHIVES) \
-		$(CCF_LIBS)
+EXECUTE_EXAMPLE = ./a.out
+EXAMPLE_GARBAGE = a.out a.out.dSYM
 
 example: build_example
 	$(EXECUTE_EXAMPLE)
-	$(OPEN_IMAGE) $(IMAGE_NAME)
+
+build_example: $(M_ARCHIVE)
+	$(CC_FULL) \
+		$(EXAMPLE_MAIN) \
+		$(M_ARCHIVES)
 
 example_clean: fclean
 	$(REMOVE_RECURSIVE) $(EXAMPLE_GARBAGE)
@@ -182,47 +224,54 @@ example_clean: fclean
 # VALGRIND
 ################################################################################
 
-VALGRIND = valgrind
-VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --trace-children=yes
-VALGRIND_LOG = valgrind_leaks.log
-VALGRIND_LOG_FLAGS = --log-file=$(VALGRIND_LOG) \
-	--leak-check=full \
+CC_VG = $(CC) \
+	$(CCF_INCLUDES) \
+	$(CCF_STRICT)
+
+VG = valgrind
+
+VG_FLAGS = --leak-check=full \
 	--show-leak-kinds=all \
 	--trace-children=yes \
+	--suppressions=readline.supp
+
+VG_LOG_FLAGS = $(VG_FLAGS) \
+	--log-file=$(VG_LOG) \
 	--track-origins=yes \
 	--verbose
-VALGRIND_TARGET = ./$(NAME) bitmaps/camera_1.bmp
+VG_LOG = valgrind_leaks.log
 
-vg: re vg_build
-	$(VALGRIND) $(VALGRIND_FLAGS) $(VALGRIND_TARGET)
-	$(OPEN_IMAGE) bitmaps/camera_1.bmp
+VG_TARGET = ./minirt
 
-vglog: re vg_build
-	$(VALGRIND) $(VALGRIND_LOG_FLAGS) $(VALGRIND_TARGET)
-	$(OPEN_IMAGE) bitmaps/camera_1.bmp
+vg: vg_build
+	$(VG) $(VG_FLAGS) $(VG_TARGET)
 
-vg_build: $(MINIRT_ARCHIVE)
-	$(CC_STRICT) \
-		-I $(INCLUDES_PATH) \
-		$(REQUIRED_MAIN) \
-		$(ARCHIVES) \
+vglog: vg_build
+	$(VG) $(VG_LOG_FLAGS) $(VG_TARGET)
+
+vg_build: $(LIBFT) $(M_ARCHIVE)
+	$(CC_VG) \
+		$(M_MAIN) \
+		$(M_ARCHIVES) \
 		$(CCF_LIBS) \
 		-o $(NAME)
 
 vglog_clean: fclean
-	$(REMOVE) $(VALGRIND_LOG)
+	$(REMOVE) $(VG_LOG)
 
 ################################################################################
 # MISC
 ################################################################################
 
 norm:
+	$(MAKE_EXTERNAL) $(LIBFT_PATH) norm
+	@printf "\n$(G)=== No norminette errors found in $(LIBFT_PATH) ===$(RC)\n\n"
 	norminette $(INCLUDES_PATH)
 	@printf "\n$(G)=== No norminette errors found in $(INCLUDES_PATH) ===$(RC)\n\n"
 	norminette $(SOURCES_PATH)
 	@printf "\n$(G)=== No norminette errors found in $(SOURCES_PATH) ===$(RC)\n\n"
-	norminette $(REQUIRED_MAIN)
-	@printf "\n$(G)=== No norminette errors found in $(REQUIRED_MAIN) ===$(RC)\n\n"
+	norminette $(M_MAIN)
+	@printf "\n$(G)=== No norminette errors found in $(M_MAIN) ===$(RC)\n\n"
 
 git:
 	git add -A
@@ -234,25 +283,35 @@ gitm:
 	git commit -m $m
 	git push
 
+dump_sources:
+	@echo =========== MANDATORY ===========
+	@echo "M_SOURCES = $(M_SOURCES)"
+	@echo ============= BONUS =============
+	@echo "B_SOURCES = $(B_SOURCES)"
+	@echo =================================
+
 ################################################################################
 # PHONY
 ################################################################################
 
 .PHONY: \
-	all re \
-	initialize make_dirs build_libs \
+all clean fclean re \
 \
-	clean fclean tclean clean_libs \
+dirs \
 \
-	run \
+tclean \
 \
-	build_libft libft_clean \
-	build_ft_libbmp ft_libbmp_clean \
+libft_clean ft_libbmp_clean clean_libs \
 \
-	build_example example example_clean \
-	vg vglog vg_build vglog_clean \
+run \
 \
-	norm git gitm
+tests test vgtests vgtest test_re tests_clean \
+\
+example build_example example_clean \
+\
+vg vglog vg_build vglog_clean \
+\
+norm git gitm dump_sources
 
 ################################################################################
 # Colors
