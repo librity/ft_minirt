@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/03/22 23:17:10 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/12/01 20:57:36 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,11 @@ NAME = miniRT
 MINIRT_HEADER = $(INCLUDES_PATH)/minirt.h
 MINIRT_ARCHIVE = $(ARCHIVES_PATH)/minirt.a
 
-CC = gcc
+# CC = cc
+# CC = gcc
+# CC = clang
+CC = clang-12
+
 CC_STRICT = $(CC) $(CCF_STRICT) $(CCF_OPTIMIZATION)
 
 CCF_STRICT = -Wall -Wextra -Werror
