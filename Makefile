@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/12/01 21:26:09 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/12/01 21:29:17 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -265,6 +265,8 @@ vglog_clean: fclean
 
 norm:
 	$(MAKE_EXTERNAL) $(LIBFT_PATH) norm
+	$(MAKE_EXTERNAL) $(FT_LIBBMP_PATH) norm
+
 	@printf "\n$(G)=== No norminette errors found in $(LIBFT_PATH) ===$(RC)\n\n"
 	norminette $(INCLUDES_PATH)
 	@printf "\n$(G)=== No norminette errors found in $(INCLUDES_PATH) ===$(RC)\n\n"
