@@ -6,8 +6,16 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/08 22:57:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:05:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
+
+void	parse_scene(void)
+{
+	int status;
+
+	status = open(scene_path());
+	ft_gnl()
+}

@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:24:04 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/09 13:42:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/09 13:59:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-char		*scene_path()
+char		*scene_path(void)
 {
 	return (c()->scene_path);
 }

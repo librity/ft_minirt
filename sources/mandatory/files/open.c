@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   open.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/09 14:06:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/09 14:07:09 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/09 14:17:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
-
-void print_error(char *error_message)
+int open_or_die(const char *pathname, int flags)
 {
-	printf("Error\n%s\n", error_message);
-}
 
-void die(char *error_message)
-{
-	// TODO: Free memory.
-	print_error(error_message);
-	exit(EXIT_FAILURE);
 }

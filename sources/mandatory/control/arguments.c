@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/09 14:06:47 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/09 13:56:31 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/09 13:59:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void print_error(char *error_message)
+int argc(void)
 {
-	printf("Error\n%s\n", error_message);
+	return (c()->argc);
 }
 
-void die(char *error_message)
+void	set_argc(int argc)
 {
-	// TODO: Free memory.
-	print_error(error_message);
-	exit(EXIT_FAILURE);
+	c()->argc  = argc;
 }
+
+char		**argv(void)
+{
+	return (c()->argv);
+}
+
+void	set_argv(char **argv)
+{
+	c()->argv  = argv;
+}
+

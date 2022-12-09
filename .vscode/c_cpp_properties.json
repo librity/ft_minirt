@@ -5,6 +5,7 @@
       "includePath": [
         "${workspaceFolder}/includes",
         "${workspaceFolder}/libs/libft/includes",
+        "${workspaceFolder}/libs/ft_libbmp/includes",
         "~/.local/include"
       ],
       "defines": [],
