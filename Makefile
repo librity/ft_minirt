@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/12/01 21:29:17 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/12/09 13:51:22 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = miniRT
 
 # CC = cc
 # CC = gcc
-# CC = clang
-CC = clang-12
+CC = clang
+# CC = clang-12
 
 CC_BASIC = $(CC) \
 	$(CCF_INCLUDES)
@@ -32,9 +32,10 @@ CCF_INCLUDES = -I $(LIBFT_INCLUDES) -I $(FT_LIBBMP_INCLUDES) -I $(INCLUDES_PATH)
 CCF_STRICT = -Wall -Wextra -Werror
 CCF_OPTIMIZATION = -O3
 CCF_DEBUG = -g
-CCF_LEAK = -fsanitize=leak
+# CCF_LEAK = -fsanitize=leak
 
-CCF_LIBS = -lm -lbsd -lmlx -lXext -lX11
+# CCF_LIBS = -lm -lbsd -lmlx -lXext -lX11
+CCF_LIBS = -lm
 
 MAKE_EXTERNAL = make -C
 SAFE_MAKEDIR = mkdir -p
@@ -78,11 +79,13 @@ M_OBJECT_DIRECTORIES = $(sort $(dir $(M_OBJECTS)))
 
 M_MAIN = ./main.c
 
-M_ARCHIVES = $(M_ARCHIVE) $(FT_LIBBMP) $(LIBFT)
+# M_ARCHIVES = $(M_ARCHIVE) $(FT_LIBBMP) $(LIBFT)
+M_ARCHIVES = $(M_ARCHIVE) $(LIBFT)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(FT_LIBBMP) $(M_ARCHIVE)
+# $(NAME): $(LIBFT) $(FT_LIBBMP) $(M_ARCHIVE)
+$(NAME): $(LIBFT) $(M_ARCHIVE)
 	$(CC_FULL) \
 		$(M_MAIN) \
 		$(M_ARCHIVES) \
@@ -118,7 +121,7 @@ $(OBJECTS_PATH):
 	$(SAFE_MAKEDIR) $@ && touch "$@.keep"
 
 $(M_OBJECT_DIRECTORIES):
-	$(SAFE_MAKEDIR) $@ && touch "$@.keep"
+	$(SAFE_MAKEDIR) $@ && touch "$@/.keep"
 
 ################################################################################
 # CLEAN
@@ -150,7 +153,7 @@ clean_libs: libft_clean ft_libbmp_clean
 
 run: re
 	./$(NAME) scenes/bad_cam_look_at.rt
-	$(OPEN_IMAGE) bitmaps/camera_1.bmp
+#	$(OPEN_IMAGE) bitmaps/camera_1.bmp
 
 ################################################################################
 # TESTS
