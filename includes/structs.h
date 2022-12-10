@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/09 14:06:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/10 08:14:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 # define STRUCTS_H
 
 /******************************************************************************\
- * RAY TRACER
+ * CONTROL
 \******************************************************************************/
 
 typedef struct s_minirt
 {
-	int argc;
-	char **argv;
+	int		argc;
+	char	**argv;
 
-	char		*scene_path;
+	char	*scene_path;
 
 	t_list	**free_me;
-}				t_minirt;
+}			t_minirt;
 
 #endif

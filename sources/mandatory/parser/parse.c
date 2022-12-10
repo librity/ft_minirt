@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/09 14:05:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/10 08:25:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 
 void	parse_scene(void)
 {
-	int status;
+	int		fd;
+	int		status;
+	char	*line;
 
-	status = open(scene_path());
-	ft_gnl()
+	fd = open_or_die(scene_path());
+	while (true)
+	{
+		status = ft_gnl(fd, &line);
+		if (status != GNL_FOUND_LINEBREAK)
+			break ;
+		printf("%s\n", line);
+		free(line);
+	}
 }

@@ -6,11 +6,20 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:07:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/09 14:17:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/10 08:11:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int open_or_die(const char *pathname, int flags)
-{
+#include <minirt.h>
 
+int	open_or_die(char *path)
+{
+	int	open_fd;
+	int	open_flags;
+
+	open_flags = O_RDONLY;
+	open_fd = open(path, open_flags);
+	if (open_fd < 0)
+		die(OPEN_ERR);
+	return (open_fd);
 }
