@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 19:42:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:56:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		set_argv(char **path);
 
 t_amb_light	ambient_light(void);
 void		set_ambient_light(double brightness, t_rgb color);
+void		inspect_ambient_light(void);
 
 char		*scene_path(void);
 void		set_scene_path(char *path);

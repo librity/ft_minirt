@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 19:41:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:59:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ t_v3d	vector_3d(double x, double y, double z)
 
 void	inspect_v3d(t_v3d vector)
 {
-	ft_printf("%f %f %f\n", vector.x, vector.y, vector.z);
+	printf("%f %f %f\n", vector.x, vector.y, vector.z);
 }

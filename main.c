@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 19:41:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:57:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	run(void)
 {
 	printf("%s\n", scene_path());
 	parse_scene();
-	inspect_v3d(ambient_light().color_3d);
+	inspect_ambient_light();
 }
 
 void	cleanup(void)
