@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 23:14:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/13 10:09:30 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,13 +166,26 @@ void			handle_arguments(int argument_count);
  * SCENE VALIDATOR
 \******************************************************************************/
 
-void			validate_scene(char *scene_path);
-
-void			validate_ambient_light(char *line, char *free_me);
-
-bool			invalid_brightness(char *line);
-bool			invalid_color(char *line);
-bool			invalid_rgb(char *line);
+void	validate_scene(char *filename);
+int		validate_line(char *line);
+char	*jump_spaces(char *line);
+int		ft_isfloat(char **nptr);
+char	*jump_info(char *line);
+int		validate_camera(char *line);
+int 	check_coordinate(char *line);
+int		check_norm_coordinate(char *line);
+int		validate_fov(char *line);
+void	error_validate(char *line, int fd);
+void	free_array(void **array);
+int		validate_ambient(char *line);
+int		check_color(char *line);
+int		is_rgb(char *line);
+int		check_amb_light(char *line);
+char	*get_next_info(char *line);
+int		validate_light(char *line);
+int		validate_sphere(char *line);
+int		validate_plane(char *line);
+int		validate_cylinder(char *line);
 
 /******************************************************************************\
  * SCENE PARSER
