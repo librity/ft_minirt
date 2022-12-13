@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/10 08:14:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:09:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_minirt
 	char	**argv;
 
 	char	*scene_path;
+
+	t_list	**objects;
 
 	t_list	**free_me;
 }			t_minirt;

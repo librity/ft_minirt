@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/10 08:10:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/10 13:23:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void		initialize_control(int argc, char **argv);
 
 int			argc(void);
 void		set_argc(int path);
-char		**argv();
+char		**argv(void);
 void		set_argv(char **path);
 
-char		*scene_path();
+char		*scene_path(void);
 void		set_scene_path(char *path);
 
 /******************************************************************************\
