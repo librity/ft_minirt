@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:13:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 18:58:01 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/04/03 16:30:28 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/03/14 20:48:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_minirt	*c(void)
+t_p3d	point(double x, double y, double z)
 {
-	static t_minirt	_minirt;
-
-	return (&_minirt);
+	return (point_3d(x, y, z));
 }
 
-void	initialize_control(int argc, char **argv)
+t_p3d	point_3d(double x, double y, double z)
 {
-	set_argc(argc);
-	set_argv(argv);
-	set_scene_path(argv[1]);
+	return ((t_p3d){x, y, z});
 }

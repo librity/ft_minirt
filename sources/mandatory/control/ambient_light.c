@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:13:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 18:58:01 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/13 19:38:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_minirt	*c(void)
+t_amb_light	ambient_light(void)
 {
-	static t_minirt	_minirt;
-
-	return (&_minirt);
+	return (c()->ambient);
 }
 
-void	initialize_control(int argc, char **argv)
+void	set_ambient_light(double brightness, t_rgb color)
 {
-	set_argc(argc);
-	set_argv(argv);
-	set_scene_path(argv[1]);
+	c()->ambient.brightness = brightness;
+	c()->ambient.color_rgb = color;
+	c()->ambient.color_3d = rgb_to_c3d(c()->ambient.color_rgb);
 }

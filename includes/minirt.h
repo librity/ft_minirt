@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/10 13:23:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:42:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // # include <X11/Xlib.h>
 // # include <math.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include <stdio.h>
 //
 
@@ -41,6 +42,9 @@ void		set_argc(int path);
 char		**argv(void);
 void		set_argv(char **path);
 
+t_amb_light	ambient_light(void);
+void		set_ambient_light(double brightness, t_rgb color);
+
 char		*scene_path(void);
 void		set_scene_path(char *path);
 
@@ -49,6 +53,8 @@ void		set_scene_path(char *path);
 \******************************************************************************/
 
 void		parse_scene(void);
+
+void		parse_ambient_light(char *line);
 
 /******************************************************************************\
  * RUNTIME

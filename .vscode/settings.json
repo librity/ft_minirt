@@ -12,6 +12,17 @@
   "files.associations": {
     "*.gohtml": "html",
     "*.s": "plaintext",
-    "minirt.h": "c"
+    "minirt.h": "c",
+    "stdbool.h": "c",
+    "fcntl.h": "c",
+    "ft_libbmp.h": "c",
+    "stdlib.h": "c",
+    "defines.h": "c",
+    "warnings.h": "c",
+    "structs.h": "c",
+    "*.tcc": "c",
+    "cmath": "c",
+    "random": "c",
+    "numbers": "c"
   }
 }

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   geometry.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:13:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 18:58:01 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/03/21 13:08:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_minirt	*c(void)
+bool	near_zero(t_v3d vector)
 {
-	static t_minirt	_minirt;
+	bool	cuts_off_x;
+	bool	cuts_off_y;
+	bool	cuts_off_z;
 
-	return (&_minirt);
-}
-
-void	initialize_control(int argc, char **argv)
-{
-	set_argc(argc);
-	set_argv(argv);
-	set_scene_path(argv[1]);
+	cuts_off_x = ft_abs_d(vector.x) < NEAR_ZERO_TOLERANCE;
+	cuts_off_y = ft_abs_d(vector.y) < NEAR_ZERO_TOLERANCE;
+	cuts_off_z = ft_abs_d(vector.z) < NEAR_ZERO_TOLERANCE;
+	return (cuts_off_x && cuts_off_y && cuts_off_z);
 }
