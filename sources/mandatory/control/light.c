@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:41:36 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/14 19:31:38 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/14 19:41:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include "minirt.h"
 
-void	initialize(int argc, char **argv)
+t_light	light(void)
 {
-	if (argc != 2)
-		die(ARGC_ERR);
-	initialize_control(argc, argv);
+	return (c()->light);
 }
 
-void	run(void)
+void	set_light(t_p3d origin, double brightness)
 {
-	printf("%s\n", scene_path());
-	parse_scene();
-	inspect_ambient_light();
-	inspect_camera();
-	inspect_light();
+	c()->light.origin = origin;
+	c()->light.brightness = brightness;
 }
 
-void	cleanup(void)
+void	inspect_light(void)
 {
-}
+	t_light	light;
 
-int	main(int argc, char **argv)
-{
-	initialize(argc, argv);
-	run();
-	cleanup();
-	return (EXIT_SUCCESS);
+	light = c()->light;
+	printf("light:\n");
+	printf("\torigin: %f %f %f\n", light.origin.x, light.origin.y, light.origin.z);
+	printf("\tbrightness: %f\n", light.brightness);
 }

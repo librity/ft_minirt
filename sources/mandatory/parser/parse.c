@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:12:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:37:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	parse_line(char *line)
 		return (parse_ambient_light(line));
 	if (ft_starts_with(line, "C"))
 		return (parse_camera(line));
+	if (ft_starts_with(line, "L"))
+		return (parse_light(line));
 	// ...
 	// free(line);
 	// die(GENRIC_ERR);

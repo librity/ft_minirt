@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:41:36 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/14 19:23:30 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/14 19:38:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include "minirt.h"
 
-void	initialize(int argc, char **argv)
+void	parse_light(char *line)
 {
-	if (argc != 2)
-		die(ARGC_ERR);
-	initialize_control(argc, argv);
-}
+	t_p3d	origin;
+	double	brightness;
 
-void	run(void)
-{
-	printf("%s\n", scene_path());
-	parse_scene();
-	inspect_ambient_light();
-	inspect_camera();
-	inspect_light();
-}
-
-void	cleanup(void)
-{
-}
-
-int	main(int argc, char **argv)
-{
-	initialize(argc, argv);
-	run();
-	cleanup();
-	return (EXIT_SUCCESS);
+	line++;
+	line = ft_skip_whitespace(line);
+	origin = parse_point(line);
+	line = ft_skip_nonwhitespace(line);
+	line = ft_skip_whitespace(line);
+	brightness = ft_atof(line);
+	set_light(origin, brightness);
 }

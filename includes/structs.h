@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:09:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:39:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct s_camera
 
 typedef struct s_light
 {
+	t_p3d		origin;
+	double		brightness;
+	t_rgb		color;
 }				t_light;
 
 typedef struct s_object
@@ -67,6 +70,8 @@ typedef struct s_object
 
 typedef struct s_minirt
 {
+	bool		debug;
+
 	int			argc;
 	char		**argv;
 
@@ -74,8 +79,8 @@ typedef struct s_minirt
 
 	t_amb_light	ambient_light;
 	t_camera	camera;
+	t_light		light;
 
-	t_list		**lights;
 	t_list		**objects;
 
 	t_list		**free_me;

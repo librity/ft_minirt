@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:21:14 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:41:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ t_camera	camera(void);
 void		set_camera(t_p3d origin, t_v3d orientation, double horz_fov_deg);
 void		inspect_camera(void);
 
+t_light		light(void);
+void		set_light(t_p3d origin, double brightness);
+void		inspect_light(void);
+
 char		*scene_path(void);
 void		set_scene_path(char *path);
 
@@ -58,6 +62,7 @@ void		parse_scene(void);
 
 void		parse_ambient_light(char *line);
 void		parse_camera(char *line);
+void		parse_light(char *line);
 
 t_rgb		parse_color(char *line);
 t_v3d		parse_vector(char *line);
