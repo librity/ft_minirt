@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:45:14 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:55:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ void		parse_scene(void);
 void		parse_ambient_light(char *line);
 void		parse_camera(char *line);
 void		parse_light(char *line);
+
+void		parse_sphere(char *line);
+void		parse_plane(char *line);
+void		parse_cylinder(char *line);
 
 t_rgb		parse_color(char *line);
 t_v3d		parse_vector(char *line);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:46:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:58:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ void	parse_line(char *line)
 		return (parse_camera(line));
 	if (ft_starts_with(line, "L"))
 		return (parse_light(line));
-	// ...
-	// free(line);
-	// die(GENRIC_ERR);
+	if (ft_starts_with(line, "sp"))
+		return (parse_sphere(line));
+	if (ft_starts_with(line, "pl"))
+		return (parse_plane(line));
+	if (ft_starts_with(line, "cy"))
+		return (parse_cylinder(line));
+	free(line);
+	die(UNIMPLEMENTED_PARSER_ERR);
 }
 
 void	parse_scene(void)

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 18:51:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:59:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@
  * PARSER
 \******************************************************************************/
 
-# define GET_LINE_ERR "Couldn't get line of required file."
+# define GET_LINE_ERR "Can't get line of required file."
+# define UNIMPLEMENTED_PARSER_ERR "Can't parse required line."
 
 /******************************************************************************\
  * FILES
 \******************************************************************************/
 
-# define OPEN_ERR "Couldn't open a required file."
+# define OPEN_ERR "Can't open a required file."
 
 #endif

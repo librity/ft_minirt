@@ -6,17 +6,16 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:34:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:59:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include <stdbool.h>
-
-# include <vectors.h>
 # include <ft_libbmp.h>
+# include <stdbool.h>
+# include <vectors.h>
 
 /******************************************************************************\
  * AMBIENT LIGHT
@@ -67,8 +66,28 @@ typedef struct s_light
  * OBJECTS
 \******************************************************************************/
 
+typedef enum e_shape
+{
+	SPHERE_SHAPE,
+	PLANE_SHAPE,
+	CYLINDER_SHAPE,
+}				t_shape;
+
 typedef struct s_object
 {
+	t_shape		type;
+
+	t_p3d		origin;
+
+	double		diameter;
+	double		radius;
+
+	t_v3d		normal;
+
+	double		height;
+
+	t_rgb		color_rgb;
+	t_c3d		color_3d;
 }				t_object;
 
 /******************************************************************************\
