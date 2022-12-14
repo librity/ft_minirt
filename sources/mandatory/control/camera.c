@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:16:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:41:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	inspect_camera(void)
 	t_camera	cam;
 
 	cam = c()->camera;
-	printf("camera:\n");
+	printf("=== camera ===\n");
 	printf("\torigin: %f %f %f\n", cam.origin.x, cam.origin.y, cam.origin.z);
 	printf("\torientation: %f %f %f\n", cam.orientation.x, cam.orientation.y,
-			cam.orientation.z);
+		cam.orientation.z);
 	printf("\thorz_fov_deg: %f\n", cam.horz_fov_deg);
 	printf("\thorz_fov_rad: %f\n", cam.horz_fov_rad);
 }

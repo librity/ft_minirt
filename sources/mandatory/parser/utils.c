@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:09:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 20:45:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,11 @@ t_v3d	parse_vector(char *line)
 t_p3d	parse_point(char *line)
 {
 	return ((t_p3d)parse_vector(line));
+}
+
+char	*skip_field(char *line)
+{
+	line = ft_skip_nonwhitespace(line);
+	line = ft_skip_whitespace(line);
+	return (line);
 }
