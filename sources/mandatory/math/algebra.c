@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_light.c                                    :+:      :+:    :+:   */
+/*   algebra.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 19:08:16 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/03/28 03:23:51 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/14 19:13:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	parse_ambient_light(char *line)
+double	degrees_to_radians(double degrees)
 {
-	double	brightness;
-	t_rgb	color;
+	double	pi;
 
-	line++;
-	line = ft_skip_whitespace(line);
-	brightness = ft_atof(line);
-	line = ft_skip_nonwhitespace(line);
-	line = ft_skip_whitespace(line);
-	color = parse_color(line);
-	set_ambient_light(brightness, color);
+	pi = M_PI;
+	return ((degrees * pi) / 180.0);
 }
