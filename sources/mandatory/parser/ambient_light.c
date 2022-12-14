@@ -6,18 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 19:49:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:42:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
-
-char	*jump_info(char *line)
-{
-	while (*line && !ft_strchr(" \t\n", *line))
-		line++;
-	return (line);
-}
 
 t_rgb	parse_color(char *line)
 {
@@ -40,7 +33,7 @@ void	parse_ambient_light(char *line)
 	line++;
 	line = ft_skip_whitespace(line);
 	brightness = ft_atof(line);
-	line = jump_info(line);
+	line = ft_skip_nonwhitespace(line);
 	line = ft_skip_whitespace(line);
 	color = parse_color(line);
 	set_ambient_light(brightness, color);
