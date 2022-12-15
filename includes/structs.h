@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 21:52:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/15 18:31:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_light
 
 typedef enum e_shape
 {
+	NULL_SHAPE,
 	SPHERE_SHAPE,
 	PLANE_SHAPE,
 	CYLINDER_SHAPE,

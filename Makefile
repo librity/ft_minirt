@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/12/15 18:20:57 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/12/15 18:42:51 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -249,7 +249,7 @@ vg: vg_build
 vglog: vg_build
 	$(VG) $(VG_LOG_FLAGS) $(VG_TARGET) $(VG_SCENE_PATH)
 
-vg_build: $(LIBFT) $(M_ARCHIVE)
+vg_build: clean $(NAME)
 	$(CC_VG) \
 		$(M_MAIN) \
 		$(M_ARCHIVES) \

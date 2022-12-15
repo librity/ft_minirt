@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:34:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/15 18:35:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_ambient_light(double brightness, t_rgb color)
 {
 	c()->ambient_light.brightness = brightness;
 	c()->ambient_light.color_rgb = color;
-	c()->ambient_light.color_3d = rgb_to_c3d(c()->ambient_light.color_rgb);
+	c()->ambient_light.color_3d = rgb_to_c3d(color);
 }
 
 void	inspect_ambient_light(void)
