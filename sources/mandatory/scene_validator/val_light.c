@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:17:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/13 10:10:15 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:52:43 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	light_counter(char id)
 	count++;
 	if (count > 1)
 		return (FALSE);
+	val_scene()->light = 1;
 	return (TRUE);
 }
 

@@ -6,11 +6,14 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/13 10:24:34 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:51:42 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void	error_scene(void);
+static void	error_validate(char *line, int fd);
 
 void	validate_scene(char *filename)
 {
@@ -19,6 +22,7 @@ void	validate_scene(char *filename)
 	int		status;
 
 	fd = open(filename, O_RDONLY);
+	val_scene_init();
 	while (TRUE)
 	{
 		status = ft_get_next_line(fd, &line);
@@ -30,6 +34,10 @@ void	validate_scene(char *filename)
 		if (status == GNL_FOUND_EOF)
 			break ;
 	}
+	close(fd);
+	if (check_scene() == FALSE)
+		error_scene();
+
 }
 
 int	validate_line(char *line)
@@ -54,10 +62,16 @@ int	validate_line(char *line)
 	return (FALSE);
 }
 
-void	error_validate(char *line, int fd)
+static void	error_validate(char *line, int fd)
 {
 	free(line);
 	close(fd);
+	ft_putendl_fd("Error\nminirt: Invalid scene file.", 2);
+	exit(1);
+}
+
+static void	error_scene(void)
+{
 	ft_putendl_fd("Error\nminirt: Invalid scene file.", 2);
 	exit(1);
 }

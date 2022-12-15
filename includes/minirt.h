@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 10:09:30 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:54:01 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ int		validate_camera(char *line);
 int 	check_coordinate(char *line);
 int		check_norm_coordinate(char *line);
 int		validate_fov(char *line);
-void	error_validate(char *line, int fd);
 void	free_array(void **array);
 int		validate_ambient(char *line);
 int		check_color(char *line);
@@ -186,6 +185,9 @@ int		validate_light(char *line);
 int		validate_sphere(char *line);
 int		validate_plane(char *line);
 int		validate_cylinder(char *line);
+t_val_scene	*val_scene();
+void	val_scene_init();
+int	check_scene(void);
 
 /******************************************************************************\
  * SCENE PARSER

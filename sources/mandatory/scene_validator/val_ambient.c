@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:55:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/13 10:27:35 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:52:18 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	ambient_count(char id)
 	count++;
 	if (count > 1)
 		return (FALSE);
+	val_scene()->ambient_light = 1;
 	return (TRUE);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 01:04:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:05:44 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,17 @@ typedef struct s_minirt
 	t_list		*planes;
 	t_list		*cylinders;
 }				t_minirt;
+
+
+/******************************************************************************\
+ * VALIDATE_SCENE
+\******************************************************************************/
+
+typedef struct s_val_scene
+{
+	int	camera;
+	int	ambient_light;
+	int	light;
+}			t_val_scene;
 
 #endif
