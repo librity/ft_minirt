@@ -6,13 +6,14 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 21:33:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 21:52:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include <libft.h>
 # include <ft_libbmp.h>
 # include <stdbool.h>
 # include <vectors.h>
@@ -78,11 +79,10 @@ typedef struct s_object
 	t_shape		shape;
 
 	t_p3d		origin;
+	t_v3d		normal;
 
 	double		diameter;
 	double		radius;
-
-	t_v3d		normal;
 
 	double		height;
 
