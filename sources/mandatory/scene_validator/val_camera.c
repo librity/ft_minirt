@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/14 13:20:47 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:22:41 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,16 @@ int	validate_camera(char *line)
 
 int	validate_fov(char *line)
 {
-	char	*line_hold;
-	int		fov;
+	char		*line_hold;
+	double		fov;
 
 	line_hold = line;
-	if (!ft_isdigit(*line))
+	if (ft_isfloat(&line) == FALSE)
 		return (FALSE);
-	while (ft_isdigit(*line))
-		line++;
 	if ((!ft_strchr(" \t\n", *line)) && !*line)
 		return (FALSE);
-	fov = ft_atoi(line_hold);
-	if (fov < 0 || fov > 255)
+	fov = ft_atof(line_hold);
+	if (fov < 0 || fov > 180)
 		return (FALSE);
 	return (TRUE);
 }
