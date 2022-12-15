@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:55:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 21:41:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,16 @@
 t_minirt	*c(void);
 void		initialize_control(int argc, char **argv);
 
+bool		debug(void);
+void		enable_debug(void);
+
 int			argc(void);
 void		set_argc(int path);
 char		**argv(void);
 void		set_argv(char **path);
+
+char		*scene_path(void);
+void		set_scene_path(char *path);
 
 t_amb_light	ambient_light(void);
 void		set_ambient_light(double brightness, t_rgb color);
@@ -51,8 +57,11 @@ t_light		light(void);
 void		set_light(t_p3d origin, double brightness);
 void		inspect_light(void);
 
-char		*scene_path(void);
-void		set_scene_path(char *path);
+t_dlist		**objects(void);
+void		inspect_objects(void);
+
+t_list		**lalloc(void);
+void		free_lalloc(void);
 
 /******************************************************************************\
  * PARSER
@@ -72,6 +81,12 @@ t_rgb		parse_color(char *line);
 t_v3d		parse_vector(char *line);
 t_p3d		parse_point(char *line);
 char		*skip_field(char *line);
+
+/******************************************************************************\
+ * SPHERES
+\******************************************************************************/
+
+void		create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 /******************************************************************************\
  * FILES

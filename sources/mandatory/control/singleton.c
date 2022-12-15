@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:13:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 18:58:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 21:35:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_minirt	*c(void)
 
 void	initialize_control(int argc, char **argv)
 {
+	c()->debug = false;
 	set_argc(argc);
 	set_argv(argv);
 	set_scene_path(argv[1]);

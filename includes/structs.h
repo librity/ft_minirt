@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:59:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 21:33:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef enum e_shape
 
 typedef struct s_object
 {
-	t_shape		type;
+	t_shape		shape;
 
 	t_p3d		origin;
 
@@ -107,9 +107,9 @@ typedef struct s_minirt
 	t_camera	camera;
 	t_light		light;
 
-	t_list		**objects;
+	t_dlist		*objects;
 
-	t_list		**free_me;
+	t_list		*lalloc;
 }				t_minirt;
 
 #endif

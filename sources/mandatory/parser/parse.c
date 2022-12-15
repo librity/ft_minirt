@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:58:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/14 21:46:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	parse_line(char *line)
+static void	parse_line(char *line)
 {
 	line = ft_skip_whitespace(line);
 	if (*line == '\0')
