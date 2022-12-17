@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/15 18:31:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:26:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,9 @@ t_dlist	**objects(void)
 
 char	*resolve_shape_name(t_shape shape)
 {
-	if (shape == NULL_SHAPE)
-		return ("NULL");
-	if (shape == SPHERE_SHAPE)
-		return ("SPHERE");
-	if (shape == PLANE_SHAPE)
-		return ("PLANE");
-	if (shape == CYLINDER_SHAPE)
-		return ("CYLINDER");
-	die(GENRIC_ERR);
-	return (NULL);
+	char *names[] = {"NULL", "SPHERE", "PLANE", "CYLINDER"};
+
+	return (names[shape]);
 }
 
 void	inspect_objects(void)

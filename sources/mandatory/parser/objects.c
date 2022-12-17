@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 21:25:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:28:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,17 @@ void	parse_sphere(char *line)
 
 void	parse_plane(char *line)
 {
-	(void)line;
+	t_p3d	origin;
+	t_p3d	normal;
+	t_rgb	color;
+
+	line = skip_field(line);
+	origin = parse_point(line);
+	line = skip_field(line);
+	normal = parse_vector(line);
+	line = skip_field(line);
+	color = parse_color(line);
+	create_plane(origin, normal, color);
 }
 
 void	parse_cylinder(char *line)
