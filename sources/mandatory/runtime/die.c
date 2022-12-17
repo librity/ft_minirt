@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/10 08:13:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:53:24 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_error(char *error_message)
 
 void	die(char *error_message)
 {
-	// TODO: Free memory.
+	cleanup();
 	print_error(error_message);
 	exit(EXIT_FAILURE);
 }

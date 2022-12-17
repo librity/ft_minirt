@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory.c                                           :+:      :+:    :+:   */
+/*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:54:23 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/17 14:58:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_list	**lalloc(void)
+void	quit(void)
 {
-	return (&(c()->lalloc));
-}
-
-void	free_lalloc(void)
-{
-	ft_free_lalloc(&(c()->lalloc));
+	cleanup();
+	exit(EXIT_SUCCESS);
 }

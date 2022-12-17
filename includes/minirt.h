@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:30:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:58:28 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 # define MINIRT_H
 
 # include <X11/Xlib.h>
-# include <math.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdio.h>
-
-# include <libft.h>
-# include <ft_libbmp.h>
-
 # include <defines.h>
 # include <errors.h>
+# include <fcntl.h>
+# include <ft_libbmp.h>
+# include <libft.h>
+# include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
 # include <structs.h>
 # include <warnings.h>
 
@@ -98,6 +96,16 @@ void		create_plane(t_p3d origin, t_p3d normal, t_rgb color);
  * CYLINDERS
 \******************************************************************************/
 
+typedef struct s_create_cylinder
+{
+	t_p3d	origin;
+	t_p3d	normal;
+	double	diameter;
+	double	height;
+	t_rgb	color;
+}			t_create_cylinder;
+void		create_cylinder(t_create_cylinder p);
+
 /******************************************************************************\
  * FILES
 \******************************************************************************/
@@ -115,7 +123,9 @@ double		degrees_to_radians(double degrees);
  * RUNTIME
 \******************************************************************************/
 
-void		print_error(char *error_message);
+void		quit(void);
 void		die(char *error_message);
+
+void		cleanup(void);
 
 #endif

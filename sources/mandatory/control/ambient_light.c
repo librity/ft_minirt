@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/15 18:35:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:57:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	inspect_ambient_light(void)
 	printf("=== ambient_light ===\n");
 	printf("\tbrightness: %f\n", amb.brightness);
 	printf("\tcolor_rgb: %d %d %d\n", amb.color_rgb.red, amb.color_rgb.green,
-			amb.color_rgb.blue);
+		amb.color_rgb.blue);
 	printf("\tcolor_3d: %f %f %f\n", amb.color_3d.x, amb.color_3d.y,
-			amb.color_3d.z);
+		amb.color_3d.z);
 }

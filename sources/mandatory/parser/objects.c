@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:28:04 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:52:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,17 @@ void	parse_plane(char *line)
 
 void	parse_cylinder(char *line)
 {
-	(void)line;
+	t_create_cylinder	params;
+
+	line = skip_field(line);
+	params.origin = parse_point(line);
+	line = skip_field(line);
+	params.normal = parse_vector(line);
+	line = skip_field(line);
+	params.diameter = ft_atof(line);
+	line = skip_field(line);
+	params.height = ft_atof(line);
+	line = skip_field(line);
+	params.color = parse_color(line);
+	create_cylinder(params);
 }
