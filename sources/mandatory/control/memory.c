@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.c                                             :+:      :+:    :+:   */
+/*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 20:59:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/17 14:54:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_v3d	vector(double x, double y, double z)
+t_list	**lalloc(void)
 {
-	return (vector_3d(x, y, z));
+	return (&(c()->lalloc));
 }
 
-t_v3d	vector_3d(double x, double y, double z)
+void	free_lalloc(void)
 {
-	return ((t_v3d){x, y, z});
-}
-
-void	inspect_v3d(t_v3d vector)
-{
-	printf("%f %f %f\n", vector.x, vector.y, vector.z);
+	ft_free_lalloc(&(c()->lalloc));
 }

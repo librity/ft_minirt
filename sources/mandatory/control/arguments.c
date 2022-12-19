@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.c                                             :+:      :+:    :+:   */
+/*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 20:59:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/09 13:56:31 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/10 13:23:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_v3d	vector(double x, double y, double z)
+int	argc(void)
 {
-	return (vector_3d(x, y, z));
+	return (c()->argc);
 }
 
-t_v3d	vector_3d(double x, double y, double z)
+void	set_argc(int argc)
 {
-	return ((t_v3d){x, y, z});
+	c()->argc = argc;
 }
 
-void	inspect_v3d(t_v3d vector)
+char	**argv(void)
 {
-	printf("%f %f %f\n", vector.x, vector.y, vector.z);
+	return (c()->argv);
+}
+
+void	set_argv(char **argv)
+{
+	c()->argv = argv;
 }

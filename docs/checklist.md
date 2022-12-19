@@ -1,3 +1,18 @@
+# - [ ] Overview
+
+- [ ] Validate `.rt` scene files
+- [x] Vectors
+- [x] Parse `.rt` scene files
+- [ ] Ray tracing logic
+  - [ ] Camera
+  - [ ] Spheres
+  - [ ] Planes
+  - [ ] Cylinders
+  - [ ] Ambient light
+  - [ ] Spot Light
+  - [ ] Hard Shadows
+- [ ] Minilibx user interface
+
 # - [ ] Mandatory
 
 - [ ] Don't turn in libs as submodules.
@@ -20,14 +35,15 @@
 - [ ] All allocated heap memory properly freed, no memory leaks.
   - [ ] Use gcc `-fsanitize=leak` flag.
   - [ ] Check memory leaks with `valgrind`.
-- [ ] Turn in `Makefile`, `*.h`, `*.c` , `.linux` , `.gitignore`
+- [ ] Turn in `Makefile`, `*.h`, `*.c`, `.gitignore`
 - [ ] Allowed functions:
   - [ ] `open`, `close`, `read`, `write`, `printf`, `malloc`, `free`, `perror`, `strerror`, `exit`
   - [ ] All `math.h`
   - [ ] All `mlx.h`
   - [ ] All `libft.h`
-- [x] Create demo projects with miniLibX to see how it works
+- [ ] Create demo projects with miniLibX to see how it works
 - [ ] Load scene from `.rt` file
+  - [ ] Validate file name: `*.rt`
   - [ ] Validate `.rt` file format
   - [ ] Ambient lightning: `A NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [ ] Camera: `C X,Y,Z OX,OY,OZ HORIZONTAL_FIELD_OF_VIEW`
@@ -35,51 +51,27 @@
   - [ ] Sphere: `sp X,Y,Z DIAMETER RED,GREEN,BLUE`
   - [ ] Plane: `pl X,Y,Z OX,OY,OZ RED,GREEN,BLUE`
   - [ ] Cylinder: `cy X,Y,Z OX,OY,OZ DIAMETER HEIGHT RED,GREEN,BLUE`
-- [x] Create Vectors functions
-- [x] Create Linear Algebra functions
-- [x] Define ray tracing logic
+- [ ] Create Vectors functions
+- [ ] Create Linear Algebra functions
+- [ ] Define ray tracing logic
 - [ ] Objects
-  - [x] Spheres: diameter
+  - [ ] Spheres
   - [ ] Planes
-  - [ ] Cylinders: width and height
+  - [ ] Cylinders
   - [ ] Correctly handle object intersections
   - [ ] Correctly handle object inside
-- [ ] Handle multiple lights
-- [ ] Handle multiple cameras
 - [ ] Create a user interface with `MiniLibX`
   - [ ] Use `MiniLibX` ’s images
   - [ ] Window management must remain smooth
   - [ ] Close window button exits the program cleanly
   - [ ] `q` and `esc` keys exits the program cleanly
-  - [ ] arrow keys change camera view
-- [x] Save trace to `.bmp` file
-
-- [ ] Validate `.rt` scene files
-- [ ] Parse `.rt` scene files
-- [x] Vectors and Linear Algebra
-- [x] Ray tracing logic
-- [x] Spheres
-- [ ] Planes
-- [ ] Cylinders
-- [ ] Ambient light
-- [ ] Multiple lights
-- [ ] Hard shadows
-- [ ] Multiple cameras
-- [ ] Minilibx user interface
-- [x] Saving to `.bmp` file
-
-## - [ ] Cleanup
-
-- [x] Purge local minilibx
-- [x] Create a repo for ft_libbmp - <https://github.com/librity/ft_libbmp>
-- [x] Fix ft_libbmp norme errors
-- [x] Add compatibility function between ft_libbmp and minilibx pixels
-- [x] Consolidate header files (`vectors.h`, `random.h`, `rays.h`, etc.)
-- [x] Remove metallic material functions
-- [x] Remove dielectric material functions
-- [x] Remove depth-of-field
-- [x] Remove sampling
-- [ ] Remove soft shadows (scattering) and add hard ones
-- [x] Use `ft_libbmp` colors and _`t_mlx_image`_
 
 # - [ ] Bonus
+
+- [ ] Add specular reflection to have a full Phong reflection model.
+- [ ] Color disruption: checkerboard.
+- [ ] Colored and multi-spot lights.
+- [ ] One other 2nd degree object: Cone, Hyperboloid, Paraboloid..
+- [ ] Handle bump map textures.
+- [ ] Save trace to `.bmp` file
+  - [ ] `s` key saves the image

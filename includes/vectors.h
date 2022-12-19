@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 00:36:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:46:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define VECTORS_H
 
 # include <ft_libbmp.h>
+# include <math.h>
+
+# define NEAR_ZERO_TOLERANCE 1e-8
 
 /******************************************************************************\
  * VECTORS
@@ -29,7 +32,7 @@ typedef struct s_v3d
 t_v3d			vector(double x, double y, double z);
 t_v3d			vector_3d(double x, double y, double z);
 
-void			inspect(t_v3d vector);
+void			inspect_v3d(t_v3d vector);
 
 double			length_squared(t_v3d vector);
 double			length(t_v3d vector);

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.c                                             :+:      :+:    :+:   */
+/*   singleton.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 20:59:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/09 13:13:36 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/14 21:35:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_v3d	vector(double x, double y, double z)
+t_minirt	*c(void)
 {
-	return (vector_3d(x, y, z));
+	static t_minirt	_minirt;
+
+	return (&_minirt);
 }
 
-t_v3d	vector_3d(double x, double y, double z)
+void	initialize_control(int argc, char **argv)
 {
-	return ((t_v3d){x, y, z});
-}
-
-void	inspect_v3d(t_v3d vector)
-{
-	printf("%f %f %f\n", vector.x, vector.y, vector.z);
+	c()->debug = false;
+	set_argc(argc);
+	set_argv(argv);
+	set_scene_path(argv[1]);
 }

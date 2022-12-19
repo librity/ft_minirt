@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/12/01 21:29:17 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2022/12/15 18:42:51 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -150,7 +150,7 @@ clean_libs: libft_clean ft_libbmp_clean
 
 run: re
 	./$(NAME) scenes/bad_cam_look_at.rt
-	$(OPEN_IMAGE) bitmaps/camera_1.bmp
+#	$(OPEN_IMAGE) bitmaps/camera_1.bmp
 
 ################################################################################
 # TESTS
@@ -233,7 +233,6 @@ VG = valgrind
 VG_FLAGS = --leak-check=full \
 	--show-leak-kinds=all \
 	--trace-children=yes \
-	--suppressions=readline.supp
 
 VG_LOG_FLAGS = $(VG_FLAGS) \
 	--log-file=$(VG_LOG) \
@@ -241,15 +240,16 @@ VG_LOG_FLAGS = $(VG_FLAGS) \
 	--verbose
 VG_LOG = valgrind_leaks.log
 
-VG_TARGET = ./minirt
+VG_TARGET = ./miniRT
+VG_SCENE_PATH = scenes/bad_cam_look_at.rt
 
 vg: vg_build
-	$(VG) $(VG_FLAGS) $(VG_TARGET)
+	$(VG) $(VG_FLAGS) $(VG_TARGET) $(VG_SCENE_PATH)
 
 vglog: vg_build
-	$(VG) $(VG_LOG_FLAGS) $(VG_TARGET)
+	$(VG) $(VG_LOG_FLAGS) $(VG_TARGET) $(VG_SCENE_PATH)
 
-vg_build: $(LIBFT) $(M_ARCHIVE)
+vg_build: clean $(NAME)
 	$(CC_VG) \
 		$(M_MAIN) \
 		$(M_ARCHIVES) \
