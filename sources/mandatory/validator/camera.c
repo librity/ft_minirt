@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   val_camera.c                                       :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 21:59:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:41:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,32 @@ int	camera_count(char id)
 	static int count = 0;
 
 	if (id != 'C')
-		return (FALSE);
+		return (false);
 	count++;
 	if (count > 1)
-		return (FALSE);
+		return (false);
 	val_scene()->camera = 1;
-	return (TRUE);
+	return (true);
 }
 
 int	validate_camera(char *line)
 {
-	if (camera_count(*line) == FALSE)
-		return (FALSE);
+	if (camera_count(*line) == false)
+		return (false);
 	line++;
 	line = jump_spaces(line);
-	if (check_coordinate(line) == FALSE)
-		return (FALSE);
+	if (check_coordinate(line) == false)
+		return (false);
 	line = get_next_info(line);
-	if (check_norm_coordinate(line) == FALSE)
-		return (FALSE);
+	if (check_norm_coordinate(line) == false)
+		return (false);
 	line = get_next_info(line);
-	if (validate_fov(line) == FALSE)
-		return (FALSE);
+	if (validate_fov(line) == false)
+		return (false);
 	line = jump_info(line);
 	if ((!ft_strchr(" \n", *line)))
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 int	validate_fov(char *line)
@@ -51,12 +51,12 @@ int	validate_fov(char *line)
 	double		fov;
 
 	line_hold = line;
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
+	if (ft_isfloat(&line) == false)
+		return (false);
 	if ((!ft_strchr(" \t\n", *line)) && !*line)
-		return (FALSE);
+		return (false);
 	fov = ft_atof(line_hold);
 	if (fov < 0 || fov > 180)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   val_ambient.c                                      :+:      :+:    :+:   */
+/*   ambient.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:55:38 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 21:59:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:41:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,30 @@ static int	ambient_count(char id)
 	static int	count = 0;
 
 	if (id != 'A')
-		return (FALSE);
+		return (false);
 	count++;
 	if (count > 1)
-		return (FALSE);
+		return (false);
 	val_scene()->ambient_light = 1;
-	return (TRUE);
+	return (true);
 }
 
 int	validate_ambient(char *line)
 {
-	if (ambient_count(*line) == FALSE)
-		return (FALSE);
+	if (ambient_count(*line) == false)
+		return (false);
 	line++;
 	line = jump_spaces(line);
-	if (check_amb_light(line) == FALSE)
-		return (FALSE);
+	if (check_amb_light(line) == false)
+		return (false);
 	line = jump_info(line);
 	line = jump_spaces(line);
-	if (check_color(line) == FALSE)
-		return (FALSE);
+	if (check_color(line) == false)
+		return (false);
 	line = get_next_info(line);
 	if (*line && !ft_strchr("\n", *line))
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 int	check_amb_light(char *line)
@@ -51,10 +51,10 @@ int	check_amb_light(char *line)
 	double	ambient_light;
 
 	hold_line = line;
-	if (ft_isfloat(&line) == FALSE)
-		return (FALSE);
+	if (ft_isfloat(&line) == false)
+		return (false);
 	ambient_light = ft_atof(hold_line);
 	if (ambient_light < BRIGHTNESS_MIN || ambient_light > BRIGHTNESS_MAX)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }

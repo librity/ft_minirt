@@ -6,11 +6,21 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 21:53:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:42:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+/******************************************************************************\
+ * VALIDATOR
+\******************************************************************************/
+
+# define BRIGHTNESS_MIN 0.0
+# define BRIGHTNESS_MAX 1.0
+
+# define COLOR_MIN 0
+# define COLOR_MAX 255
 
 #endif

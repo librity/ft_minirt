@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   val_color.c                                        :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:27:26 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 21:59:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:46:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ int	check_color(char *line)
 	int		g;
 	int		b;
 
-	if (is_rgb(line) == FALSE)
-		return (FALSE);
+	if (is_rgb(line) == false)
+		return (false);
 	rgb = ft_split(line, ',');
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
-	free_array((void **)rgb);
+	ft_free_strarr(rgb);
 	if (r < COLOR_MIN || r > COLOR_MAX)
-		return (FALSE);
+		return (false);
 	if (g < COLOR_MIN || g > COLOR_MAX)
-		return (FALSE);
+		return (false);
 	if (b < COLOR_MIN || b > COLOR_MAX)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
 int	is_rgb(char *line)
@@ -40,16 +40,16 @@ int	is_rgb(char *line)
 	while (ft_isdigit(*line))
 		line++;
 	if (*line != ',')
-		return (FALSE);
+		return (false);
 	line++;
 	while (ft_isdigit(*line))
 		line++;
 	if (*line != ',')
-		return (FALSE);
+		return (false);
 	line++;
 	while (ft_isdigit(*line))
 		line++;
 	if (!ft_strchr("\t \n", *line))
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }

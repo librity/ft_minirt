@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:54:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:47:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	initialize(int argc, char **argv)
 void	run(void)
 {
 	printf("%s\n", scene_path());
+	validate_scene();
 	parse_scene();
 	inspect_ambient_light();
 	inspect_camera();

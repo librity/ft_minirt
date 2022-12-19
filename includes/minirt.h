@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 21:54:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:44:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void		free_lalloc(void);
  * VALIDATOR
 \******************************************************************************/
 
-void		validate_scene(char *filename);
-int			validate_line(char *line);
+void		validate_scene(void);
+
 char		*jump_spaces(char *line);
 int			ft_isfloat(char **nptr);
 char		*jump_info(char *line);

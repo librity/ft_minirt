@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   val_scene.c                                        :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:18:41 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 21:59:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:41:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	val_scene_init(void)
 int	check_scene(void)
 {
 	if (val_scene()->ambient_light && val_scene()->light && val_scene()->camera)
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }
