@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   demo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 18:18:31 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 18:24:33 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/20 19:03:08 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/20 19:09:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	initialize_minilibx(void)
+void	mlx_demo_img(void)
 {
-	c()->mlx = mlx_init();
-	if (c()->mlx == NULL)
-		die(GENRIC_ERR);
-	c()->window = mlx_new_window(c()->mlx, c()->width, c()->height, "miniRT");
-	if (c()->window == NULL)
-		die(GENRIC_ERR);
-	mlx_clear_window(c()->mlx, c()->window);
+	int x;
+	int	y;
+
+	x = 0;
+	while (x < c()->width)
+	{
+		y = 0;
+		while (y < c()->height)
+		{
+			// Resolve ray tracer color
+			mlx_image_draw_rgb(&c()->camera.buffer, rgb_red(), x, y);
+			y++;
+		}
+		x++;
+	}
+	mlx_put_image_to_window(c()->mlx, c()->window, c()->camera.buffer.img, 0, 0);
 }
