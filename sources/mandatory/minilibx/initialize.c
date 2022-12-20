@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   singleton.c                                        :+:      :+:    :+:   */
+/*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:13:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 18:23:52 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/20 18:18:31 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/20 18:24:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_minirt	*c(void)
+void	initialize_minilibx(void)
 {
-	static t_minirt	_minirt;
-
-	return (&_minirt);
-}
-
-void	initialize_control(int argc, char **argv)
-{
-	c()->debug = false;
-	set_argc(argc);
-	set_argv(argv);
-	set_scene_path(argv[1]);
-	c()->width = WINDOW_WIDTH;
-	c()->height = WINDOW_HEIGHT;
+	c()->mlx = mlx_init();
+	if (c()->mlx == NULL)
+		die(GENRIC_ERR);
+	c()->window = mlx_new_window(c()->mlx, c()->width, c()->height, "miniRT");
+	if (c()->window == NULL)
+		die(GENRIC_ERR);
+	mlx_clear_window(c()->mlx, c()->window);
 }

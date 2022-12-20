@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/19 21:00:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:23:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,13 @@ typedef struct s_minirt
 	t_amb_light	ambient_light;
 	t_camera	camera;
 	t_light		light;
-
 	t_dlist		*objects;
+
+	int			width;
+	int			height;
+
+	void		*mlx;
+	void		*window;
 
 	t_list		*lalloc;
 }				t_minirt;
