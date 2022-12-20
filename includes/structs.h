@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:27:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:10:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,11 @@ typedef struct s_val_scene
 	int	ambient_light;
 	int	light;
 }			t_val_scene;
+
+typedef struct s_root
+{
+	double	root_one;
+	double	root_two;
+}			t_root;
 
 #endif
