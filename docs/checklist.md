@@ -1,6 +1,6 @@
 # - [ ] Overview
 
-- [ ] Validate `.rt` scene files
+- [x] Validate `.rt` scene files
 - [x] Vectors
 - [x] Parse `.rt` scene files
 - [ ] Ray tracing logic
@@ -51,7 +51,7 @@
   - [ ] Sphere: `sp X,Y,Z DIAMETER RED,GREEN,BLUE`
   - [ ] Plane: `pl X,Y,Z OX,OY,OZ RED,GREEN,BLUE`
   - [ ] Cylinder: `cy X,Y,Z OX,OY,OZ DIAMETER HEIGHT RED,GREEN,BLUE`
-- [ ] Create Vectors functions
+- [x] Create Vectors functions
 - [ ] Create Linear Algebra functions
 - [ ] Define ray tracing logic
 - [ ] Objects
