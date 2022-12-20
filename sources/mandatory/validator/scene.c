@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.c                                             :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 20:59:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/14 13:18:41 by ppaulo-d          #+#    #+#             */
+/*   Updated: 2022/12/18 22:41:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_v3d	vector(double x, double y, double z)
+t_val_scene	*val_scene(void)
 {
-	return (vector_3d(x, y, z));
+	static t_val_scene	val_scene;
+
+	return (&val_scene);
 }
 
-t_v3d	vector_3d(double x, double y, double z)
+void	val_scene_init(void)
 {
-	return ((t_v3d){x, y, z});
+	val_scene()->ambient_light = 0;
+	val_scene()->light = 0;
+	val_scene()->camera = 0;
 }
 
-void	inspect_v3d(t_v3d vector)
+int	check_scene(void)
 {
-	printf("%f %f %f\n", vector.x, vector.y, vector.z);
+	if (val_scene()->ambient_light && val_scene()->light && val_scene()->camera)
+		return (true);
+	return (false);
 }

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.c                                             :+:      :+:    :+:   */
+/*   scene_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 20:59:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/09 13:24:04 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/10 13:23:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_v3d	vector(double x, double y, double z)
+char	*scene_path(void)
 {
-	return (vector_3d(x, y, z));
+	return (c()->scene_path);
 }
 
-t_v3d	vector_3d(double x, double y, double z)
+void	set_scene_path(char *path)
 {
-	return ((t_v3d){x, y, z});
-}
-
-void	inspect_v3d(t_v3d vector)
-{
-	printf("%f %f %f\n", vector.x, vector.y, vector.z);
+	c()->scene_path = path;
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/22 23:14:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:57:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,213 +14,156 @@
 # define MINIRT_H
 
 # include <X11/Xlib.h>
-# include <algebra.h>
 # include <defines.h>
-# include <float.h>
+# include <errors.h>
+# include <fcntl.h>
+# include <ft_libbmp.h>
 # include <libft.h>
 # include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
 # include <structs.h>
+# include <warnings.h>
 
 /******************************************************************************\
- * RAY TRACER
+ * CONTROL
 \******************************************************************************/
 
-void			initialize_ctl(t_minirt *ctl);
-void			cleanup_ctl(t_minirt *ctl);
+t_minirt		*c(void);
+void			initialize_control(int argc, char **argv);
+
+bool			debug(void);
+void			enable_debug(void);
+
+int				argc(void);
+void			set_argc(int path);
+char			**argv(void);
+void			set_argv(char **path);
+
+char			*scene_path(void);
+void			set_scene_path(char *path);
+
+t_amb_light		ambient_light(void);
+void			set_ambient_light(double brightness, t_rgb color);
+void			inspect_ambient_light(void);
+
+t_camera		camera(void);
+void			set_camera(t_p3d origin, t_v3d orientation,
+					double horz_fov_deg);
+void			inspect_camera(void);
+
+t_light			light(void);
+void			set_light(t_p3d origin, double brightness);
+void			inspect_light(void);
+
+t_dlist			**objects(void);
+void			inspect_objects(void);
+
+t_list			**lalloc(void);
+void			free_lalloc(void);
 
 /******************************************************************************\
- * LIGHTS
+ * VALIDATOR
 \******************************************************************************/
 
-void			set_ambient_light(t_minirt *ctl, double brightness,
-					t_rgb color_rgb);
+void			validate_scene(void);
 
-typedef struct s_new_light
-{
-	t_p3d		origin;
-	double		brightness;
-	t_rgb		color_rgb;
-}				t_new_light;
-t_light			*new_light(t_new_light p);
-typedef t_new_light	t_add_light;
-void			add_light(t_minirt *ctl, t_add_light p);
-void			free_lights(t_minirt *ctl);
+char			*jump_spaces(char *line);
+int				ft_isfloat(char **nptr);
+char			*jump_info(char *line);
+int				validate_camera(char *line);
+int				check_coordinate(char *line);
+int				check_norm_coordinate(char *line);
+int				validate_fov(char *line);
+void			free_array(void **array);
+int				validate_ambient(char *line);
+int				check_color(char *line);
+int				is_rgb(char *line);
+int				check_amb_light(char *line);
+char			*get_next_info(char *line);
+int				validate_light(char *line);
+int				validate_sphere(char *line);
+int				validate_plane(char *line);
+int				validate_cylinder(char *line);
+t_val_scene		*val_scene();
+void			val_scene_init(void);
+int				check_scene(void);
 
 /******************************************************************************\
- * CAMERAS
+ * PARSER
 \******************************************************************************/
 
-typedef struct s_new_camera
-{
-	int			number;
+void			parse_scene(void);
 
-	t_p3d		look_from;
-	t_v3d		look_at;
+void			parse_ambient_light(char *line);
+void			parse_camera(char *line);
+void			parse_light(char *line);
 
-	double		horz_fov_deg;
-	double		horz_fov_rad;
+void			parse_sphere(char *line);
+void			parse_plane(char *line);
+void			parse_cylinder(char *line);
 
-	double		view_width;
-	double		view_height;
-
-	t_v3d		base_u;
-	t_v3d		base_v;
-	t_v3d		base_w;
-
-	void		*mlx;
-	int			width;
-	int			height;
-	double		aspect_ratio;
-}				t_new_camera;
-t_camera		*new_camera(t_new_camera p);
-
-typedef struct s_add_camera
-{
-	t_p3d		look_from;
-
-	t_v3d		look_at;
-
-	double		horz_fov_deg;
-}				t_add_camera;
-void			add_camera(t_minirt *ctl, t_add_camera p);
-
-void			generate_image(t_minirt *ctl, t_camera *camera);
-
-void			free_cameras(t_minirt *ctl);
-
-void			save_camera_buffer(t_camera *camera);
-
-/******************************************************************************\
- * RAYS
-\******************************************************************************/
-
-t_ray			ray(t_p3d origin, t_v3d direction);
-
-t_ray			get_ray(t_minirt *ctl, t_camera *camera, int x, int y);
-
-t_p3d			ray_at_t(double translation, t_ray ray);
-
-t_c3d			cast_ray(t_minirt *ctl, t_ray ray);
-
-/******************************************************************************\
- * HIT RECORD
-\******************************************************************************/
-
-void			set_record(t_hit_rec *target, t_hit_rec record);
-void			set_face_normal(t_ray ray, t_v3d outward_normal,
-					t_hit_rec *record);
+t_rgb			parse_color(char *line);
+t_v3d			parse_vector(char *line);
+t_p3d			parse_point(char *line);
+char			*skip_field(char *line);
 
 /******************************************************************************\
  * SPHERES
 \******************************************************************************/
 
-typedef struct s_new_sphere
-{
-	t_p3d		center;
-	double		diameter;
-	t_rgb		color_rgb;
-}				t_new_sphere;
-t_sphere		*new_sphere(t_new_sphere p);
-void			add_sphere(t_minirt *ctl, t_new_sphere p);
-
-void			free_spheres(t_minirt *ctl);
-
-typedef struct s_vectorial_quadratic
-{
-	t_ray		ray;
-	t_sphere	*sphere;
-
-	double		min_translation;
-	double		max_translation;
-
-	double		*root;
-}				t_vectorial_quadratic;
-typedef struct s_ray_hits_sphere
-{
-	t_ray		ray;
-	t_sphere	*sphere;
-	t_hit_rec	*record;
-
-	double		t_min;
-	double		t_max;
-}				t_ray_hits_sphere;
-bool			ray_hits_sphere(t_ray_hits_sphere p);
-
-t_c3d			render_sphere(t_minirt *ctl, t_ray ray, t_hit_rec *record);
+void			create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 /******************************************************************************\
  * PLANES
 \******************************************************************************/
 
+void			create_plane(t_p3d origin, t_p3d normal, t_rgb color);
+
 /******************************************************************************\
  * CYLINDERS
 \******************************************************************************/
 
-/******************************************************************************\
- * SCENE
-\******************************************************************************/
-
-void			handle_arguments(int argument_count);
-
-/******************************************************************************\
- * SCENE VALIDATOR
-\******************************************************************************/
-
-void			validate_scene(char *scene_path);
-
-void			validate_ambient_light(char *line, char *free_me);
-
-bool			invalid_brightness(char *line);
-bool			invalid_color(char *line);
-bool			invalid_rgb(char *line);
+typedef struct s_create_cylinder
+{
+	t_p3d		origin;
+	t_p3d		normal;
+	double		diameter;
+	double		height;
+	t_rgb		color;
+}				t_create_cylinder;
+void			create_cylinder(t_create_cylinder p);
 
 /******************************************************************************\
- * SCENE PARSER
+ * COLORS
 \******************************************************************************/
+
+t_c3d			color_3d(double red, double green, double blue);
+
+t_rgb			c3d_to_rgb(t_c3d color_3d);
+t_c3d			rgb_to_c3d(t_rgb color_rgb);
+t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
 
 /******************************************************************************\
- * MLX
+ * FILES
 \******************************************************************************/
 
-void			initialize_mlx(t_minirt *ctl);
-
-int				handle_destroy(t_minirt *ctl);
-int				handle_keypress(int keycode, t_minirt *ctl);
-
-void			handle_close(int keycode, t_minirt *ctl);
-void			handle_navigation(int keycode, t_minirt *ctl);
-void			handle_save_to_bitmap(int keycode, t_minirt *ctl);
+int				open_or_die(char *path);
+void			close_or_die(int fd);
 
 /******************************************************************************\
- * LOGGERS
+ * MATH
 \******************************************************************************/
 
-void			log_msg(char *message);
-void			log_endl(char *message);
-
-void			log_keycode(int keycode);
-void			log_camera(int keycode);
-
-void			log_scene(t_minirt *ctl);
+double			degrees_to_radians(double degrees);
 
 /******************************************************************************\
- * EXIT
+ * RUNTIME
 \******************************************************************************/
 
-void			clean(t_minirt *ctl);
-void			clean_and_exit(t_minirt *ctl);
+void			quit(void);
+void			die(char *error_message);
 
-/******************************************************************************\
- * ERRORS
-\******************************************************************************/
-
-void			print_error(int code);
-
-void			die(t_errors code);
-void			help_and_die(void);
-void			die_if_null(void *ptr, t_errors code);
-void			freestr_and_die(char *free_me, t_errors code);
-
-int				open_scene_or_die(char *scene_path);
+void			cleanup(void);
 
 #endif

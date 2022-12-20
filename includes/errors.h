@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/26 16:23:35 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 22:57:23 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/14 20:59:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef ERRORS_H
+# define ERRORS_H
+
+# define GENRIC_ERR "Bad bad."
 
 /******************************************************************************\
- * VALIDATOR
+ * ARGUMENTS
 \******************************************************************************/
 
-# define BRIGHTNESS_MIN 0.0
-# define BRIGHTNESS_MAX 1.0
+# define ARGC_ERR "Bad argc."
 
 /******************************************************************************\
- * COLORS
+ * PARSER
 \******************************************************************************/
 
-# define COLOR_MIN 0
-# define COLOR_MAX 255
+# define GET_LINE_ERR "Can't get line of required file."
+# define UNIMPLEMENTED_PARSER_ERR "Can't parse required line."
+
+/******************************************************************************\
+ * FILES
+\******************************************************************************/
+
+# define OPEN_ERR "Can't open a required file."
 
 #endif
