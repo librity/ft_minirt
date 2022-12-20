@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:41:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:23:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 t_camera	camera(void)
 {
 	return (c()->camera);
+}
+
+t_mlx_image	*camera_buffer(void)
+{
+	return (&c()->camera.buffer);
+}
+
+void	initialize_camera(void)
+{
+	mlx_image_initialize(&c()->camera.buffer, c()->mlx,
+		c()->width, c()->height);
+}
+
+void	destroy_camera(void)
+{
+	mlx_image_destroy(&c()->camera.buffer);
 }
 
 void	set_camera(t_p3d origin, t_v3d orientation, double horz_fov_deg)

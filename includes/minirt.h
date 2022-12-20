@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:07:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:34:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ void			set_ambient_light(double brightness, t_rgb color);
 void			inspect_ambient_light(void);
 
 t_camera		camera(void);
+t_mlx_image		*camera_buffer(void);
+void			initialize_camera(void);
+void			destroy_camera(void);
 void			set_camera(t_p3d origin, t_v3d orientation,
 					double horz_fov_deg);
 void			inspect_camera(void);
@@ -58,6 +61,16 @@ void			inspect_light(void);
 
 t_dlist			**objects(void);
 void			inspect_objects(void);
+
+void			*mlx(void);
+void			initialize_mlx(void);
+void			destroy_mlx(void);
+
+void			*window(void);
+void			initialize_window(void);
+void			destroy_window(void);
+int				width(void);
+int				height(void);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
@@ -148,7 +161,6 @@ t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
  * MLX
 \******************************************************************************/
 
-void			initialize_mlx(void);
 void			mlx_demo_img(void);
 
 /******************************************************************************\

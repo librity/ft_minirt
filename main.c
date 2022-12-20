@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:08:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:39:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	initialize(int argc, char **argv)
 		die(ARGC_ERR);
 	initialize_control(argc, argv);
 	initialize_mlx();
+	initialize_window();
+	initialize_camera();
 }
 
 void	run(void)
@@ -29,13 +31,9 @@ void	run(void)
 	inspect_camera();
 	inspect_light();
 	inspect_objects();
-	mlx_demo_img();
-	while (true);
-}
 
-void	cleanup(void)
-{
-	free_lalloc();
+	mlx_demo_img();
+	// while (true);
 }
 
 int	main(int argc, char **argv)
