@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algebra.c                                          :+:      :+:    :+:   */
+/*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 21:58:26 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/21 19:10:39 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/21 18:37:20 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/21 19:01:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-double	degrees_to_radians(double degrees)
+t_p3d	ray_at(t_ray r, double translation)
 {
-	double	pi;
+	t_p3d	result;
 
-	pi = M_PI;
-	return ((degrees * pi) / 180.0);
-}
-
-t_root	quadratic(double a, double b, double c)
-{
-	t_root	roots;
-
-	roots.delta = b * b - 4 * a * c;
-	if (roots.delta < 0)
-	{
-		roots.has_root = false;
-		return (roots);
-	}
-	roots.root_a = (-b + sqrt(roots.delta)) / (2 * a);
-	roots.root_b = (-b - sqrt(roots.delta)) / (2 * a);
-	return (roots);
+	result = scalar_times(translation, r.direction);
+	add(r.origin, result);
+	return (result);
 }
