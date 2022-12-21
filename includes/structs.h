@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 20:10:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:12:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,11 @@ typedef struct s_val_scene
 
 typedef struct s_root
 {
-	double	root_one;
-	double	root_two;
+	double	root_a;
+	double	root_b;
+
+	bool	has_root;
+	double	delta;
 }			t_root;
 
 #endif
