@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/21 19:14:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 10:43:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ bool	ray_hits_sphere(t_ray ray, t_object sphere)
 	b = 2 * dot(ray.direction, oc);
 	c = dot(oc, oc) - (sphere.radius * sphere.radius);
 	root = quadratic(a, b, c);
+	inspect_root(root);
 	return (root.has_root);
 }

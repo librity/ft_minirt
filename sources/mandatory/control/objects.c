@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/19 20:52:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 10:32:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*resolve_shape_name(t_shape shape)
 	return (names[shape]);
 }
 
-static void	inspect_object(t_object *object)
+void	inspect_object(t_object *object)
 {
 	printf("=== object ===\n");
 	printf("\tshape: %d (%s)\n", object->shape,

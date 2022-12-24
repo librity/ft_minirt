@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/21 19:08:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 10:43:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void			set_light(t_p3d origin, double brightness);
 void			inspect_light(void);
 
 t_dlist			**objects(void);
+void			inspect_object(t_object *object);
 void			inspect_objects(void);
 
 void			*mlx(void);
@@ -163,9 +164,6 @@ t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
  * MLX
 \******************************************************************************/
 
-void			mlx_demo_img(void);
-void			mlx_hello_world_img(void);
-
 /******************************************************************************\
  * FILES
 \******************************************************************************/
@@ -179,6 +177,10 @@ void			close_or_die(int fd);
 
 double			degrees_to_radians(double degrees);
 t_root			quadratic(double a, double b, double c);
+void			inspect_root(t_root root);
+
+t_ray			ray_3d(t_p3d origin, t_v3d direction);
+t_p3d			ray_at(t_ray r, double translation);
 
 /******************************************************************************\
  * RUNTIME
@@ -188,5 +190,15 @@ void			quit(void);
 void			die(char *error_message);
 
 void			cleanup(void);
+
+/******************************************************************************\
+ * RUNTIME
+\******************************************************************************/
+
+void			mlx_demo_img(void);
+void			mlx_hello_world_img(void);
+
+void			quadratic_demo(void);
+void			hit_sphere_demo(void);
 
 #endif
