@@ -5,30 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 11:59:01 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/24 11:56:07 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/24 11:58:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static t_object	*new_plane(t_p3d origin, t_p3d normal, t_rgb color)
+static int	new_object_id(void)
 {
-	t_object	*plane;
+	static int	id;
 
-	plane = ft_clalloc(lalloc(), 1, sizeof(t_object));
-	plane->shape = PLANE_SHAPE;
-	plane->origin = origin;
-	plane->normal = normal;
-	plane->color_rgb = color;
-	plane->color_3d = rgb_to_c3d(color);
-	return (plane);
+	return (id++);
 }
 
-void	create_plane(t_p3d origin, t_p3d normal, t_rgb color)
+void	create_object(t_object *object)
 {
-	t_object	*plane;
-
-	plane = new_plane(origin, normal, color);
-	create_object(plane);
+	object->id = new_object_id();
+	ft_dlst_addb_lalloc(lalloc(), objects(), object);
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 10:32:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:00:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*resolve_shape_name(t_shape shape)
 void	inspect_object(t_object *object)
 {
 	printf("=== object ===\n");
+	printf("\tid: %d\n", object->id);
 	printf("\tshape: %d (%s)\n", object->shape,
 		resolve_shape_name(object->shape));
 	printf("\torigin: %f %f %f\n", object->origin.x, object->origin.y,

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 10:43:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:58:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,21 @@ t_p3d			parse_point(char *line);
 char			*skip_field(char *line);
 
 /******************************************************************************\
+ * OBJECTS
+\******************************************************************************/
+
+void			create_object(t_object *object);
+
+/******************************************************************************\
  * SPHERES
 \******************************************************************************/
 
 void			create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
+t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
+void			verify_closest_sphere(t_ray ray);
+void			create_demo_spheres(void);
 
 /******************************************************************************\
  * PLANES

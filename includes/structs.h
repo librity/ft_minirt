@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 10:31:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:55:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef enum e_shape
 
 typedef struct s_object
 {
+	int			id;
 	t_shape		shape;
 
 	t_p3d		origin;
@@ -152,5 +153,11 @@ typedef struct s_root
 	bool	has_root;
 	double	delta;
 }			t_root;
+
+typedef struct s_hit_result
+{
+	bool	hits;
+	double	translation;
+}			t_hit_result;
 
 #endif
