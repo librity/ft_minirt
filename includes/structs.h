@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 11:55:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:04:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ typedef struct s_camera
 
 	double		horz_fov_deg;
 	double		horz_fov_rad;
+
+	double		view_width;
+	double		view_height;
 
 	t_v3d		horizontal;
 	t_v3d		vertical;
@@ -120,6 +123,7 @@ typedef struct s_minirt
 	void		*window;
 	int			width;
 	int			height;
+	double		aspect_ratio;
 
 	t_list		*lalloc;
 }				t_minirt;

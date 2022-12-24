@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 10:28:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 12:12:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 13:58:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,39 @@ void	create_demo_spheres(void)
 void	verify_closest_sphere(t_ray ray)
 {
 	t_dlist			*node;
-	t_object		object;
+	t_object		*object;
 	t_hit_result	result;
+	t_object		*closest_object;
 	double			closest;
 
 	node = *objects();
 	closest = DBL_MAX;
+	closest_object = NULL;
 	while (node != NULL)
 	{
-		object = *(t_object *)node->content;
-		if (object.shape != SPHERE_SHAPE)
+		object = (t_object *)node->content;
+		if (object->shape != SPHERE_SHAPE)
 		{
 			node = node->next;
 			continue ;
 		}
-		result = ray_hits_sphere_result(ray, object);
+		result = ray_hits_sphere_result(ray, *object);
 		printf("sphere: %d (%d)\thit_result: %d\t translation: %f\n",
-				object.id,
-				object.shape,
+				object->id,
+				object->shape,
 				result.hits,
 				result.translation);
-
 		if (result.hits && result.translation < closest)
+		{
 			closest = result.translation;
+			closest_object = object;
+		}
 		node = node->next;
 	}
-	printf("closest translation: %f\n", closest);
+
+	if (closest_object != NULL)
+	{
+		printf("closest translation: %f\n", closest);
+		inspect_object(closest_object);
+	}
 }

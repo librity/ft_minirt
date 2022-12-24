@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:26:11 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:38:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 14:11:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ int	width(void)
 int	height(void)
 {
 	return (c()->height);
+}
+
+double	aspect_ratio(void)
+{
+	return (c()->aspect_ratio);
 }

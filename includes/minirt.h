@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 12:05:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 14:11:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void			initialize_window(void);
 void			destroy_window(void);
 int				width(void);
 int				height(void);
+double			aspect_ratio(void);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
