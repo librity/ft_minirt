@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 21:58:26 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 10:45:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:03:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_root	quadratic(double a, double b, double c)
 {
 	t_root	roots;
 
-	roots.delta = b * b - 4 * a * c;
 	roots.has_root = false;
+	roots.delta = b * b - 4 * a * c;
 	if (roots.delta < 0)
 		return (roots);
 	roots.has_root = true;
