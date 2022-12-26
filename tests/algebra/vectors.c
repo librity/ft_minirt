@@ -51,12 +51,30 @@ MU_TEST(sub_tst)
 	assert_v3d_equals(expected, result);
 }
 
+MU_TEST(vec_tst)
+{
+	result = vector(4.0, -3.9, 1.0);
+	expected = (t_v3d){4.0, -3.9, 1.0};
+
+	assert_v3d_equals(expected, result);
+}
+
+MU_TEST(point_tst)
+{
+	result = point(43.0, -341.94, 11.421);
+	expected = (t_v3d){43.0, -341.94, 11.421};
+
+	assert_v3d_equals(expected, result);
+}
+
 MU_TEST_SUITE(vectors_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(add_tst);
 	MU_RUN_TEST(sub_tst);
+	MU_RUN_TEST(vec_tst);
+	MU_RUN_TEST(point_tst);
 }
 
 MU_MAIN
