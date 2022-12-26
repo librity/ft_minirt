@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.c                                             :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/13 20:59:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/04/03 16:30:28 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/26 15:12:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_v3d	vector(double x, double y, double z)
+t_p3d	point(double x, double y, double z)
 {
-	return (vector_3d(x, y, z));
+	return (point_3d(x, y, z));
 }
 
-t_v3d	vector_3d(double x, double y, double z)
+t_p3d	point_3d(double x, double y, double z)
 {
-	return ((t_v3d){x, y, z});
+	return (tuple(x, y, z, POINT_TYPE));
 }
 
-void	inspect_v3d(t_v3d vector)
+void	inspect_p3d(t_v3d point)
 {
-	printf("%f %f %f\n", vector.x, vector.y, vector.z);
+	printf("POINT: %f %f %f\n", point.x, point.y, point.z);
 }

@@ -23,6 +23,9 @@
     "*.tcc": "c",
     "cmath": "c",
     "random": "c",
-    "numbers": "c"
+    "numbers": "c",
+    "atomic": "c",
+    "compare": "c",
+    "numeric": "c"
   }
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 22:55:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 22:55:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 15:03:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_c3d	color_3d(double red, double green, double blue)
 {
-	return ((t_c3d){red, green, blue});
+	return ((t_c3d){red, green, blue, COLOR_TYPE});
 }
 
 t_rgb	c3d_to_rgb(t_c3d color_3d)

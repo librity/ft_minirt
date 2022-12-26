@@ -12,14 +12,15 @@
 
 #include "../tests.h"
 
-t_v3d	expected;
-t_v3d	result;
+t_t3d	expected;
+t_t3d	result;
 
-void	assert_v3d_equals(t_v3d	_expected, t_v3d	_result)
+void	assert_tuple_equals(t_t3d	_expected, t_t3d	_result)
 {
 	mu_assert_double_eq(_expected.x, _result.x);
 	mu_assert_double_eq(_expected.y, _result.y);
 	mu_assert_double_eq(_expected.z, _result.z);
+	mu_assert_int_eq(_expected.type, _result.type);
 }
 
 void	test_setup(void)
@@ -29,52 +30,72 @@ void	test_teardown(void)
 {
 }
 
+MU_TEST(tuple_tst)
+{
+	result = tuple(1.0, 2.0, 3.0, VECTOR_TYPE);
+	expected = (t_t3d){1.0, 2.0, 3.0, VECTOR_TYPE};
+	assert_tuple_equals(expected, result);
+
+	result = tuple(4.3, -4.2, 3.1, POINT_TYPE);
+	expected = (t_t3d){4.3, -4.2, 3.1, POINT_TYPE};
+	assert_tuple_equals(expected, result);
+}
+
+MU_TEST(vec_tst)
+{
+	result = vector(43.0, -341.94, 11.421);
+	expected = (t_v3d){43.0, -341.94, 11.421, VECTOR_TYPE};
+
+	assert_tuple_equals(expected, result);
+}
+
 MU_TEST(add_tst)
 {
-	result  = add(
-		(t_v3d){1.0, 2.0, 3.0},
-		(t_v3d){2.0, 3.0, 1.0}
+	result = add(
+		point(3, -2, 5),
+		vector(-2, 3, 1)
 	);
-	expected = (t_v3d){3.0, 5.0, 4.0};
+	expected = point(1, 1, 6);
 
-	assert_v3d_equals(expected, result);
+	assert_tuple_equals(expected, result);
+
+	// result = add(
+	// 	vector(1.0, 2.0, 3.0),
+	// 	vector(2.0, 3.0, 1.0)
+	// );
+	// expected = vector(3.0, 5.0, 4.0);
+
+	// assert_tuple_equals(expected, result);
 }
 
 MU_TEST(sub_tst)
 {
 	result = sub(
-		(t_v3d){1.0, 2.0, 3.0},
-		(t_v3d){2.0, 3.0, 1.0}
+		vector(1.0, 2.0, 3.0),
+		vector(2.0, 3.0, 1.0)
 	);
-	expected = (t_v3d){-1.0, -1.0, 2.0};
+	expected = vector(-1.0, -1.0, 2.0);
 
-	assert_v3d_equals(expected, result);
-}
-
-MU_TEST(vec_tst)
-{
-	result = vector(4.0, -3.9, 1.0);
-	expected = (t_v3d){4.0, -3.9, 1.0};
-
-	assert_v3d_equals(expected, result);
+	assert_tuple_equals(expected, result);
 }
 
 MU_TEST(point_tst)
 {
 	result = point(43.0, -341.94, 11.421);
-	expected = (t_v3d){43.0, -341.94, 11.421};
+	expected = (t_p3d){43.0, -341.94, 11.421, POINT_TYPE};
 
-	assert_v3d_equals(expected, result);
+	assert_tuple_equals(expected, result);
 }
 
 MU_TEST_SUITE(vectors_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
-	MU_RUN_TEST(add_tst);
-	MU_RUN_TEST(sub_tst);
+	MU_RUN_TEST(tuple_tst);
 	MU_RUN_TEST(vec_tst);
 	MU_RUN_TEST(point_tst);
+	MU_RUN_TEST(add_tst);
+	// MU_RUN_TEST(sub_tst);
 }
 
 MU_MAIN
