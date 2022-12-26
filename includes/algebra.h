@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 15:30:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:22:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct s_t3d
 t_t3d			tuple(double x, double y, double z, t_t3d_type type);
 void			inspect_t3d(t_t3d tuple);
 
+t_t3d			add(t_t3d first, t_t3d second);
+t_t3d			sub(t_t3d first, t_t3d second);
+t_t3d			cross(t_t3d first, t_t3d second);
+t_t3d			product(t_t3d first, t_t3d second);
+t_t3d			division(t_t3d first, t_t3d second);
+
 /******************************************************************************\
  * VECTORS
 \******************************************************************************/
@@ -66,12 +72,6 @@ t_v3d			scalar_div(double number, t_v3d vector);
 
 double			dot(t_v3d first, t_v3d second);
 
-t_t3d			add(t_t3d first, t_t3d second);
-t_t3d			sub(t_t3d first, t_t3d second);
-t_t3d			cross(t_t3d first, t_t3d second);
-t_t3d			product(t_t3d first, t_t3d second);
-t_t3d			division(t_t3d first, t_t3d second);
-
 bool			near_zero(t_v3d vector);
 
 /******************************************************************************\
@@ -89,5 +89,11 @@ void			inspect_p3d(t_v3d point);
 \******************************************************************************/
 
 typedef t_v3d	t_c3d;
+
+t_c3d			color_3d(double red, double green, double blue);
+
+t_rgb			c3d_to_rgb(t_c3d color_3d);
+t_c3d			rgb_to_c3d(t_rgb color_rgb);
+t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
 
 #endif

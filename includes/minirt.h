@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 15:14:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:21:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,16 +160,6 @@ typedef struct s_create_cylinder
 	t_rgb		color;
 }				t_create_cylinder;
 void			create_cylinder(t_create_cylinder p);
-
-/******************************************************************************\
- * COLORS
-\******************************************************************************/
-
-t_c3d			color_3d(double red, double green, double blue);
-
-t_rgb			c3d_to_rgb(t_c3d color_3d);
-t_c3d			rgb_to_c3d(t_rgb color_rgb);
-t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
 
 /******************************************************************************\
  * MLX
