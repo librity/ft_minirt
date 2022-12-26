@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:49:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/03/14 20:48:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:51:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ double	length(t_v3d vector)
 	return (sqrt(length_sqrd));
 }
 
-t_v3d	negative(t_v3d vector)
+t_t3d	neg(t_t3d tuple)
 {
-	return (scalar_times(-1.0, vector));
+	tuple.x *= -1;
+	tuple.y *= -1;
+	tuple.z *= -1;
+	tuple.type *= -1;
+	return (tuple);
 }
 
 t_v3d	unit(t_v3d vector)

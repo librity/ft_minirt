@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 18:27:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:51:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void			inspect_v3d(t_v3d vector);
 double			length_squared(t_v3d vector);
 double			length(t_v3d vector);
 
-t_v3d			negative(t_v3d vector);
+t_t3d			neg(t_t3d tuple);
 t_v3d			unit(t_v3d vector);
 t_v3d			vsqrt(t_v3d vector);
 
