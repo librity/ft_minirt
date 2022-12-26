@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:43:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 18:28:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:41:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ t_t3d	sub(t_t3d first, t_t3d second)
 {
 	t_t3d	result;
 
+	if (first.type == VECTOR_TYPE && second.type == POINT_TYPE)
+		return (null_tuple());
 	result.x = first.x - second.x;
 	result.y = first.y - second.y;
 	result.z = first.z - second.z;
+	result.type = first.type - second.type;
 	return (result);
 }
 
