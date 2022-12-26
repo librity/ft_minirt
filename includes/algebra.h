@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 18:51:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:07:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,23 @@
  * TUPLES
 \******************************************************************************/
 
-typedef enum e_t3d_type
-{
-	VECTOR_TYPE = 0,
-	POINT_TYPE = 1,
-	COLOR_TYPE = 2,
-	NULL_TYPE = 3,
-}				t_t3d_type;
+# define VECTOR_TYPE 0
+# define POINT_TYPE 1
+# define COLOR_TYPE 2
+# define NULL_TYPE 3
 
 typedef struct s_t3d
 {
 	double		x;
 	double		y;
 	double		z;
-	t_t3d_type	type;
+	int			type;
 }				t_t3d;
 
-t_t3d			tuple(double x, double y, double z, t_t3d_type type);
-t_t3d			tuple_3d(double x, double y, double z, t_t3d_type type);
+t_t3d			tuple(double x, double y, double z, int type);
+t_t3d			tuple_3d(double x, double y, double z, int type);
 t_t3d			null_tuple(void);
-void			inspect_t3d(t_t3d tuple);
+void			inspect_tuple(t_t3d tuple);
 
 t_t3d			add(t_t3d first, t_t3d second);
 t_t3d			sub(t_t3d first, t_t3d second);
@@ -69,7 +66,7 @@ t_v3d			vsqrt(t_v3d vector);
 
 t_v3d			scalar_add(double number, t_v3d vector);
 t_v3d			scalar_sub(double number, t_v3d vector);
-t_v3d			scalar_times(double number, t_v3d vector);
+t_t3d			scalar_times(double number, t_t3d tuple);
 t_v3d			scalar_div(double number, t_v3d vector);
 
 double			dot(t_v3d first, t_v3d second);

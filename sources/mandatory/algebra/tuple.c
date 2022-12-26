@@ -6,18 +6,18 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 15:11:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 18:27:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:07:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_t3d	tuple(double x, double y, double z, t_t3d_type type)
+t_t3d	tuple(double x, double y, double z, int type)
 {
 	return (tuple_3d(x, y, z, type));
 }
 
-t_t3d	tuple_3d(double x, double y, double z, t_t3d_type type)
+t_t3d	tuple_3d(double x, double y, double z, int type)
 {
 	return ((t_t3d){x, y, z, type});
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 18:47:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:03:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,24 @@ MU_TEST(neg_tst)
 	expected = tuple(-1, 2, -3, 4);
 	assert_tuple_eq(expected, result);
 }
+// times_scalar
+// scalar_multiplication
+// Scenario: Multiplying a tuple by a scalar
+//  Given a ← tuple(1, -2, 3, -4)
+//  Then a * 3.5 = tuple(3.5, -7, 10.5, -14)
+// Scenario: Multiplying a tuple by a fraction
+//  Given a ← tuple(1, -2, 3, -4)
+//  Then a * 0.5 = tuple(0.5, -1, 1.5, -2)
+MU_TEST(scalar_times_tst)
+{
+	result = scalar_times(
+		3.5, tuple(1, -2, 3, -4)
+	);
+	expected = tuple(3.5, -7, 10.5, -14);
+	// inspect_tuple(result);
+	// inspect_tuple(expected);
+	assert_tuple_eq(expected, result);
+}
 
 MU_TEST_SUITE(vectors_suite)
 {
@@ -133,6 +151,8 @@ MU_TEST_SUITE(vectors_suite)
 	MU_RUN_TEST(point_tst);
 	MU_RUN_TEST(add_tst);
 	MU_RUN_TEST(sub_tst);
+	MU_RUN_TEST(neg_tst);
+	MU_RUN_TEST(scalar_times_tst);
 }
 
 MU_MAIN
