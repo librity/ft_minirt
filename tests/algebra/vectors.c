@@ -40,11 +40,23 @@ MU_TEST(add_tst)
 	assert_v3d_equals(expected, result);
 }
 
+MU_TEST(sub_tst)
+{
+	result = sub(
+		(t_v3d){1.0, 2.0, 3.0},
+		(t_v3d){2.0, 3.0, 1.0}
+	);
+	expected = (t_v3d){-1.0, -1.0, 2.0};
+
+	assert_v3d_equals(expected, result);
+}
+
 MU_TEST_SUITE(vectors_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(add_tst);
+	MU_RUN_TEST(sub_tst);
 }
 
 MU_MAIN
