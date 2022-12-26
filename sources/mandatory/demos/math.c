@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 10:28:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 13:58:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:12:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,6 @@ void	create_demo_spheres(void)
 	create_sphere(point(15, 0, 0), 5, color_rgb(255, 0, 0));
 }
 
-/**
- * - [X] Criar mais esferas na list de objects
- * - [x] Percorrer essa lista e verificar se um raio arbitrário bate em todas as esferas
- * - [x] Pegar a esfera mais próxima e printar o traslado no terminal
- */
 void	verify_closest_sphere(t_ray ray)
 {
 	t_dlist			*node;
