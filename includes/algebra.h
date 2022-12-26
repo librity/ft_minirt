@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 16:22:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:27:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 typedef enum e_t3d_type
 {
-	VECTOR_TYPE,
-	POINT_TYPE,
-	COLOR_TYPE,
-	NULL_TYPE,
+	VECTOR_TYPE = 0,
+	POINT_TYPE = 1,
+	COLOR_TYPE = 2,
+	NULL_TYPE = 3,
 }				t_t3d_type;
 
 typedef struct s_t3d
@@ -39,6 +39,8 @@ typedef struct s_t3d
 }				t_t3d;
 
 t_t3d			tuple(double x, double y, double z, t_t3d_type type);
+t_t3d			tuple_3d(double x, double y, double z, t_t3d_type type);
+t_t3d			null_tuple(void);
 void			inspect_t3d(t_t3d tuple);
 
 t_t3d			add(t_t3d first, t_t3d second);

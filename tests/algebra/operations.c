@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 16:22:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:31:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,25 @@ MU_TEST(add_tst)
 		point(3, -2, 5),
 		vector(-2, 3, 1));
 	expected = point(1, 1, 6);
-
 	assert_tuple_equals(expected, result);
 
-	// result = add(
-	// 	vector(1.0, 2.0, 3.0),
-	// 	vector(2.0, 3.0, 1.0)
-	// );
-	// expected = vector(3.0, 5.0, 4.0);
+	result = add(
+		vector(-2, 3, 1),
+		point(3, -2, 5));
+	expected = point(1, 1, 6);
+	assert_tuple_equals(expected, result);
 
-	// assert_tuple_equals(expected, result);
+	result = add(
+		vector(1.0, -5.0, 4.0),
+		vector(3.0, 4.3, 2.0));
+	expected = vector(4, -0.7, 6.0);
+	assert_tuple_equals(expected, result);
+
+	result = add(
+		point(1.0, -5.0, 4.0),
+		point(3.0, 4.3, 2.0));
+	expected = null_tuple();
+	assert_tuple_equals(expected, result);
 }
 
 MU_TEST(sub_tst)
