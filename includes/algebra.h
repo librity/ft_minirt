@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 19:07:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:19:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ typedef struct s_t3d
 	double		x;
 	double		y;
 	double		z;
-	int			type;
+	double		type;
 }				t_t3d;
 
-t_t3d			tuple(double x, double y, double z, int type);
-t_t3d			tuple_3d(double x, double y, double z, int type);
+t_t3d			tuple(double x, double y, double z, double type);
+t_t3d			tuple_3d(double x, double y, double z, double type);
 t_t3d			null_tuple(void);
 void			inspect_tuple(t_t3d tuple);
 
