@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 17:28:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:39:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <defines.h>
 # include <errors.h>
 # include <fcntl.h>
+# include <float.h>
 # include <ft_libbmp.h>
 # include <libft.h>
 # include <math.h>
@@ -24,7 +25,6 @@
 # include <stdio.h>
 # include <structs.h>
 # include <warnings.h>
-# include <float.h>
 
 /******************************************************************************\
  * CONTROL
@@ -204,16 +204,15 @@ void			hit_sphere_demo(void);
 
 typedef struct s_projectile
 {
-	t_p3d	position;
-	t_v3d	velocity;
-}			t_projectile;
-
+	t_p3d		position;
+	t_v3d		velocity;
+}				t_projectile;
 typedef struct s_environment
 {
-	t_v3d	gravity;
-	t_v3d	wind;
-}			t_environment;
-
-t_projectile 	tick(t_environment env, t_projectile projectile);
+	t_v3d		gravity;
+	t_v3d		wind;
+}				t_environment;
+t_projectile	tick(t_environment env, t_projectile projectile);
+void			projectile_demo(void);
 
 #endif
