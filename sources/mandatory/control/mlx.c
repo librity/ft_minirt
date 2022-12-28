@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:38:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/20 18:18:31 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/20 19:38:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	cleanup(void)
+void	*mlx(void)
 {
-	free_lalloc();
-	destroy_camera();
-	destroy_window();
-	destroy_mlx();
+	return (c()->mlx);
+}
+
+void	initialize_mlx(void)
+{
+	// if (c()->mlx != NULL)
+	// 	return ;
+	c()->mlx = mlx_init();
+	if (c()->mlx == NULL)
+		die(MLX_INIT_ERR);
+}
+
+void	destroy_mlx(void)
+{
+	// if (c()->mlx == NULL)
+	// 	return ;
+	mlx_destroy_display(c()->mlx);
+	free(c()->mlx);
+	c()->mlx = NULL;
 }

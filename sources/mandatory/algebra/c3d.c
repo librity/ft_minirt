@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   c3d.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:38:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/18 22:55:39 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/28 17:42:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include <algebra.h>
 
-void	cleanup(void)
+t_c3d	color_3d(double red, double green, double blue)
 {
-	free_lalloc();
-	destroy_camera();
-	destroy_window();
-	destroy_mlx();
+	return ((t_c3d){red, green, blue, COLOR_TYPE});
+}
+
+t_rgb	c3d_to_rgb(t_c3d color_3d)
+{
+	t_rgb	rgb;
+
+	rgb.red = (int)(COLOR_MAX * color_3d.x);
+	rgb.green = (int)(COLOR_MAX * color_3d.y);
+	rgb.blue = (int)(COLOR_MAX * color_3d.z);
+	return (rgb);
 }

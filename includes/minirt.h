@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 22:57:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:39:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <defines.h>
 # include <errors.h>
 # include <fcntl.h>
+# include <float.h>
 # include <ft_libbmp.h>
 # include <libft.h>
 # include <math.h>
@@ -48,6 +49,9 @@ void			set_ambient_light(double brightness, t_rgb color);
 void			inspect_ambient_light(void);
 
 t_camera		camera(void);
+t_mlx_image		*camera_buffer(void);
+void			initialize_camera(void);
+void			destroy_camera(void);
 void			set_camera(t_p3d origin, t_v3d orientation,
 					double horz_fov_deg);
 void			inspect_camera(void);
@@ -57,7 +61,19 @@ void			set_light(t_p3d origin, double brightness);
 void			inspect_light(void);
 
 t_dlist			**objects(void);
+void			inspect_object(t_object *object);
 void			inspect_objects(void);
+
+void			*mlx(void);
+void			initialize_mlx(void);
+void			destroy_mlx(void);
+
+void			*window(void);
+void			initialize_window(void);
+void			destroy_window(void);
+int				width(void);
+int				height(void);
+double			aspect_ratio(void);
 
 t_list			**lalloc(void);
 void			free_lalloc(void);
@@ -109,10 +125,21 @@ t_p3d			parse_point(char *line);
 char			*skip_field(char *line);
 
 /******************************************************************************\
+ * OBJECTS
+\******************************************************************************/
+
+void			create_object(t_object *object);
+
+/******************************************************************************\
  * SPHERES
 \******************************************************************************/
 
 void			create_sphere(t_p3d origin, double diameter, t_rgb color);
+
+bool			ray_hits_sphere(t_ray ray, t_object sphere);
+t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
+void			verify_closest_sphere(t_ray ray);
+void			create_demo_spheres(void);
 
 /******************************************************************************\
  * PLANES
@@ -135,14 +162,8 @@ typedef struct s_create_cylinder
 void			create_cylinder(t_create_cylinder p);
 
 /******************************************************************************\
- * COLORS
+ * MLX
 \******************************************************************************/
-
-t_c3d			color_3d(double red, double green, double blue);
-
-t_rgb			c3d_to_rgb(t_c3d color_3d);
-t_c3d			rgb_to_c3d(t_rgb color_rgb);
-t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
 
 /******************************************************************************\
  * FILES
@@ -156,6 +177,11 @@ void			close_or_die(int fd);
 \******************************************************************************/
 
 double			degrees_to_radians(double degrees);
+t_root			quadratic(double a, double b, double c);
+void			inspect_root(t_root root);
+
+t_ray			ray_3d(t_p3d origin, t_v3d direction);
+t_p3d			ray_at(t_ray r, double translation);
 
 /******************************************************************************\
  * RUNTIME
@@ -165,5 +191,28 @@ void			quit(void);
 void			die(char *error_message);
 
 void			cleanup(void);
+
+/******************************************************************************\
+ * DEMOS
+\******************************************************************************/
+
+void			mlx_demo_img(void);
+void			mlx_hello_world_img(void);
+
+void			quadratic_demo(void);
+void			hit_sphere_demo(void);
+
+typedef struct s_projectile
+{
+	t_p3d		position;
+	t_v3d		velocity;
+}				t_projectile;
+typedef struct s_environment
+{
+	t_v3d		gravity;
+	t_v3d		wind;
+}				t_environment;
+t_projectile	tick(t_environment env, t_projectile projectile);
+void			projectile_demo(void);
 
 #endif

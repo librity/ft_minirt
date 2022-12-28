@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:59:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:29:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 
 # define GET_LINE_ERR "Can't get line of required file."
 # define UNIMPLEMENTED_PARSER_ERR "Can't parse required line."
+
+/******************************************************************************\
+ * MLX
+\******************************************************************************/
+
+# define MLX_INIT_ERR "Can't create required mlx instance."
+# define MLX_NEW_WINDOW_ERR "Can't create required mlx window."
 
 /******************************************************************************\
  * FILES

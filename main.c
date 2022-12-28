@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/19 21:01:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:40:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,31 @@ void	initialize(int argc, char **argv)
 	if (argc != 2)
 		die(ARGC_ERR);
 	initialize_control(argc, argv);
+	initialize_mlx();
+	initialize_window();
+	initialize_camera();
+	// printf("%s\n", scene_path());
 }
 
 void	run(void)
 {
-	printf("%s\n", scene_path());
-	validate_scene();
-	parse_scene();
-	inspect_ambient_light();
-	inspect_camera();
-	inspect_light();
-	inspect_objects();
-}
+	// validate_scene();
+	// parse_scene();
+	// inspect_ambient_light();
+	// inspect_camera();
+	// inspect_light();
+	// inspect_objects();
 
-void	cleanup(void)
-{
-	free_lalloc();
+	// quadratic_demo();
+	//mlx_demo_img();
+	// hit_sphere_demo();
+	// create_demo_spheres();
+	// inspect_objects();
+	// verify_closest_sphere(ray_3d(point(0, 0, 0), vector(1, 0, 0)));
+	// mlx_hello_world_img();
+	// while (true);
+
+	projectile_demo();
 }
 
 int	main(int argc, char **argv)

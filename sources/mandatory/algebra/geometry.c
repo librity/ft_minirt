@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb.c                                              :+:      :+:    :+:   */
+/*   geometry.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 15:06:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 22:55:46 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/28 17:47:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include <algebra.h>
 
-t_c3d	rgb_to_c3d(t_rgb color_rgb)
+static double	abs_d(double number)
 {
-	t_c3d	c3d;
-
-	c3d.x = (double)color_rgb.red / COLOR_MAX;
-	c3d.y = (double)color_rgb.green / COLOR_MAX;
-	c3d.z = (double)color_rgb.blue / COLOR_MAX;
-	return (c3d);
+	if (number < 0)
+		return (number * -1);
+	return (number);
 }
 
-t_c3d	rgb_to_bright_c3d(double brightness, t_rgb color_rgb)
+bool	near_zero(t_v3d vector)
 {
-	return (scalar_times(brightness, rgb_to_c3d(color_rgb)));
+	bool	cuts_off_x;
+	bool	cuts_off_y;
+	bool	cuts_off_z;
+
+	cuts_off_x = abs_d(vector.x) < NEAR_ZERO_TOLERANCE;
+	cuts_off_y = abs_d(vector.y) < NEAR_ZERO_TOLERANCE;
+	cuts_off_z = abs_d(vector.z) < NEAR_ZERO_TOLERANCE;
+	return (cuts_off_x && cuts_off_y && cuts_off_z);
 }

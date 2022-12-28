@@ -1,21 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   basic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:38:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/09/06 17:00:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include "../tests.h"
 
-void	cleanup(void)
+int	foo;
+
+void	test_setup(void)
 {
-	free_lalloc();
-	destroy_camera();
-	destroy_window();
-	destroy_mlx();
+}
+void	test_teardown(void)
+{
+}
+
+MU_TEST(template_tst)
+{
+	foo = 42;
+	mu_assert_int_eq(foo, 42);
+}
+
+MU_TEST_SUITE(test_suite)
+{
+	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
+
+	MU_RUN_TEST(template_tst);
+}
+
+MU_MAIN
+{
+	MU_DIVIDER;
+	MU_RUN_SUITE(test_suite);
+	MU_REPORT();
+	return (MU_EXIT_CODE);
 }

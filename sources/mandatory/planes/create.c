@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:39:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:59:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	create_plane(t_p3d origin, t_p3d normal, t_rgb color)
 	t_object	*plane;
 
 	plane = new_plane(origin, normal, color);
-	ft_dlst_add_lalloc(lalloc(), objects(), plane);
+	create_object(plane);
 }

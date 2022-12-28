@@ -23,6 +23,13 @@
     "*.tcc": "c",
     "cmath": "c",
     "random": "c",
-    "numbers": "c"
+    "numbers": "c",
+    "atomic": "c",
+    "compare": "c",
+    "numeric": "c",
+    "functional": "c",
+    "tests.h": "c",
+    "algebra.h": "c",
+    "math.h": "c"
   }
 }

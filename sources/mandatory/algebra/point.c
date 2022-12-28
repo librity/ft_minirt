@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:15:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/20 19:38:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2021/04/03 16:30:28 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/28 17:45:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include <algebra.h>
 
-void	cleanup(void)
+t_p3d	point(double x, double y, double z)
 {
-	free_lalloc();
-	destroy_camera();
-	destroy_window();
-	destroy_mlx();
+	return (point_3d(x, y, z));
+}
+
+t_p3d	point_3d(double x, double y, double z)
+{
+	return (tuple(x, y, z, POINT_TYPE));
+}
+
+void	inspect_p3d(t_v3d point)
+{
+	printf("POINT: %f %f %f\n", point.x, point.y, point.z);
 }

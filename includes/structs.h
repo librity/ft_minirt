@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/19 21:00:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/26 15:12:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,7 @@
 # include <libft.h>
 # include <ft_libbmp.h>
 # include <stdbool.h>
-# include <vectors.h>
-
-/******************************************************************************\
- * COLORS
-\******************************************************************************/
-
-typedef t_v3d	t_c3d;
+# include <algebra.h>
 
 /******************************************************************************\
  * AMBIENT LIGHT
@@ -47,6 +41,9 @@ typedef struct s_camera
 
 	double		horz_fov_deg;
 	double		horz_fov_rad;
+
+	double		view_width;
+	double		view_height;
 
 	t_v3d		horizontal;
 	t_v3d		vertical;
@@ -75,7 +72,7 @@ typedef struct s_light
 
 typedef enum e_shape
 {
-	NULL_SHAPE,
+	NULL_SHAPE = 0,
 	SPHERE_SHAPE,
 	PLANE_SHAPE,
 	CYLINDER_SHAPE,
@@ -83,6 +80,7 @@ typedef enum e_shape
 
 typedef struct s_object
 {
+	int			id;
 	t_shape		shape;
 
 	t_p3d		origin;
@@ -113,8 +111,13 @@ typedef struct s_minirt
 	t_amb_light	ambient_light;
 	t_camera	camera;
 	t_light		light;
-
 	t_dlist		*objects;
+
+	void		*mlx;
+	void		*window;
+	int			width;
+	int			height;
+	double		aspect_ratio;
 
 	t_list		*lalloc;
 }				t_minirt;
@@ -129,5 +132,30 @@ typedef struct s_val_scene
 	int	ambient_light;
 	int	light;
 }			t_val_scene;
+
+/******************************************************************************\
+ * MATH
+\******************************************************************************/
+
+typedef struct s_ray
+{
+	t_p3d		origin;
+	t_v3d		direction;
+}				t_ray;
+
+typedef struct s_root
+{
+	double	root_a;
+	double	root_b;
+
+	bool	has_root;
+	double	delta;
+}			t_root;
+
+typedef struct s_hit_result
+{
+	bool	hits;
+	double	translation;
+}			t_hit_result;
 
 #endif

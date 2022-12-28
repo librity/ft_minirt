@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:51:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:59:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	create_cylinder(t_create_cylinder params)
 	t_object	*cylinder;
 
 	cylinder = new_cylinder(params);
-	ft_dlst_add_lalloc(lalloc(), objects(), cylinder);
+	create_object(cylinder);
 }

@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d.c                                              :+:      :+:    :+:   */
+/*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 22:55:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 22:55:41 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/21 18:37:20 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/24 10:39:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_c3d	color_3d(double red, double green, double blue)
+t_ray	ray_3d(t_p3d origin, t_v3d direction)
 {
-	return ((t_c3d){red, green, blue});
+	t_ray	ray;
+
+	ray.origin = origin;
+	ray.direction = direction;
+	return (ray);
 }
 
-t_rgb	c3d_to_rgb(t_c3d color_3d)
+t_p3d	ray_at(t_ray r, double translation)
 {
-	t_rgb	rgb;
+	t_p3d	result;
 
-	rgb.red = (int)(COLOR_MAX * color_3d.x);
-	rgb.green = (int)(COLOR_MAX * color_3d.y);
-	rgb.blue = (int)(COLOR_MAX * color_3d.z);
-	return (rgb);
+	result = scalar_times(translation, r.direction);
+	add(r.origin, result);
+	return (result);
 }
