@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 19:08:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:48:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void assert_tuple_eq(t_t3d _expected, t_t3d _result)
 	mu_assert_double_eq(_expected.x, _result.x);
 	mu_assert_double_eq(_expected.y, _result.y);
 	mu_assert_double_eq(_expected.z, _result.z);
-	mu_assert_int_eq(_expected.type, _result.type);
+	mu_assert_double_eq(_expected.type, _result.type);
 }
 
 void test_setup(void)
@@ -124,15 +124,27 @@ MU_TEST(neg_tst)
 	assert_tuple_eq(expected, result);
 }
 
-// Scenario: Multiplying a tuple by a fraction
-//  Given a ← tuple(1, -2, 3, -4)
-//  Then a * 0.5 = tuple(0.5, -1, 1.5, -2)
 MU_TEST(scalar_times_tst)
 {
 	result = scalar_times(
 		3.5, tuple(1, -2, 3, -4)
 	);
 	expected = tuple(3.5, -7, 10.5, -14);
+	assert_tuple_eq(expected, result);
+
+	result = scalar_times(
+		0.5, tuple(1, -2, 3, -4)
+	);
+	expected = tuple(0.5, -1, 1.5, -2);
+	assert_tuple_eq(expected, result);
+}
+
+MU_TEST(scalar_div_tst)
+{
+	result = scalar_div(
+		2, tuple(1, -2, 3, -4)
+	);
+	expected = tuple(0.5, -1, 1.5, -2);
 	assert_tuple_eq(expected, result);
 }
 
@@ -147,6 +159,7 @@ MU_TEST_SUITE(vectors_suite)
 	MU_RUN_TEST(sub_tst);
 	MU_RUN_TEST(neg_tst);
 	MU_RUN_TEST(scalar_times_tst);
+	MU_RUN_TEST(scalar_div_tst);
 }
 
 MU_MAIN
