@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:16:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:35:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
  * TUPLES
 \******************************************************************************/
 
-# define VECTOR_TYPE 0
-# define POINT_TYPE 1
-# define COLOR_TYPE 2
-# define NULL_TYPE 3
+# define VECTOR_TYPE 0.0
+# define POINT_TYPE 1.0
+# define COLOR_TYPE 2.0
+# define NULL_TYPE 3.0
 
 typedef struct s_t3d
 {

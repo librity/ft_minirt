@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:49:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:16:56 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:36:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ double	length_squared(t_v3d vector)
 	double	x;
 	double	y;
 	double	z;
+	double	type;
 
 	x = vector.x * vector.x;
 	y = vector.y * vector.y;
 	z = vector.z * vector.z;
-	return (x + y + z);
+	type = vector.type * vector.type;
+	return (x + y + z + type);
 }
 
 double	length(t_v3d vector)

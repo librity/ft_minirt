@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:24:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:37:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ MU_TEST(normalize_tst)
 	mu_assert_double_eq(1, result_d);
 }
 
+MU_TEST(dot_tst)
+{
+	result_d = dot(vector(1, 2, 3), vector(2, 3, 4));
+	mu_assert_double_eq(20, result_d);
+}
+
 MU_TEST_SUITE(vectors_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -72,6 +78,7 @@ MU_TEST_SUITE(vectors_suite)
 
 	MU_RUN_TEST(magnitude_tst);
 	MU_RUN_TEST(normalize_tst);
+	MU_RUN_TEST(dot_tst);
 }
 
 MU_MAIN

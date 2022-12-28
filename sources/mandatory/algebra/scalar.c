@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 15:47:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:37:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ double	dot(t_v3d first, t_v3d second)
 	double	x;
 	double	y;
 	double	z;
+	double	type;
 
 	x = first.x * second.x;
 	y = first.y * second.y;
 	z = first.z * second.z;
-	return (x + y + z);
+	type = first.type * second.type;
+	return (x + y + z + type);
 }
