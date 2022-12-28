@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:49:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 18:51:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:57:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ double	length(t_v3d vector)
 
 	length_sqrd = length_squared(vector);
 	return (sqrt(length_sqrd));
+}
+
+double	magnitude(t_v3d vector)
+{
+	return (length(vector));
 }
 
 t_t3d	neg(t_t3d tuple)
