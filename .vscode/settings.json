@@ -27,6 +27,7 @@
     "atomic": "c",
     "compare": "c",
     "numeric": "c",
-    "functional": "c"
+    "functional": "c",
+    "tests.h": "c"
   }
 }

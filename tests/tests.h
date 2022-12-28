@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 13:28:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:09:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,14 @@ void assert_dlist_equivalent(t_dlist *expected, t_dlist *result, t_content_cb co
 		expected = expected->next;
 		result = result->next;
 	}
+}
+
+void assert_tuple_eq(t_t3d _expected, t_t3d _result)
+{
+	mu_assert_double_eq(_expected.x, _result.x);
+	mu_assert_double_eq(_expected.y, _result.y);
+	mu_assert_double_eq(_expected.z, _result.z);
+	mu_assert_double_eq(_expected.type, _result.type);
 }
 
 #endif
