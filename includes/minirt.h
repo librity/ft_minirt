@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 16:21:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:28:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ void			die(char *error_message);
 void			cleanup(void);
 
 /******************************************************************************\
- * RUNTIME
+ * DEMOS
 \******************************************************************************/
 
 void			mlx_demo_img(void);
@@ -201,5 +201,19 @@ void			mlx_hello_world_img(void);
 
 void			quadratic_demo(void);
 void			hit_sphere_demo(void);
+
+typedef struct s_projectile
+{
+	t_p3d	position;
+	t_v3d	velocity;
+}			t_projectile;
+
+typedef struct s_environment
+{
+	t_v3d	gravity;
+	t_v3d	wind;
+}			t_environment;
+
+t_projectile 	tick(t_environment env, t_projectile projectile);
 
 #endif

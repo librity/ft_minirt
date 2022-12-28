@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:11:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:04:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ MU_TEST(scalar_div_tst)
 	assert_tuple_eq(expected, result);
 }
 
-MU_TEST_SUITE(vectors_suite)
+MU_TEST_SUITE(tuples_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -142,7 +142,7 @@ MU_TEST_SUITE(vectors_suite)
 MU_MAIN
 {
 	MU_DIVIDER;
-	MU_RUN_SUITE(vectors_suite);
+	MU_RUN_SUITE(tuples_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

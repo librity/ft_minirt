@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:41:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:01:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,6 @@ MU_TEST(dot_tst)
 	mu_assert_double_eq(20, result_d);
 }
 
-// Scenario: The cross product of two vectors
-//  Given a ← vector(1, 2, 3)
-//  And b ← vector(2, 3, 4)
-//  Then cross(a, b) = vector(-1, 2, -1)
-//  And cross(b, a) = vector(1, -2, 1)
 MU_TEST(cross_tst)
 {
 	result = cross(
