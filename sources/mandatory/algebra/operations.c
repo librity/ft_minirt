@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:43:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 18:41:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:39:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ t_t3d	sub(t_t3d first, t_t3d second)
 	return (result);
 }
 
-t_t3d	cross(t_t3d first, t_t3d second)
+t_v3d	cross(t_v3d first, t_v3d second)
 {
-	t_t3d	result;
+	t_v3d	result;
 
 	result.x = first.y * second.z - first.z * second.y;
 	result.y = first.z * second.x - first.x * second.z;

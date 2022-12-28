@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:35:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:40:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void			inspect_tuple(t_t3d tuple);
 
 t_t3d			add(t_t3d first, t_t3d second);
 t_t3d			sub(t_t3d first, t_t3d second);
-t_t3d			cross(t_t3d first, t_t3d second);
 t_t3d			product(t_t3d first, t_t3d second);
 t_t3d			division(t_t3d first, t_t3d second);
 
@@ -73,6 +72,7 @@ t_v3d			vsqrt(t_v3d vector);
 t_v3d			normalize(t_v3d vector);
 
 double			dot(t_v3d first, t_v3d second);
+t_v3d			cross(t_v3d first, t_v3d second);
 
 bool			near_zero(t_v3d vector);
 

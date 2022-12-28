@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:37:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:41:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,28 @@ MU_TEST(dot_tst)
 	mu_assert_double_eq(20, result_d);
 }
 
+// Scenario: The cross product of two vectors
+//  Given a ← vector(1, 2, 3)
+//  And b ← vector(2, 3, 4)
+//  Then cross(a, b) = vector(-1, 2, -1)
+//  And cross(b, a) = vector(1, -2, 1)
+MU_TEST(cross_tst)
+{
+	result = cross(
+		vector(1, 2, 3),
+		vector(2, 3, 4)
+	);
+	expected = vector(-1, 2, -1);
+	assert_tuple_eq(expected, result);
+
+	result = cross(
+		vector(2, 3, 4),
+		vector(1, 2, 3)
+	);
+	expected = vector(1, -2, 1);
+	assert_tuple_eq(expected, result);
+}
+
 MU_TEST_SUITE(vectors_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -78,7 +100,9 @@ MU_TEST_SUITE(vectors_suite)
 
 	MU_RUN_TEST(magnitude_tst);
 	MU_RUN_TEST(normalize_tst);
+
 	MU_RUN_TEST(dot_tst);
+	MU_RUN_TEST(cross_tst);
 }
 
 MU_MAIN
