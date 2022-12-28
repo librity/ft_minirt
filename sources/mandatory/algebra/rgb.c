@@ -6,11 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 15:06:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 22:55:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:42:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include <algebra.h>
 
 t_c3d	rgb_to_c3d(t_rgb color_rgb)
 {

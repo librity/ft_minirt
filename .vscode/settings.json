@@ -28,6 +28,8 @@
     "compare": "c",
     "numeric": "c",
     "functional": "c",
-    "tests.h": "c"
+    "tests.h": "c",
+    "algebra.h": "c",
+    "math.h": "c"
   }
 }

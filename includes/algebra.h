@@ -6,15 +6,17 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:40:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:46:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALGEBRA_H
 # define ALGEBRA_H
 
-# include <ft_libbmp.h>
+# include <stdio.h>
 # include <math.h>
+
+# include <ft_libbmp.h>
 
 # define NEAR_ZERO_TOLERANCE 1E-4
 
@@ -68,8 +70,8 @@ double			length(t_v3d vector);
 double			magnitude(t_v3d vector);
 
 t_v3d			unit(t_v3d vector);
-t_v3d			vsqrt(t_v3d vector);
 t_v3d			normalize(t_v3d vector);
+t_v3d			vsqrt(t_v3d vector);
 
 double			dot(t_v3d first, t_v3d second);
 t_v3d			cross(t_v3d first, t_v3d second);
@@ -89,6 +91,9 @@ void			inspect_p3d(t_v3d point);
 /******************************************************************************\
  * COLORS
 \******************************************************************************/
+
+# define COLOR_MIN 0
+# define COLOR_MAX 255
 
 typedef t_v3d	t_c3d;
 

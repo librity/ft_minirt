@@ -6,11 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:30:28 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 15:12:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:45:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include <algebra.h>
 
 t_p3d	point(double x, double y, double z)
 {
