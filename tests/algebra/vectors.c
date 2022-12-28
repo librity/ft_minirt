@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 16:11:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:24:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_t3d expected;
 t_t3d result;
 t_t3d _tuple;
+double	result_d;
 
 void test_setup(void)
 {
@@ -49,6 +50,19 @@ MU_TEST(magnitude_tst)
 	mu_assert_double_eq(sqrt(14), magnitude(_tuple));
 }
 
+MU_TEST(normalize_tst)
+{
+	result = normalize(vector(4, 0, 0));
+	expected = vector(1, 0, 0);
+	assert_tuple_eq(expected, result);
+
+	result = normalize(vector(1, 2, 3));
+	expected = vector(1/sqrt(14), 2/sqrt(14), 3/sqrt(14));
+	assert_tuple_eq(expected, result);
+
+	result_d = magnitude(normalize(vector(1, 2, 3)));
+	mu_assert_double_eq(1, result_d);
+}
 
 MU_TEST_SUITE(vectors_suite)
 {
@@ -57,6 +71,7 @@ MU_TEST_SUITE(vectors_suite)
 	MU_RUN_TEST(vector_tst);
 
 	MU_RUN_TEST(magnitude_tst);
+	MU_RUN_TEST(normalize_tst);
 }
 
 MU_MAIN

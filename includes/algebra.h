@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 15:58:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:16:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ double			magnitude(t_v3d vector);
 
 t_v3d			unit(t_v3d vector);
 t_v3d			vsqrt(t_v3d vector);
+t_v3d			normalize(t_v3d vector);
 
 double			dot(t_v3d first, t_v3d second);
 
