@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 16:14:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:49:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ typedef struct s_environment
 }				t_environment;
 t_projectile	tick(t_environment env, t_projectile projectile);
 void			projectile_demo(void);
-
+void			projectile_ppm_demo();
 void			hello_world_ppm_demo(void);
 
 #endif

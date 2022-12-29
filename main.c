@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 15:44:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:49:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	initialize(int argc, char **argv)
 
 void	run(void)
 {
-	hello_world_ppm_demo();
+	// hello_world_ppm_demo();
+	projectile_ppm_demo();
 	// validate_scene();
 	// parse_scene();
 	// inspect_ambient_light();
