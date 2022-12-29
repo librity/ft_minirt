@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 14:55:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:44:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	initialize(int argc, char **argv)
 
 void	run(void)
 {
-	ppm_hello_world_img();
+	hello_world_ppm_demo();
 	// validate_scene();
 	// parse_scene();
 	// inspect_ambient_light();
@@ -34,12 +34,12 @@ void	run(void)
 	// inspect_objects();
 
 	// quadratic_demo();
-	//mlx_demo_img();
+	//red_window_demo();
 	// hit_sphere_demo();
 	// create_demo_spheres();
 	// inspect_objects();
 	// verify_closest_sphere(ray_3d(point(0, 0, 0), vector(1, 0, 0)));
-	// mlx_hello_world_img();
+	// hello_world_window_demo();
 	// while (true);
 
 	//projectile_demo();
