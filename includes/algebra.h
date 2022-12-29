@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 17:46:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:11:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define VECTOR_TYPE 0.0
 # define POINT_TYPE 1.0
-# define COLOR_TYPE 2.0
+# define COLOR_TYPE 0.0
 # define NULL_TYPE 3.0
 
 typedef struct s_t3d
@@ -95,12 +95,15 @@ void			inspect_p3d(t_v3d point);
 # define COLOR_MIN 0
 # define COLOR_MAX 255
 
-typedef t_v3d	t_c3d;
+typedef t_t3d	t_c3d;
 
+t_c3d			color(double red, double green, double blue);
 t_c3d			color_3d(double red, double green, double blue);
 
 t_rgb			c3d_to_rgb(t_c3d color_3d);
 t_c3d			rgb_to_c3d(t_rgb color_rgb);
 t_c3d			rgb_to_bright_c3d(double brightness, t_rgb color_rgb);
+void			mlx_image_draw_c3d(t_mlx_image *image,
+					t_c3d color, int x, int y);
 
 #endif
