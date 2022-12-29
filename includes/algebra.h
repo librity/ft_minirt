@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 13:45:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:52:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define VECTOR_TYPE 0.0
 # define POINT_TYPE 1.0
-# define COLOR_TYPE 2.0
+# define COLOR_TYPE 0.0
 # define NULL_TYPE 3.0
 
 typedef struct s_t3d
