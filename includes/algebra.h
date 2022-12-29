@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 17:46:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:45:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ void			inspect_p3d(t_v3d point);
 # define COLOR_MIN 0
 # define COLOR_MAX 255
 
-typedef t_v3d	t_c3d;
+typedef t_t3d	t_c3d;
 
+t_c3d			color(double red, double green, double blue);
 t_c3d			color_3d(double red, double green, double blue);
 
 t_rgb			c3d_to_rgb(t_c3d color_3d);

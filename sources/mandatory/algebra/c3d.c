@@ -6,11 +6,16 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 22:55:39 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 17:42:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:45:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <algebra.h>
+
+t_c3d	color(double red, double green, double blue)
+{
+	return (color_3d(red, green, blue));
+}
 
 t_c3d	color_3d(double red, double green, double blue)
 {
