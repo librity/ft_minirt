@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 11:51:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:01:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,12 @@ void	mx_submatrix(t_matrix matrix, int row, int column, t_matrix *result)
 	mx_shuffle_column_right(result, column);
 	mx_set_column(result, null_tuple(), 3);
 	mx_set_row(result, null_tuple(), 3);
+}
+
+double	mx_minor(t_matrix matrix, int row, int column)
+{
+	t_matrix	mx_sub;
+
+	mx_submatrix(matrix, row, column, &mx_sub);
+	return (mx_2by2_determinant(mx_sub));
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 11:50:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:02:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,18 @@ MU_TEST(mx_4by4_submatrix_tst)
 	mu_check(mxs_are_equal(expected, result));
 }
 
+MU_TEST(mx_3by3_minor_tst)
+{
+	mx_set(&neo, (t_mx_set){
+		3 , 5 , 0 , 0,
+		2 , -1 , -7 , 0,
+		6 , -1 , 5 , 0,
+		0, 0, 0, 0});
+	determinant = mx_minor(neo, 1, 0);
+
+	mu_assert_double_eq(25, determinant);
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -277,6 +289,8 @@ MU_TEST_SUITE(matrices_suite)
 
 	MU_RUN_TEST(mx_3by3_submatrix_tst);
 	MU_RUN_TEST(mx_4by4_submatrix_tst);
+
+	MU_RUN_TEST(mx_3by3_minor_tst);
 }
 
 MU_MAIN
