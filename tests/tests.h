@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 09:53:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:36:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <fcntl.h>
 # include <minirt.h>
 # include <sys/wait.h>
+
+# define MY_PI           3.14159265358979323846
 
 void assert_strarr_eq(char **expected, char **result)
 {
