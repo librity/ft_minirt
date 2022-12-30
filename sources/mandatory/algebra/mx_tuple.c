@@ -1,51 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrices.c                                         :+:      :+:    :+:   */
+/*   mx_tuple.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:02:59 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/30 10:03:02 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2022/12/30 10:05:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	mx_set(t_matrix *matrix, t_mx_set set)
+t_t3d	mx_tuple_multiply(t_matrix matrix, t_t3d tuple)
 {
-	t_mx_set_union	set_union;
-	int				i;
-	int				j;
+	t_t3d	result;
 
-	set_union.set = set;
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			(*matrix)[i][j] = set_union.values[i * 4 + j];
-			j++;
-		}
-		i++;
-	}
-}
-
-void	mx_clear(t_matrix *matrix)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			(*matrix)[i][j] = 0.0;
-			j++;
-		}
-		i++;
-	}
+	result.x = dot(mx_get_row(matrix, 0), tuple);
+	result.y = dot(mx_get_row(matrix, 1), tuple);
+	result.z = dot(mx_get_row(matrix, 2), tuple);
+	result.type = dot(mx_get_row(matrix, 3), tuple);
+	return (result);
 }

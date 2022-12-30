@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 09:45:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:00:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,6 @@ t_t3d			mx_get_row(t_matrix mx, int index);
 t_t3d			mx_get_column(t_matrix mx, int index);
 
 void			mxs_multiply(t_matrix a, t_matrix b, t_matrix *result);
+t_t3d			mx_tuple_multiply(t_matrix matrix, t_t3d tuple);
 
 #endif
