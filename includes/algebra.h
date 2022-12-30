@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:38:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:42:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,9 @@ void			mx_transpose(t_matrix matrix, t_matrix *result);
 
 void			mx_submatrix(t_matrix matrix, int row, int column,
 					t_matrix *result);
-double			mx_minor(t_matrix matrix, int row, int column);
 
+double			cofactor(double	minor, int row, int column);
+double			mx_2by2_minor(t_matrix matrix, int row, int column);
 double			mx_2by2_cofactor(t_matrix matrix, int row, int column);
 double			mx_3by3_cofactor(t_matrix matrix, int row, int column);
 

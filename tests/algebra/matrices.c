@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:39:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:40:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,7 +265,7 @@ MU_TEST(mx_3by3_minor_tst)
 		2 , -1 , -7 , 0,
 		6 , -1 , 5 , 0,
 		0, 0, 0, 0});
-	determinant = mx_minor(neo, 1, 0);
+	determinant = mx_2by2_minor(neo, 1, 0);
 
 	mu_assert_double_eq(25, determinant);
 }
