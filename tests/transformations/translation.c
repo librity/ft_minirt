@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:36:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:39:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:55:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,39 @@ MU_TEST(rotation_z_tst)
 	assert_tuple_eq(expected, result);
 }
 
+MU_TEST(shearing_tst)
+{
+	shearing((t_shearing){1, 0, 0, 0, 0, 0}, &matrix);
+	result = mx_tuple_multiply(matrix, point(2, 3, 4));
+	expected = point(5, 3, 4);
+	assert_tuple_eq(expected, result);
+
+	shearing((t_shearing){0, 1, 0, 0, 0, 0}, &matrix);
+	result = mx_tuple_multiply(matrix, point(2, 3, 4));
+	expected = point(6, 3, 4);
+	assert_tuple_eq(expected, result);
+
+	shearing((t_shearing){0, 0, 1, 0, 0, 0}, &matrix);
+	result = mx_tuple_multiply(matrix, point(2, 3, 4));
+	expected = point(2, 5, 4);
+	assert_tuple_eq(expected, result);
+
+	shearing((t_shearing){0, 0, 0, 1, 0, 0}, &matrix);
+	result = mx_tuple_multiply(matrix, point(2, 3, 4));
+	expected = point(2, 7, 4);
+	assert_tuple_eq(expected, result);
+
+	shearing((t_shearing){0, 0, 0, 0, 1, 0}, &matrix);
+	result = mx_tuple_multiply(matrix, point(2, 3, 4));
+	expected = point(2, 3, 6);
+	assert_tuple_eq(expected, result);
+
+	shearing((t_shearing){0, 0, 0, 0, 0, 1}, &matrix);
+	result = mx_tuple_multiply(matrix, point(2, 3, 4));
+	expected = point(2, 3, 7);
+	assert_tuple_eq(expected, result);
+}
+
 MU_TEST_SUITE(translations_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -158,6 +191,8 @@ MU_TEST_SUITE(translations_suite)
 	MU_RUN_TEST(inverse_rotation_x_tst);
 	MU_RUN_TEST(rotation_y_tst);
 	MU_RUN_TEST(rotation_z_tst);
+
+	MU_RUN_TEST(shearing_tst);
 }
 
 MU_MAIN

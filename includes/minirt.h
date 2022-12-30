@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:38:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:54:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,17 @@ void			scaling(t_v3d vector, t_matrix *result);
 void			rotation_x(double radians, t_matrix *result);
 void			rotation_y(double radians, t_matrix *result);
 void			rotation_z(double radians, t_matrix *result);
+
+typedef struct s_shearing
+{
+	double		xy;
+	double		xz;
+	double		yx;
+	double		yz;
+	double		zx;
+	double		zy;
+}				t_shearing;
+void			shearing(t_shearing shear, t_matrix *result);
 
 /******************************************************************************\
  * OBJECTS
