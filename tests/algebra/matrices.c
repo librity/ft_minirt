@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:02:42 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:11:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_t3d result_t3d;
 t_t3d expected_t3d;
 t_matrix identity;
 double	determinant;
+double	cofactor_a;
+double	cofactor_b;
 
 void test_setup(void)
 {
@@ -267,6 +269,20 @@ MU_TEST(mx_3by3_minor_tst)
 	mu_assert_double_eq(25, determinant);
 }
 
+MU_TEST(cofactor_3by3_tst)
+{
+	mx_set(&neo, (t_mx_set){
+		3 , 5 , 0 , 0,
+		2 , -1 , -7 , 0,
+		6 , -1 , 5 , 0,
+		0, 0, 0, 0});
+	cofactor_a = mx_cofactor(neo, 0, 0);
+	cofactor_b = mx_cofactor(neo, 1, 0);
+
+	mu_assert_double_eq(-12, cofactor_a);
+	mu_assert_double_eq(-25, cofactor_b);
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -291,6 +307,7 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(mx_4by4_submatrix_tst);
 
 	MU_RUN_TEST(mx_3by3_minor_tst);
+	MU_RUN_TEST(cofactor_3by3_tst);
 }
 
 MU_MAIN
