@@ -6,13 +6,15 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 21:10:39 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 21:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
 t_matrix	matrix;
+t_matrix	neo;
+t_matrix	trinity;
 
 void test_setup(void)
 {
@@ -97,18 +99,22 @@ MU_TEST(matrix_3_by_3_tst)
 	mu_assert_double_eq(1, matrix[2][2]);
 }
 
-// Scenario: Matrix equality with identical matrices
-//  Given the following matrix A:
-//  | 1 | 2 | 3 | 4 |
-//  | 5 | 6 | 7 | 8 |
-//  | 9 | 8 | 7 | 6 |
-//  | 5 | 4 | 3 | 2 |
-//  And the following matrix B:
-//  | 1 | 2 | 3 | 4 |
-//  | 5 | 6 | 7 | 8 |
-//  | 9 | 8 | 7 | 6 |
-//  | 5 | 4 | 3 | 2 |
-//  Then A = B
+MU_TEST(are_equal_tst)
+{
+	clear_matrix(&neo);
+	set_matrix(
+		&neo,
+		(t_set_matrix){1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2}
+	);
+
+	clear_matrix(&trinity);
+	set_matrix(
+		&trinity,
+		(t_set_matrix){1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2}
+	);
+
+	mu_check(matrices_are_equal(neo, trinity));
+}
 
 // Scenario: Matrix equality with different matrices
 //  Given the following matrix A:
@@ -130,6 +136,8 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(matrix_4_by_4_tst);
 	MU_RUN_TEST(matrix_2_by_2_tst);
 	MU_RUN_TEST(matrix_3_by_3_tst);
+
+	MU_RUN_TEST(are_equal_tst);
 }
 
 MU_MAIN
