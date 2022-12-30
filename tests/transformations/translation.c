@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:36:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:37:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:39:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,19 @@ MU_TEST(rotation_y_tst)
 	assert_tuple_eq(expected, result);
 }
 
+MU_TEST(rotation_z_tst)
+{
+	rotation_z(MY_PI / 4, &mx_rotation );
+	result = mx_tuple_multiply(mx_rotation, point(0, 1, 0));
+	expected = point(-sqrt(2)/2, sqrt(2)/2, 0 );
+	assert_tuple_eq(expected, result);
+
+	rotation_z(MY_PI / 2, &mx_rotation);
+	result = mx_tuple_multiply(mx_rotation, point(0, 1, 0));
+	expected = point(-1, 0, 0);
+	assert_tuple_eq(expected, result);
+}
+
 MU_TEST_SUITE(translations_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -143,8 +156,8 @@ MU_TEST_SUITE(translations_suite)
 
 	MU_RUN_TEST(rotation_x_tst);
 	MU_RUN_TEST(inverse_rotation_x_tst);
-
 	MU_RUN_TEST(rotation_y_tst);
+	MU_RUN_TEST(rotation_z_tst);
 }
 
 MU_MAIN
