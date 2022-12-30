@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:54:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:22:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,5 +240,7 @@ t_projectile	tick(t_environment env, t_projectile projectile);
 void			projectile_demo(void);
 void			projectile_ppm_demo();
 void			hello_world_ppm_demo(void);
+
+void			clock_hours_ppm_demo(void);
 
 #endif
