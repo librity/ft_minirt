@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:31:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:47:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_matrix expected;
 t_t3d result_t3d;
 t_t3d expected_t3d;
 t_matrix identity;
+double	determinant;
 
 void test_setup(void)
 {
@@ -195,6 +196,31 @@ MU_TEST(mx_transpose_tst)
 	mu_check(mxs_are_equal(expected, result));
 }
 
+MU_TEST(mx_transpose_identity_tst)
+{
+	mx_set_identity(&identity);
+	mx_transpose(identity, &result);
+
+	mx_set(&expected, (t_mx_set){
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1});
+	mu_check(mxs_are_equal(expected, result));
+}
+
+MU_TEST(mx_2by2_determinant_tst)
+{
+	mx_set(&neo, (t_mx_set){
+			1 , 5 , 0 , 0 ,
+			-3 , 2 , 0 , 0 ,
+			0 , 0 , 0 , 0 ,
+			0 , 0 , 0 , 0 });
+	determinant = mx_2by2_determinant(neo);
+
+	mu_assert_double_eq(17, determinant);
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -211,6 +237,9 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(mx_identity_multiply_tst);
 
 	MU_RUN_TEST(mx_transpose_tst);
+	MU_RUN_TEST(mx_transpose_identity_tst);
+
+	MU_RUN_TEST(mx_2by2_determinant_tst);
 }
 
 MU_MAIN

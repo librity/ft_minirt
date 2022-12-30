@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:29:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:42:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,5 +155,7 @@ void			mxs_multiply(t_matrix a, t_matrix b, t_matrix *result);
 t_t3d			mx_tuple_multiply(t_matrix matrix, t_t3d tuple);
 
 void			mx_transpose(t_matrix matrix, t_matrix *result);
+
+double			mx_2by2_determinant(t_matrix mx_2by2);
 
 #endif
