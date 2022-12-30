@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 15:06:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:26:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_matrix expected;
 t_t3d result_t3d;
 t_t3d expected_t3d;
 t_matrix identity;
-double	determinant;
-double	_cofactor;
-double	cofactor_a;
-double	cofactor_b;
+double determinant;
+double _cofactor;
+double cofactor_a;
+double cofactor_b;
 
 void test_setup(void)
 {
@@ -142,11 +142,11 @@ MU_TEST(mxs_multiply_tst)
 			1, 2, 7, 8});
 
 	mx_set(&expected,
-			(t_mx_set){
-				20, 22, 50, 48,
-				44, 54, 114, 108,
-				40, 58, 110, 102,
-				16, 26, 46, 42});
+		   (t_mx_set){
+			   20, 22, 50, 48,
+			   44, 54, 114, 108,
+			   40, 58, 110, 102,
+			   16, 26, 46, 42});
 
 	mxs_multiply(neo, trinity, &matrix);
 	mu_check(mxs_are_equal(expected, matrix));
@@ -184,17 +184,17 @@ MU_TEST(mx_identity_multiply_tst)
 MU_TEST(mx_transpose_tst)
 {
 	mx_set(&neo, (t_mx_set){
-			0 , 9 , 3 , 0 ,
-			9 , 8 , 0 , 8 ,
-			1 , 8 , 5 , 3 ,
-			0 , 0 , 5 , 8 });
+					 0, 9, 3, 0,
+					 9, 8, 0, 8,
+					 1, 8, 5, 3,
+					 0, 0, 5, 8});
 	mx_transpose(neo, &result);
 
 	mx_set(&expected, (t_mx_set){
-		0 , 9 , 1 , 0 ,
-		9 , 8 , 8 , 0 ,
-		3 , 0 , 5 , 5 ,
-		0 , 8 , 3 , 8});
+						  0, 9, 1, 0,
+						  9, 8, 8, 0,
+						  3, 0, 5, 5,
+						  0, 8, 3, 8});
 
 	mu_check(mxs_are_equal(expected, result));
 }
@@ -205,20 +205,20 @@ MU_TEST(mx_transpose_identity_tst)
 	mx_transpose(identity, &result);
 
 	mx_set(&expected, (t_mx_set){
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		0, 0, 0, 1});
+						  1, 0, 0, 0,
+						  0, 1, 0, 0,
+						  0, 0, 1, 0,
+						  0, 0, 0, 1});
 	mu_check(mxs_are_equal(expected, result));
 }
 
 MU_TEST(mx_2by2_determinant_tst)
 {
 	mx_set(&neo, (t_mx_set){
-			1 , 5 , 0 , 0 ,
-			-3 , 2 , 0 , 0 ,
-			0 , 0 , 0 , 0 ,
-			0 , 0 , 0 , 0 });
+					 1, 5, 0, 0,
+					 -3, 2, 0, 0,
+					 0, 0, 0, 0,
+					 0, 0, 0, 0});
 	determinant = mx_2by2_determinant(neo);
 
 	mu_assert_double_eq(17, determinant);
@@ -227,44 +227,44 @@ MU_TEST(mx_2by2_determinant_tst)
 MU_TEST(mx_3by3_submatrix_tst)
 {
 	mx_set(&neo, (t_mx_set){
-		 1 , 5,  0 , 0,
-		-3 , 2,  7 , 0,
-		 0 , 6, -3 , 0,
-		 0 , 0,  0 , 0});
+					 1, 5, 0, 0,
+					 -3, 2, 7, 0,
+					 0, 6, -3, 0,
+					 0, 0, 0, 0});
 	mx_submatrix(neo, 0, 2, &result);
 
 	mx_set(&expected, (t_mx_set){
-		-3, 2, 0, 0,
-		 0, 6, 0, 0,
-		 0, 0, 0, 0,
-		 0, 0, 0, 0});
+						  -3, 2, 0, 0,
+						  0, 6, 0, 0,
+						  0, 0, 0, 0,
+						  0, 0, 0, 0});
 	mu_check(mxs_are_equal(expected, result));
 }
 
 MU_TEST(mx_4by4_submatrix_tst)
 {
 	mx_set(&neo, (t_mx_set){
-		-6 , 1 , 1 , 6 ,
-		-8 , 5 , 8 , 6 ,
-		-1 , 0 , 8 , 2 ,
-		-7 , 1 , -1 , 1});
+					 -6, 1, 1, 6,
+					 -8, 5, 8, 6,
+					 -1, 0, 8, 2,
+					 -7, 1, -1, 1});
 	mx_submatrix(neo, 2, 1, &result);
 
 	mx_set(&expected, (t_mx_set){
-		-6 , 1 , 6 , 0,
-		-8 , 8 , 6 , 0,
-		-7 , -1 , 1 , 0,
-		0, 0, 0, 0});
+						  -6, 1, 6, 0,
+						  -8, 8, 6, 0,
+						  -7, -1, 1, 0,
+						  0, 0, 0, 0});
 	mu_check(mxs_are_equal(expected, result));
 }
 
 MU_TEST(mx_3by3_minor_tst)
 {
 	mx_set(&neo, (t_mx_set){
-		3 , 5 , 0 , 0,
-		2 , -1 , -7 , 0,
-		6 , -1 , 5 , 0,
-		0, 0, 0, 0});
+					 3, 5, 0, 0,
+					 2, -1, -7, 0,
+					 6, -1, 5, 0,
+					 0, 0, 0, 0});
 	determinant = mx_2by2_minor(neo, 1, 0);
 
 	mu_assert_double_eq(25, determinant);
@@ -273,10 +273,10 @@ MU_TEST(mx_3by3_minor_tst)
 MU_TEST(cofactor_3by3_tst)
 {
 	mx_set(&neo, (t_mx_set){
-		3 , 5 , 0 , 0,
-		2 , -1 , -7 , 0,
-		6 , -1 , 5 , 0,
-		0, 0, 0, 0});
+					 3, 5, 0, 0,
+					 2, -1, -7, 0,
+					 6, -1, 5, 0,
+					 0, 0, 0, 0});
 	cofactor_a = mx_2by2_cofactor(neo, 0, 0);
 	cofactor_b = mx_2by2_cofactor(neo, 1, 0);
 
@@ -287,10 +287,10 @@ MU_TEST(cofactor_3by3_tst)
 MU_TEST(mx_3by3_determinant_tst)
 {
 	mx_set(&neo, (t_mx_set){
-		1 , 2 , 6 , 0,
-		-5 , 8 , -4 , 0,
-		2 , 6 , 4 , 0,
-		0, 0, 0, 0});
+					 1, 2, 6, 0,
+					 -5, 8, -4, 0,
+					 2, 6, 4, 0,
+					 0, 0, 0, 0});
 
 	_cofactor = mx_cofactor(neo, 3, 0, 0);
 	mu_assert_double_eq(56, _cofactor);
@@ -308,10 +308,10 @@ MU_TEST(mx_3by3_determinant_tst)
 MU_TEST(mx_4by4_determinant_tst)
 {
 	mx_set(&neo, (t_mx_set){
-		-2 , -8 , 3 , 5,
-		-3 , 1 , 7 , 3,
-		1 , 2 , -9 , 6,
-		-6, 7, 7, -9});
+					 -2, -8, 3, 5,
+					 -3, 1, 7, 3,
+					 1, 2, -9, 6,
+					 -6, 7, 7, -9});
 
 	_cofactor = mx_cofactor(neo, 4, 0, 0);
 	mu_assert_double_eq(690, _cofactor);
@@ -334,10 +334,10 @@ MU_TEST(is_invertible_tst)
 	mx_set(
 		&neo,
 		(t_mx_set){
-			6 , 4 , 4 , 4 ,
-			5 , 5 , 7 , 6 ,
-			4 , -9 , 3 , -7 ,
-			9 , 1 , 7 , -6});
+			6, 4, 4, 4,
+			5, 5, 7, 6,
+			4, -9, 3, -7,
+			9, 1, 7, -6});
 	determinant = mx_determinant(neo, 4);
 
 	mu_assert_double_eq(-2120, determinant);
@@ -346,14 +346,45 @@ MU_TEST(is_invertible_tst)
 	mx_set(
 		&neo,
 		(t_mx_set){
-			-4 , 2 , -2 , -3 ,
-			9 , 6 , 2 , 6 ,
-			0 , -5 , 1 , -5 ,
-			0 , 0 , 0 , 0});
+			-4, 2, -2, -3,
+			9, 6, 2, 6,
+			0, -5, 1, -5,
+			0, 0, 0, 0});
 	determinant = mx_determinant(neo, 4);
 
 	mu_assert_double_eq(0, determinant);
 	mu_check(!mx_is_invertible(neo, 4));
+}
+
+MU_TEST(inverse_tst)
+{
+	mx_set(
+		&neo,
+		(t_mx_set){
+			-5 , 2 , 6 , -8 ,
+			1 , -5 , 1 , 8 ,
+			7 , 7 , -6 , -7 ,
+			1 , -3 , 7 , 4 ,
+		});
+	mx_set(
+		&expected,
+		(t_mx_set){
+			0.21805 , 0.45113 , 0.24060 , -0.04511 ,
+			-0.80827 , -1.45677 , -0.44361 , 0.52068 ,
+			-0.07895 , -0.22368 , -0.05263 , 0.19737 ,
+			-0.52256 , -0.81391 , -0.30075 , 0.30639 ,
+		});
+	mx_inverse(neo, 4, &result);
+
+	mu_assert_double_eq(532.0, mx_determinant(neo, 4));
+
+	mu_assert_double_eq(-160.0, mx_cofactor(neo, 4, 2, 3));
+	mu_assert_double_eq(-160.0/532.0, result[3][2]);
+
+	mu_assert_double_eq(105.0, mx_cofactor(neo, 4, 3, 2));
+	mu_assert_double_eq(105.0/532.0, result[2][3]);
+
+	mu_check(mxs_are_equal(expected, result));
 }
 
 MU_TEST_SUITE(matrices_suite)
@@ -385,6 +416,7 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(mx_4by4_determinant_tst);
 
 	MU_RUN_TEST(is_invertible_tst);
+	MU_RUN_TEST(inverse_tst);
 }
 
 MU_MAIN
