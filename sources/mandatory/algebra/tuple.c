@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 15:11:13 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 17:48:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:11:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_t3d	tuple_3d(double x, double y, double z, double type)
 
 t_t3d	null_tuple(void)
 {
-	return (tuple_3d(0.0, 0.0, 0.0, NULL_TYPE));
+	return (tuple_3d(0.0, 0.0, 0.0, 0.0));
 }
 
 void	inspect_tuple(t_t3d tuple)
