@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:04:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:27:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <stdio.h>
 # include <structs.h>
 # include <warnings.h>
+
+# define M_PI           3.14159265358979323846
 
 /******************************************************************************\
  * CONTROL
@@ -130,6 +132,8 @@ char			*skip_field(char *line);
 
 void			translation(t_v3d trans_vector, t_matrix *result);
 void			scaling(t_v3d vector, t_matrix *result);
+
+void			rotation_x(double radians, t_matrix *result);
 
 /******************************************************************************\
  * OBJECTS
