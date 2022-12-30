@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:36:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:55:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:12:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_t3d expected;
 t_matrix matrix;
 t_matrix mx_translation;
 t_matrix _mx_inverse;
+t_matrix mx_scaling;
 t_matrix mx_rotation;
+t_matrix chained;
 
 void test_setup(void)
 {
@@ -174,6 +176,39 @@ MU_TEST(shearing_tst)
 	assert_tuple_eq(expected, result);
 }
 
+MU_TEST(individual_transformations_tst)
+{
+	rotation_x(MY_PI / 2, &mx_rotation);
+	scaling(vector(5, 5, 5), &mx_scaling);
+	translation(vector(10, 5, 7), &mx_translation);
+
+	result = mx_tuple_multiply(mx_rotation, point(1, 0, 1));
+	expected = point(1, -1, 0);
+	assert_tuple_eq(expected, result);
+
+	result = mx_tuple_multiply(mx_scaling, result);
+	expected = point(5, -5, 0);
+	assert_tuple_eq(expected, result);
+
+	result = mx_tuple_multiply(mx_translation, result);
+	expected = point(15, 0, 7);
+	assert_tuple_eq(expected, result);
+}
+
+MU_TEST(chained_transformations_tst)
+{
+	rotation_x(MY_PI / 2, &mx_rotation);
+	scaling(vector(5, 5, 5), &mx_scaling);
+	translation(vector(10, 5, 7), &mx_translation);
+
+	mxs_multiply(mx_translation, mx_scaling, matrix);
+	mxs_multiply(matrix, mx_rotation, chained);
+
+	result = mx_tuple_multiply(chained, point(1, 0, 1));
+	expected = point(15, 0, 7);
+	assert_tuple_eq(expected, result);
+}
+
 MU_TEST_SUITE(translations_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -193,6 +228,9 @@ MU_TEST_SUITE(translations_suite)
 	MU_RUN_TEST(rotation_z_tst);
 
 	MU_RUN_TEST(shearing_tst);
+
+	MU_RUN_TEST(individual_transformations_tst);
+	MU_RUN_TEST(chained_transformations_tst);
 }
 
 MU_MAIN
