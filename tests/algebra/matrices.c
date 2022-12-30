@@ -6,15 +6,17 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 15:38:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:47:02 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tests.h"
 
-t_matrix matrix;
 t_matrix neo;
 t_matrix trinity;
+t_matrix morpheus;
+
+t_matrix matrix;
 t_matrix result;
 t_matrix expected;
 t_t3d result_t3d;
@@ -361,43 +363,17 @@ MU_TEST(inverse_tst)
 	mx_set(
 		&neo,
 		(t_mx_set){
-			-5,
-			2,
-			6,
-			-8,
-			1,
-			-5,
-			1,
-			8,
-			7,
-			7,
-			-6,
-			-7,
-			1,
-			-3,
-			7,
-			4,
-		});
+			-5, 2, 6, -8,
+			1, -5, 1, 8,
+			7, 7, -6, -7,
+			1, -3, 7, 4});
 	mx_set(
 		&expected,
 		(t_mx_set){
-			0.21805,
-			0.45113,
-			0.24060,
-			-0.04511,
-			-0.80827,
-			-1.45677,
-			-0.44361,
-			0.52068,
-			-0.07895,
-			-0.22368,
-			-0.05263,
-			0.19737,
-			-0.52256,
-			-0.81391,
-			-0.30075,
-			0.30639,
-		});
+			0.21805, 0.45113, 0.24060, -0.04511,
+			-0.80827, -1.45677, -0.44361, 0.52068,
+			-0.07895, -0.22368, -0.05263, 0.19737,
+			-0.52256, -0.81391, -0.30075, 0.30639});
 	mx_inverse(neo, 4, &result);
 
 	mu_assert_double_eq(532.0, mx_determinant(neo, 4));
@@ -448,6 +424,29 @@ MU_TEST(inverse_2_tst)
 	mu_check(mxs_are_equal(expected, result));
 }
 
+MU_TEST(inverse_3_tst)
+{
+	mx_set(
+		&neo,
+		(t_mx_set){
+			3, -9, 7, 3,
+			3, -8, 2, -9,
+			-4, 4, 4, 1,
+			-6, 5, -1, 1});
+	mx_set(
+		&trinity,
+		(t_mx_set){
+			8, 2, 2, 2,
+			3, -1, 7, 0,
+			7, 0, 5, 4,
+			6, -2, 0, 5});
+	mxs_multiply(neo, trinity, &morpheus);
+	mx_inverse(trinity, 4, &matrix);
+	mxs_multiply(morpheus, matrix, &result);
+
+	mu_check(mxs_are_equal(neo, result));
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -479,6 +478,7 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(is_invertible_tst);
 	MU_RUN_TEST(inverse_tst);
 	MU_RUN_TEST(inverse_2_tst);
+	MU_RUN_TEST(inverse_3_tst);
 }
 
 MU_MAIN
