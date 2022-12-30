@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:05:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:18:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_matrix trinity;
 t_matrix expected;
 t_t3d result_t3d;
 t_t3d expected_t3d;
+t_matrix identity;
 
 void test_setup(void)
 {
@@ -161,6 +162,20 @@ MU_TEST(mx_tuple_multiply_tst)
 	assert_tuple_eq(expected_t3d, result_t3d);
 }
 
+MU_TEST(mx_identity_multiply_tst)
+{
+	mx_set(
+		&neo,
+		(t_mx_set){
+			0, 1, 2, 4,
+			1, 2, 4, 8,
+			2, 4, 8, 16,
+			4, 8, 16, 32});
+	mx_set_identity(&identity);
+	mxs_multiply(identity, neo, &matrix);
+	mu_check(mxs_are_equal(neo, matrix));
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -174,6 +189,7 @@ MU_TEST_SUITE(matrices_suite)
 
 	MU_RUN_TEST(mxs_multiply_tst);
 	MU_RUN_TEST(mx_tuple_multiply_tst);
+	MU_RUN_TEST(mx_identity_multiply_tst);
 }
 
 MU_MAIN

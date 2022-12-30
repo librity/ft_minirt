@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:02:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:16:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ void	mx_set(t_matrix *matrix, t_mx_set set)
 		}
 		i++;
 	}
+}
+
+void	mx_set_identity(t_matrix *matrix)
+{
+	mx_set(matrix, (t_mx_set){
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1});
 }
 
 void	mx_clear(t_matrix *matrix)

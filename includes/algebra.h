@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:00:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:12:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef union mx_set_union
 	double		values[16];
 }				t_mx_set_union;
 void			mx_set(t_matrix *matrix, t_mx_set set);
+void			mx_set_identity(t_matrix *matrix);
 
 void			mx_clear(t_matrix *matrix);
 bool			mxs_are_equal(t_matrix matrix_a, t_matrix matrix_b);
