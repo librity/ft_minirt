@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 15:26:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:38:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -361,29 +361,90 @@ MU_TEST(inverse_tst)
 	mx_set(
 		&neo,
 		(t_mx_set){
-			-5 , 2 , 6 , -8 ,
-			1 , -5 , 1 , 8 ,
-			7 , 7 , -6 , -7 ,
-			1 , -3 , 7 , 4 ,
+			-5,
+			2,
+			6,
+			-8,
+			1,
+			-5,
+			1,
+			8,
+			7,
+			7,
+			-6,
+			-7,
+			1,
+			-3,
+			7,
+			4,
 		});
 	mx_set(
 		&expected,
 		(t_mx_set){
-			0.21805 , 0.45113 , 0.24060 , -0.04511 ,
-			-0.80827 , -1.45677 , -0.44361 , 0.52068 ,
-			-0.07895 , -0.22368 , -0.05263 , 0.19737 ,
-			-0.52256 , -0.81391 , -0.30075 , 0.30639 ,
+			0.21805,
+			0.45113,
+			0.24060,
+			-0.04511,
+			-0.80827,
+			-1.45677,
+			-0.44361,
+			0.52068,
+			-0.07895,
+			-0.22368,
+			-0.05263,
+			0.19737,
+			-0.52256,
+			-0.81391,
+			-0.30075,
+			0.30639,
 		});
 	mx_inverse(neo, 4, &result);
 
 	mu_assert_double_eq(532.0, mx_determinant(neo, 4));
 
 	mu_assert_double_eq(-160.0, mx_cofactor(neo, 4, 2, 3));
-	mu_assert_double_eq(-160.0/532.0, result[3][2]);
+	mu_assert_double_eq(-160.0 / 532.0, result[3][2]);
 
 	mu_assert_double_eq(105.0, mx_cofactor(neo, 4, 3, 2));
-	mu_assert_double_eq(105.0/532.0, result[2][3]);
+	mu_assert_double_eq(105.0 / 532.0, result[2][3]);
 
+	mu_check(mxs_are_equal(expected, result));
+}
+
+MU_TEST(inverse_2_tst)
+{
+	mx_set(
+		&neo,
+		(t_mx_set){
+			8, -5, 9, 2,
+			7, 5, 6, 1,
+			-6, 0, 9, 6,
+			-3, 0, -9, -4});
+	mx_set(
+		&expected,
+		(t_mx_set){
+			-0.15385, -0.15385, -0.28205, -0.53846,
+			-0.07692, 0.12308, 0.02564, 0.03077,
+			0.35897, 0.35897, 0.43590, 0.92308,
+			-0.69231, -0.69231, -0.76923, -1.92308});
+	mx_inverse(neo, 4, &result);
+	mu_check(mxs_are_equal(expected, result));
+
+	mx_set(
+		&neo,
+		(t_mx_set){
+			9, 3, 0, 9,
+			-5, -2, -6, -3,
+			-4, 9, 6, 4,
+			-7, 6, 6, 2});
+	mx_set(
+		&expected,
+		(t_mx_set){
+			-0.04074, -0.07778, 0.14444, -0.22222,
+			-0.07778, 0.03333, 0.36667, -0.33333,
+			-0.02901, -0.14630, -0.10926, 0.12963,
+			0.17778, 0.06667, -0.26667, 0.33333});
+	mx_inverse(neo, 4, &result);
 	mu_check(mxs_are_equal(expected, result));
 }
 
@@ -417,6 +478,7 @@ MU_TEST_SUITE(matrices_suite)
 
 	MU_RUN_TEST(is_invertible_tst);
 	MU_RUN_TEST(inverse_tst);
+	MU_RUN_TEST(inverse_2_tst);
 }
 
 MU_MAIN

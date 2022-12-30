@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:04:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 15:26:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:31:54 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ bool	mx_is_invertible(t_matrix matrix, int size)
 	return (false);
 }
 
-static void	set_inverse_values(t_matrix matrix, int size,
-	t_matrix *aux, double det)
+static void	set_inverse_values(t_matrix matrix, int size, t_matrix *result,
+		double det)
 {
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < size)
@@ -31,7 +31,7 @@ static void	set_inverse_values(t_matrix matrix, int size,
 		j = 0;
 		while (j < size)
 		{
-			(*aux)[i][j] = mx_cofactor(matrix, size, i, j) / det;
+			(*result)[j][i] = mx_cofactor(matrix, size, i, j) / det;
 			j++;
 		}
 		i++;
@@ -40,9 +40,7 @@ static void	set_inverse_values(t_matrix matrix, int size,
 
 void	mx_inverse(t_matrix matrix, int size, t_matrix *result)
 {
-	double		det;
-	t_matrix	aux;
-
+	double	det;
 
 	det = mx_determinant(matrix, size);
 	if (det == 0.0)
@@ -50,6 +48,5 @@ void	mx_inverse(t_matrix matrix, int size, t_matrix *result)
 		mx_clear(result);
 		return ;
 	}
-	set_inverse_values(matrix, size, &aux, det);
-	mx_transpose(aux, result);
+	set_inverse_values(matrix, size, result, det);
 }
