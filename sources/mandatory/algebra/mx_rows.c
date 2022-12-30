@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mx_row_column.c                                    :+:      :+:    :+:   */
+/*   mx_rows.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 10:28:42 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:29:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:51:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
-
-void	mx_set_column(t_matrix *matrix, t_t3d column, int index)
-{
-	(*matrix)[0][index] = column.x;
-	(*matrix)[1][index] = column.y;
-	(*matrix)[2][index] = column.z;
-	(*matrix)[3][index] = column.type;
-}
 
 void	mx_set_row(t_matrix *matrix, t_t3d row, int index)
 {
@@ -39,13 +31,26 @@ t_t3d	mx_get_row(t_matrix mx, int index)
 	return (row);
 }
 
-t_t3d	mx_get_column(t_matrix mx, int index)
+void	mx_switch_row(t_matrix *matrix, int a, int b)
 {
-	t_t3d	column;
+	t_t3d	row_a;
+	t_t3d	row_b;
 
-	column.x = mx[0][index];
-	column.y = mx[1][index];
-	column.z = mx[2][index];
-	column.type = mx[3][index];
-	return (column);
+	row_a = mx_get_row(*matrix, a);
+	row_b = mx_get_row(*matrix, b);
+	mx_set_row(matrix, row_a, b);
+	mx_set_row(matrix, row_b, a);
+}
+
+void	mx_shuffle_row_bottom(t_matrix *matrix, int index)
+{
+	int	switches;
+
+	switches = 3 - index;
+	while (switches > 0)
+	{
+		mx_switch_row(matrix, index, index + 1);
+		index++;
+		switches--;
+	}
 }

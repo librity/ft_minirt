@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:47:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:50:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,40 @@ MU_TEST(mx_2by2_determinant_tst)
 	mu_assert_double_eq(17, determinant);
 }
 
+MU_TEST(mx_3by3_submatrix_tst)
+{
+	mx_set(&neo, (t_mx_set){
+		 1 , 5,  0 , 0,
+		-3 , 2,  7 , 0,
+		 0 , 6, -3 , 0,
+		 0 , 0,  0 , 0});
+	mx_submatrix(neo, 0, 2, &result);
+
+	mx_set(&expected, (t_mx_set){
+		-3, 2, 0, 0,
+		 0, 6, 0, 0,
+		 0, 0, 0, 0,
+		 0, 0, 0, 0});
+	mu_check(mxs_are_equal(expected, result));
+}
+
+MU_TEST(mx_4by4_submatrix_tst)
+{
+	mx_set(&neo, (t_mx_set){
+		-6 , 1 , 1 , 6 ,
+		-8 , 5 , 8 , 6 ,
+		-1 , 0 , 8 , 2 ,
+		-7 , 1 , -1 , 1});
+	mx_submatrix(neo, 2, 1, &result);
+
+	mx_set(&expected, (t_mx_set){
+		-6 , 1 , 6 , 0,
+		-8 , 8 , 6 , 0,
+		-7 , -1 , 1 , 0,
+		0, 0, 0, 0});
+	mu_check(mxs_are_equal(expected, result));
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -240,6 +274,9 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(mx_transpose_identity_tst);
 
 	MU_RUN_TEST(mx_2by2_determinant_tst);
+
+	MU_RUN_TEST(mx_3by3_submatrix_tst);
+	MU_RUN_TEST(mx_4by4_submatrix_tst);
 }
 
 MU_MAIN

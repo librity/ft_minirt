@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:47:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:51:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ void	mx_clear(t_matrix *matrix)
 	}
 }
 
+void	mx_inspect(t_matrix matrix)
+{
+	inspect_tuple(mx_get_row(matrix, 0));
+	inspect_tuple(mx_get_row(matrix, 1));
+	inspect_tuple(mx_get_row(matrix, 2));
+	inspect_tuple(mx_get_row(matrix, 3));
+}
+
 void	mx_transpose(t_matrix matrix, t_matrix *result)
 {
 	mx_set_row(result, mx_get_column(matrix, 0), 0);
@@ -75,4 +83,31 @@ double	mx_2by2_determinant(t_matrix mx_2by2)
 	ad = mx_2by2[0][0] * mx_2by2[1][1];
 	bc = mx_2by2[0][1] * mx_2by2[1][0];
 	return (ad - bc);
+}
+
+void	mx_copy(t_matrix matrix, t_matrix *result)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			(*result)[i][j] = matrix[i][j];
+			j++;
+		}
+		i++;
+	}
+}
+
+void	mx_submatrix(t_matrix matrix, int row, int column, t_matrix *result)
+{
+	mx_copy(matrix, result);
+	mx_shuffle_row_bottom(result, row);
+	mx_shuffle_column_right(result, column);
+	mx_set_column(result, null_tuple(), 3);
+	mx_set_row(result, null_tuple(), 3);
 }
