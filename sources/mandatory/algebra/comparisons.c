@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 21:40:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 09:43:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	near_zero(t_v3d vector)
 	return (cuts_off_x && cuts_off_y && cuts_off_z);
 }
 
-bool	matrices_are_equal(t_matrix matrix_a, t_matrix matrix_b)
+bool	mxs_are_equal(t_matrix matrix_a, t_matrix matrix_b)
 {
 	int	i;
 	int	j;
