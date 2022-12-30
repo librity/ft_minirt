@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:40:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:58:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,30 +292,18 @@ MU_TEST(mx_3by3_determinant_tst)
 		2 , 6 , 4 , 0,
 		0, 0, 0, 0});
 
-	_cofactor = mx_2by2_cofactor(neo, 0, 0);
+	_cofactor = mx_cofactor(neo, 3, 0, 0);
 	mu_assert_double_eq(56, _cofactor);
 
-	_cofactor = mx_2by2_cofactor(neo, 0, 1);
+	_cofactor = mx_cofactor(neo, 3, 0, 1);
 	mu_assert_double_eq(12, _cofactor);
 
-	_cofactor = mx_2by2_cofactor(neo, 0, 2);
+	_cofactor = mx_cofactor(neo, 3, 0, 2);
 	mu_assert_double_eq(-46, _cofactor);
 
-	determinant = mx_3by3_determinant(neo);
+	determinant = mx_determinant(neo, 3);
 	mu_assert_double_eq(-196, determinant);
 }
-
-// Scenario: Calculating the determinant of a 4x4 matrix
-//  Given the following 4x4 matrix A:
-//  | -2 | -8 | 3 | 5 |
-//  | -3 | 1 | 7 | 3 |
-//  | 1 | 2 | -9 | 6 |
-//  | -6 | 7 | 7 | -9 |
-//  Then cofactor(A, 0, 0) = 690
-//  And cofactor(A, 0, 1) = 447
-//  And cofactor(A, 0, 2) = 210
-//  And cofactor(A, 0, 3) = 51
-//  And determinant(A) = -4071
 
 MU_TEST(mx_4by4_determinant_tst)
 {
@@ -325,19 +313,19 @@ MU_TEST(mx_4by4_determinant_tst)
 		1 , 2 , -9 , 6,
 		-6, 7, 7, -9});
 
-	_cofactor = mx_3by3_cofactor(neo, 0, 0);
+	_cofactor = mx_cofactor(neo, 4, 0, 0);
 	mu_assert_double_eq(690, _cofactor);
 
-	_cofactor = mx_3by3_cofactor(neo, 0, 1);
+	_cofactor = mx_cofactor(neo, 4, 0, 1);
 	mu_assert_double_eq(447, _cofactor);
 
-	_cofactor = mx_3by3_cofactor(neo, 0, 2);
+	_cofactor = mx_cofactor(neo, 4, 0, 2);
 	mu_assert_double_eq(210, _cofactor);
 
-	_cofactor = mx_3by3_cofactor(neo, 0, 3);
+	_cofactor = mx_cofactor(neo, 4, 0, 3);
 	mu_assert_double_eq(51, _cofactor);
 
-	determinant = mx_4by4_determinant(neo);
+	determinant = mx_determinant(neo, 4);
 	mu_assert_double_eq(-4071, determinant);
 }
 
