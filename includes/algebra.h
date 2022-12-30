@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 20:49:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/29 21:01:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ void			mlx_image_draw_c3d(t_mlx_image *image,
 \******************************************************************************/
 
 typedef double t_matrix[4][4];
+
+void			clear_matrix(t_matrix *matrix);
 
 #endif
