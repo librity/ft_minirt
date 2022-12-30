@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:10:09 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:39:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,57 @@ double	mx_minor(t_matrix matrix, int row, int column)
 	return (mx_2by2_determinant(mx_sub));
 }
 
+double	cofactor(double	minor, int row, int column)
+{
+	if ((row + column) % 2 != 0)
+		return (-minor);
+	return (minor);
+}
 
-double	mx_cofactor(t_matrix matrix, int row, int column)
+double	mx_2by2_cofactor(t_matrix matrix, int row, int column)
 {
 	double	minor;
 
 	minor = mx_minor(matrix, row, column);
-	if ((row + column) % 2 != 0)
-		return (-minor);
-	return (minor);
+	return (cofactor(minor, row, column));
+}
+
+double	mx_3by3_determinant(t_matrix matrix)
+{
+	int 	i;
+	double	determinant;
+
+	i = 0;
+	determinant = 0;
+	while (i < 3)
+	{
+		determinant += mx_2by2_cofactor(matrix, 0, i) * matrix[0][i];
+		i++;
+	}
+	return (determinant);
+}
+
+double	mx_3by3_cofactor(t_matrix matrix, int row, int column)
+{
+	t_matrix	sub;
+	double		determinant;
+
+	mx_submatrix(matrix, row, column, &sub);
+	determinant = mx_3by3_determinant(sub);
+	return (cofactor(determinant, row, column));
+}
+
+double	mx_4by4_determinant(t_matrix matrix)
+{
+	int		i;
+	double	determinant;
+
+	i = 0;
+	determinant = 0;
+	while (i < 4)
+	{
+		determinant += mx_3by3_cofactor(matrix, 0, i) * matrix[0][i];
+		i++;
+	}
+	return (determinant);
 }
