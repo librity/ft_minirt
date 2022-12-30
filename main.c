@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 18:22:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:26:40 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	run(void)
 	// hello_world_ppm_demo();
 	// projectile_ppm_demo();
 
-	clock_hours_ppm_demo();
+	//clock_hours_ppm_demo();
+	clock_sec_ppm_demo();
 }
 
 int	main(int argc, char **argv)
