@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/29 17:49:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:53:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,12 @@ t_rgb			parse_color(char *line);
 t_v3d			parse_vector(char *line);
 t_p3d			parse_point(char *line);
 char			*skip_field(char *line);
+
+/******************************************************************************\
+ * TRANSFORMATIONS
+\******************************************************************************/
+
+void			translation(t_v3d trans_vector, t_matrix *result);
 
 /******************************************************************************\
  * OBJECTS
