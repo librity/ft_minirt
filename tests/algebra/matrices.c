@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:58:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:06:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,6 +329,33 @@ MU_TEST(mx_4by4_determinant_tst)
 	mu_assert_double_eq(-4071, determinant);
 }
 
+MU_TEST(is_invertible_tst)
+{
+	mx_set(
+		&neo,
+		(t_mx_set){
+			6 , 4 , 4 , 4 ,
+			5 , 5 , 7 , 6 ,
+			4 , -9 , 3 , -7 ,
+			9 , 1 , 7 , -6});
+	determinant = mx_determinant(neo, 4);
+
+	mu_assert_double_eq(-2120, determinant);
+	mu_check(mx_is_invertible(neo, 4));
+
+	mx_set(
+		&neo,
+		(t_mx_set){
+			-4 , 2 , -2 , -3 ,
+			9 , 6 , 2 , 6 ,
+			0 , -5 , 1 , -5 ,
+			0 , 0 , 0 , 0});
+	determinant = mx_determinant(neo, 4);
+
+	mu_assert_double_eq(0, determinant);
+	mu_check(!mx_is_invertible(neo, 4));
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -356,6 +383,8 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(mx_3by3_minor_tst);
 	MU_RUN_TEST(cofactor_3by3_tst);
 	MU_RUN_TEST(mx_4by4_determinant_tst);
+
+	MU_RUN_TEST(is_invertible_tst);
 }
 
 MU_MAIN
