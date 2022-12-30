@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:35:03 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:18:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:31:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_matrix matrix;
 t_matrix neo;
 t_matrix trinity;
+t_matrix result;
 t_matrix expected;
 t_t3d result_t3d;
 t_t3d expected_t3d;
@@ -176,6 +177,24 @@ MU_TEST(mx_identity_multiply_tst)
 	mu_check(mxs_are_equal(neo, matrix));
 }
 
+MU_TEST(mx_transpose_tst)
+{
+	mx_set(&neo, (t_mx_set){
+			0 , 9 , 3 , 0 ,
+			9 , 8 , 0 , 8 ,
+			1 , 8 , 5 , 3 ,
+			0 , 0 , 5 , 8 });
+	mx_transpose(neo, &result);
+
+	mx_set(&expected, (t_mx_set){
+		0 , 9 , 1 , 0 ,
+		9 , 8 , 8 , 0 ,
+		3 , 0 , 5 , 5 ,
+		0 , 8 , 3 , 8});
+
+	mu_check(mxs_are_equal(expected, result));
+}
+
 MU_TEST_SUITE(matrices_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -190,6 +209,8 @@ MU_TEST_SUITE(matrices_suite)
 	MU_RUN_TEST(mxs_multiply_tst);
 	MU_RUN_TEST(mx_tuple_multiply_tst);
 	MU_RUN_TEST(mx_identity_multiply_tst);
+
+	MU_RUN_TEST(mx_transpose_tst);
 }
 
 MU_MAIN

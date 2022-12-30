@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 10:12:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:29:36 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,13 @@ void			mx_clear(t_matrix *matrix);
 bool			mxs_are_equal(t_matrix matrix_a, t_matrix matrix_b);
 
 t_t3d			mx_get_row(t_matrix mx, int index);
+void			mx_set_row(t_matrix *matrix, t_t3d row, int index);
 t_t3d			mx_get_column(t_matrix mx, int index);
+void			mx_set_column(t_matrix *matrix, t_t3d column, int index);
 
 void			mxs_multiply(t_matrix a, t_matrix b, t_matrix *result);
 t_t3d			mx_tuple_multiply(t_matrix matrix, t_t3d tuple);
+
+void			mx_transpose(t_matrix matrix, t_matrix *result);
 
 #endif
