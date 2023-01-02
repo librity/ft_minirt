@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 18:53:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:43:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,12 +156,27 @@ void			create_object(t_object *object);
  * SPHERES
 \******************************************************************************/
 
+t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
+t_object		*sphere(void);
 void			create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
-void			verify_closest_sphere(t_ray ray);
-void			create_demo_spheres(void);
+
+typedef struct s_intersect
+{
+	int		count;
+	double	roots[2];
+}			t_intersect;
+typedef struct s_intersect_factors
+{
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+	t_v3d	sphere_to_ray;
+}			t_intersect_factors;
+t_intersect		intersect(t_object *sphere, t_ray ray);
 
 /******************************************************************************\
  * PLANES
@@ -214,6 +229,9 @@ void			hello_world_window_demo(void);
 
 void			quadratic_demo(void);
 void			hit_sphere_demo(void);
+
+void			verify_closest_sphere(t_ray ray);
+void			create_demo_spheres(void);
 
 typedef struct s_projectile
 {
