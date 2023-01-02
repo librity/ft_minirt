@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 15:21:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:55:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,39 @@ double			mx_determinant(t_matrix matrix, int size);
 
 bool			mx_is_invertible(t_matrix matrix, int size);
 void			mx_inverse(t_matrix matrix, int size, t_matrix *result);
+
+/******************************************************************************\
+ * RAYS
+\******************************************************************************/
+
+typedef struct s_ray
+{
+	t_p3d		origin;
+	t_v3d		direction;
+}				t_ray;
+
+t_ray			ray_3d(t_p3d origin, t_v3d direction);
+t_ray			ray(t_p3d origin, t_v3d direction);
+t_p3d			ray_at(t_ray r, double translation);
+void			inspect_ray(t_ray r);
+
+typedef struct s_root
+{
+	double	root_a;
+	double	root_b;
+
+	bool	has_root;
+	double	delta;
+}			t_root;
+
+typedef struct s_hit_result
+{
+	bool	hits;
+	double	translation;
+}			t_hit_result;
+
+double			degrees_to_radians(double degrees);
+t_root			quadratic(double a, double b, double c);
+void			inspect_root(t_root root);
 
 #endif

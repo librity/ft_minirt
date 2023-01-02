@@ -5,38 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 18:37:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 18:56:05 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/01/02 18:56:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
 
-t_ray	ray_3d(t_p3d origin, t_v3d direction)
+#include "../tests.h"
+
+t_ray	result;
+t_t3d	expected;
+
+void test_setup(void)
 {
-	t_ray	ray;
-
-	ray.origin = origin;
-	ray.direction = direction;
-	return (ray);
+}
+void test_teardown(void)
+{
 }
 
-t_ray	ray(t_p3d origin, t_v3d direction)
+MU_TEST(rays_tst)
 {
-	return (ray_3d(origin, direction));
+	result = ray(point(1, 2, 3), vector(4, 5, 6));
+
+	expected = point(1, 2, 3);
+	assert_tuple_eq(expected, result.origin);
+
+	expected = vector(4, 5, 6);
+	assert_tuple_eq(expected, result.direction);
 }
 
-t_p3d	ray_at(t_ray r, double translation)
+MU_TEST_SUITE(rays_suite)
 {
-	t_p3d	result;
+	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
-	result = scalar_times(translation, r.direction);
-	add(r.origin, result);
-	return (result);
+	MU_RUN_TEST(rays_tst);
+
 }
 
-void	inspect_ray(t_ray r)
+MU_MAIN
 {
-	inspect_tuple(r.origin);
-	inspect_tuple(r.direction);
+	MU_DIVIDER;
+	MU_RUN_SUITE(rays_suite);
+	MU_REPORT();
+	return (MU_EXIT_CODE);
 }

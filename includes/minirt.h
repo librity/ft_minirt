@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 18:26:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:53:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,17 +195,6 @@ void			mlx_image_save_ppm(t_mlx_image *image, char *filename);
 
 int				open_or_die(char *path);
 void			close_or_die(int fd);
-
-/******************************************************************************\
- * MATH
-\******************************************************************************/
-
-double			degrees_to_radians(double degrees);
-t_root			quadratic(double a, double b, double c);
-void			inspect_root(t_root root);
-
-t_ray			ray_3d(t_p3d origin, t_v3d direction);
-t_p3d			ray_at(t_ray r, double translation);
 
 /******************************************************************************\
  * RUNTIME

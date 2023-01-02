@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 15:12:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:54:25 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,30 +132,5 @@ typedef struct s_val_scene
 	int	ambient_light;
 	int	light;
 }			t_val_scene;
-
-/******************************************************************************\
- * MATH
-\******************************************************************************/
-
-typedef struct s_ray
-{
-	t_p3d		origin;
-	t_v3d		direction;
-}				t_ray;
-
-typedef struct s_root
-{
-	double	root_a;
-	double	root_b;
-
-	bool	has_root;
-	double	delta;
-}			t_root;
-
-typedef struct s_hit_result
-{
-	bool	hits;
-	double	translation;
-}			t_hit_result;
 
 #endif
