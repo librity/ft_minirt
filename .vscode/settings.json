@@ -35,6 +35,8 @@
     "string": "c",
     "string_view": "c",
     "internals.h": "c",
-    "errors.h": "c"
+    "errors.h": "c",
+    "stdexcept": "c",
+    "streambuf": "c"
   }
 }

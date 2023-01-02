@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:37:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 18:56:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:06:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,13 @@ t_p3d	ray_at(t_ray r, double translation)
 	t_p3d	result;
 
 	result = scalar_times(translation, r.direction);
-	add(r.origin, result);
+	result = add(r.origin, result);
 	return (result);
+}
+
+t_t3d	position(t_ray ray, double translation)
+{
+	return (ray_at(ray, translation));
 }
 
 void	inspect_ray(t_ray r)
