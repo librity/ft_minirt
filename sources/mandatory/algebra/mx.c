@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:43:14 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:40:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,24 @@ void	mx_clear(t_matrix *matrix)
 		while (j < 4)
 		{
 			(*matrix)[i][j] = 0.0;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	mx_clear_v2(t_matrix matrix)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			matrix[i][j] = 0.0;
 			j++;
 		}
 		i++;

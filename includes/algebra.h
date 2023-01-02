@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 15:21:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:40:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,15 @@ void			mlx_image_draw_c3d(t_mlx_image *image, t_c3d color,
 
 typedef double	t_matrix[4][4];
 
+typedef struct s_mx
+{
+	int			dimension;
+	t_matrix	arr;
+}				t_mx;
+
 void			mx_inspect(t_matrix matrix);
 
-typedef struct s_set_matrix
+typedef struct s_mx_set
 {
 	double		a1;
 	double		a2;
