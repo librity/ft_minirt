@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 20:00:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:30:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ t_intersect	intersect(t_object *sphere, t_ray ray)
 	result.roots[0] = (-f.b - sqrt(f.delta)) / (2.0 * f.a);
 	result.roots[1] = (-f.b + sqrt(f.delta)) / (2.0 * f.a);
 	return (result);
+}
+
+t_intersection	intersection(double t, t_object *object)
+{
+	t_intersection	intersection;
+
+	intersection.t = t;
+	intersection.object = object;
+	return (intersection);
 }

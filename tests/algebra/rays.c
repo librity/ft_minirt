@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 20:01:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:03:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ MU_TEST(position_tst)
 	assert_tuple_eq(expected_t3d, point(4.5, 3, 4));
 }
 
-MU_TEST(intersects_ahead_tst)
+MU_TEST(ray_intersects_tst)
 {
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	_sphere = sphere();
@@ -105,7 +105,7 @@ MU_TEST_SUITE(rays_suite)
 	MU_RUN_TEST(rays_tst);
 	MU_RUN_TEST(position_tst);
 
-	MU_RUN_TEST(intersects_ahead_tst);
+	MU_RUN_TEST(ray_intersects_tst);
 	MU_RUN_TEST(ray_inside_tst);
 	MU_RUN_TEST(ray_misses_tst);
 	MU_RUN_TEST(ray_behind_tst);

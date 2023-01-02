@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 19:43:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:31:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,13 @@ typedef struct s_intersect_factors
 	t_v3d	sphere_to_ray;
 }			t_intersect_factors;
 t_intersect		intersect(t_object *sphere, t_ray ray);
+
+typedef struct s_intersection
+{
+	double		t;
+	t_object	*object;
+}			t_intersection;
+t_intersection	intersection(double t, t_object *object);
 
 /******************************************************************************\
  * PLANES
