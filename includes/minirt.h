@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 20:31:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:09:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,9 @@ typedef struct s_intersection
 	double		t;
 	t_object	*object;
 }			t_intersection;
-t_intersection	intersection(double t, t_object *object);
+t_intersection	*intersection(double t, t_object *object);
+void			add_intersection(t_dlist **intersections,
+					t_intersection *intersec);
 
 /******************************************************************************\
  * PLANES

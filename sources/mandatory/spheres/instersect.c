@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 20:30:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:09:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@ t_intersect	intersect(t_object *sphere, t_ray ray)
 	return (result);
 }
 
-t_intersection	intersection(double t, t_object *object)
+t_intersection	*intersection(double t, t_object *object)
 {
-	t_intersection	intersection;
+	t_intersection	*intersection;
 
-	intersection.t = t;
-	intersection.object = object;
+	intersection = ft_clalloc(lalloc(), 1, sizeof(t_intersection));
+	intersection->t = t;
+	intersection->object = object;
 	return (intersection);
+}
+
+void	add_intersection(t_dlist **intersections, t_intersection *intersec)
+{
+	ft_dlst_addb_lalloc(lalloc(), intersections, intersec);
 }
