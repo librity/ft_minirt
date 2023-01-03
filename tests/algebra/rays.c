@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 20:03:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:41:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_ray	_ray;
 t_t3d	expected_t3d;
 t_object	*_sphere;
 t_intersect	xs;
+t_dlist		*intersections;
+t_intersection	*inter;
 
 void test_setup(void)
 {
@@ -62,8 +64,14 @@ MU_TEST(ray_intersects_tst)
 	xs = intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
-	mu_assert_double_eq(4.0, xs.roots[0]);
-	mu_assert_double_eq(6.0, xs.roots[1]);
+
+	inter = xs.intersections->content;
+	mu_assert_double_eq(4.0, inter->t);
+	mu_check(_sphere == inter->object);
+
+	inter = xs.intersections->next->content;
+	mu_assert_double_eq(6.0, inter->t);
+	mu_check(_sphere == inter->object);
 }
 
 MU_TEST(ray_misses_tst)
@@ -82,8 +90,14 @@ MU_TEST(ray_inside_tst)
 	xs = intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
-	mu_assert_double_eq(-1.0, xs.roots[0]);
-	mu_assert_double_eq(1.0, xs.roots[1]);
+
+	inter = xs.intersections->content;
+	mu_assert_double_eq(-1.0, inter->t);
+	mu_check(_sphere == inter->object);
+
+	inter = xs.intersections->next->content;
+	mu_assert_double_eq(1.0, inter->t);
+	mu_check(_sphere == inter->object);
 }
 
 
@@ -94,8 +108,37 @@ MU_TEST(ray_behind_tst)
 	xs = intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
-	mu_assert_double_eq(-6.0, xs.roots[0]);
-	mu_assert_double_eq(-4.0, xs.roots[1]);
+	inter = xs.intersections->content;
+	mu_assert_double_eq(-6.0, inter->t);
+	mu_check(_sphere == inter->object);
+
+	inter = xs.intersections->next->content;
+	mu_assert_double_eq(-4.0, inter->t);
+	mu_check(_sphere == inter->object);
+}
+
+MU_TEST(intersection_tst)
+{
+	_sphere = sphere();
+	inter = new_intersection(3.5, _sphere);
+
+	mu_assert_double_eq(3.5, inter->t);
+	mu_check(_sphere == inter->object);
+}
+
+MU_TEST(add_intersection_tst)
+{
+	_sphere = sphere();
+	create_intersection(&intersections, 1, _sphere);
+	create_intersection(&intersections, 2, _sphere);
+
+	mu_assert_int_eq(2, ft_dlstsize(intersections));
+
+	inter = intersections->content;
+	mu_assert_double_eq(1, inter->t);
+
+	inter = intersections->next->content;
+	mu_assert_double_eq(2, inter->t);
 }
 
 MU_TEST_SUITE(rays_suite)
@@ -109,6 +152,9 @@ MU_TEST_SUITE(rays_suite)
 	MU_RUN_TEST(ray_inside_tst);
 	MU_RUN_TEST(ray_misses_tst);
 	MU_RUN_TEST(ray_behind_tst);
+
+	MU_RUN_TEST(intersection_tst);
+	MU_RUN_TEST(add_intersection_tst);
 }
 
 MU_MAIN
