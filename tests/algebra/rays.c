@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 21:41:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:30:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_object	*_sphere;
 t_intersect	xs;
 t_dlist		*intersections;
 t_intersection	*inter;
+double	t;
 
 void test_setup(void)
 {
@@ -141,6 +142,72 @@ MU_TEST(add_intersection_tst)
 	mu_assert_double_eq(2, inter->t);
 }
 
+MU_TEST(hit_tst){
+	_sphere = sphere();
+
+	xs.intersections = NULL;
+	xs.count = 2;
+	create_intersection(&xs.intersections, 1, _sphere);
+	create_intersection(&xs.intersections, 2, _sphere);
+
+	inter = hit(xs);
+	mu_assert_double_eq(1, inter->t);
+	mu_check(_sphere == inter->object);
+}
+
+MU_TEST(hit_negative_tst){
+	_sphere = sphere();
+
+	xs.intersections = NULL;
+	xs.count = 2;
+	create_intersection(&xs.intersections, -1, _sphere);
+	create_intersection(&xs.intersections, 1, _sphere);
+
+	inter = hit(xs);
+	mu_assert_double_eq(1, inter->t);
+	mu_check(_sphere == inter->object);
+}
+
+MU_TEST(hit_positive_negative_tst){
+	_sphere = sphere();
+
+	xs.intersections = NULL;
+	xs.count = 2;
+	create_intersection(&xs.intersections, 1, _sphere);
+	create_intersection(&xs.intersections, -1, _sphere);
+
+	inter = hit(xs);
+	mu_assert_double_eq(1, inter->t);
+	mu_check(_sphere == inter->object);
+}
+
+MU_TEST(hit_all_negative_tst){
+	_sphere = sphere();
+
+	xs.intersections = NULL;
+	xs.count = 2;
+	create_intersection(&xs.intersections, -2, _sphere);
+	create_intersection(&xs.intersections, -1, _sphere);
+
+	inter = hit(xs);
+	mu_check(NULL == inter);
+}
+
+MU_TEST(hit_multiple_tst){
+	_sphere = sphere();
+
+	xs.intersections = NULL;
+	xs.count = 4;
+	create_intersection(&xs.intersections, 5, _sphere);
+	create_intersection(&xs.intersections, 7, _sphere);
+	create_intersection(&xs.intersections, -3, _sphere);
+	create_intersection(&xs.intersections, 2, _sphere);
+
+	inter = hit(xs);
+	mu_assert_double_eq(2, inter->t);
+	mu_check(_sphere == inter->object);
+}
+
 MU_TEST_SUITE(rays_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -155,6 +222,12 @@ MU_TEST_SUITE(rays_suite)
 
 	MU_RUN_TEST(intersection_tst);
 	MU_RUN_TEST(add_intersection_tst);
+
+	MU_RUN_TEST(hit_tst);
+	MU_RUN_TEST(hit_negative_tst);
+	MU_RUN_TEST(hit_positive_negative_tst);
+	MU_RUN_TEST(hit_all_negative_tst);
+	MU_RUN_TEST(hit_multiple_tst);
 }
 
 MU_MAIN
