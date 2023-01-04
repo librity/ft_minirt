@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 19:30:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:54:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_object	*_sphere;
 t_intersect	xs;
 t_dlist		*intersections;
 t_intersection	*inter;
+t_matrix	mx;
 double	t;
 
 void test_setup(void)
@@ -208,6 +209,25 @@ MU_TEST(hit_multiple_tst){
 	mu_check(_sphere == inter->object);
 }
 
+MU_TEST(transform_translation_tst){
+
+	_ray = ray(point(1, 2, 3), vector(0, 1, 0));
+	translation(vector(3, 4, 5), &mx);
+	result = transform(_ray, mx);
+
+	assert_tuple_eq(point(4, 6, 8), result.origin);
+	assert_tuple_eq(vector(0, 1, 0), result.direction);
+}
+
+MU_TEST(transform_scaling_tst){
+	_ray = ray(point(1, 2, 3), vector(0, 1, 0));
+	scaling(vector(2, 3, 4), &mx);
+	result = transform(_ray, mx);
+
+	assert_tuple_eq(point(2, 6, 12), result.origin);
+	assert_tuple_eq(vector(0, 3, 0), result.direction);
+}
+
 MU_TEST_SUITE(rays_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -228,6 +248,9 @@ MU_TEST_SUITE(rays_suite)
 	MU_RUN_TEST(hit_positive_negative_tst);
 	MU_RUN_TEST(hit_all_negative_tst);
 	MU_RUN_TEST(hit_multiple_tst);
+
+	MU_RUN_TEST(transform_translation_tst);
+	MU_RUN_TEST(transform_scaling_tst);
 }
 
 MU_MAIN
