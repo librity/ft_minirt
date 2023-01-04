@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 19:54:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:12:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,17 @@ MU_TEST(transform_scaling_tst){
 	assert_tuple_eq(vector(0, 3, 0), result.direction);
 }
 
+MU_TEST(sphere_transform_tst){
+	_sphere = sphere();
+
+	mx_set_identity(&mx);
+	mu_check(mxs_are_equal(mx, _sphere->transform));
+
+	translation(vector(2, 3, 4), &mx);
+	set_transform(_sphere, mx);
+	mu_check(mxs_are_equal(mx, _sphere->transform));
+}
+
 MU_TEST_SUITE(rays_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -251,6 +262,8 @@ MU_TEST_SUITE(rays_suite)
 
 	MU_RUN_TEST(transform_translation_tst);
 	MU_RUN_TEST(transform_scaling_tst);
+
+	MU_RUN_TEST(sphere_transform_tst);
 }
 
 MU_MAIN

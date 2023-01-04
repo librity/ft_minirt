@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 19:09:36 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:12:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ void			shearing(t_shearing shear, t_matrix *result);
 \******************************************************************************/
 
 void			create_object(t_object *object);
+
+void			set_transform(t_object *object, t_matrix mx);
 
 /******************************************************************************\
  * SPHERES
