@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/02 21:37:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:26:08 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_intersect	intersect(t_object *sphere, t_ray ray)
 	t_intersect_factors	f;
 	t_intersect			result;
 
+	ray = inverse_transform(ray, sphere->transform);
 	result.intersections = NULL;
 	f.sphere_to_ray = sub(ray.origin, sphere->origin);
 	f.a = dot(ray.direction, ray.direction);

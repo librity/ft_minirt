@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:12:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:18:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,36 @@ MU_TEST(sphere_transform_tst){
 	mu_check(mxs_are_equal(mx, _sphere->transform));
 }
 
+MU_TEST(intersect_scaled_tst)
+{
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	_sphere = sphere();
+	scaling(vector(2, 2, 2), &mx);
+	set_transform(_sphere, mx);
+	xs = intersect(_sphere, _ray);
+
+	mu_assert_int_eq(2, xs.count);
+
+	inter = xs.intersections->content;
+	mu_assert_double_eq(3.0, inter->t);
+	mu_check(_sphere == inter->object);
+
+	inter = xs.intersections->next->content;
+	mu_assert_double_eq(7.0, inter->t);
+	mu_check(_sphere == inter->object);
+}
+
+MU_TEST(intersect_translated_tst)
+{
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	_sphere = sphere();
+	translation(vector(5, 0, 0), &mx);
+	set_transform(_sphere, mx);
+	xs = intersect(_sphere, _ray);
+
+	mu_assert_int_eq(0, xs.count);
+}
+
 MU_TEST_SUITE(rays_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -250,6 +280,9 @@ MU_TEST_SUITE(rays_suite)
 	MU_RUN_TEST(ray_inside_tst);
 	MU_RUN_TEST(ray_misses_tst);
 	MU_RUN_TEST(ray_behind_tst);
+	MU_RUN_TEST(intersect_scaled_tst);
+	MU_RUN_TEST(intersect_translated_tst);
+
 
 	MU_RUN_TEST(intersection_tst);
 	MU_RUN_TEST(add_intersection_tst);

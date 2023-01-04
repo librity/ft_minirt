@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 19:53:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:25:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ t_t3d			position(t_ray ray, double translation);
 void			inspect_ray(t_ray r);
 
 t_ray			transform(t_ray ray, t_matrix matrix);
+t_ray			inverse_transform(t_ray ray, t_matrix matrix);
 
 /******************************************************************************\
  * QUADRATIC
