@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/26 15:12:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:42:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ typedef struct s_camera
 	double		horz_fov_deg;
 	double		horz_fov_rad;
 
-	double		view_width;
-	double		view_height;
+	// double		view_width;
+	// double		view_height;
 
-	t_v3d		horizontal;
-	t_v3d		vertical;
-	t_p3d		ll_corner;
+	// t_v3d		horizontal;
+	// t_v3d		vertical;
+	// t_p3d		ll_corner;
 
 	t_mlx_image	buffer;
 }				t_camera;
@@ -93,6 +93,8 @@ typedef struct s_object
 
 	t_rgb		color_rgb;
 	t_c3d		color_3d;
+
+	t_matrix	transform;
 }				t_object;
 
 /******************************************************************************\
@@ -132,30 +134,5 @@ typedef struct s_val_scene
 	int	ambient_light;
 	int	light;
 }			t_val_scene;
-
-/******************************************************************************\
- * MATH
-\******************************************************************************/
-
-typedef struct s_ray
-{
-	t_p3d		origin;
-	t_v3d		direction;
-}				t_ray;
-
-typedef struct s_root
-{
-	double	root_a;
-	double	root_b;
-
-	bool	has_root;
-	double	delta;
-}			t_root;
-
-typedef struct s_hit_result
-{
-	bool	hits;
-	double	translation;
-}			t_hit_result;
 
 #endif

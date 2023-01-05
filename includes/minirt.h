@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 18:26:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:53:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,16 +152,47 @@ void			shearing(t_shearing shear, t_matrix *result);
 
 void			create_object(t_object *object);
 
+void			set_transform(t_object *object, t_matrix mx);
+
 /******************************************************************************\
  * SPHERES
 \******************************************************************************/
 
+t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
+t_object		*sphere(void);
 void			create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
-void			verify_closest_sphere(t_ray ray);
-void			create_demo_spheres(void);
+
+typedef struct s_intersect
+{
+	int			count;
+	t_dlist		*intersections;
+}			t_intersect;
+typedef struct s_intersect_factors
+{
+	t_v3d	sphere_to_ray;
+
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+
+	double	root_1;
+	double	root_2;
+}			t_intersect_factors;
+t_intersect		intersect(t_object *sphere, t_ray ray);
+
+typedef struct s_intersection
+{
+	double		t;
+	t_object	*object;
+}			t_intersection;
+t_intersection	*new_intersection(double t, t_object *object);
+void			create_intersection(t_dlist **intersections, double t, t_object *object);
+
+t_intersection	*hit(t_intersect intersect);
 
 /******************************************************************************\
  * PLANES
@@ -197,17 +228,6 @@ int				open_or_die(char *path);
 void			close_or_die(int fd);
 
 /******************************************************************************\
- * MATH
-\******************************************************************************/
-
-double			degrees_to_radians(double degrees);
-t_root			quadratic(double a, double b, double c);
-void			inspect_root(t_root root);
-
-t_ray			ray_3d(t_p3d origin, t_v3d direction);
-t_p3d			ray_at(t_ray r, double translation);
-
-/******************************************************************************\
  * RUNTIME
 \******************************************************************************/
 
@@ -226,6 +246,9 @@ void			hello_world_window_demo(void);
 void			quadratic_demo(void);
 void			hit_sphere_demo(void);
 
+void			verify_closest_sphere(t_ray ray);
+void			create_demo_spheres(void);
+
 typedef struct s_projectile
 {
 	t_p3d		position;
@@ -243,5 +266,7 @@ void			hello_world_ppm_demo(void);
 
 void			clock_hours_ppm_demo(void);
 void			clock_sec_ppm_demo(void);
+
+void			ray_tracer_v1_demo();
 
 #endif

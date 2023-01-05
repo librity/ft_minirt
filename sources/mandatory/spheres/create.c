@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 21:24:29 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 11:59:11 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:10:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static t_object	*new_sphere(t_p3d origin, double diameter, t_rgb color)
+t_object	*new_sphere(t_p3d origin, double diameter, t_rgb color)
 {
 	t_object	*sphere;
 
@@ -23,7 +23,13 @@ static t_object	*new_sphere(t_p3d origin, double diameter, t_rgb color)
 	sphere->radius = diameter / 2.0;
 	sphere->color_rgb = color;
 	sphere->color_3d = rgb_to_c3d(color);
+	mx_set_identity(&(sphere->transform));
 	return (sphere);
+}
+
+t_object	*sphere(void)
+{
+	return (new_sphere(point(0, 0, 0), 2.0, rgb_red()));
 }
 
 void	create_sphere(t_p3d origin, double diameter, t_rgb color)
