@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/05 19:59:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:42:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_matrix	mx;
 t_matrix	scaling_mx;
 t_matrix	z_rotation_mx;
 t_matrix	mx3;
+t_light		_light;
 
 void	test_setup(void)
 {
@@ -129,6 +130,27 @@ MU_TEST(reflect_slanted_surface_tst)
 	assert_tuple_eq(vector(1, 0, 0), reflected);
 }
 
+MU_TEST(point_light_tst)
+{
+	_light = point_light(point(0, 0, 0), 0.2, color_rgb(255, 255, 255));
+	assert_tuple_eq(point(0, 0, 0), _light.origin);
+	assert_tuple_eq(color(1.0, 1.0, 1.0), _light.color_3d);
+	assert_tuple_eq(color(0.2, 0.2, 0.2), _light.intensity);
+
+	_light = point_light(point(-40.0,50.0,0.0), 0.6, color_rgb(10,0,255));
+	assert_tuple_eq(point(-40.0,50.0,0.0), _light.origin);
+	assert_tuple_eq(color(
+		10.0 / 255.0 ,
+		0.0 / 255.0 ,
+		255.0 / 255.0
+		), _light.color_3d);
+	assert_tuple_eq(color(
+		10.0 / 255.0 * 0.6,
+		0.0 / 255.0  * 0.6,
+		255.0 / 255.0 * 0.6
+		), _light.intensity);
+}
+
 MU_TEST_SUITE(normal_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -142,6 +164,8 @@ MU_TEST_SUITE(normal_suite)
 
 	MU_RUN_TEST(reflecting_tst);
 	MU_RUN_TEST(reflect_slanted_surface_tst);
+
+	MU_RUN_TEST(point_light_tst);
 }
 
 MU_MAIN
