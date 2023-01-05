@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/05 19:29:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:59:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_object	*_sphere;
 t_v3d		normal;
+t_v3d		reflected;
+t_v3d		v2;
 t_matrix	mx;
 t_matrix	scaling_mx;
 t_matrix	z_rotation_mx;
@@ -90,11 +92,6 @@ MU_TEST(normal_at_is_normalized_tst)
 	assert_tuple_eq(normalize(normal), normal);
 }
 
-// Scenario: Computing the normal on a translated sphere
-//  Given s ← sphere()
-//  And set_transform(s, translation(0, 1, 0))
-//  When n ← normal_at(s, point(0, 1.70711, -0.70711))
-//  Then n = vector(0, 0.70711, -0.70711)
 MU_TEST(normal_at_translation_tst)
 {
 	_sphere = sphere();
@@ -105,12 +102,6 @@ MU_TEST(normal_at_translation_tst)
 	assert_tuple_eq(vector(0, 0.70711, -0.70711), normal);
 }
 
-// Scenario: Computing the normal on a transformed sphere
-//  Given s ← sphere()
-//  And m ← scaling(1, 0.5, 1) * rotation_z(π/5)
-//  And set_transform(s, m)
-//  When n ← normal_at(s, point(0, √2/2, -√2/2))
-//  Then n = vector(0, 0.97014, -0.24254)
 MU_TEST(normal_at_scaling_rotation_z_tst)
 {
 	double	sqrt2o2 = sqrt(2.0) / 2.0;
@@ -124,6 +115,20 @@ MU_TEST(normal_at_scaling_rotation_z_tst)
 	assert_tuple_eq(vector(0, 0.97014, -0.24254), normal);
 }
 
+MU_TEST(reflecting_tst)
+{
+	reflected = reflect(vector(1, -1, 0), vector(0, 1, 0));
+
+	assert_tuple_eq(vector(1, 1, 0), reflected);
+}
+
+MU_TEST(reflect_slanted_surface_tst)
+{
+	double	sqrt2o2 = sqrt(2) / 2;
+	reflected = reflect(vector(0, -1, 0), vector(sqrt2o2, sqrt2o2, 0));
+	assert_tuple_eq(vector(1, 0, 0), reflected);
+}
+
 MU_TEST_SUITE(normal_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -134,6 +139,9 @@ MU_TEST_SUITE(normal_suite)
 
 	MU_RUN_TEST(normal_at_translation_tst);
 	MU_RUN_TEST(normal_at_scaling_rotation_z_tst);
+
+	MU_RUN_TEST(reflecting_tst);
+	MU_RUN_TEST(reflect_slanted_surface_tst);
 }
 
 MU_MAIN

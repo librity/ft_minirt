@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/05 18:51:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:55:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void			create_object(t_object *object);
 void			set_transform(t_object *object, t_matrix mx);
 
 t_v3d			normal_at(t_object *object, t_p3d point);
+t_v3d			reflect(t_v3d incident, t_v3d normal);
 
 /******************************************************************************\
  * SPHERES
