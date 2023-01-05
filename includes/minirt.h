@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:12:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:53:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,5 +266,7 @@ void			hello_world_ppm_demo(void);
 
 void			clock_hours_ppm_demo(void);
 void			clock_sec_ppm_demo(void);
+
+void			ray_tracer_v1_demo();
 
 #endif
