@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb.c                                              :+:      :+:    :+:   */
+/*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 15:06:25 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/05 20:38:39 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/24 11:56:07 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/01/10 18:44:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <algebra.h>
+#include <minirt.h>
 
-t_c3d	rgb_to_c3d(t_rgb color_rgb)
+t_material	material(void)
 {
-	t_c3d	c3d;
+	t_material	_material;
 
-	c3d.x = (double)color_rgb.red / (double)COLOR_MAX;
-	c3d.y = (double)color_rgb.green / (double)COLOR_MAX;
-	c3d.z = (double)color_rgb.blue / (double)COLOR_MAX;
-	c3d.type = 0.0;
-	return (c3d);
-}
-
-t_c3d	rgb_to_bright_c3d(double brightness, t_rgb color_rgb)
-{
-	return (scalar_times(brightness, rgb_to_c3d(color_rgb)));
+	_material.color = color_3d(1, 1, 1);
+	_material.ambient = 0.1;
+	_material.diffuse = 0.9;
+	_material.specular = 0.9;
+	_material.shininess = 200.0;
+	return (_material);
 }

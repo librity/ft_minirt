@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:31:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/18 21:59:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:43:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ t_light	light(void)
 
 void	set_light(t_p3d origin, double brightness)
 {
-	c()->light.origin = origin;
-	c()->light.brightness = brightness;
-	c()->light.color_rgb = rgb_white();
-	c()->light.color_3d = rgb_to_c3d(rgb_white());
+	c()->light = point_light(origin, brightness, rgb_white());
 }
 
 void	inspect_light(void)

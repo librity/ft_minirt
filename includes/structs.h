@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:42:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:42:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,22 @@ typedef struct s_light
 
 	t_rgb		color_rgb;
 	t_c3d		color_3d;
+
+	t_c3d		intensity;
 }				t_light;
+
+/******************************************************************************\
+ * MATERIAL
+\******************************************************************************/
+
+typedef struct s_material
+{
+	t_c3d	color;
+	double	ambient;
+	double	diffuse;
+	double	specular;
+	double	shininess;
+}			t_material;
 
 /******************************************************************************\
  * OBJECTS
@@ -95,6 +110,7 @@ typedef struct s_object
 	t_c3d		color_3d;
 
 	t_matrix	transform;
+	t_material	material;
 }				t_object;
 
 /******************************************************************************\

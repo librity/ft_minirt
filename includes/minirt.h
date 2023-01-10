@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:53:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:15:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,29 @@ typedef struct s_shearing
 void			shearing(t_shearing shear, t_matrix *result);
 
 /******************************************************************************\
+ * SCENE
+\******************************************************************************/
+
+t_light			point_light(t_p3d point, double brightness, t_rgb color_rgb);
+
+/******************************************************************************\
+ * MATERIAL
+\******************************************************************************/
+
+t_material		material(void);
+
+t_c3d			lighting(t_material material, t_light light, t_p3d point, t_v3d eye, t_v3d normal);
+
+/******************************************************************************\
  * OBJECTS
 \******************************************************************************/
 
 void			create_object(t_object *object);
 
 void			set_transform(t_object *object, t_matrix mx);
+
+t_v3d			normal_at(t_object *object, t_p3d point);
+t_v3d			reflect(t_v3d incident, t_v3d normal);
 
 /******************************************************************************\
  * SPHERES
@@ -268,5 +285,6 @@ void			clock_hours_ppm_demo(void);
 void			clock_sec_ppm_demo(void);
 
 void			ray_tracer_v1_demo();
+void			ray_tracer_v2_demo();
 
 #endif
