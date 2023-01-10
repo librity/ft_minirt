@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/05 20:42:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:46:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_matrix	scaling_mx;
 t_matrix	z_rotation_mx;
 t_matrix	mx3;
 t_light		_light;
+t_material		_material;
 
 void	test_setup(void)
 {
@@ -151,6 +152,44 @@ MU_TEST(point_light_tst)
 		), _light.intensity);
 }
 
+MU_TEST(default_material_tst)
+{
+	_material = material();
+
+	assert_tuple_eq(color(1, 1, 1), _material.color);
+	mu_assert_double_eq(0.1, _material.ambient);
+	mu_assert_double_eq(0.9, _material.diffuse);
+	mu_assert_double_eq(0.9, _material.specular);
+	mu_assert_double_eq(200.0, _material.shininess);
+}
+
+MU_TEST(sphere_material_tst)
+{
+	_sphere = sphere();
+	_material = material();
+
+	assert_tuple_eq(_material.color, _sphere->material.color);
+	mu_assert_double_eq(_material.ambient, _sphere->material.ambient);
+	mu_assert_double_eq(_material.diffuse, _sphere->material.diffuse);
+	mu_assert_double_eq(_material.specular, _sphere->material.specular);
+	mu_assert_double_eq(_material.shininess, _sphere->material.shininess);
+}
+
+MU_TEST(set_sphere_material_tst)
+{
+	_sphere = sphere();
+	_material = material();
+	_material.ambient = 1;
+	_sphere->material = _material;
+
+	assert_tuple_eq(_material.color, _sphere->material.color);
+	mu_assert_double_eq(_material.ambient, _sphere->material.ambient);
+	mu_assert_double_eq(_material.diffuse, _sphere->material.diffuse);
+	mu_assert_double_eq(_material.specular, _sphere->material.specular);
+	mu_assert_double_eq(_material.shininess, _sphere->material.shininess);
+}
+
+
 MU_TEST_SUITE(normal_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -166,6 +205,10 @@ MU_TEST_SUITE(normal_suite)
 	MU_RUN_TEST(reflect_slanted_surface_tst);
 
 	MU_RUN_TEST(point_light_tst);
+
+	MU_RUN_TEST(default_material_tst);
+	MU_RUN_TEST(sphere_material_tst);
+	MU_RUN_TEST(set_sphere_material_tst);
 }
 
 MU_MAIN
