@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:53:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:01:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	run(void)
 
 	//clock_hours_ppm_demo();
 	//clock_sec_ppm_demo();
-	ray_tracer_v1_demo();
+	//ray_tracer_v1_demo();
+	ray_tracer_v2_demo();
 }
 
 int	main(int argc, char **argv)
