@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 18:45:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:36:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ t_light			point_light(t_p3d point, double brightness, t_rgb color_rgb);
 \******************************************************************************/
 
 t_material		material(void);
+
+t_c3d			lighting(t_material material, t_light light, t_p3d point, t_v3d eye, t_v3d normal);
 
 /******************************************************************************\
  * OBJECTS
