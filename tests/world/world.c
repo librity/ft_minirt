@@ -5,6 +5,9 @@ t_light result_light;
 t_dlist *node;
 t_object *_object;
 t_matrix mx;
+t_ray	_ray;
+t_intersection	*_intersections;
+t_intersect		_intersect;
 
 void test_setup(void)
 {
@@ -27,6 +30,7 @@ MU_TEST(default_world_tst)
 	assert_tuple_eq(expected_light.intensity, result_light.intensity);
 	mu_assert_double_eq(expected_light.brightness, result_light.brightness);
 
+	mu_assert_int_eq(2, ft_dlstsize(*objects()));
 	node = *objects();
 	mu_check(node != NULL);
 
@@ -40,11 +44,39 @@ MU_TEST(default_world_tst)
 	mu_check(mxs_are_equal(mx, _object->transform));
 }
 
+MU_TEST(intersect_ray_tst)
+{
+	set_default_world();
+
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	_intersect = intersect_world(_ray);
+
+	mu_assert_int_eq(4, ft_dlstsize(_intersect.intersections));
+	mu_assert_int_eq(4, _intersect.count);
+
+	node = _intersect.intersections;
+	_intersections = node->content;
+	mu_assert_double_eq(4, _intersections->t);
+
+	node =node->next;
+	_intersections = node->content;
+	mu_assert_double_eq(4.5, _intersections->t);
+
+	node =node->next;
+	_intersections = node->content;
+	mu_assert_double_eq(5.5, _intersections->t);
+
+	node =node->next;
+	_intersections = node->content;
+	mu_assert_double_eq(6, _intersections->t);
+}
+
 MU_TEST_SUITE(world_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(default_world_tst);
+	MU_RUN_TEST(intersect_ray_tst);
 }
 
 MU_MAIN

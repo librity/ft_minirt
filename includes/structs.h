@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/12 18:58:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:42:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,31 @@ typedef struct s_object
 	t_matrix	transform;
 	t_material	material;
 }				t_object;
+
+typedef struct s_intersect
+{
+	int			count;
+	t_dlist		*intersections;
+}			t_intersect;
+
+typedef struct s_intersect_factors
+{
+	t_v3d	sphere_to_ray;
+
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+
+	double	root_1;
+	double	root_2;
+}			t_intersect_factors;
+
+typedef struct s_intersection
+{
+	double		t;
+	t_object	*object;
+}			t_intersection;
 
 /******************************************************************************\
  * CONTROL
