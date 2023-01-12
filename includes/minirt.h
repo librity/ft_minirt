@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/12 18:45:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:19:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,11 @@ void			set_transform(t_object *object, t_matrix mx);
 t_v3d			normal_at(t_object *object, t_p3d point);
 t_v3d			reflect(t_v3d incident, t_v3d normal);
 
-t_world			world(void);
+/******************************************************************************\
+ * WORLD
+\******************************************************************************/
+
+void			set_default_world(void);
 
 /******************************************************************************\
  * SPHERES
@@ -179,7 +183,7 @@ t_world			world(void);
 
 t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
 t_object		*sphere(void);
-void			create_sphere(t_p3d origin, double diameter, t_rgb color);
+t_object		*create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);

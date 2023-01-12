@@ -1,2 +1,4 @@
 examples/*.c
 snippets/*.c
+tests/*.c
+tests/**/*.c
