@@ -6,15 +6,17 @@ t_dlist *node;
 t_object *_object;
 t_matrix mx;
 t_ray	_ray;
-t_intersection	*_intersections;
-t_intersect		_intersect;
+t_intersection	*_intersection;
+t_intersections		_intersect;
 
 void test_setup(void)
 {
+	c()->objects = NULL;
 }
 void test_teardown(void)
 {
 	free_lalloc();
+	c()->objects = NULL;
 }
 
 MU_TEST(default_world_tst)
@@ -51,24 +53,24 @@ MU_TEST(intersect_ray_tst)
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
 	_intersect = intersect_world(_ray);
 
-	mu_assert_int_eq(4, ft_dlstsize(_intersect.intersections));
+	mu_assert_int_eq(4, ft_dlstsize(_intersect.list));
 	mu_assert_int_eq(4, _intersect.count);
 
-	node = _intersect.intersections;
-	_intersections = node->content;
-	mu_assert_double_eq(4, _intersections->t);
+	node = _intersect.list;
+	_intersection = node->content;
+	mu_assert_double_eq(4, _intersection->t);
 
 	node =node->next;
-	_intersections = node->content;
-	mu_assert_double_eq(4.5, _intersections->t);
+	_intersection = node->content;
+	mu_assert_double_eq(4.5, _intersection->t);
 
 	node =node->next;
-	_intersections = node->content;
-	mu_assert_double_eq(5.5, _intersections->t);
+	_intersection = node->content;
+	mu_assert_double_eq(5.5, _intersection->t);
 
 	node =node->next;
-	_intersections = node->content;
-	mu_assert_double_eq(6, _intersections->t);
+	_intersection = node->content;
+	mu_assert_double_eq(6, _intersection->t);
 }
 
 MU_TEST_SUITE(world_suite)

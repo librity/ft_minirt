@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 20:33:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 20:14:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:49:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ray_tracer_v2_demo()
 	double		world_x;
 	t_p3d		ray_origin;
 	t_p3d		_position;
-	t_intersect	_intersect;
+	t_intersections	_intersect;
 	t_intersection	*_hit;
 	t_rgb		pixel_color;
 	t_light		_light;

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/12 19:47:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:49:30 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ t_v3d			reflect(t_v3d incident, t_v3d normal);
 \******************************************************************************/
 
 void			set_default_world(void);
-t_intersect		intersect_world(t_ray	ray);
+t_intersections		intersect_world(t_ray	ray);
 
 /******************************************************************************\
  * SPHERES
@@ -189,11 +189,11 @@ t_object		*create_sphere(t_p3d origin, double diameter, t_rgb color);
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
 
-t_intersect		intersect(t_object *sphere, t_ray ray);
+t_intersections		intersect(t_object *sphere, t_ray ray);
 t_intersection	*new_intersection(double t, t_object *object);
 void			create_intersection(t_dlist **intersections, double t, t_object *object);
 
-t_intersection	*hit(t_intersect intersect);
+t_intersection	*hit(t_intersections intersect);
 
 /******************************************************************************\
  * PLANES
@@ -220,6 +220,12 @@ void			create_cylinder(t_create_cylinder p);
 \******************************************************************************/
 
 void			mlx_image_save_ppm(t_mlx_image *image, char *filename);
+
+/******************************************************************************\
+ * SORTERS
+\******************************************************************************/
+
+void			sort_intersections(t_dlist **intersections);
 
 /******************************************************************************\
  * FILES
