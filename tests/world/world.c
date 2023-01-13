@@ -7,7 +7,9 @@ t_object *_object;
 t_matrix mx;
 t_ray	_ray;
 t_intx	*_intersection;
-t_intxs		_intersect;
+t_intxs	_intersections;
+t_intx	_intersect;
+t_ray_comps	_ray_comp;
 
 void test_setup(void)
 {
@@ -51,12 +53,12 @@ MU_TEST(intersect_ray_tst)
 	set_default_world();
 
 	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
-	_intersect = intersect_world(_ray);
+	_intersections = intersect_world(_ray);
 
-	mu_assert_int_eq(4, ft_dlstsize(_intersect.list));
-	mu_assert_int_eq(4, _intersect.count);
+	mu_assert_int_eq(4, ft_dlstsize(_intersections.list));
+	mu_assert_int_eq(4, _intersections.count);
 
-	node = _intersect.list;
+	node = _intersections.list;
 	_intersection = node->content;
 	mu_assert_double_eq(4, _intersection->t);
 
@@ -73,12 +75,26 @@ MU_TEST(intersect_ray_tst)
 	mu_assert_double_eq(6, _intersection->t);
 }
 
+MU_TEST(precomp_intersect_tst){
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	_object = sphere();
+	_intersect = (t_intx){4.0, _object};
+	_ray_comp = prepare_computations(_intersect, _ray);
+
+	mu_assert_double_eq(_intersect.t, _ray_comp.t);
+	mu_check(_ray_comp.object == _intersect.object);
+	assert_tuple_eq(point(0, 0, -1), _ray_comp.point);
+	assert_tuple_eq(vector(0, 0, -1), _ray_comp.eyev);
+	assert_tuple_eq(vector(0, 0, -1), _ray_comp.normalv);
+}
+
 MU_TEST_SUITE(world_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
 	MU_RUN_TEST(default_world_tst);
 	MU_RUN_TEST(intersect_ray_tst);
+	MU_RUN_TEST(precomp_intersect_tst);
 }
 
 MU_MAIN

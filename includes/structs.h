@@ -6,17 +6,17 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:53:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:16:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include <libft.h>
-# include <ft_libbmp.h>
-# include <stdbool.h>
 # include <algebra.h>
+# include <ft_libbmp.h>
+# include <libft.h>
+# include <stdbool.h>
 
 /******************************************************************************\
  * AMBIENT LIGHT
@@ -74,12 +74,12 @@ typedef struct s_light
 
 typedef struct s_material
 {
-	t_c3d	color;
-	double	ambient;
-	double	diffuse;
-	double	specular;
-	double	shininess;
-}			t_material;
+	t_c3d		color;
+	double		ambient;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+}				t_material;
 
 /******************************************************************************\
  * OBJECTS
@@ -117,26 +117,36 @@ typedef struct s_intxs
 {
 	int			count;
 	t_dlist		*list;
-}			t_intxs;
+}				t_intxs;
 
 typedef struct s_intx
 {
 	double		t;
 	t_object	*object;
-}			t_intx;
+}				t_intx;
 
 typedef struct s_intersect_factors
 {
-	t_v3d	sphere_to_ray;
+	t_v3d		sphere_to_ray;
 
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
+	double		a;
+	double		b;
+	double		c;
+	double		delta;
 
-	double	root_1;
-	double	root_2;
-}			t_intersect_factors;
+	double		root_1;
+	double		root_2;
+}				t_intersect_factors;
+
+typedef struct s_ray_comp
+{
+	double		t;
+	t_object	*object;
+
+	t_p3d		point;
+	t_v3d		eyev;
+	t_v3d		normalv;
+}				t_ray_comps;
 
 /******************************************************************************\
  * CONTROL
@@ -171,9 +181,9 @@ typedef struct s_minirt
 
 typedef struct s_val_scene
 {
-	int	camera;
-	int	ambient_light;
-	int	light;
-}			t_val_scene;
+	int			camera;
+	int			ambient_light;
+	int			light;
+}				t_val_scene;
 
 #endif
