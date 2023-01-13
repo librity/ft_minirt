@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:29:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:44:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:53:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static double	get_t_by_index(t_dlist **intersections, int index)
 {
 	t_dlist			*node;
-	t_intersection	*_intersection;
+	t_intx	*_intersection;
 
 	node = ft_dlst_get_safe(intersections, index);
 	_intersection = node->content;

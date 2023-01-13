@@ -6,8 +6,8 @@ t_dlist *node;
 t_object *_object;
 t_matrix mx;
 t_ray	_ray;
-t_intersection	*_intersection;
-t_intersections		_intersect;
+t_intx	*_intersection;
+t_intxs		_intersect;
 
 void test_setup(void)
 {

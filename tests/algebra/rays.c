@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:49:39 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:53:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_ray	result;
 t_ray	_ray;
 t_t3d	expected_t3d;
 t_object	*_sphere;
-t_intersections	xs;
+t_intxs	xs;
 t_dlist		*intersections;
-t_intersection	*inter;
+t_intx	*inter;
 t_matrix	mx;
 double	t;
 

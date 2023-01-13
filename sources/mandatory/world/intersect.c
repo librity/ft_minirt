@@ -6,19 +6,19 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:50:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:53:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_intersections	intersect_world(t_ray ray)
+t_intxs	intersect_world(t_ray ray)
 {
-	t_dlist			*node;
-	t_dlist			*last_intersection;
-	t_object		*object;
-	t_intersections	_intersect;
-	t_intersections	result;
+	t_dlist		*node;
+	t_dlist		*last_intersection;
+	t_object	*object;
+	t_intxs		_intersect;
+	t_intxs		result;
 
 	result.count = 0;
 	result.list = NULL;

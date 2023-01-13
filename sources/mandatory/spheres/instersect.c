@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:49:39 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:53:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static int	resolve_count(double delta)
 	return (2);
 }
 
-t_intersections	intersect(t_object *sphere, t_ray ray)
+t_intxs	intersect(t_object *sphere, t_ray ray)
 {
 	t_intersect_factors	f;
-	t_intersections			result;
+	t_intxs			result;
 
 	ray = inverse_transform(ray, sphere->transform);
 	result.list = NULL;
@@ -44,11 +44,11 @@ t_intersections	intersect(t_object *sphere, t_ray ray)
 	return (result);
 }
 
-t_intersection	*new_intersection(double t, t_object *object)
+t_intx	*new_intersection(double t, t_object *object)
 {
-	t_intersection	*intersection;
+	t_intx	*intersection;
 
-	intersection = ft_clalloc(lalloc(), 1, sizeof(t_intersection));
+	intersection = ft_clalloc(lalloc(), 1, sizeof(t_intx));
 	intersection->t = t;
 	intersection->object = object;
 	return (intersection);
@@ -56,7 +56,7 @@ t_intersection	*new_intersection(double t, t_object *object)
 
 void	create_intersection(t_dlist **intersections, double t, t_object *object)
 {
-	t_intersection	*intersection;
+	t_intx	*intersection;
 
 	intersection = new_intersection(t, object);
 	ft_dlst_addb_lalloc(lalloc(), intersections, intersection);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:50:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:53:47 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,17 +113,17 @@ typedef struct s_object
 	t_material	material;
 }				t_object;
 
-typedef struct s_intersections
+typedef struct s_intxs
 {
 	int			count;
 	t_dlist		*list;
-}			t_intersections;
+}			t_intxs;
 
-typedef struct s_intersection
+typedef struct s_intx
 {
 	double		t;
 	t_object	*object;
-}			t_intersection;
+}			t_intx;
 
 typedef struct s_intersect_factors
 {
