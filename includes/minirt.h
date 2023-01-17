@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 19:16:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:28:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ t_v3d			reflect(t_v3d incident, t_v3d normal);
 
 void			set_default_world(void);
 t_intxs			intersect_world(t_ray	ray);
-t_ray_comps		prepare_computations(t_intx intersect, t_ray _ray);
+t_ray_comp		prepare_computations(t_intx intersect, t_ray _ray);
 
 /******************************************************************************\
  * SPHERES
