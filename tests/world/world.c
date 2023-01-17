@@ -4,6 +4,8 @@ t_light expected_light;
 t_light result_light;
 t_dlist *node;
 t_object *_object;
+t_object *_inner;
+t_object *_outer;
 t_matrix mx;
 t_ray	_ray;
 t_intx	*_intersection;
@@ -137,6 +139,37 @@ MU_TEST(shading_intersection_inside_tst)
 	assert_tuple_eq(color_3d(0.90498, 0.90498, 0.90498), _color);
 }
 
+MU_TEST(color_at_misses_tst)
+{
+	set_default_world();
+	_ray = ray(point(0, 0, -5), vector(0, 1, 0));
+	_color = color_at(_ray);
+
+	assert_tuple_eq(color(0.0, 0.0, 0.0), _color);
+}
+
+MU_TEST(color_at_hits_tst)
+{
+	set_default_world();
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	_color = color_at(_ray);
+
+	assert_tuple_eq(color(0.38066, 0.47583, 0.2855), _color);
+}
+
+MU_TEST(color_at_behind_tst)
+{
+	set_default_world();
+	_outer = (*objects())->content;
+	_outer->material.ambient = 1.0;
+	_inner = (*objects())->next->content;
+	_inner->material.ambient = 1.0;
+
+	_ray = ray(point(0, 0, 0.75), vector(0, 0, -1));
+	_color = color_at(_ray);
+	assert_tuple_eq(_inner->material.color, _color);
+}
+
 MU_TEST_SUITE(world_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -150,6 +183,10 @@ MU_TEST_SUITE(world_suite)
 
 	MU_RUN_TEST(shading_intersection_tst);
 	MU_RUN_TEST(shading_intersection_inside_tst);
+
+	MU_RUN_TEST(color_at_misses_tst);
+	MU_RUN_TEST(color_at_hits_tst);
+	MU_RUN_TEST(color_at_behind_tst);
 }
 
 MU_MAIN
