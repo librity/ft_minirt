@@ -20,7 +20,7 @@ void test_setup(void)
 }
 void test_teardown(void)
 {
-	free_lalloc();
+	free_world_lalloc();
 	c()->objects = NULL;
 }
 

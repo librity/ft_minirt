@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 20:33:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:53:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:17:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void	ray_tracer_v2_demo()
 		ft_putchar('.');
 		y++;
 	}
+	ft_endl();
 	mlx_image_save_ppm(img, "ray_tracer_v2_demo.ppm");
 }

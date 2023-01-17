@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:07:41 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:12:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,8 @@ typedef struct s_minirt
 	int			height;
 	double		aspect_ratio;
 
-	t_list		*lalloc;
+	t_list		*world_lalloc;
+	t_list		*ray_lalloc;
 }				t_minirt;
 
 /******************************************************************************\

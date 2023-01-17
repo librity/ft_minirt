@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:06:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:13:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ int				width(void);
 int				height(void);
 double			aspect_ratio(void);
 
-t_list			**lalloc(void);
-void			free_lalloc(void);
+t_list			**world_lalloc(void);
+void			free_world_lalloc(void);
+t_list			**ray_lalloc(void);
+void			free_ray_lalloc(void);
 
 /******************************************************************************\
  * VALIDATOR

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 19:41:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:13:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	test_setup(void)
 }
 void	test_teardown(void)
 {
-	free_lalloc();
+	free_world_lalloc();
 }
 
 MU_TEST(eye_tst)
