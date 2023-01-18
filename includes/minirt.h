@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 19:22:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:35:21 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ void			inspect_ambient_light(void);
 
 t_camera		camera(void);
 t_mlx_image		*camera_buffer(void);
-void			initialize_camera(void);
 void			destroy_camera(void);
 void			set_camera(t_p3d origin, t_v3d orientation,
 					double horz_fov_deg);
 void			set_challenge_camera(int width, int height, double horz_fov_rad);
 void			inspect_camera(void);
+int				width(void);
+int				height(void);
+double			aspect_ratio(void);
 
 t_light			light(void);
 void			set_light(t_p3d origin, double brightness);
@@ -72,9 +74,6 @@ void			destroy_mlx(void);
 void			*window(void);
 void			initialize_window(void);
 void			destroy_window(void);
-int				width(void);
-int				height(void);
-double			aspect_ratio(void);
 
 t_list			**world_lalloc(void);
 void			free_world_lalloc(void);

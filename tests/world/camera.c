@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:23:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 19:23:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:47:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ t_camera	_camera;
 
 void test_setup(void)
 {
-	c()->objects = NULL;
+	initialize_mlx();
 }
 void test_teardown(void)
 {
-	free_world_lalloc();
-	c()->objects = NULL;
+	destroy_camera();
+	destroy_mlx();
 }
 
 MU_TEST(transf_default_orientation_tst)

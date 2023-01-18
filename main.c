@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:21:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 20:01:44 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:34:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	initialize(int argc, char **argv)
 		die(ARGC_ERR);
 	initialize_control(argc, argv);
 	initialize_mlx();
+	// validate_scene();
+	// parse_scene();
 	initialize_window();
-	initialize_camera();
 	// printf("%s\n", scene_path());
 }
 

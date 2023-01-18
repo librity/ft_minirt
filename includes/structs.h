@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 19:22:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:43:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_camera
 
 	int			width;
 	int			height;
+	double		aspect_ratio;
 
 	t_matrix	transform;
 
@@ -52,6 +53,7 @@ typedef struct s_camera
 	// t_p3d		ll_corner;
 
 	t_mlx_image	buffer;
+	bool		initialized;
 }				t_camera;
 
 /******************************************************************************\
@@ -172,9 +174,6 @@ typedef struct s_minirt
 
 	void		*mlx;
 	void		*window;
-	int			width;
-	int			height;
-	double		aspect_ratio;
 
 	t_list		*world_lalloc;
 	t_list		*ray_lalloc;
