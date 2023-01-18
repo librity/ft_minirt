@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 19:43:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:07:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,22 @@ typedef struct s_amb_light
 
 typedef struct s_camera
 {
+	bool		initialized;
+
 	t_p3d		origin;
 	t_v3d		orientation;
 
-	double		horz_fov_deg;
-	double		horz_fov_rad;
+	double		fov_deg;
+	double		fov_rad;
 
 	int			width;
 	int			height;
-	double		aspect_ratio;
+	double		aspect;
+
+	double		half_view;
+	double		half_width;
+	double		half_height;
+	double		pixel_size;
 
 	t_matrix	transform;
 
@@ -53,7 +60,6 @@ typedef struct s_camera
 	// t_p3d		ll_corner;
 
 	t_mlx_image	buffer;
-	bool		initialized;
 }				t_camera;
 
 /******************************************************************************\

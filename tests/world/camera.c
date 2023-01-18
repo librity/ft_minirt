@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:23:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 19:47:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:09:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,24 @@ MU_TEST(set_challenge_camera_tst)
 	_camera = camera();
 	mu_assert_int_eq(160, _camera.width);
 	mu_assert_int_eq(120, _camera.height);
-	mu_assert_double_eq(MY_PI/2.0, _camera.horz_fov_rad);
+	mu_assert_double_eq(MY_PI/2.0, _camera.fov_rad);
 	mu_check(mxs_are_equal(mx_expected, _camera.transform));
+}
+
+MU_TEST(pixel_size_horz_tst)
+{
+	set_challenge_camera(200, 125, MY_PI/2.0);
+	_camera = camera();
+
+	mu_assert_double_eq(0.01, _camera.pixel_size);
+}
+
+MU_TEST(pixel_size_vert_tst)
+{
+	set_challenge_camera(125, 200, MY_PI/2.0);
+	_camera = camera();
+
+	mu_assert_double_eq(0.01, _camera.pixel_size);
 }
 
 MU_TEST_SUITE(world_suite)
@@ -100,6 +116,8 @@ MU_TEST_SUITE(world_suite)
 	MU_RUN_TEST(transf_arbitrary_tst);
 
 	MU_RUN_TEST(set_challenge_camera_tst);
+	MU_RUN_TEST(pixel_size_horz_tst);
+	MU_RUN_TEST(pixel_size_vert_tst);
 }
 
 MU_MAIN
