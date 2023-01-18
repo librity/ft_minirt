@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:45:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:22:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,15 @@ void	inspect_camera(void)
 		cam.orientation.z);
 	printf("\thorz_fov_deg: %f\n", cam.horz_fov_deg);
 	printf("\thorz_fov_rad: %f\n", cam.horz_fov_rad);
+}
+
+void	set_challenge_camera(int width, int height, double horz_fov_rad)
+{
+	t_camera	*_camera;
+
+	_camera = &c()->camera;
+	_camera->width = width;
+	_camera->height = height;
+	_camera->horz_fov_rad = horz_fov_rad;
+	mx_set_identity(&_camera->transform);
 }

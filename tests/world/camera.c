@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:23:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:53:24 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:23:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_matrix mx_expected;
 t_p3d		_from;
 t_p3d		_to;
 t_v3d		_up;
+t_camera	_camera;
 
 void test_setup(void)
 {
@@ -77,6 +78,18 @@ MU_TEST(transf_arbitrary_tst)
 	mu_check(mxs_are_equal(mx_expected, mx_result));
 }
 
+MU_TEST(set_challenge_camera_tst)
+{
+	mx_set_identity(&mx_expected);
+	set_challenge_camera(160, 120, MY_PI/2.0);
+
+	_camera = camera();
+	mu_assert_int_eq(160, _camera.width);
+	mu_assert_int_eq(120, _camera.height);
+	mu_assert_double_eq(MY_PI/2.0, _camera.horz_fov_rad);
+	mu_check(mxs_are_equal(mx_expected, _camera.transform));
+}
+
 MU_TEST_SUITE(world_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -85,6 +98,8 @@ MU_TEST_SUITE(world_suite)
 	MU_RUN_TEST(transf_positive_z_tst);
 	MU_RUN_TEST(transf_moves_world_tst);
 	MU_RUN_TEST(transf_arbitrary_tst);
+
+	MU_RUN_TEST(set_challenge_camera_tst);
 }
 
 MU_MAIN

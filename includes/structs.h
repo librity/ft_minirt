@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:12:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:22:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ typedef struct s_camera
 	double		horz_fov_deg;
 	double		horz_fov_rad;
 
-	// double		view_width;
-	// double		view_height;
+	int			width;
+	int			height;
+
+	t_matrix	transform;
 
 	// t_v3d		horizontal;
 	// t_v3d		vertical;
