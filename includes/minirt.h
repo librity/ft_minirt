@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 19:35:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:32:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			inspect_camera(void);
 int				width(void);
 int				height(void);
 double			aspect_ratio(void);
+void			set_camera_transform(t_matrix transform);
 
 t_light			light(void);
 void			set_light(t_p3d origin, double brightness);
@@ -148,6 +149,9 @@ typedef struct s_shearing
 }				t_shearing;
 void			shearing(t_shearing shear, t_matrix *result);
 
+void			view_transformation(t_p3d from, t_p3d to, t_v3d up,
+					t_matrix *result);
+
 /******************************************************************************\
  * SCENE
 \******************************************************************************/
@@ -184,8 +188,7 @@ t_intxs			intersect_world(t_ray	ray);
 t_ray_comp		prepare_computations(t_intx intersect, t_ray _ray);
 t_c3d			shade_hit(t_ray_comp comp);
 
-void			view_transformation(t_p3d from, t_p3d to, t_v3d up,
-					t_matrix *result);
+t_ray			ray_for_pixel(int x, int y);
 
 /******************************************************************************\
  * SPHERES

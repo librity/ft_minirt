@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 20:09:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:32:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ void	inspect_camera(void)
 	printf("\thorz_fov_rad: %f\n", cam.fov_rad);
 }
 
-
-
-
 void	set_challenge_camera(int width, int height, double fov_rad)
 {
 	t_camera	*cam;
@@ -86,6 +83,11 @@ void	set_challenge_camera(int width, int height, double fov_rad)
 	cam->pixel_size = (cam->half_width * 2) / cam->width;
 	mx_set_identity(&cam->transform);
 	mlx_image_initialize(&cam->buffer, c()->mlx, cam->width, cam->height);
+}
+
+void	set_camera_transform(t_matrix transform)
+{
+	mx_copy(transform, &c()->camera.transform);
 }
 
 void	destroy_camera(void)
