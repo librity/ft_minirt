@@ -6,11 +6,21 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:40:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/19 20:36:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:44:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_material	walls_material(void)
+{
+	t_material	mat;
+
+	mat = material();
+	mat.color = color_3d(1, 0.9, 0.9);
+	mat.specular = 0;
+	return (mat);
+}
 
 // floor ← sphere()
 // floor.transform ← scaling(10, 0.01, 10)
@@ -23,11 +33,9 @@ void create_floor(void)
 	t_matrix mx_scal;
 
 	_sphere = sphere();
-	_sphere->material = material();
-	_sphere->material.color = color_3d(1, 0.9, 0.9);
-	_sphere->material.specular = 0;
 	scaling(vector(10, 0.01, 10), &mx_scal);
 	set_transform(_sphere, mx_scal);
+	_sphere->material = walls_material();
 }
 
 // left_wall ← sphere()
@@ -46,9 +54,7 @@ void create_left_wall(void)
 	t_matrix mx_2;
 
 	_sphere = sphere();
-	_sphere->material = material();
-	_sphere->material.color = color_3d(1, 0.9, 0.9);
-	_sphere->material.specular = 0;
+	_sphere->material = walls_material();
 	translation(vector(0, 0, 5), &mx_trans);
 	rotation_y(-M_PI / 4.0, &mx_rotation_y);
 	rotation_x(M_PI / 2.0, &mx_rotation_x);
@@ -75,9 +81,7 @@ void create_right_wall(void)
 	t_matrix mx_2;
 
 	_sphere = sphere();
-	_sphere->material = material();
-	_sphere->material.color = color_3d(1, 0.9, 0.9);
-	_sphere->material.specular = 0;
+	_sphere->material = walls_material();
 	translation(vector(0, 0, 5), &mx_trans);
 	rotation_y(M_PI / 4.0, &mx_rotation_y);
 	rotation_x(M_PI / 2.0, &mx_rotation_x);
@@ -165,8 +169,8 @@ void set_demo_camera(void)
 
 	t_matrix mx;
 
-	// set_challenge_camera(100, 50, M_PI / 3.0);
-	set_challenge_camera(500, 500, M_PI / 3.0);
+	set_challenge_camera(100, 50, M_PI / 3.0);
+	// set_challenge_camera(500, 500, M_PI / 3.0);
 	view_transformation(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0), &mx);
 	set_camera_transform(mx);
 }
