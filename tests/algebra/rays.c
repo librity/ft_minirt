@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:18:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:13:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_ray	result;
 t_ray	_ray;
 t_t3d	expected_t3d;
 t_object	*_sphere;
-t_intersect	xs;
+t_intxs	xs;
 t_dlist		*intersections;
-t_intersection	*inter;
+t_intx	*inter;
 t_matrix	mx;
 double	t;
 
@@ -28,7 +28,7 @@ void test_setup(void)
 }
 void test_teardown(void)
 {
-	free_lalloc();
+	free_world_lalloc();
 }
 
 MU_TEST(rays_tst)
@@ -67,11 +67,11 @@ MU_TEST(ray_intersects_tst)
 
 	mu_assert_int_eq(2, xs.count);
 
-	inter = xs.intersections->content;
+	inter = xs.list->content;
 	mu_assert_double_eq(4.0, inter->t);
 	mu_check(_sphere == inter->object);
 
-	inter = xs.intersections->next->content;
+	inter = xs.list->next->content;
 	mu_assert_double_eq(6.0, inter->t);
 	mu_check(_sphere == inter->object);
 }
@@ -93,11 +93,11 @@ MU_TEST(ray_inside_tst)
 
 	mu_assert_int_eq(2, xs.count);
 
-	inter = xs.intersections->content;
+	inter = xs.list->content;
 	mu_assert_double_eq(-1.0, inter->t);
 	mu_check(_sphere == inter->object);
 
-	inter = xs.intersections->next->content;
+	inter = xs.list->next->content;
 	mu_assert_double_eq(1.0, inter->t);
 	mu_check(_sphere == inter->object);
 }
@@ -110,11 +110,11 @@ MU_TEST(ray_behind_tst)
 	xs = intersect(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
-	inter = xs.intersections->content;
+	inter = xs.list->content;
 	mu_assert_double_eq(-6.0, inter->t);
 	mu_check(_sphere == inter->object);
 
-	inter = xs.intersections->next->content;
+	inter = xs.list->next->content;
 	mu_assert_double_eq(-4.0, inter->t);
 	mu_check(_sphere == inter->object);
 }
@@ -146,10 +146,10 @@ MU_TEST(add_intersection_tst)
 MU_TEST(hit_tst){
 	_sphere = sphere();
 
-	xs.intersections = NULL;
+	xs.list = NULL;
 	xs.count = 2;
-	create_intersection(&xs.intersections, 1, _sphere);
-	create_intersection(&xs.intersections, 2, _sphere);
+	create_intersection(&xs.list, 1, _sphere);
+	create_intersection(&xs.list, 2, _sphere);
 
 	inter = hit(xs);
 	mu_assert_double_eq(1, inter->t);
@@ -159,10 +159,10 @@ MU_TEST(hit_tst){
 MU_TEST(hit_negative_tst){
 	_sphere = sphere();
 
-	xs.intersections = NULL;
+	xs.list = NULL;
 	xs.count = 2;
-	create_intersection(&xs.intersections, -1, _sphere);
-	create_intersection(&xs.intersections, 1, _sphere);
+	create_intersection(&xs.list, -1, _sphere);
+	create_intersection(&xs.list, 1, _sphere);
 
 	inter = hit(xs);
 	mu_assert_double_eq(1, inter->t);
@@ -172,10 +172,10 @@ MU_TEST(hit_negative_tst){
 MU_TEST(hit_positive_negative_tst){
 	_sphere = sphere();
 
-	xs.intersections = NULL;
+	xs.list = NULL;
 	xs.count = 2;
-	create_intersection(&xs.intersections, 1, _sphere);
-	create_intersection(&xs.intersections, -1, _sphere);
+	create_intersection(&xs.list, 1, _sphere);
+	create_intersection(&xs.list, -1, _sphere);
 
 	inter = hit(xs);
 	mu_assert_double_eq(1, inter->t);
@@ -185,10 +185,10 @@ MU_TEST(hit_positive_negative_tst){
 MU_TEST(hit_all_negative_tst){
 	_sphere = sphere();
 
-	xs.intersections = NULL;
+	xs.list = NULL;
 	xs.count = 2;
-	create_intersection(&xs.intersections, -2, _sphere);
-	create_intersection(&xs.intersections, -1, _sphere);
+	create_intersection(&xs.list, -2, _sphere);
+	create_intersection(&xs.list, -1, _sphere);
 
 	inter = hit(xs);
 	mu_check(NULL == inter);
@@ -197,12 +197,12 @@ MU_TEST(hit_all_negative_tst){
 MU_TEST(hit_multiple_tst){
 	_sphere = sphere();
 
-	xs.intersections = NULL;
+	xs.list = NULL;
 	xs.count = 4;
-	create_intersection(&xs.intersections, 5, _sphere);
-	create_intersection(&xs.intersections, 7, _sphere);
-	create_intersection(&xs.intersections, -3, _sphere);
-	create_intersection(&xs.intersections, 2, _sphere);
+	create_intersection(&xs.list, 5, _sphere);
+	create_intersection(&xs.list, 7, _sphere);
+	create_intersection(&xs.list, -3, _sphere);
+	create_intersection(&xs.list, 2, _sphere);
 
 	inter = hit(xs);
 	mu_assert_double_eq(2, inter->t);
@@ -249,11 +249,11 @@ MU_TEST(intersect_scaled_tst)
 
 	mu_assert_int_eq(2, xs.count);
 
-	inter = xs.intersections->content;
+	inter = xs.list->content;
 	mu_assert_double_eq(3.0, inter->t);
 	mu_check(_sphere == inter->object);
 
-	inter = xs.intersections->next->content;
+	inter = xs.list->next->content;
 	mu_assert_double_eq(7.0, inter->t);
 	mu_check(_sphere == inter->object);
 }

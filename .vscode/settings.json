@@ -38,6 +38,7 @@
     "errors.h": "c",
     "stdexcept": "c",
     "streambuf": "c",
-    "type_traits": "c"
+    "type_traits": "c",
+    "vector": "c"
   }
 }

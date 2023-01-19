@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 11:59:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:12:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_object	*new_cylinder(t_create_cylinder p)
 {
 	t_object	*cylinder;
 
-	cylinder = ft_clalloc(lalloc(), 1, sizeof(t_object));
+	cylinder = ft_clalloc(world_lalloc(), 1, sizeof(t_object));
 	cylinder->shape = CYLINDER_SHAPE;
 	cylinder->origin = p.origin;
 	cylinder->normal = p.normal;

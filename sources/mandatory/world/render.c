@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 18:18:31 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 19:41:08 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2023/01/18 20:45:41 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/01/19 20:15:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	*mlx(void)
+void	render(void)
 {
-	return (c()->mlx);
-}
+	int		x;
+	int		y;
+	t_ray	px_ray;
+	t_c3d	px_color;
 
-void	initialize_mlx(void)
-{
-	// if (c()->mlx != NULL)
-	// 	return ;
-	c()->mlx = mlx_init();
-	if (c()->mlx == NULL)
-		die(MLX_INIT_ERR);
-}
-
-void	destroy_mlx(void)
-{
-	// if (c()->mlx == NULL)
-	// 	return ;
-	mlx_destroy_display(c()->mlx);
-	free(c()->mlx);
-	c()->mlx = NULL;
+	x = 0;
+	while (x < width())
+	{
+		y = 0;
+		while (y < height())
+		{
+			px_ray = ray_for_pixel(x, y);
+			px_color = color_at(px_ray);
+			mlx_image_draw_c3d(camera_buffer(), px_color, x, y);
+			y++;
+		}
+		ft_putchar('.');
+		x++;
+	}
+	ft_endl();
 }

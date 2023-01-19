@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 20:33:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 20:14:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:17:50 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	ray_tracer_v2_demo()
 	double		world_x;
 	t_p3d		ray_origin;
 	t_p3d		_position;
-	t_intersect	_intersect;
-	t_intersection	*_hit;
+	t_intxs	_intersect;
+	t_intx	*_hit;
 	t_rgb		pixel_color;
 	t_light		_light;
 	t_p3d		_point;
@@ -80,5 +80,6 @@ void	ray_tracer_v2_demo()
 		ft_putchar('.');
 		y++;
 	}
+	ft_endl();
 	mlx_image_save_ppm(img, "ray_tracer_v2_demo.ppm");
 }

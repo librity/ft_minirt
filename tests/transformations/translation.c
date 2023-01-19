@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:36:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 18:12:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:15:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,8 +201,8 @@ MU_TEST(chained_transformations_tst)
 	scaling(vector(5, 5, 5), &mx_scaling);
 	translation(vector(10, 5, 7), &mx_translation);
 
-	mxs_multiply(mx_translation, mx_scaling, matrix);
-	mxs_multiply(matrix, mx_rotation, chained);
+	mxs_multiply(mx_translation, mx_scaling, &matrix);
+	mxs_multiply(matrix, mx_rotation, &chained);
 
 	result = mx_tuple_multiply(chained, point(1, 0, 1));
 	expected = point(15, 0, 7);

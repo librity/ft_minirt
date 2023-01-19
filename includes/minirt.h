@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 20:15:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:07:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,15 @@ void			inspect_ambient_light(void);
 
 t_camera		camera(void);
 t_mlx_image		*camera_buffer(void);
-void			initialize_camera(void);
 void			destroy_camera(void);
 void			set_camera(t_p3d origin, t_v3d orientation,
 					double horz_fov_deg);
+void			set_challenge_camera(int width, int height, double horz_fov_rad);
 void			inspect_camera(void);
+int				width(void);
+int				height(void);
+double			aspect_ratio(void);
+void			set_camera_transform(t_matrix transform);
 
 t_light			light(void);
 void			set_light(t_p3d origin, double brightness);
@@ -71,12 +75,11 @@ void			destroy_mlx(void);
 void			*window(void);
 void			initialize_window(void);
 void			destroy_window(void);
-int				width(void);
-int				height(void);
-double			aspect_ratio(void);
 
-t_list			**lalloc(void);
-void			free_lalloc(void);
+t_list			**world_lalloc(void);
+void			free_world_lalloc(void);
+t_list			**ray_lalloc(void);
+void			free_ray_lalloc(void);
 
 /******************************************************************************\
  * VALIDATOR
@@ -146,6 +149,9 @@ typedef struct s_shearing
 }				t_shearing;
 void			shearing(t_shearing shear, t_matrix *result);
 
+void			view_transformation(t_p3d from, t_p3d to, t_v3d up,
+					t_matrix *result);
+
 /******************************************************************************\
  * SCENE
 \******************************************************************************/
@@ -172,44 +178,36 @@ t_v3d			normal_at(t_object *object, t_p3d point);
 t_v3d			reflect(t_v3d incident, t_v3d normal);
 
 /******************************************************************************\
+ * WORLD
+\******************************************************************************/
+
+void			render(void);
+
+t_c3d			color_at(t_ray _ray);
+void			set_default_world(void);
+
+t_intxs			intersect_world(t_ray	ray);
+t_ray_comp		prepare_computations(t_intx intersect, t_ray _ray);
+t_c3d			shade_hit(t_ray_comp comp);
+
+t_ray			ray_for_pixel(int x, int y);
+
+/******************************************************************************\
  * SPHERES
 \******************************************************************************/
 
 t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
 t_object		*sphere(void);
-void			create_sphere(t_p3d origin, double diameter, t_rgb color);
+t_object		*create_sphere(t_p3d origin, double diameter, t_rgb color);
 
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
 
-typedef struct s_intersect
-{
-	int			count;
-	t_dlist		*intersections;
-}			t_intersect;
-typedef struct s_intersect_factors
-{
-	t_v3d	sphere_to_ray;
-
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
-
-	double	root_1;
-	double	root_2;
-}			t_intersect_factors;
-t_intersect		intersect(t_object *sphere, t_ray ray);
-
-typedef struct s_intersection
-{
-	double		t;
-	t_object	*object;
-}			t_intersection;
-t_intersection	*new_intersection(double t, t_object *object);
+t_intxs		intersect(t_object *sphere, t_ray ray);
+t_intx	*new_intersection(double t, t_object *object);
 void			create_intersection(t_dlist **intersections, double t, t_object *object);
 
-t_intersection	*hit(t_intersect intersect);
+t_intx	*hit(t_intxs intersect);
 
 /******************************************************************************\
  * PLANES
@@ -236,6 +234,12 @@ void			create_cylinder(t_create_cylinder p);
 \******************************************************************************/
 
 void			mlx_image_save_ppm(t_mlx_image *image, char *filename);
+
+/******************************************************************************\
+ * SORTERS
+\******************************************************************************/
+
+void			sort_intersections(t_dlist **intersections);
 
 /******************************************************************************\
  * FILES
@@ -286,5 +290,6 @@ void			clock_sec_ppm_demo(void);
 
 void			ray_tracer_v1_demo();
 void			ray_tracer_v2_demo();
+void			ray_tracer_v3_demo();
 
 #endif
