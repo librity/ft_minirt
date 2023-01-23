@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:11:27 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 19:40:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:28:10 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_c3d	lighting(t_material material, t_light light, t_p3d point, t_v3d eye, t_v3d normal)
+t_c3d	lighting(t_material material, t_light light, t_p3d point, t_v3d eye, t_v3d normal, bool	in_shadow)
 {
 	t_c3d	effective_color;
 	t_c3d	ambient;
@@ -25,10 +25,16 @@ t_c3d	lighting(t_material material, t_light light, t_p3d point, t_v3d eye, t_v3d
 	double	factor;
 	t_c3d	result;
 
-	light_vector = normalize(sub(light.origin, point));
-
 	effective_color = product(material.color, light.intensity);
 	ambient = scalar_times(material.ambient, effective_color);
+	if (in_shadow)
+	{
+		result = ambient;
+		result.type = 0;
+		return (result);
+	}
+
+	light_vector = normalize(sub(light.origin, point));
 	light_dot_normal = dot(light_vector, normal);
 
 	if (light_dot_normal < 0.0)

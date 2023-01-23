@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 20:33:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:17:50 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:26:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ray_tracer_v2_demo()
 				_normal = normal_at(_hit->object, _point);
 				_eye = neg(_ray.direction);
 
-				result_color = lighting(_hit->object->material, _light, _point, _eye, _normal);
+				result_color = lighting(_hit->object->material, _light, _point, _eye, _normal, false);
 				pixel_color = c3d_to_rgb(result_color);
 			}
 			mlx_image_draw_rgb(img, pixel_color, x, y);

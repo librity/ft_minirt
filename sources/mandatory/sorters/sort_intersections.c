@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:29:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:53:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:12:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static double	get_t_by_index(t_dlist **intersections, int index)
 {
-	t_dlist			*node;
+	t_dlist	*node;
 	t_intx	*_intersection;
 
 	node = ft_dlst_get_safe(intersections, index);
@@ -26,15 +26,13 @@ static void	swap_content_by_index(t_dlist **stack, int i_index, int j_index)
 {
 	t_dlist	*i_node;
 	t_dlist	*j_node;
-	void	*i_content;
-	void	*j_content;
+	void	*aux;
 
 	i_node = ft_dlst_get_safe(stack, i_index);
 	j_node = ft_dlst_get_safe(stack, j_index);
-	i_content = i_node->content;
-	j_content = j_node->content;
-	i_node->content = j_content;
-	j_node->content = i_content;
+	aux = i_node->content;
+	i_node->content = j_node->content;
+	j_node->content = aux;
 }
 
 static int	partition(t_dlist **intersections, int start, int end)
