@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/18 20:07:45 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:25:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,8 @@ typedef struct s_ray_comp
 	t_p3d		point;
 	t_v3d		eyev;
 	t_v3d		normalv;
+
+	t_p3d		over_point;
 
 	bool		inside;
 }				t_ray_comp;

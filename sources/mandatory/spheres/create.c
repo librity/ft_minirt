@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 21:24:29 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/19 20:34:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:04:58 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ t_object	*new_sphere(t_p3d origin, double diameter, t_rgb color)
 	return (sphere);
 }
 
-t_object	*sphere(void)
-{
-	return (create_sphere(point(0, 0, 0), 2.0, rgb_red()));
-}
-
 t_object	*create_sphere(t_p3d origin, double diameter, t_rgb color)
 {
 	t_object	*sphere;
@@ -40,4 +35,9 @@ t_object	*create_sphere(t_p3d origin, double diameter, t_rgb color)
 	sphere = new_sphere(origin, diameter, color);
 	create_object(sphere);
 	return (sphere);
+}
+
+t_object	*sphere(void)
+{
+	return (create_sphere(point(0, 0, 0), 2.0, rgb_red()));
 }

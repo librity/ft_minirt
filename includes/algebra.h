@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/04 20:25:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:23:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 
 # define NEAR_ZERO_TOLERANCE 1E-4
+# define EPSILON 1E-4
 
 bool			doubles_are_equal(double a, double b);
 
