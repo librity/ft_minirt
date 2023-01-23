@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 18:23:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:43:13 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ void			set_default_world(void);
 t_intxs			intersect_world(t_ray	ray);
 t_ray_comp		prepare_computations(t_intx intersect, t_ray _ray);
 t_c3d			shade_hit(t_ray_comp comp);
+bool			is_shadowed(t_p3d point);
 
 t_ray			ray_for_pixel(int x, int y);
 

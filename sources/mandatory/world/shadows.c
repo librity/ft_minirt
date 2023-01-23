@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:46:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 18:54:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:57:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_shadowed(t_p3d point)
 	distance = magnitude(ray_vector);
 	shadow_ray = ray(point, normalize(ray_vector));
 	xs = intersect_world(shadow_ray);
-	if (xs.count == 0)µ
+	if (xs.count == 0)
 		return (false);
 	inter = hit(xs);
 	if (inter == NULL)
