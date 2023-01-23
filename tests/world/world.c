@@ -114,6 +114,25 @@ MU_TEST(precomp_inside_tst){
 	mu_check(_ray_comp.inside == true);
 }
 
+// Scenario: The hit should offset the point
+//  Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
+//  And shape ← sphere() with:
+//  | transform | translation(0, 0, 1) |
+//  And i ← intersection(5, shape)
+//  When comps ← prepare_computations(i, r)
+//  Then comps.over_point.z < -EPSILON/2
+//  And comps.point.z > comps.over_point.z
+MU_TEST(precomp_over_point_tst){
+	_ray = ray(point(0, 0, -5), vector(0, 0, 1));
+	_object = sphere();
+	translation(vector(0, 0, 1), &_object->transform);
+	_intersect = (t_intx){5.0, _object};
+	_ray_comp = prepare_computations(_intersect, _ray);
+
+	mu_check(_ray_comp.over_point.z < -NEAR_ZERO_TOLERANCE/2.0);
+	mu_check(_ray_comp.point.z > _ray_comp.over_point.z);
+}
+
 MU_TEST(shading_intersection_tst)
 {
 	set_default_world();
@@ -137,6 +156,21 @@ MU_TEST(shading_intersection_inside_tst)
 	_color = shade_hit(_ray_comp);
 
 	assert_tuple_eq(color_3d(0.90498, 0.90498, 0.90498), _color);
+}
+
+MU_TEST(shade_hit_shadow_tst)
+{
+	// set_default_world();
+	set_light(point(0, 0, -10), 1.0);
+	_object = sphere();
+	_object = sphere();
+	translation(vector(0, 0, 10), &_object->transform);
+	_ray = ray(point(0, 0, 5), vector(0, 0, 1));
+	_intersect = (t_intx){4, _object};
+	_ray_comp = prepare_computations(_intersect, _ray);
+	_color = shade_hit(_ray_comp);
+
+	assert_tuple_eq(color_3d(0.1, 0.1, 0.1), _color);
 }
 
 MU_TEST(color_at_misses_tst)
@@ -180,9 +214,11 @@ MU_TEST_SUITE(world_suite)
 	MU_RUN_TEST(precomp_intersect_tst);
 	MU_RUN_TEST(precomp_outside_tst);
 	MU_RUN_TEST(precomp_inside_tst);
+	MU_RUN_TEST(precomp_over_point_tst);
 
 	MU_RUN_TEST(shading_intersection_tst);
 	MU_RUN_TEST(shading_intersection_inside_tst);
+	MU_RUN_TEST(shade_hit_shadow_tst);
 
 	MU_RUN_TEST(color_at_misses_tst);
 	MU_RUN_TEST(color_at_hits_tst);

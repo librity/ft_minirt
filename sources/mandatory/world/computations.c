@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 18:35:25 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:29:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 t_ray_comp	prepare_computations(t_intx intersect, t_ray _ray)
 {
-	t_ray_comp	computations;
+	t_ray_comp	comps;
 
-	computations.t = intersect.t;
-	computations.object = intersect.object;
-	computations.point = position(_ray, intersect.t);
-	computations.eyev = neg(_ray.direction);
-	computations.normalv = normal_at(intersect.object, computations.point);
-	if (dot(computations.eyev, computations.normalv) < 0)
+	comps.t = intersect.t;
+	comps.object = intersect.object;
+	comps.point = position(_ray, intersect.t);
+	comps.eyev = neg(_ray.direction);
+	comps.normalv = normal_at(intersect.object, comps.point);
+	if (dot(comps.eyev, comps.normalv) < 0)
 	{
-		computations.inside = true;
-		computations.normalv = neg(computations.normalv);
+		comps.inside = true;
+		comps.normalv = neg(comps.normalv);
 	}
 	else
-		computations.inside = false;
-	return (computations);
+		comps.inside = false;
+	comps.over_point = add(comps.point, scalar_times(EPSILON, comps.normalv));
+	return (comps);
 }

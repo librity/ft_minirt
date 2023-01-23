@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shade.c                                            :+:      :+:    :+:   */
+/*   shadows.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:46:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 19:29:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:57:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_c3d	shade_hit(t_ray_comp comp)
+bool	is_shadowed(t_p3d point)
 {
-	bool	in_shadow;
+	t_v3d	ray_vector;
+	t_ray	shadow_ray;
+	t_light	_light;
+	t_intxs	xs;
+	t_intx	*inter;
+	double	distance;
 
-	in_shadow = is_shadowed(comp.over_point);
-	return (lighting(comp.object->material, light(), comp.over_point, comp.eyev,
-			comp.normalv, in_shadow));
+	_light = light();
+	ray_vector = sub(_light.origin, point);
+	distance = magnitude(ray_vector);
+	shadow_ray = ray(point, normalize(ray_vector));
+	xs = intersect_world(shadow_ray);
+	if (xs.count == 0)
+		return (false);
+	inter = hit(xs);
+	if (inter == NULL)
+		return (false);
+	if (inter->t < distance)
+		return (true);
+	return (false);
 }
