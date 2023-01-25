@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:28:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:22:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ t_c3d			lighting(t_material material, t_light light, t_p3d point,
  * OBJECTS
 \******************************************************************************/
 
-void			create_object(t_object *object);
+t_object		*create_object(void);
 
 void			set_transform(t_object *object, t_matrix mx);
 
@@ -201,8 +201,8 @@ t_ray			ray_for_pixel(int x, int y);
 \******************************************************************************/
 
 t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
-t_object		*sphere(void);
 t_object		*create_sphere(t_p3d origin, double diameter, t_rgb color);
+t_object		*sphere(void);
 
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
@@ -217,7 +217,7 @@ t_v3d			sphere_normal_at(t_object *object, t_p3d point);
  * PLANES
 \******************************************************************************/
 
-void			create_plane(t_p3d origin, t_p3d normal, t_rgb color);
+t_object		*create_plane(t_p3d origin, t_p3d normal, t_rgb color);
 
 /******************************************************************************\
  * CYLINDERS
@@ -231,7 +231,7 @@ typedef struct s_create_cylinder
 	double		height;
 	t_rgb		color;
 }				t_create_cylinder;
-void			create_cylinder(t_create_cylinder p);
+t_object		*create_cylinder(t_create_cylinder p);
 
 /******************************************************************************\
  * MLX

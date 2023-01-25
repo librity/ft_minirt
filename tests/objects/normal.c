@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:25:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:15:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ MU_TEST(normal_at_tst)
 MU_TEST(normal_at_radius_tst)
 {
 	double	sqrt3o3 = sqrt(3.0) / 3.0;
-	_sphere = new_sphere(point(0, 0, 0), 42.0, rgb_red());
+	_sphere = create_sphere(point(0, 0, 0), 42.0, rgb_red());
 
 	normal = sphere_normal_at(_sphere, point(1, 0, 0));
 	assert_tuple_eq(vector(1, 0, 0), normal);
