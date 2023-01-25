@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 20:33:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 18:26:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:25:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ray_tracer_v2_demo()
 
 			_position = point(world_x, world_y, wall_z);
 			_ray = ray(ray_origin, normalize(sub(_position, ray_origin)));
-			_intersect = intersect(_sphere, _ray);
+			_intersect = intersect_sphere(_sphere, _ray);
 			_hit = hit(_intersect);
 
 			if (_hit == NULL)
@@ -66,7 +66,7 @@ void	ray_tracer_v2_demo()
 			else
 			{
 				_point = position(_ray, _hit->t);
-				_normal = normal_at(_hit->object, _point);
+				_normal = sphere_normal_at(_hit->object, _point);
 				_eye = neg(_ray.direction);
 
 				result_color = lighting(_hit->object->material, _light, _point, _eye, _normal, false);

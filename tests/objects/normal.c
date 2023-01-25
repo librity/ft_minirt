@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:13:04 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:25:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,25 @@ MU_TEST(normal_at_tst)
 	double	sqrt3o3 = sqrt(3.0) / 3.0;
 	_sphere = sphere();
 
-	normal = normal_at(_sphere, point(1, 0, 0));
+	normal = sphere_normal_at(_sphere, point(1, 0, 0));
 	assert_tuple_eq(vector(1, 0, 0), normal);
 
-	normal = normal_at(_sphere, point(0, 1, 0));
+	normal = sphere_normal_at(_sphere, point(0, 1, 0));
 	assert_tuple_eq(vector(0, 1, 0), normal);
 
-	normal = normal_at(_sphere, point(0, 0, 1));
+	normal = sphere_normal_at(_sphere, point(0, 0, 1));
 	assert_tuple_eq(vector(0, 0, 1), normal);
 
-	normal = normal_at(_sphere, point(-1, 0, 0));
+	normal = sphere_normal_at(_sphere, point(-1, 0, 0));
 	assert_tuple_eq(vector(-1, 0, 0), normal);
 
-	normal = normal_at(_sphere, point(0, -1, 0));
+	normal = sphere_normal_at(_sphere, point(0, -1, 0));
 	assert_tuple_eq(vector(0, -1, 0), normal);
 
-	normal = normal_at(_sphere, point(0, 0, -1));
+	normal = sphere_normal_at(_sphere, point(0, 0, -1));
 	assert_tuple_eq(vector(0, 0, -1), normal);
 
-	normal = normal_at(_sphere, point(sqrt3o3, sqrt3o3, sqrt3o3));
+	normal = sphere_normal_at(_sphere, point(sqrt3o3, sqrt3o3, sqrt3o3));
 	assert_tuple_eq(vector(sqrt3o3, sqrt3o3, sqrt3o3), normal);
 }
 
@@ -62,25 +62,25 @@ MU_TEST(normal_at_radius_tst)
 	double	sqrt3o3 = sqrt(3.0) / 3.0;
 	_sphere = new_sphere(point(0, 0, 0), 42.0, rgb_red());
 
-	normal = normal_at(_sphere, point(1, 0, 0));
+	normal = sphere_normal_at(_sphere, point(1, 0, 0));
 	assert_tuple_eq(vector(1, 0, 0), normal);
 
-	normal = normal_at(_sphere, point(0, 1, 0));
+	normal = sphere_normal_at(_sphere, point(0, 1, 0));
 	assert_tuple_eq(vector(0, 1, 0), normal);
 
-	normal = normal_at(_sphere, point(0, 0, 1));
+	normal = sphere_normal_at(_sphere, point(0, 0, 1));
 	assert_tuple_eq(vector(0, 0, 1), normal);
 
-	normal = normal_at(_sphere, point(-1, 0, 0));
+	normal = sphere_normal_at(_sphere, point(-1, 0, 0));
 	assert_tuple_eq(vector(-1, 0, 0), normal);
 
-	normal = normal_at(_sphere, point(0, -1, 0));
+	normal = sphere_normal_at(_sphere, point(0, -1, 0));
 	assert_tuple_eq(vector(0, -1, 0), normal);
 
-	normal = normal_at(_sphere, point(0, 0, -1));
+	normal = sphere_normal_at(_sphere, point(0, 0, -1));
 	assert_tuple_eq(vector(0, 0, -1), normal);
 
-	normal = normal_at(_sphere, point(sqrt3o3, sqrt3o3, sqrt3o3));
+	normal = sphere_normal_at(_sphere, point(sqrt3o3, sqrt3o3, sqrt3o3));
 	assert_tuple_eq(vector(sqrt3o3, sqrt3o3, sqrt3o3), normal);
 }
 
@@ -88,7 +88,7 @@ MU_TEST(normal_at_is_normalized_tst)
 {
 	double	sqrt3o3 = sqrt(3.0) / 3.0;
 	_sphere = sphere();
-	normal = normal_at(_sphere, point(sqrt3o3, sqrt3o3, sqrt3o3));
+	normal = sphere_normal_at(_sphere, point(sqrt3o3, sqrt3o3, sqrt3o3));
 
 	assert_tuple_eq(normalize(normal), normal);
 }
@@ -98,7 +98,7 @@ MU_TEST(normal_at_translation_tst)
 	_sphere = sphere();
 	translation(vector(0, 1, 0), &mx);
 	set_transform(_sphere, mx);
-	normal = normal_at(_sphere, point(0, 1.70711, -0.70711));
+	normal = sphere_normal_at(_sphere, point(0, 1.70711, -0.70711));
 
 	assert_tuple_eq(vector(0, 0.70711, -0.70711), normal);
 }
@@ -111,7 +111,7 @@ MU_TEST(normal_at_scaling_rotation_z_tst)
 	rotation_z(MY_PI / 5.0, &z_rotation_mx);
 	mxs_multiply(scaling_mx, z_rotation_mx, &mx);
 	set_transform(_sphere, mx);
-	normal = normal_at(_sphere, point(0, sqrt2o2, -sqrt2o2));
+	normal = sphere_normal_at(_sphere, point(0, sqrt2o2, -sqrt2o2));
 
 	assert_tuple_eq(vector(0, 0.97014, -0.24254), normal);
 }

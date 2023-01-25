@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 20:33:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:53:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:23:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ray_tracer_v1_demo()
 
 			position = point(world_x, world_y, wall_z);
 			_ray = ray(ray_origin, normalize(sub(position, ray_origin)));
-			_intersect = intersect(_sphere, _ray);
+			_intersect = intersect_sphere(_sphere, _ray);
 			inter = hit(_intersect);
 
 			if (inter == NULL)
