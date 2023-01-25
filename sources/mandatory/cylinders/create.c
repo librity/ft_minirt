@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:12:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:38:11 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static t_object	*new_cylinder(t_create_cylinder p)
 	cylinder->height = p.height;
 	cylinder->color_rgb = p.color;
 	cylinder->color_3d = rgb_to_c3d(p.color);
+	cylinder->intersect = NULL;
+	cylinder->normal_at = NULL;
 	return (cylinder);
 }
 

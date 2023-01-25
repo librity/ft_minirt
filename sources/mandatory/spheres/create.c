@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 21:24:29 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 19:04:58 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:36:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_object	*new_sphere(t_p3d origin, double diameter, t_rgb color)
 	sphere->color_rgb = color;
 	sphere->color_3d = rgb_to_c3d(color);
 	sphere->material = material();
+	sphere->intersect = &intersect_sphere;
+	sphere->normal_at = &sphere_normal_at;
 	mx_set_identity(&(sphere->transform));
 	return (sphere);
 }

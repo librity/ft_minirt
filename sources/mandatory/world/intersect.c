@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:23:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:40:45 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_intxs	intersect_world(t_ray ray)
 	while (node != NULL)
 	{
 		object = node->content;
-		_intersect = intersect_sphere(object, ray);
+		_intersect = object->intersect(object, ray);
 		result.count += _intersect.count;
 		if (_intersect.list != NULL)
 		{
