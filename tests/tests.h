@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 21:53:02 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:36:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:35:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,15 @@ void assert_tuple_eq(t_t3d _expected, t_t3d _result)
 	mu_assert_double_eq(_expected.y, _result.y);
 	mu_assert_double_eq(_expected.z, _result.z);
 	mu_assert_double_eq(_expected.type, _result.type);
+}
+
+void assert_material_eq(t_material _expected, t_material _result)
+{
+	assert_tuple_eq(_expected.color, _result.color);
+	mu_assert_double_eq(_expected.ambient, _result.ambient);
+	mu_assert_double_eq(_expected.shininess, _result.shininess);
+	mu_assert_double_eq(_expected.diffuse, _result.diffuse);
+	mu_assert_double_eq(_expected.specular, _result.specular);
 }
 
 #endif
