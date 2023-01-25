@@ -6,11 +6,23 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/19 20:24:00 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:10:42 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
+
+void	inspect_intersections(t_dlist **intersections)
+{
+	t_dlist	*node;
+
+	node = *intersections;
+	while (node != NULL)
+	{
+		printf("t = %f\n", ((t_intx *)node->content)->t);
+		node = node->next;
+	}
+}
 
 t_intxs	intersect_world(t_ray ray)
 {
@@ -23,7 +35,6 @@ t_intxs	intersect_world(t_ray ray)
 	result.count = 0;
 	result.list = NULL;
 	node = *objects();
-	// ft_debug("dasdasd");
 	while (node != NULL)
 	{
 		object = node->content;

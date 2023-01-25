@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 18:43:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:13:03 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,7 @@ void			mlx_image_save_ppm(t_mlx_image *image, char *filename);
 \******************************************************************************/
 
 void			sort_intersections(t_dlist **intersections);
+void			sort_intersections_broken(t_dlist **intersections);
 
 /******************************************************************************\
  * FILES

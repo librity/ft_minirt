@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 14:43:14 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:02:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,16 @@ void	mx_copy(t_matrix matrix, t_matrix *result)
 
 void	mx_inspect(t_matrix matrix)
 {
-	inspect_tuple(mx_get_row(matrix, 0));
-	inspect_tuple(mx_get_row(matrix, 1));
-	inspect_tuple(mx_get_row(matrix, 2));
-	inspect_tuple(mx_get_row(matrix, 3));
+	t_t3d	row;
+	int		i;
+
+	i = 0;
+	printf("MATRIX:\n");
+	while (i < 4)
+	{
+		row = mx_get_row(matrix, i);
+		printf("%f, %f, %f, %f,\n", row.x, row.y, row.z, row.type);
+		i++;
+	}
+	printf("\n");
 }

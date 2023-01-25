@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 17:15:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 17:38:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:07:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rotation_y(double radians, t_matrix *result)
 	mx_set_identity(result);
 	(*result)[0][0] = cos(radians);
 	(*result)[0][2] = sin(radians);
-	(*result)[2][1] = -sin(radians);
+	(*result)[2][0] = -sin(radians);
 	(*result)[2][2] = cos(radians);
 }
 

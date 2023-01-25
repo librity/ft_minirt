@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:40:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 19:15:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:10:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_material	walls_material(void)
+t_material	wall_material(void)
 {
 	t_material	mat;
 
@@ -35,7 +35,7 @@ void create_floor(void)
 	_sphere = sphere();
 	scaling(vector(10, 0.01, 10), &mx_scal);
 	set_transform(_sphere, mx_scal);
-	_sphere->material = walls_material();
+	_sphere->material = wall_material();
 }
 
 // left_wall ← sphere()
@@ -52,17 +52,20 @@ void create_left_wall(void)
 	t_matrix mx_scal;
 	t_matrix mx_1;
 	t_matrix mx_2;
+	t_matrix mx_3;
 
 	_sphere = sphere();
-	_sphere->material = walls_material();
+	_sphere->material = wall_material();
+
 	translation(vector(0, 0, 5), &mx_trans);
 	rotation_y(-M_PI / 4.0, &mx_rotation_y);
 	rotation_x(M_PI / 2.0, &mx_rotation_x);
 	scaling(vector(10, 0.01, 10), &mx_scal);
+
 	mxs_multiply(mx_trans, mx_rotation_y, &mx_1);
 	mxs_multiply(mx_1, mx_rotation_x, &mx_2);
-	mxs_multiply(mx_2, mx_scal, &mx_1);
-	set_transform(_sphere, mx_1);
+	mxs_multiply(mx_2, mx_scal, &mx_3);
+	set_transform(_sphere, mx_3);
 }
 
 // right_wall ← sphere()
@@ -79,17 +82,20 @@ void create_right_wall(void)
 	t_matrix mx_scal;
 	t_matrix mx_1;
 	t_matrix mx_2;
+	t_matrix mx_3;
 
 	_sphere = sphere();
-	_sphere->material = walls_material();
+	_sphere->material = wall_material();
+
 	translation(vector(0, 0, 5), &mx_trans);
 	rotation_y(M_PI / 4.0, &mx_rotation_y);
 	rotation_x(M_PI / 2.0, &mx_rotation_x);
 	scaling(vector(10, 0.01, 10), &mx_scal);
+
 	mxs_multiply(mx_trans, mx_rotation_y, &mx_1);
 	mxs_multiply(mx_1, mx_rotation_x, &mx_2);
-	mxs_multiply(mx_2, mx_scal, &mx_1);
-	set_transform(_sphere, mx_1);
+	mxs_multiply(mx_2, mx_scal, &mx_3);
+	set_transform(_sphere, mx_3);
 }
 
 // middle ← sphere()
@@ -175,17 +181,23 @@ void set_demo_camera(void)
 	set_camera_transform(mx);
 }
 
+// world.light_source ← point_light(point(-10, 10, -10), color(1, 1, 1))
+void set_demo_light(void)
+{
+	set_light(point(-10, 10, -10), 1.0);
+}
+
 void ray_tracer_v3_demo(void)
 {
-
 	create_floor();
 	create_left_wall();
 	create_right_wall();
+
 	create_middle_sphere();
 	create_right_sphere();
 	create_left_sphere();
-	// world.light_source ← point_light(point(-10, 10, -10), color(1, 1, 1))
-	set_light(point(-10, 10, -10), 1.0);
+
+	set_demo_light();
 	set_demo_camera();
 
 	render();

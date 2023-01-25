@@ -6,72 +6,83 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:29:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 18:12:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:12:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-static double	get_t_by_index(t_dlist **intersections, int index)
+static void	swap(t_intx **a, t_intx **b)
 {
-	t_dlist	*node;
-	t_intx	*_intersection;
+	t_intx	*temp;
 
-	node = ft_dlst_get_safe(intersections, index);
-	_intersection = node->content;
-	return (_intersection->t);
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-static void	swap_content_by_index(t_dlist **stack, int i_index, int j_index)
-{
-	t_dlist	*i_node;
-	t_dlist	*j_node;
-	void	*aux;
-
-	i_node = ft_dlst_get_safe(stack, i_index);
-	j_node = ft_dlst_get_safe(stack, j_index);
-	aux = i_node->content;
-	i_node->content = j_node->content;
-	j_node->content = aux;
-}
-
-static int	partition(t_dlist **intersections, int start, int end)
+static int	partition(t_intx **intxs_lst, int start, int end)
 {
 	double	pivot;
 	int		i;
 	int		j;
 
-	pivot = get_t_by_index(intersections, (start + end) / 2);
 	i = start;
-	j = end;
-	while (true)
+	pivot = intxs_lst[end]->t;
+	j = start;
+	while (j < end)
 	{
-		while (get_t_by_index(intersections, i) < pivot)
+		if (intxs_lst[j]->t <= pivot)
+		{
+			swap(&intxs_lst[j], &intxs_lst[i]);
 			i++;
-		while (get_t_by_index(intersections, j) > pivot)
-			j--;
-		if (i >= j)
-			return (j);
-		swap_content_by_index(intersections, i, j);
+		}
+		j++;
+	}
+	swap(&intxs_lst[i], &intxs_lst[end]);
+	return (i);
+}
+
+static void	quick_sort(t_intx **intxs_lst, int start, int end)
+{
+	int	_partition;
+
+	if (start < end)
+	{
+		_partition = partition(intxs_lst, start, end);
+		quick_sort(intxs_lst, start, _partition - 1);
+		quick_sort(intxs_lst, _partition + 1, end);
 	}
 }
 
-static void	free_quick_sort(t_dlist **intersections, int start, int end)
+static void	get_intxs_array(t_intx **intxs, t_dlist *list)
 {
-	int	division_index;
-
-	if (start < 0)
-		return ;
-	if (end < 0)
-		return ;
-	if (start >= end)
-		return ;
-	division_index = partition(intersections, start, end);
-	free_quick_sort(intersections, start, division_index);
-	free_quick_sort(intersections, division_index + 1, end);
+	while (list)
+	{
+		*intxs = list->content;
+		intxs++;
+		list = list->next;
+	}
 }
 
-void	sort_intersections(t_dlist **intersections)
+void	sort_intersections(t_dlist **intxs_lst)
 {
-	free_quick_sort(intersections, 0, ft_dlstsize(*intersections) - 1);
+	t_dlist	*node;
+	t_intx	**intxs;
+	int		intxs_list_size;
+	int		i;
+
+	node = *intxs_lst;
+	intxs_list_size = ft_dlstsize(node);
+	intxs = ft_calloc(intxs_list_size, sizeof(*intxs));
+	get_intxs_array(intxs, node);
+	quick_sort(intxs, 0, intxs_list_size - 1);
+	i = 0;
+	while (node)
+	{
+		node->content = intxs[i];
+		i++;
+		node = node->next;
+	}
+	free(intxs);
 }
