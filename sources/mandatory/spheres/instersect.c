@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:27:34 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:39:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ static int	resolve_count(double delta)
 
 t_intxs	intersect_sphere(t_object *sphere, t_ray ray)
 {
-	t_intersect_factors	f;
-	t_intxs			result;
+	t_intx_aux	f;
+	t_intxs		result;
 
-	ray = inverse_transform(ray, sphere->transform);
 	result.list = NULL;
 	f.sphere_to_ray = sub(ray.origin, sphere->origin);
 	f.a = dot(ray.direction, ray.direction);
 	f.b = 2.0 * dot(ray.direction, f.sphere_to_ray);
-	f.c = dot(f.sphere_to_ray, f.sphere_to_ray)
-		- sphere->radius * sphere->radius;
+	f.c = dot(f.sphere_to_ray, f.sphere_to_ray) - sphere->radius
+		* sphere->radius;
 	f.delta = f.b * f.b - 4 * f.a * f.c;
 	result.count = resolve_count(f.delta);
 	if (f.delta < 0.0)

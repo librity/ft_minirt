@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:49:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:38:48 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,16 @@ typedef enum e_shape
 	CYLINDER_SHAPE,
 }						t_shape;
 
-typedef struct s_object	t_object;
-
 typedef struct s_intxs
 {
 	int					count;
 	t_dlist				*list;
 }						t_intxs;
+
+typedef struct s_object	t_object;
+
+typedef t_intxs			(*t_intersect)(t_object *, t_ray);
+typedef t_v3d			(*t_normal_at)(t_object *, t_p3d);
 
 typedef struct s_intx
 {
@@ -136,8 +139,8 @@ struct					s_object
 	t_matrix			transform;
 	t_material			material;
 
-	t_intxs				(*intersect)(t_object *, t_ray);
-	t_v3d				(*normal_at)(t_object *, t_p3d);
+	t_intersect			intersect;
+	t_normal_at			normal_at;
 };
 
 typedef struct s_intersect_factors
@@ -151,7 +154,7 @@ typedef struct s_intersect_factors
 
 	double				root_1;
 	double				root_2;
-}						t_intersect_factors;
+}						t_intx_aux;
 
 typedef struct s_ray_comp
 {
