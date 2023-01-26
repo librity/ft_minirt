@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:41:49 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:01:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_ray_comp	prepare_computations(t_intx intersect, t_ray _ray)
 	comps.object = intersect.object;
 	comps.point = position(_ray, intersect.t);
 	comps.eyev = neg(_ray.direction);
-	comps.normalv = comps.object->normal_at(intersect.object, comps.point);
+	comps.normalv = normal_at(intersect.object, comps.point);
 	if (dot(comps.eyev, comps.normalv) < 0)
 	{
 		comps.inside = true;

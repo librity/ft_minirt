@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 18:37:55 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:54:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ void	inspect_intersections(t_dlist **intersections)
 		printf("t = %f\n", ((t_intx *)node->content)->t);
 		node = node->next;
 	}
-}
-
-static t_intxs	intersect_object(t_object *object, t_ray ray)
-{
-	ray = inverse_transform(ray, object->transform);
-	return (object->intersect(object, ray));
 }
 
 t_intxs	intersect_world(t_ray ray)

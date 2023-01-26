@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:27:28 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:54:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ void	create_intersection(t_dlist **intersections, double t, t_object *object)
 
 	intersection = new_intersection(t, object);
 	ft_dlst_addb_lalloc(ray_lalloc(), intersections, intersection);
+}
+
+t_intxs	intersect_object(t_object *object, t_ray ray)
+{
+	ray = inverse_transform(ray, object->transform);
+	return (object->intersect(object, ray));
 }
