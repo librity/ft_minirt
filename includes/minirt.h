@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 19:30:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:38:33 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ t_v3d			sphere_normal_at(t_object *object, t_p3d point);
 t_object		*create_plane(t_p3d origin, t_p3d normal, t_rgb color);
 t_object		*plane(void);
 
+t_intxs			intersect_plane(t_object *object, t_ray ray);
 t_v3d			plane_normal_at(t_object *plane, t_p3d point);
 
 /******************************************************************************\
