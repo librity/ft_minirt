@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 19:00:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:27:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,9 @@ t_v3d			sphere_normal_at(t_object *object, t_p3d point);
 \******************************************************************************/
 
 t_object		*create_plane(t_p3d origin, t_p3d normal, t_rgb color);
+t_object		*plane(void);
+
+t_v3d			plane_normal_at(t_object *plane, t_p3d point);
 
 /******************************************************************************\
  * CYLINDERS
