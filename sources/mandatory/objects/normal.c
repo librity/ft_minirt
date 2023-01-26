@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:55:20 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 18:59:40 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:30:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_v3d	normal_at(t_object *object, t_p3d point)
+t_v3d	object_normal_at(t_object *object, t_p3d point)
 {
 	t_v3d		result;
 	t_matrix	inverse_matrix;

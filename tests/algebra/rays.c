@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:47:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:23:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:29:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ MU_TEST(intersect_scaled_tst)
 	_sphere = sphere();
 	scaling(vector(2, 2, 2), &mx);
 	set_transform(_sphere, mx);
-	xs = intersect_sphere(_sphere, _ray);
+	xs = intersect_object(_sphere, _ray);
 
 	mu_assert_int_eq(2, xs.count);
 
@@ -264,7 +264,7 @@ MU_TEST(intersect_translated_tst)
 	_sphere = sphere();
 	translation(vector(5, 0, 0), &mx);
 	set_transform(_sphere, mx);
-	xs = intersect_sphere(_sphere, _ray);
+	xs = intersect_object(_sphere, _ray);
 
 	mu_assert_int_eq(0, xs.count);
 }
