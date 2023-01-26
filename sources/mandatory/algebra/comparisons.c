@@ -6,18 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 16:34:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/30 09:43:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:43:05 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <algebra.h>
-
-bool	doubles_are_equal(double a, double b)
-{
-	if (fabs(a - b) < NEAR_ZERO_TOLERANCE)
-		return (true);
-	return (false);
-}
 
 bool	near_zero(t_v3d vector)
 {
@@ -25,9 +18,9 @@ bool	near_zero(t_v3d vector)
 	bool	cuts_off_y;
 	bool	cuts_off_z;
 
-	cuts_off_x = fabs(vector.x) < NEAR_ZERO_TOLERANCE;
-	cuts_off_y = fabs(vector.y) < NEAR_ZERO_TOLERANCE;
-	cuts_off_z = fabs(vector.z) < NEAR_ZERO_TOLERANCE;
+	cuts_off_x = double_near_zero(vector.x);
+	cuts_off_y = double_near_zero(vector.y);
+	cuts_off_z = double_near_zero(vector.z);
 	return (cuts_off_x && cuts_off_y && cuts_off_z);
 }
 

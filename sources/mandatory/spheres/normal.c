@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 18:37:50 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/24 11:56:07 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/01/26 18:59:34 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_c3d	color_at(t_ray _ray)
+t_v3d	sphere_normal_at(t_object *sphere, t_p3d point)
 {
-	t_intxs		xs;
-	t_intx		*inter;
-	t_ray_comp	ray_comp;
-	t_c3d		ray_color;
-
-	xs = intersect_world(_ray);
-	inter = hit(xs);
-	if (inter == NULL)
-	{
-		free_ray_lalloc();
-		return (color_3d(0, 0, 0));
-	}
-	ray_comp = prepare_computations(*inter, _ray);
-	ray_color = shade_hit(ray_comp);
-	free_ray_lalloc();
-	return (ray_color);
+	return (sub(point, sphere->origin));
 }

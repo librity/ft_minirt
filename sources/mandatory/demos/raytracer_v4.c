@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracer_v3.c                                     :+:      :+:    :+:   */
+/*   raytracer_v4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:40:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:50:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:55:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,80 +22,15 @@ t_material	wall_material(void)
 	return (mat);
 }
 
-// floor ← sphere()
-// floor.transform ← scaling(10, 0.01, 10)
-// floor.material ← material()
-// floor.material.color ← color(1, 0.9, 0.9)
-// floor.material.specular ← 0
 void create_floor(void)
 {
-	t_object *_sphere;
-	t_matrix mx_scal;
+	t_object *_plane;
+	// t_matrix mx_scal;
 
-	_sphere = sphere();
-	scaling(vector(10, 0.01, 10), &mx_scal);
-	set_transform(_sphere, mx_scal);
-	_sphere->material = wall_material();
-}
-
-// left_wall ← sphere()
-// left_wall.transform ← translation(0, 0, 5) *
-//  rotation_y(- π/4) * rotation_x( π/2) *
-//  scaling(10, 0.01, 10)
-// left_wall.material ← floor.material
-void create_left_wall(void)
-{
-	t_object *_sphere;
-	t_matrix mx_rotation_y;
-	t_matrix mx_rotation_x;
-	t_matrix mx_trans;
-	t_matrix mx_scal;
-	t_matrix mx_1;
-	t_matrix mx_2;
-	t_matrix mx_3;
-
-	_sphere = sphere();
-	_sphere->material = wall_material();
-
-	translation(vector(0, 0, 5), &mx_trans);
-	rotation_y(-M_PI / 4.0, &mx_rotation_y);
-	rotation_x(M_PI / 2.0, &mx_rotation_x);
-	scaling(vector(10, 0.01, 10), &mx_scal);
-
-	mxs_multiply(mx_trans, mx_rotation_y, &mx_1);
-	mxs_multiply(mx_1, mx_rotation_x, &mx_2);
-	mxs_multiply(mx_2, mx_scal, &mx_3);
-	set_transform(_sphere, mx_3);
-}
-
-// right_wall ← sphere()
-// right_wall.transform ← translation(0, 0, 5) *
-//  rotation_y( π/4) * rotation_x( π/2) *
-//  scaling(10, 0.01, 10)
-// right_wall.material ← floor.material
-void create_right_wall(void)
-{
-	t_object *_sphere;
-	t_matrix mx_rotation_y;
-	t_matrix mx_rotation_x;
-	t_matrix mx_trans;
-	t_matrix mx_scal;
-	t_matrix mx_1;
-	t_matrix mx_2;
-	t_matrix mx_3;
-
-	_sphere = sphere();
-	_sphere->material = wall_material();
-
-	translation(vector(0, 0, 5), &mx_trans);
-	rotation_y(M_PI / 4.0, &mx_rotation_y);
-	rotation_x(M_PI / 2.0, &mx_rotation_x);
-	scaling(vector(10, 0.01, 10), &mx_scal);
-
-	mxs_multiply(mx_trans, mx_rotation_y, &mx_1);
-	mxs_multiply(mx_1, mx_rotation_x, &mx_2);
-	mxs_multiply(mx_2, mx_scal, &mx_3);
-	set_transform(_sphere, mx_3);
+	_plane = plane();
+	// scaling(vector(10, 0.01, 10), &mx_scal);
+	// set_transform(_plane, mx_scal);
+	_plane->material = wall_material();
 }
 
 // middle ← sphere()
@@ -172,11 +107,10 @@ void create_left_sphere(void)
 //  vector(0, 1, 0))
 void set_demo_camera(void)
 {
-
 	t_matrix mx;
 
-	set_challenge_camera(100, 50, M_PI / 3.0);
-	// set_challenge_camera(500, 500, M_PI / 3.0);
+	// set_challenge_camera(100, 50, M_PI / 3.0);
+	set_challenge_camera(500, 500, M_PI / 3.0);
 	view_transformation(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0), &mx);
 	set_camera_transform(mx);
 }
@@ -187,11 +121,9 @@ void set_demo_light(void)
 	set_light(point(-10, 10, -10), 1.0);
 }
 
-void ray_tracer_v3_demo(void)
+void ray_tracer_v4_demo(void)
 {
 	create_floor();
-	create_left_wall();
-	create_right_wall();
 
 	create_middle_sphere();
 	create_right_sphere();

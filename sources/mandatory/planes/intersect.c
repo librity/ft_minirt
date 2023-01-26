@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 19:08:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 18:37:50 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2023/01/26 19:37:48 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/01/26 19:52:20 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_c3d	color_at(t_ray _ray)
+t_intxs	intersect_plane(t_object *object, t_ray ray)
 {
-	t_intxs		xs;
-	t_intx		*inter;
-	t_ray_comp	ray_comp;
-	t_c3d		ray_color;
+	t_intxs	result;
+	double	t;
 
-	xs = intersect_world(_ray);
-	inter = hit(xs);
-	if (inter == NULL)
-	{
-		free_ray_lalloc();
-		return (color_3d(0, 0, 0));
-	}
-	ray_comp = prepare_computations(*inter, _ray);
-	ray_color = shade_hit(ray_comp);
-	free_ray_lalloc();
-	return (ray_color);
+	(void)object;
+	result.count = 0;
+	result.list = NULL;
+	if (double_near_zero(ray.direction.y))
+		return (result);
+	t = -ray.origin.y / ray.direction.y;
+	result.count = 1;
+	create_intersection(&result.list, t, object);
+	return (result);
 }

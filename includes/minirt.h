@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 18:43:13 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:54:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,12 +171,17 @@ t_c3d			lighting(t_material material, t_light light, t_p3d point,
  * OBJECTS
 \******************************************************************************/
 
-void			create_object(t_object *object);
+t_object		*create_object(void);
 
 void			set_transform(t_object *object, t_matrix mx);
 
-t_v3d			normal_at(t_object *object, t_p3d point);
 t_v3d			reflect(t_v3d incident, t_v3d normal);
+
+t_intx			*new_intersection(double t, t_object *object);
+void			create_intersection(t_dlist **intersections, double t, t_object *object);
+t_intxs			intersect_object(t_object *object, t_ray ray);
+
+t_v3d			object_normal_at(t_object *object, t_p3d point);
 
 /******************************************************************************\
  * WORLD
@@ -199,23 +204,27 @@ t_ray			ray_for_pixel(int x, int y);
 \******************************************************************************/
 
 t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
-t_object		*sphere(void);
 t_object		*create_sphere(t_p3d origin, double diameter, t_rgb color);
+t_object		*sphere(void);
 
 bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
 
-t_intxs		intersect(t_object *sphere, t_ray ray);
-t_intx	*new_intersection(double t, t_object *object);
-void			create_intersection(t_dlist **intersections, double t, t_object *object);
+t_intxs			intersect_sphere(t_object *sphere, t_ray ray);
 
-t_intx	*hit(t_intxs intersect);
+t_intx			*hit(t_intxs intersect);
+
+t_v3d			sphere_normal_at(t_object *object, t_p3d point);
 
 /******************************************************************************\
  * PLANES
 \******************************************************************************/
 
-void			create_plane(t_p3d origin, t_p3d normal, t_rgb color);
+t_object		*create_plane(t_p3d origin, t_p3d normal, t_rgb color);
+t_object		*plane(void);
+
+t_intxs			intersect_plane(t_object *object, t_ray ray);
+t_v3d			plane_normal_at(t_object *plane, t_p3d point);
 
 /******************************************************************************\
  * CYLINDERS
@@ -229,7 +238,7 @@ typedef struct s_create_cylinder
 	double		height;
 	t_rgb		color;
 }				t_create_cylinder;
-void			create_cylinder(t_create_cylinder p);
+t_object		*create_cylinder(t_create_cylinder p);
 
 /******************************************************************************\
  * MLX
@@ -242,6 +251,7 @@ void			mlx_image_save_ppm(t_mlx_image *image, char *filename);
 \******************************************************************************/
 
 void			sort_intersections(t_dlist **intersections);
+void			sort_intersections_broken(t_dlist **intersections);
 
 /******************************************************************************\
  * FILES
@@ -293,5 +303,6 @@ void			clock_sec_ppm_demo(void);
 void			ray_tracer_v1_demo();
 void			ray_tracer_v2_demo();
 void			ray_tracer_v3_demo();
+void			ray_tracer_v4_demo(void);
 
 #endif

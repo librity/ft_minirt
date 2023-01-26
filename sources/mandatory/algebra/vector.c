@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/28 17:49:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:34:35 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_v3d	cross(t_v3d first, t_v3d second)
 	result.x = first.y * second.z - first.z * second.y;
 	result.y = first.z * second.x - first.x * second.z;
 	result.z = first.x * second.y - first.y * second.x;
+	result.type = 0.0;
 	return (result);
 }
 
