@@ -75,6 +75,7 @@
 
 - [🧐 About](#about)
 - [🏁 Getting Started](#getting_started)
+- [🧪 Tests](#tests)
 - [🎨 Gallery](#gallery)
 - [📝 Notes](#notes)
 - [🐙 Github Actions](#github_actions)
@@ -136,6 +137,27 @@ $ make run
 ```
 
 A beautiful image should pop out of your terminal like _magic_.
+
+## 🧪 Tests <a name = "tests"></a>
+
+You can run all tests with:
+
+```bash
+$ make -s tests
+```
+
+Or individual tests with:
+
+```bash
+$ make -s test t=lexer/tokens
+```
+
+You can also run them with `valgrind`:
+
+```bash
+$ make -s vgtests
+$ make -s vgtest t=lexer/tokens
+```
 
 ## 🎨 Gallery <a name="gallery"></a>
 
