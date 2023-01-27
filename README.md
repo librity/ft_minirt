@@ -58,7 +58,7 @@
 !            ┃┃┃┃┃┃┃┃┃┃┃━━━┃┃┗┓┗┛┗┓┗━┛┃━━━┏┛┗┓━┃┃┗┓┏━┓┃┗━┛┃┗━━┓┃┃┗┓           !
 :            ┗┛┗┛┗┛┛┛┗┛┛━━━┛┗━┛━━━┛━┓┏┛━━━┗━━┛━┛┗━┛┛━┗┛━━━┛━━━┛┛┗━┛           :
 :            ━━━━━━━━━━━━━━━━━━━━━━━┛┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━           :
-.            ━━━━━━━━━━━━━━━━━━━━━━━━┛━━━━━━━━━━━━━━━━━━by lpaulo-m           .
+.            ━━━━━━━━━━━━━━━━━━━━━━━━┛━━━━━━━━by ppaulo-d & lpaulo-m           .
 .                                                                              .
 :                      __ __     ___ __  __     __                             :
 :                     /  /  \|\ | | |__)/  \|  (_                              :
@@ -90,9 +90,8 @@ Traces the scene described in a file and displays it in an interactive window.
 It can also save the rendered scene to a `.bmp` file.
 
 Based on my implementation of
-[Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html):
-
-- https://github.com/librity/weekendrt
+[Ray Tracing in One Weekend](https://github.com/librity/weekendrt)
+and the [The Ray Tracer Challenge](http://raytracerchallenge.com/).
 
 For more details and examples you can read
 the [Docs](./docs) and the [Checklist](./docs/checklist.md).
