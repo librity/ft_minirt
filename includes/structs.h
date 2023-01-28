@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 18:38:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:54:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_intersect_factors
 	double				b;
 	double				c;
 	double				delta;
+	double				disk;
 
 	double				root_1;
 	double				root_2;

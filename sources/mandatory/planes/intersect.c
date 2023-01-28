@@ -6,24 +6,23 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:37:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 19:52:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:48:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_intxs	intersect_plane(t_object *object, t_ray ray)
+t_intxs	intersect_plane(t_object *plane, t_ray ray)
 {
 	t_intxs	result;
 	double	t;
 
-	(void)object;
 	result.count = 0;
 	result.list = NULL;
 	if (double_near_zero(ray.direction.y))
 		return (result);
 	t = -ray.origin.y / ray.direction.y;
 	result.count = 1;
-	create_intersection(&result.list, t, object);
+	create_intersection(&result.list, t, plane);
 	return (result);
 }

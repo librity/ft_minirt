@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:09:50 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/13 18:53:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:47:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_intx	*hit(t_intxs intersect)
 {
-	t_dlist					*node;
+	t_dlist			*node;
 	t_intx			*current;
 	t_intx			*min_positive;
 	t_intx			max_intersection;
