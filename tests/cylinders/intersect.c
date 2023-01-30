@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 16:23:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/28 17:58:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:12:55 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_object	*_cylinder;
 t_ray		_ray;
 t_intxs		xs;
+t_intx		*inter;
 
 void	test_setup(void)
 {
@@ -43,10 +44,36 @@ MU_TEST(misses_tst)
 	assert_miss(point(0, 0, -5), vector(1, 1, 1));
 }
 
+void	assert_hit(t_p3d origin, t_v3d direction, double t0, double t1)
+{
+	_cylinder = cylinder();
+	direction = normalize(direction);
+	_ray = ray(origin, direction);
+	xs = intersect_object(_cylinder, _ray);
+
+	mu_assert_int_eq(2, xs.count);
+
+	inter = xs.list->content;
+	mu_check(_cylinder == inter->object);
+	mu_assert_double_eq(t0, inter->t);
+
+	inter = xs.list->next->content;
+	mu_check(_cylinder == inter->object);
+	mu_assert_double_eq(t1, inter->t);
+}
+
+MU_TEST(hits_tst){
+	assert_hit(point(1, 0, -5), vector(0, 0, 1), 5, 5);
+	assert_hit(point(0, 0, -5), vector(0, 0, 1), 4, 6);
+	assert_hit(point(0.5, 0, -5), vector(0.1, 1, 1), 6.80798 , 7.08872);
+}
+
 MU_TEST_SUITE(intersect_cylinder_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
+
 	MU_RUN_TEST(misses_tst);
+	MU_RUN_TEST(hits_tst);
 }
 
 MU_MAIN
