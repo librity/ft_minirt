@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:40:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 19:26:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:54:18 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,22 @@ void create_right_sphere(void)
 // left.material.specular ← 0.3
 void create_left_cylinder(void)
 {
-	t_object *_sphere;
+	t_object *_cyl;
 	t_matrix mx_1;
 	t_matrix mx_2;
 	t_matrix transform;
 
-	_sphere = cylinder();
+	_cyl = cylinder();
+	_cyl->minimum = 1;
+	_cyl->maximum = 2;
 	translation(vector(-1.5, 0.33, -0.75), &mx_1);
 	scaling(vector(0.33, 0.33, 0.33), &mx_2);
 	mxs_multiply(mx_1, mx_2, &transform);
-	set_transform(_sphere, transform);
-	_sphere->material = material();
-	_sphere->material.color = color_3d(1, 0.8, 0.1);
-	_sphere->material.specular = 0.3;
-	_sphere->material.diffuse = 0.7;
+	set_transform(_cyl, transform);
+	_cyl->material = material();
+	_cyl->material.color = color_3d(1, 0.8, 0.1);
+	_cyl->material.specular = 0.3;
+	_cyl->material.diffuse = 0.7;
 }
 
 // camera ← camera(100, 50, π/3)
