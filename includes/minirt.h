@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/28 17:59:46 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:26:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,5 +308,6 @@ void			ray_tracer_v1_demo();
 void			ray_tracer_v2_demo();
 void			ray_tracer_v3_demo();
 void			ray_tracer_v4_demo(void);
+void			ray_tracer_v5_demo(void);
 
 #endif
