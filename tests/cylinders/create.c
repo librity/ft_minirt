@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:31:21 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 19:34:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:12:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ MU_TEST(min_max_tst)
 {
 	_cyl = cylinder();
 
-	mu_assert_double_eq(DBL_MIN, _cyl->minimum);
+	mu_assert_double_eq(-DBL_MAX, _cyl->minimum);
 	mu_assert_double_eq(DBL_MAX, _cyl->maximum);
 }
 

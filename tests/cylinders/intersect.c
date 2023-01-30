@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 16:23:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 19:50:54 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:11:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ MU_TEST(misses_tst)
 	assert_miss(point(0, 0, -5), vector(1, 1, 1));
 }
 
-void	assert_double_hit(t_p3d origin, t_v3d direction, double t0, double t1)
+void	assert_hit(t_p3d origin, t_v3d direction, double t0, double t1)
 {
 	_cylinder = cylinder();
 	direction = normalize(direction);
@@ -63,9 +63,9 @@ void	assert_double_hit(t_p3d origin, t_v3d direction, double t0, double t1)
 }
 
 MU_TEST(hits_tst){
-	assert_double_hit(point(1, 0, -5), vector(0, 0, 1), 5, 5);
-	assert_double_hit(point(0, 0, -5), vector(0, 0, 1), 4, 6);
-	assert_double_hit(point(0.5, 0, -5), vector(0.1, 1, 1), 6.80798 , 7.08872);
+	assert_hit(point(1, 0, -5), vector(0, 0, 1), 5, 5);
+	assert_hit(point(0, 0, -5), vector(0, 0, 1), 4, 6);
+	assert_hit(point(0.5, 0, -5), vector(0.1, 1, 1), 6.80798 , 7.08872);
 }
 
 void	assert_truncated_hit(t_p3d origin, t_v3d direction, int count)

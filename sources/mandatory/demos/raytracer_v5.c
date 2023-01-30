@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:40:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 19:54:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:05:27 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void create_left_cylinder(void)
 	t_matrix transform;
 
 	_cyl = cylinder();
-	_cyl->minimum = 1;
-	_cyl->maximum = 2;
+	// _cyl->minimum = 1;
+	// _cyl->maximum = 2;
 	translation(vector(-1.5, 0.33, -0.75), &mx_1);
 	scaling(vector(0.33, 0.33, 0.33), &mx_2);
 	mxs_multiply(mx_1, mx_2, &transform);
