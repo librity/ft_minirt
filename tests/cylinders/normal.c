@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:59:18 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 19:23:18 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:47:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ void	test_teardown(void)
 	free_world_lalloc();
 }
 
-
-// Scenario Outline: Normal vector on a cylinder
-//  Given cyl ← cylinder()
-//  When n ← local_normal_at(cyl, <point>)
-//  Then n = <normal>
 void	assert_normal_at(t_p3d point, t_v3d expected)
 {
 	_cyl = cylinder();
@@ -36,8 +31,6 @@ void	assert_normal_at(t_p3d point, t_v3d expected)
 	assert_tuple_eq(expected, result);
 }
 
-//  Examples:
-//  | point | normal |
 MU_TEST(normal_at_tst)
 {
 	assert_normal_at(point(1, 0, 0), vector(1, 0, 0));
