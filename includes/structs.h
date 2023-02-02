@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 19:44:01 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:24:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ struct					s_object
 	double				height;
 	double				minimum;
 	double				maximum;
+	bool				closed;
 
 	t_rgb				color_rgb;
 	t_c3d				color_3d;
