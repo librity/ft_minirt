@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 18:38:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:24:01 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,9 @@ struct					s_object
 	double				radius;
 
 	double				height;
+	double				minimum;
+	double				maximum;
+	bool				closed;
 
 	t_rgb				color_rgb;
 	t_c3d				color_3d;
@@ -143,7 +146,7 @@ struct					s_object
 	t_normal_at			normal_at;
 };
 
-typedef struct s_intersect_factors
+typedef struct s_intx_aux
 {
 	t_v3d				sphere_to_ray;
 
@@ -154,6 +157,9 @@ typedef struct s_intersect_factors
 
 	double				root_1;
 	double				root_2;
+
+	double				y0;
+	double				y1;
 }						t_intx_aux;
 
 typedef struct s_ray_comp

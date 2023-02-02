@@ -1,17 +1,18 @@
 # - [ ] Overview
 
+- [x] Vectors, Matrices and Rays
 - [x] Validate `.rt` scene files
-- [x] Vectors
-- [x] Parse `.rt` scene files
-- [ ] Ray tracing logic
-  - [ ] Camera
-  - [ ] Spheres
-  - [ ] Planes
-  - [ ] Cylinders
-  - [ ] Ambient light
-  - [ ] Spot Light
-  - [ ] Hard Shadows
+- [ ] Parse `.rt` scene files
+- [x] Ray tracing logic
+  - [x] Camera
+  - [x] Spheres
+  - [x] Planes
+  - [x] Cylinders
+  - [x] Ambient light
+  - [x] Spot Light
+  - [x] Hard Shadows
 - [ ] Minilibx user interface
+- [ ] `norminette`
 
 # - [ ] Mandatory
 
@@ -43,8 +44,8 @@
   - [ ] All `libft.h`
 - [ ] Create demo projects with miniLibX to see how it works
 - [ ] Load scene from `.rt` file
-  - [ ] Validate file name: `*.rt`
-  - [ ] Validate `.rt` file format
+  - [x] Validate file name: `*.rt`
+  - [x] Validate `.rt` file format
   - [ ] Ambient lightning: `A NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [ ] Camera: `C X,Y,Z OX,OY,OZ HORIZONTAL_FIELD_OF_VIEW`
   - [ ] Light: `L X,Y,Z NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
@@ -52,12 +53,12 @@
   - [ ] Plane: `pl X,Y,Z OX,OY,OZ RED,GREEN,BLUE`
   - [ ] Cylinder: `cy X,Y,Z OX,OY,OZ DIAMETER HEIGHT RED,GREEN,BLUE`
 - [x] Create Vectors functions
-- [ ] Create Linear Algebra functions
+- [x] Create Linear Algebra functions
 - [ ] Define ray tracing logic
 - [ ] Objects
-  - [ ] Spheres
-  - [ ] Planes
-  - [ ] Cylinders
+  - [x] Spheres
+  - [x] Planes
+  - [x] Cylinders
   - [ ] Correctly handle object intersections
   - [ ] Correctly handle object inside
 - [ ] Create a user interface with `MiniLibX`
@@ -68,10 +69,13 @@
 
 # - [ ] Bonus
 
-- [ ] Add specular reflection to have a full Phong reflection model.
+- [x] Add specular reflection to have a full Phong reflection model.
+- [ ] One other 2nd degree object
+  - [ ] Cone
+  - [ ] Hyperboloid
+  - [ ] Paraboloid
 - [ ] Color disruption: checkerboard.
 - [ ] Colored and multi-spot lights.
-- [ ] One other 2nd degree object: Cone, Hyperboloid, Paraboloid..
 - [ ] Handle bump map textures.
 - [ ] Save trace to `.bmp` file
   - [ ] `s` key saves the image

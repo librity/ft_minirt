@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 19:54:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:46:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,9 @@ t_v3d			reflect(t_v3d incident, t_v3d normal);
 
 t_intx			*new_intersection(double t, t_object *object);
 void			create_intersection(t_dlist **intersections, double t, t_object *object);
+void			add_intersection(t_intxs *xs, double t, t_object *object);
 t_intxs			intersect_object(t_object *object, t_ray ray);
+t_intxs			empty_intersections(void);
 
 t_v3d			object_normal_at(t_object *object, t_p3d point);
 
@@ -199,6 +201,8 @@ bool			is_shadowed(t_p3d point);
 
 t_ray			ray_for_pixel(int x, int y);
 
+t_intx			*hit(t_intxs intersect);
+
 /******************************************************************************\
  * SPHERES
 \******************************************************************************/
@@ -211,10 +215,7 @@ bool			ray_hits_sphere(t_ray ray, t_object sphere);
 t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
 
 t_intxs			intersect_sphere(t_object *sphere, t_ray ray);
-
-t_intx			*hit(t_intxs intersect);
-
-t_v3d			sphere_normal_at(t_object *object, t_p3d point);
+t_v3d			sphere_normal_at(t_object *sphere, t_p3d point);
 
 /******************************************************************************\
  * PLANES
@@ -223,7 +224,7 @@ t_v3d			sphere_normal_at(t_object *object, t_p3d point);
 t_object		*create_plane(t_p3d origin, t_p3d normal, t_rgb color);
 t_object		*plane(void);
 
-t_intxs			intersect_plane(t_object *object, t_ray ray);
+t_intxs			intersect_plane(t_object *plane, t_ray ray);
 t_v3d			plane_normal_at(t_object *plane, t_p3d point);
 
 /******************************************************************************\
@@ -239,6 +240,10 @@ typedef struct s_create_cylinder
 	t_rgb		color;
 }				t_create_cylinder;
 t_object		*create_cylinder(t_create_cylinder p);
+t_object		*cylinder(void);
+
+t_intxs			intersect_cylinder(t_object *cylinder, t_ray ray);
+t_v3d			cylinder_normal_at(t_object *cylinder, t_p3d point);
 
 /******************************************************************************\
  * MLX
@@ -304,5 +309,6 @@ void			ray_tracer_v1_demo();
 void			ray_tracer_v2_demo();
 void			ray_tracer_v3_demo();
 void			ray_tracer_v4_demo(void);
+void			ray_tracer_v5_demo(void);
 
 #endif

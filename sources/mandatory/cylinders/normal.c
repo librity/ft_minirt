@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
+/*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:37:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/28 17:48:32 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2023/01/30 19:24:23 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/02 18:57:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_intxs	intersect_plane(t_object *plane, t_ray ray)
+t_v3d	cylinder_normal_at(t_object *cylinder, t_p3d point)
 {
-	t_intxs	result;
-	double	t;
+	double	dist;
 
-	result.count = 0;
-	result.list = NULL;
-	if (double_near_zero(ray.direction.y))
-		return (result);
-	t = -ray.origin.y / ray.direction.y;
-	result.count = 1;
-	create_intersection(&result.list, t, plane);
-	return (result);
+	dist = point.x * point.x + point.z * point.z;
+	if (dist < 1 && point.y >= cylinder->maximum - EPSILON)
+		return (vector(0, 1, 0));
+	if (dist < 1 && point.y <= cylinder->minimum + EPSILON)
+		return (vector(0, -1, 0));
+	return (vector(point.x, 0, point.z));
 }

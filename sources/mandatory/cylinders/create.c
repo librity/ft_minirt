@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 20:21:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:24:14 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ static void	set_cylinder(t_object *cylinder, t_create_cylinder p)
 	cylinder->diameter = p.diameter;
 	cylinder->radius = p.diameter / 2.0;
 	cylinder->height = p.height;
+	cylinder->minimum = -DBL_MAX;
+	cylinder->maximum = DBL_MAX;
+	cylinder->closed = false;
 	cylinder->color_rgb = p.color;
 	cylinder->color_3d = rgb_to_c3d(p.color);
+	cylinder->intersect = &intersect_cylinder;
+	cylinder->normal_at = &cylinder_normal_at;
 }
 
 t_object	*create_cylinder(t_create_cylinder params)
@@ -31,4 +36,16 @@ t_object	*create_cylinder(t_create_cylinder params)
 	cylinder = create_object();
 	set_cylinder(cylinder, params);
 	return (cylinder);
+}
+
+t_object	*cylinder(void)
+{
+	t_create_cylinder	params;
+
+	params.origin = point(0, 0, 0);
+	params.normal = vector(1, 0, 0);
+	params.diameter = 2.0;
+	params.height = 10.0;
+	params.color = rgb_red();
+	return (create_cylinder(params));
 }
