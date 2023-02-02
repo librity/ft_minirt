@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 19:26:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:46:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ t_v3d			reflect(t_v3d incident, t_v3d normal);
 
 t_intx			*new_intersection(double t, t_object *object);
 void			create_intersection(t_dlist **intersections, double t, t_object *object);
+void			add_intersection(t_intxs *xs, double t, t_object *object);
 t_intxs			intersect_object(t_object *object, t_ray ray);
 t_intxs			empty_intersections(void);
 

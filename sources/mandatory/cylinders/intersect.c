@@ -6,11 +6,35 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 20:11:37 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:48:19 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
+
+static bool	check_cap(t_ray ray, double temp)
+{
+	double	x;
+	double	z;
+
+	x = ray.origin.x + temp * ray.direction.x;
+	z = ray.origin.z + temp * ray.direction.z;
+	return ((x * x + z * z) <= 1);
+}
+
+static void	intersect_caps(t_object *cylinder, t_ray ray, t_intxs *xs)
+{
+	double	t;
+
+	if (!cylinder->closed || double_near_zero(ray.direction.y))
+		return ;
+	t = (cylinder->minimum - ray.origin.y) / ray.direction.y;
+	if (check_cap(ray, t) == true)
+		add_intersection(xs, t, cylinder);
+	t = (cylinder->maximum - ray.origin.y) / ray.direction.y;
+	if (check_cap(ray, t) == true)
+		add_intersection(xs, t, cylinder);
+}
 
 t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 {
@@ -20,7 +44,10 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 	result = empty_intersections();
 	f.a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
 	if (double_near_zero(f.a))
+	{
+		intersect_caps(cylinder, ray, &result);
 		return (result);
+	}
 	f.b = 2.0 * ray.origin.x * ray.direction.x + 2.0 * ray.origin.z
 		* ray.direction.z;
 	f.c = ray.origin.x * ray.origin.x + ray.origin.z * ray.origin.z - 1.0;
@@ -33,15 +60,10 @@ t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 		ft_swap_d(&f.root_1, &f.root_2);
 	f.y0 = ray.origin.y + f.root_1 * ray.direction.y;
 	if (f.y0 > cylinder->minimum && f.y0 < cylinder->maximum)
-	{
-		create_intersection(&result.list, f.root_1, cylinder);
-		result.count++;
-	}
+		add_intersection(&result, f.root_1, cylinder);
 	f.y1 = ray.origin.y + f.root_2 * ray.direction.y;
 	if (f.y1 > cylinder->minimum && f.y1 < cylinder->maximum)
-	{
-		create_intersection(&result.list, f.root_2, cylinder);
-		result.count++;
-	}
+		add_intersection(&result, f.root_2, cylinder);
+	intersect_caps(cylinder, ray, &result);
 	return (result);
 }

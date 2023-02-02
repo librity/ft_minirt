@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 16:23:09 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/30 20:11:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:44:51 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,27 @@ MU_TEST(truncated_hits_tst){
 	assert_truncated_hit(point(0, 1.5, -2), vector(0, 0, 1), 2);
 }
 
+void	assert_closed_hit(t_p3d origin, t_v3d direction, int count)
+{
+	_cylinder = cylinder();
+	_cylinder->minimum = 1;
+	_cylinder->maximum = 2;
+	_cylinder->closed = true;
+	direction = normalize(direction);
+	_ray = ray(origin, direction);
+	xs = intersect_object(_cylinder, _ray);
+
+	mu_assert_int_eq(count, xs.count);
+}
+
+MU_TEST(closed_hits_tst){
+	assert_closed_hit(point(0, 3, 0), vector(0, -1, 0), 2);
+	assert_closed_hit(point(0, 3, -2), vector(0, -1, 2), 2);
+	assert_closed_hit(point(0, 4, -2), vector(0, -1, 1), 2);
+	assert_closed_hit(point(0, 0, -2), vector(0, 1, 2), 2);
+	assert_closed_hit(point(0, -1, -2), vector(0, 1, 1), 2);
+}
+
 MU_TEST_SUITE(intersect_cylinder_suite)
 {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
@@ -96,6 +117,7 @@ MU_TEST_SUITE(intersect_cylinder_suite)
 	MU_RUN_TEST(misses_tst);
 	MU_RUN_TEST(hits_tst);
 	MU_RUN_TEST(truncated_hits_tst);
+	MU_RUN_TEST(closed_hits_tst);
 }
 
 MU_MAIN
