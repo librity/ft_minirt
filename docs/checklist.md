@@ -1,17 +1,18 @@
 # - [ ] Overview
 
-- [x] Validate `.rt` scene files
 - [x] Vectors, Matrices and Rays
+- [x] Validate `.rt` scene files
 - [ ] Parse `.rt` scene files
-- [ ] Ray tracing logic
+- [x] Ray tracing logic
   - [x] Camera
   - [x] Spheres
   - [x] Planes
-  - [ ] Cylinders
+  - [x] Cylinders
   - [x] Ambient light
   - [x] Spot Light
   - [x] Hard Shadows
 - [ ] Minilibx user interface
+- [ ] `norminette`
 
 # - [ ] Mandatory
 
@@ -44,7 +45,7 @@
 - [ ] Create demo projects with miniLibX to see how it works
 - [ ] Load scene from `.rt` file
   - [x] Validate file name: `*.rt`
-  - [ ] Validate `.rt` file format
+  - [x] Validate `.rt` file format
   - [ ] Ambient lightning: `A NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [ ] Camera: `C X,Y,Z OX,OY,OZ HORIZONTAL_FIELD_OF_VIEW`
   - [ ] Light: `L X,Y,Z NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
@@ -57,7 +58,7 @@
 - [ ] Objects
   - [x] Spheres
   - [x] Planes
-  - [ ] Cylinders
+  - [x] Cylinders
   - [ ] Correctly handle object intersections
   - [ ] Correctly handle object inside
 - [ ] Create a user interface with `MiniLibX`
@@ -69,7 +70,10 @@
 # - [ ] Bonus
 
 - [x] Add specular reflection to have a full Phong reflection model.
-- [ ] One other 2nd degree object: Cone, Hyperboloid, Paraboloid..
+- [ ] One other 2nd degree object
+  - [ ] Cone
+  - [ ] Hyperboloid
+  - [ ] Paraboloid
 - [ ] Color disruption: checkerboard.
 - [ ] Colored and multi-spot lights.
 - [ ] Handle bump map textures.
