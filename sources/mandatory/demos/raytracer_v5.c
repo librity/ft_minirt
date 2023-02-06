@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer_v5.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:40:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/02 18:58:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:55:14 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void set_demo_camera(void)
 	t_matrix mx;
 
 	// set_challenge_camera(100, 50, M_PI / 3.0);
-	set_challenge_camera(500, 500, M_PI / 3.0);
+	set_challenge_camera(50, 50, M_PI / 3.0);
 	view_transformation(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0), &mx);
 	set_camera_transform(mx);
 }
@@ -137,8 +137,8 @@ void ray_tracer_v5_demo(void)
 
 	render();
 
-	mlx_image_save_ppm(camera_buffer(), "raytracer_v3.ppm");
-	// initialize_window();
-	// mlx_put_image_to_window(mlx(), window(), camera_buffer()->img, 0, 0);
+	// mlx_image_save_ppm(camera_buffer(), "raytracer_v3.ppm");
+	initialize_window();
+	mlx_put_image_to_window(mlx(), window(), camera_buffer()->img, 0, 0);
 	// while (true);
 }

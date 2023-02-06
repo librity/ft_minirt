@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/02 18:46:31 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/06 10:27:58 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,7 @@ t_v3d			cylinder_normal_at(t_object *cylinder, t_p3d point);
 \******************************************************************************/
 
 void			mlx_image_save_ppm(t_mlx_image *image, char *filename);
+void			mlx_handler(void);
 
 /******************************************************************************\
  * SORTERS
