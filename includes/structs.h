@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/06 10:11:49 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:57:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,7 @@ typedef struct s_camera
 
 	t_matrix			transform;
 
-	// t_v3d		horizontal;
-	// t_v3d		vertical;
-	// t_p3d		ll_corner;
-
 	t_mlx_image			buffer;
-	void				*window;
 }						t_camera;
 
 /******************************************************************************\
