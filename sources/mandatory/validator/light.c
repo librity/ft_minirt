@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:17:03 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 22:41:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:54:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	light_counter(char id)
 {
-	static int count = 0;
+	static int	count;
 
+	count = 0;
 	if (id != 'L')
 		return (false);
 	count++;

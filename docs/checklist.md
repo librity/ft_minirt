@@ -11,12 +11,13 @@
   - [x] Ambient light
   - [x] Spot Light
   - [x] Hard Shadows
-- [ ] Minilibx user interface
+- [x] Minilibx user interface
 - [ ] `norminette`
 
 # - [ ] Mandatory
 
 - [ ] Don't turn in libs as submodules.
+- [ ] Migrate `ft_libbmp` to `minirt.h`.
 - [ ] Makefile should explicitly name all source files (`make dump_sources`).
 - [ ] Make must compile without relinking
   - [ ] `make all` shouldn't recompile/rearchive any objects or sources.
@@ -42,7 +43,7 @@
   - [ ] All `math.h`
   - [ ] All `mlx.h`
   - [ ] All `libft.h`
-- [ ] Create demo projects with miniLibX to see how it works
+- [x] Create demo projects with miniLibX to see how it works
 - [ ] Load scene from `.rt` file
   - [x] Validate file name: `*.rt`
   - [x] Validate `.rt` file format
@@ -54,18 +55,18 @@
   - [ ] Cylinder: `cy X,Y,Z OX,OY,OZ DIAMETER HEIGHT RED,GREEN,BLUE`
 - [x] Create Vectors functions
 - [x] Create Linear Algebra functions
-- [ ] Define ray tracing logic
+- [x] Define ray tracing logic
 - [ ] Objects
   - [x] Spheres
   - [x] Planes
   - [x] Cylinders
   - [ ] Correctly handle object intersections
   - [ ] Correctly handle object inside
-- [ ] Create a user interface with `MiniLibX`
-  - [ ] Use `MiniLibX` ’s images
-  - [ ] Window management must remain smooth
-  - [ ] Close window button exits the program cleanly
-  - [ ] `q` and `esc` keys exits the program cleanly
+- [x] Create a user interface with `MiniLibX`
+  - [x] Use `MiniLibX` ’s images
+  - [x] Window management must remain smooth
+  - [x] Close window button exits the program cleanly
+  - [x] `esc` key exits the program cleanly
 
 # - [ ] Bonus
 

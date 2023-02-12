@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:52 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 22:41:38 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:52:31 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	camera_count(char id)
 {
-	static int count = 0;
+	static int	count = 0;
 
 	if (id != 'C')
 		return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/06 10:27:58 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:59:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_mlx_image		*camera_buffer(void);
 void			destroy_camera(void);
 void			set_camera(t_p3d origin, t_v3d orientation,
 					double horz_fov_deg);
-void			set_challenge_camera(int width, int height, double horz_fov_rad);
+void			set_challenge_camera(int width, int height,
+					double horz_fov_rad);
 void			inspect_camera(void);
 int				width(void);
 int				height(void);
@@ -104,7 +105,7 @@ int				validate_light(char *line);
 int				validate_sphere(char *line);
 int				validate_plane(char *line);
 int				validate_cylinder(char *line);
-t_val_scene		*val_scene();
+t_val_scene		*val_scene(void);
 void			val_scene_init(void);
 int				check_scene(void);
 
@@ -164,9 +165,6 @@ t_light			point_light(t_p3d point, double brightness, t_rgb color_rgb);
 
 t_material		material(void);
 
-t_c3d			lighting(t_material material, t_light light, t_p3d point,
-					t_v3d eye, t_v3d normal, bool in_shadow);
-
 /******************************************************************************\
  * OBJECTS
 \******************************************************************************/
@@ -178,12 +176,34 @@ void			set_transform(t_object *object, t_matrix mx);
 t_v3d			reflect(t_v3d incident, t_v3d normal);
 
 t_intx			*new_intersection(double t, t_object *object);
-void			create_intersection(t_dlist **intersections, double t, t_object *object);
+void			create_intersection(t_dlist **intersections, double t,
+					t_object *object);
 void			add_intersection(t_intxs *xs, double t, t_object *object);
 t_intxs			intersect_object(t_object *object, t_ray ray);
 t_intxs			empty_intersections(void);
 
 t_v3d			object_normal_at(t_object *object, t_p3d point);
+
+typedef struct s_lighting_params
+{
+	t_p3d		point;
+	t_v3d		eye;
+	t_v3d		normal;
+	bool		in_shadow;
+
+	t_c3d		effective_color;
+	t_c3d		ambient;
+	t_v3d		light_vector;
+	t_v3d		reflection;
+	double		light_dot_normal;
+	t_c3d		diffuse;
+	t_c3d		specular;
+	double		reflect_dot_eye;
+	double		factor;
+	t_c3d		result;
+}				t_lighting_params;
+t_c3d			lighting(t_material material, t_light light,
+					t_lighting_params p);
 
 /******************************************************************************\
  * WORLD
@@ -197,8 +217,29 @@ void			set_default_world(void);
 t_intxs			intersect_world(t_ray	ray);
 t_ray_comp		prepare_computations(t_intx intersect, t_ray _ray);
 t_c3d			shade_hit(t_ray_comp comp);
+
+typedef struct s_is_shadowed_aux
+{
+	t_v3d		ray_vector;
+	t_ray		shadow_ray;
+	t_light		light;
+	t_intxs		xs;
+	t_intx		*inter;
+	double		distance;
+}				t_is_shadowed_aux;
 bool			is_shadowed(t_p3d point);
 
+typedef struct s_ray_for_pixel_aux
+{
+	t_camera	cam;
+	double		x_offset;
+	double		y_offset;
+	double		world_x;
+	double		world_y;
+	t_p3d		pixel;
+	t_matrix	transform_inv;
+	t_ray		px_ray;
+}				t_ray_for_pixel_aux;
 t_ray			ray_for_pixel(int x, int y);
 
 t_intx			*hit(t_intxs intersect);
@@ -210,9 +251,6 @@ t_intx			*hit(t_intxs intersect);
 t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
 t_object		*create_sphere(t_p3d origin, double diameter, t_rgb color);
 t_object		*sphere(void);
-
-bool			ray_hits_sphere(t_ray ray, t_object sphere);
-t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
 
 t_intxs			intersect_sphere(t_object *sphere, t_ray ray);
 t_v3d			sphere_normal_at(t_object *sphere, t_p3d point);
@@ -249,7 +287,6 @@ t_v3d			cylinder_normal_at(t_object *cylinder, t_p3d point);
  * MLX
 \******************************************************************************/
 
-void			mlx_image_save_ppm(t_mlx_image *image, char *filename);
 void			mlx_handler(void);
 
 /******************************************************************************\
@@ -257,7 +294,6 @@ void			mlx_handler(void);
 \******************************************************************************/
 
 void			sort_intersections(t_dlist **intersections);
-void			sort_intersections_broken(t_dlist **intersections);
 
 /******************************************************************************\
  * FILES
@@ -279,37 +315,6 @@ void			cleanup(void);
  * DEMOS
 \******************************************************************************/
 
-void			red_window_demo(void);
-void			hello_world_window_demo(void);
-
-void			quadratic_demo(void);
-void			hit_sphere_demo(void);
-
-void			verify_closest_sphere(t_ray ray);
-void			create_demo_spheres(void);
-
-typedef struct s_projectile
-{
-	t_p3d		position;
-	t_v3d		velocity;
-}				t_projectile;
-typedef struct s_environment
-{
-	t_v3d		gravity;
-	t_v3d		wind;
-}				t_environment;
-t_projectile	tick(t_environment env, t_projectile projectile);
-void			projectile_demo(void);
-void			projectile_ppm_demo();
-void			hello_world_ppm_demo(void);
-
-void			clock_hours_ppm_demo(void);
-void			clock_sec_ppm_demo(void);
-
-void			ray_tracer_v1_demo();
-void			ray_tracer_v2_demo();
-void			ray_tracer_v3_demo();
-void			ray_tracer_v4_demo(void);
 void			ray_tracer_v5_demo(void);
 
 #endif

@@ -6,61 +6,69 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:11:27 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/23 18:28:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:49:26 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_c3d	lighting(t_material material, t_light light, t_p3d point, t_v3d eye, t_v3d normal, bool	in_shadow)
+static t_c3d	get_diffuse_color(t_material m, t_lighting_params p)
 {
-	t_c3d	effective_color;
-	t_c3d	ambient;
-	t_v3d	light_vector;
+	t_c3d	diffuse_color;
+
+	diffuse_color = scalar_times(p.light_dot_normal * m.diffuse,
+			p.effective_color);
+	return (diffuse_color);
+}
+
+static t_c3d	get_specular_color(t_material m, t_light light,
+		t_lighting_params p)
+{
 	t_v3d	reflection;
-	double	light_dot_normal;
-	t_c3d	diffuse;
-	t_c3d	specular;
+	t_c3d	specular_color;
 	double	reflect_dot_eye;
 	double	factor;
-	t_c3d	result;
 
-	effective_color = product(material.color, light.intensity);
-	ambient = scalar_times(material.ambient, effective_color);
-	if (in_shadow)
+	reflection = reflect(neg(p.light_vector), p.normal);
+	reflect_dot_eye = dot(reflection, p.eye);
+	if (reflect_dot_eye <= 0.0)
+		specular_color = color_3d(0, 0, 0);
+	else
 	{
-		result = ambient;
-		result.type = 0;
-		return (result);
+		factor = pow(reflect_dot_eye, m.shininess);
+		specular_color = scalar_times(factor * m.specular, light.intensity);
 	}
+	return (specular_color);
+}
 
-	light_vector = normalize(sub(light.origin, point));
-	light_dot_normal = dot(light_vector, normal);
-
-	if (light_dot_normal < 0.0)
+static void	get_diff_spec_color(t_material m, t_light light,
+		t_lighting_params *p)
+{
+	p->light_dot_normal = dot(p->light_vector, p->normal);
+	if (p->light_dot_normal < 0.0)
 	{
-		diffuse = color(0.0, 0.0, 0.0);
-		specular = color(0.0, 0.0, 0.0);
+		p->diffuse = color_3d(0, 0, 0);
+		p->specular = color_3d(0, 0, 0);
 	}
 	else
 	{
-		diffuse = scalar_times(material.diffuse * light_dot_normal, effective_color);
-
-		reflection = reflect(neg(light_vector), normal);
-		reflect_dot_eye = dot(reflection, eye);
-		if (reflect_dot_eye <= 0.0)
-			specular = color(0.0, 0.0, 0.0);
-		else
-		{
-			factor = pow(reflect_dot_eye, material.shininess);
-			specular = scalar_times(material.specular * factor, light.intensity);
-		}
+		p->diffuse = get_diffuse_color(m, *p);
+		p->specular = get_specular_color(m, light, *p);
 	}
+}
 
-	result = add(ambient, diffuse);
-	result = add(result, specular);
+t_c3d	lighting(t_material material, t_light light, t_lighting_params p)
+{
+	t_c3d	result;
+
+	p.light_vector = normalize(sub(light.origin, p.point));
+	p.effective_color = product(material.color, light.intensity);
+	p.ambient = scalar_times(material.ambient, p.effective_color);
+	if (p.in_shadow == true)
+		return (p.ambient);
+	get_diff_spec_color(material, light, &p);
+	result = add(p.ambient, p.diffuse);
+	result = add(result, p.specular);
 	result.type = 0;
 	return (result);
 }
-
-
