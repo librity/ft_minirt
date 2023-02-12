@@ -6,12 +6,11 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:13:53 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 22:47:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:54:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
-
 
 static int	validate_line(char *line)
 {

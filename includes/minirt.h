@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 19:37:48 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:59:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,8 +217,29 @@ void			set_default_world(void);
 t_intxs			intersect_world(t_ray	ray);
 t_ray_comp		prepare_computations(t_intx intersect, t_ray _ray);
 t_c3d			shade_hit(t_ray_comp comp);
+
+typedef struct s_is_shadowed_aux
+{
+	t_v3d		ray_vector;
+	t_ray		shadow_ray;
+	t_light		light;
+	t_intxs		xs;
+	t_intx		*inter;
+	double		distance;
+}				t_is_shadowed_aux;
 bool			is_shadowed(t_p3d point);
 
+typedef struct s_ray_for_pixel_aux
+{
+	t_camera	cam;
+	double		x_offset;
+	double		y_offset;
+	double		world_x;
+	double		world_y;
+	t_p3d		pixel;
+	t_matrix	transform_inv;
+	t_ray		px_ray;
+}				t_ray_for_pixel_aux;
 t_ray			ray_for_pixel(int x, int y);
 
 t_intx			*hit(t_intxs intersect);
@@ -230,9 +251,6 @@ t_intx			*hit(t_intxs intersect);
 t_object		*new_sphere(t_p3d origin, double diameter, t_rgb color);
 t_object		*create_sphere(t_p3d origin, double diameter, t_rgb color);
 t_object		*sphere(void);
-
-bool			ray_hits_sphere(t_ray ray, t_object sphere);
-t_hit_result	ray_hits_sphere_result(t_ray ray, t_object sphere);
 
 t_intxs			intersect_sphere(t_object *sphere, t_ray ray);
 t_v3d			sphere_normal_at(t_object *sphere, t_p3d point);
@@ -276,7 +294,6 @@ void			mlx_handler(void);
 \******************************************************************************/
 
 void			sort_intersections(t_dlist **intersections);
-void			sort_intersections_broken(t_dlist **intersections);
 
 /******************************************************************************\
  * FILES

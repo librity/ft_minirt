@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:58:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2022/12/18 22:47:12 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:54:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	check_norm_coordinate(char *line)
 
 static int	val_norm_coordinate(char *line)
 {
-	char		**cord;
-	double		x;
-	double		y;
-	double		z;
+	char	**cord;
+	double	x;
+	double	y;
+	double	z;
 
 	cord = ft_split(line, ',');
 	x = ft_atof(cord[0]);
@@ -44,7 +44,7 @@ static int	val_norm_coordinate(char *line)
 	return (true);
 }
 
-int check_coordinate(char *line)
+int	check_coordinate(char *line)
 {
 	if (!*line)
 		return (false);
