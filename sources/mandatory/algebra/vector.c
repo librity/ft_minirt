@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 04:24:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 18:34:35 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:26:22 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ t_v3d	cross(t_v3d first, t_v3d second)
 	result.type = 0.0;
 	return (result);
 }
-

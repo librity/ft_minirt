@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/02 18:48:19 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:30:38 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,30 @@ static void	intersect_caps(t_object *cylinder, t_ray ray, t_intxs *xs)
 		add_intersection(xs, t, cylinder);
 }
 
+static t_intx_aux	cylinder_quadratic(t_ray ray)
+{
+	t_intx_aux	f;
+
+	f.a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
+	f.b = 2.0 * ray.origin.x * ray.direction.x + 2.0 * ray.origin.z
+		* ray.direction.z;
+	f.c = ray.origin.x * ray.origin.x + ray.origin.z * ray.origin.z - 1.0;
+	f.delta = f.b * f.b - 4.0 * f.a * f.c;
+	return (f);
+}
+
 t_intxs	intersect_cylinder(t_object *cylinder, t_ray ray)
 {
 	t_intx_aux	f;
 	t_intxs		result;
 
 	result = empty_intersections();
-	f.a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
+	f = cylinder_quadratic(ray);
 	if (double_near_zero(f.a))
 	{
 		intersect_caps(cylinder, ray, &result);
 		return (result);
 	}
-	f.b = 2.0 * ray.origin.x * ray.direction.x + 2.0 * ray.origin.z
-		* ray.direction.z;
-	f.c = ray.origin.x * ray.origin.x + ray.origin.z * ray.origin.z - 1.0;
-	f.delta = f.b * f.b - 4.0 * f.a * f.c;
 	if (f.delta < 0.0)
 		return (result);
 	f.root_1 = (-f.b - sqrt(f.delta)) / (2 * f.a);

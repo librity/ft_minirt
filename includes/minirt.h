@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 19:12:33 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:27:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ t_intxs			empty_intersections(void);
 
 t_v3d			object_normal_at(t_object *object, t_p3d point);
 
-typedef struct s_lighting_param
+typedef struct s_lighting_params
 {
 	t_p3d		point;
 	t_v3d		eye;
