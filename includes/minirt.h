@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 19:59:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ t_light			point_light(t_p3d point, double brightness, t_rgb color_rgb);
  * MATERIAL
 \******************************************************************************/
 
-t_material		material(void);
+t_material		default_material(void);
 
 /******************************************************************************\
  * OBJECTS

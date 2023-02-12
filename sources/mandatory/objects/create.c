@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 11:56:07 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 20:14:30 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_object	*create_object(void)
 	ft_dlst_addb_lalloc(world_lalloc(), objects(), object);
 	object->id = new_object_id();
 	object->shape = NULL_SHAPE;
-	object->material = material();
+	object->material = default_material();
 	object->intersect = NULL;
 	object->normal_at = NULL;
 	mx_set_identity(&(object->transform));

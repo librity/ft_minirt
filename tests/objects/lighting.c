@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 20:01:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_lighting_params	lighting_params;
 
 void	test_setup(void)
 {
-	_material = material();
+	_material = default_material();
 	_position = point(0, 0, 0);
 }
 void	test_teardown(void)

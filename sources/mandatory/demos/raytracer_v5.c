@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:40:36 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 19:37:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_material	wall_material(void)
 {
 	t_material	mat;
 
-	mat = material();
+	mat = default_material();
 	mat.color = color_3d(1, 0.9, 0.9);
 	mat.specular = 0;
 	return (mat);
@@ -38,7 +38,7 @@ void	create_middle_sphere(void)
 	_sphere = sphere();
 	translation(vector(-0.5, 1, 0.5), &mx);
 	set_transform(_sphere, mx);
-	_sphere->material = material();
+	_sphere->material = default_material();
 	_sphere->material.color = color_3d(0.1, 1, 0.5);
 	_sphere->material.specular = 0.3;
 	_sphere->material.diffuse = 0.7;
@@ -56,7 +56,7 @@ void	create_right_sphere(void)
 	scaling(vector(0.5, 0.5, 0.5), &mx_2);
 	mxs_multiply(mx_1, mx_2, &transform);
 	set_transform(_sphere, transform);
-	_sphere->material = material();
+	_sphere->material = default_material();
 	_sphere->material.color = color_3d(0.5, 1, 0.1);
 	_sphere->material.specular = 0.3;
 	_sphere->material.diffuse = 0.7;
@@ -77,7 +77,7 @@ void	create_left_cylinder(void)
 	scaling(vector(0.33, 0.33, 0.33), &mx_2);
 	mxs_multiply(mx_1, mx_2, &transform);
 	set_transform(_cyl, transform);
-	_cyl->material = material();
+	_cyl->material = default_material();
 	_cyl->material.color = color_3d(1, 0.8, 0.1);
 	_cyl->material.specular = 0.3;
 	_cyl->material.diffuse = 0.7;

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:37:51 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/17 19:13:04 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	test_teardown(void)
 
 MU_TEST(default_material_tst)
 {
-	_material = material();
+	_material = default_material();
 
 	assert_tuple_eq(color(1, 1, 1), _material.color);
 	mu_assert_double_eq(0.1, _material.ambient);
@@ -37,7 +37,7 @@ MU_TEST(default_material_tst)
 MU_TEST(sphere_material_tst)
 {
 	_sphere = sphere();
-	_material = material();
+	_material = default_material();
 
 	assert_tuple_eq(_material.color, _sphere->material.color);
 	mu_assert_double_eq(_material.ambient, _sphere->material.ambient);
@@ -49,7 +49,7 @@ MU_TEST(sphere_material_tst)
 MU_TEST(set_sphere_material_tst)
 {
 	_sphere = sphere();
-	_material = material();
+	_material = default_material();
 	_material.ambient = 1;
 	_sphere->material = _material;
 

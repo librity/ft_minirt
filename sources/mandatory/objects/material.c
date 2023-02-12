@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 11:56:07 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/10 18:44:52 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:41:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_material	material(void)
+t_material	default_material(void)
 {
 	t_material	_material;
 

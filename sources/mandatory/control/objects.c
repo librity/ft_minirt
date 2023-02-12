@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/24 12:00:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:30:12 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void	inspect_object(t_object *object)
 	printf("\tdiameter: %f\n", object->diameter);
 	printf("\tradius: %f\n", object->radius);
 	printf("\theight: %f\n", object->height);
-	printf("\tcolor_rgb: %d %d %d\n", object->color_rgb.red,
-		object->color_rgb.green, object->color_rgb.blue);
-	printf("\tcolor_3d: %f %f %f\n", object->color_3d.x, object->color_3d.y,
-		object->color_3d.z);
+	printf("\tcolor_3d: %f %f %f\n", object->material.color.x,
+		object->material.color.y, object->material.color.z);
 }
 
 void	inspect_objects(void)
