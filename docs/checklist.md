@@ -43,7 +43,7 @@
   - [ ] All `math.h`
   - [ ] All `mlx.h`
   - [ ] All `libft.h`
-- [ ] Create demo projects with miniLibX to see how it works
+- [x] Create demo projects with miniLibX to see how it works
 - [ ] Load scene from `.rt` file
   - [x] Validate file name: `*.rt`
   - [x] Validate `.rt` file format
@@ -55,7 +55,7 @@
   - [ ] Cylinder: `cy X,Y,Z OX,OY,OZ DIAMETER HEIGHT RED,GREEN,BLUE`
 - [x] Create Vectors functions
 - [x] Create Linear Algebra functions
-- [ ] Define ray tracing logic
+- [x] Define ray tracing logic
 - [ ] Objects
   - [x] Spheres
   - [x] Planes
