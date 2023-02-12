@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:46:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 18:53:10 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:12:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 t_c3d	shade_hit(t_ray_comp comp)
 {
-	bool	in_shadow;
+	t_lighting_params	lighting_params;
 
-	in_shadow = is_shadowed(comp.over_point);
-	return (lighting(comp.object->material, light(), comp.over_point, comp.eyev,
-			comp.normalv, in_shadow));
+	lighting_params.point = comp.over_point;
+	lighting_params.eye = comp.eyev;
+	lighting_params.normal = comp.normalv;
+	lighting_params.in_shadow = is_shadowed(comp.over_point);
+	return (lighting(comp.object->material, light(), lighting_params));
 }
