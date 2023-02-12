@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:52:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:59:23 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	parse_sphere(char *line)
 {
-	t_p3d	origin;
-	double	diameter;
-	t_rgb	color;
+	t_p3d		origin;
+	double		diameter;
+	t_rgb		color;
+	t_object	*_sphere;
+	t_matrix	translation_mx;
 
 	line = skip_field(line);
 	origin = parse_point(line);
@@ -24,7 +26,9 @@ void	parse_sphere(char *line)
 	diameter = ft_atof(line);
 	line = skip_field(line);
 	color = parse_color(line);
-	create_sphere(origin, diameter, color);
+	_sphere = create_sphere(point(0, 0, 0), diameter, color);
+	translation((t_v3d)origin, &translation_mx);
+	multiply_transform(_sphere, translation_mx);
 }
 
 void	parse_plane(char *line)

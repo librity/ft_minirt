@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 20:41:29 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:58:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ t_material		default_material(void);
 t_object		*create_object(void);
 
 void			set_transform(t_object *object, t_matrix mx);
+void			multiply_transform(t_object *object, t_matrix mx);
 
 t_v3d			reflect(t_v3d incident, t_v3d normal);
 
@@ -316,5 +317,6 @@ void			cleanup(void);
 \******************************************************************************/
 
 void			ray_tracer_v5_demo(void);
+void			raytracer_scene(void);
 
 #endif
