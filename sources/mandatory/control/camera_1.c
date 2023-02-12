@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   camera_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 19:26:11 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 19:25:38 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/12 19:21:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	*window(void)
+t_camera	camera(void)
 {
-	return (c()->window);
+	return (c()->camera);
 }
 
-void	initialize_window(void)
+t_mlx_image	*camera_buffer(void)
 {
-	t_camera	*cam;
-	void		*window;
-
-	cam = &c()->camera;
-	window = mlx_new_window(c()->mlx, cam->width, cam->height, "miniRT");
-	c()->window = window;
-	if (c()->window == NULL)
-		die(MLX_NEW_WINDOW_ERR);
+	return (&c()->camera.buffer);
 }
 
-void	destroy_window(void)
+int	width(void)
 {
-	mlx_destroy_window(c()->mlx, c()->window);
-	c()->window = NULL;
+	return (c()->camera.width);
+}
+
+int	height(void)
+{
+	return (c()->camera.height);
+}
+
+double	aspect_ratio(void)
+{
+	return (c()->camera.aspect);
 }
