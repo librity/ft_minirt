@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
+/*   mx_arithmetic.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:37:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 16:59:26 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/19 16:24:43 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_intxs	intersect_plane(t_object *plane, t_ray ray)
+void	mx_add(t_matrix mx1, t_matrix mx2, t_matrix *result)
 {
-	t_intxs	result;
-	double	t;
+	int	i;
+	int	j;
 
-	result.count = 0;
-	result.list = NULL;
-	if (double_near_zero(ray.direction.x))
-		return (result);
-	t = -ray.origin.x / ray.direction.x;
-	result.count = 1;
-	create_intersection(&result.list, t, plane);
-	return (result);
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			(*result)[i][j] = mx1[i][j] + mx2[i][j];
+			j++;
+		}
+		i++;
+	}
 }

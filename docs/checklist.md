@@ -49,8 +49,8 @@
   - [x] Validate `.rt` file format
   - [ ] Ambient lightning: `A NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [ ] Camera: `C X,Y,Z OX,OY,OZ HORIZONTAL_FIELD_OF_VIEW`
-  - [ ] Light: `L X,Y,Z NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
-  - [ ] Sphere: `sp X,Y,Z DIAMETER RED,GREEN,BLUE`
+  - [x] Light: `L X,Y,Z NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
+  - [x] Sphere: `sp X,Y,Z DIAMETER RED,GREEN,BLUE`
   - [ ] Plane: `pl X,Y,Z OX,OY,OZ RED,GREEN,BLUE`
   - [ ] Cylinder: `cy X,Y,Z OX,OY,OZ DIAMETER HEIGHT RED,GREEN,BLUE`
 - [x] Create Vectors functions

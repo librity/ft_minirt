@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 19:42:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:31:59 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,9 @@ double			mx_determinant(t_matrix matrix, int size);
 
 bool			mx_is_invertible(t_matrix matrix, int size);
 void			mx_inverse(t_matrix matrix, int size, t_matrix *result);
+
+void			mx_scalar_multiply(t_matrix *matrix, double scalar);
+void			mx_add(t_matrix mx1, t_matrix mx2, t_matrix *result);
 
 /******************************************************************************\
  * RAYS

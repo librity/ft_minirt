@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 20:58:15 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:37:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void			scaling(t_v3d vector, t_matrix *result);
 void			rotation_x(double radians, t_matrix *result);
 void			rotation_y(double radians, t_matrix *result);
 void			rotation_z(double radians, t_matrix *result);
+void			skew_symmetric_matrix(t_v3d axis, t_matrix *result);
 
 typedef struct s_shearing
 {
@@ -277,6 +278,9 @@ typedef struct s_create_cylinder
 	double		diameter;
 	double		height;
 	t_rgb		color;
+
+	t_object	*_cylinder;
+	t_matrix	translation_mx;
 }				t_create_cylinder;
 t_object		*create_cylinder(t_create_cylinder p);
 t_object		*cylinder(void);
