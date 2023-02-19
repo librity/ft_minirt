@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 18:47:16 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:18:57 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ t_c3d			lighting(t_material material, t_light light,
 
 void			rotate_object(t_object *object, t_v3d new_normal);
 void			translate_object(t_object *object, t_p3d new_origin);
+void			scale_object(t_object *object, t_v3d new_scale);
 
 /******************************************************************************\
  * WORLD

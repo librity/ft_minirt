@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 18:51:08 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:25:32 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 static void	set_cylinder(t_object *cylinder, t_create_cylinder p)
 {
 	cylinder->shape = CYLINDER_SHAPE;
-	cylinder->diameter = p.diameter;
-	cylinder->radius = p.diameter / 2.0;
-	cylinder->height = p.height;
 	cylinder->minimum = -p.height / 2.0;
 	cylinder->maximum = p.height / 2.0;
 	cylinder->closed = true;
@@ -25,6 +22,7 @@ static void	set_cylinder(t_object *cylinder, t_create_cylinder p)
 	cylinder->intersect = &intersect_cylinder;
 	cylinder->normal_at = &cylinder_normal_at;
 	cylinder->normal = x_axis_normal();
+	scale_object(cylinder, vector(p.diameter, 1, p.diameter));
 	rotate_object(cylinder, p.normal);
 	cylinder->origin = space_origin();
 	translate_object(cylinder, p.origin);
