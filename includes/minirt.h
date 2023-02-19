@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 16:37:53 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:21:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,10 +207,13 @@ typedef struct s_lighting_params
 t_c3d			lighting(t_material material, t_light light,
 					t_lighting_params p);
 
+void			rotate_object_by_normal(t_object *object, t_v3d new_normal);
+
 /******************************************************************************\
  * WORLD
 \******************************************************************************/
 
+void			render_to_window(void);
 void			render(void);
 
 t_c3d			color_at(t_ray _ray);
@@ -279,7 +282,7 @@ typedef struct s_create_cylinder
 	double		height;
 	t_rgb		color;
 
-	t_object	*_cylinder;
+	t_object	*cylinder;
 	t_matrix	translation_mx;
 }				t_create_cylinder;
 t_object		*create_cylinder(t_create_cylinder p);
@@ -321,6 +324,5 @@ void			cleanup(void);
 \******************************************************************************/
 
 void			ray_tracer_v5_demo(void);
-void			raytracer_scene(void);
 
 #endif
