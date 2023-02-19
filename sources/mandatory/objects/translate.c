@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
+/*   translate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:37:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:08:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2023/02/19 18:14:11 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/19 18:48:00 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_intxs	intersect_plane(t_object *plane, t_ray ray)
+void	translate_object(t_object *object, t_p3d new_origin)
 {
-	t_intxs	result;
-	double	t;
+	t_matrix	translation_mx;
 
-	result.count = 0;
-	result.list = NULL;
-	if (double_near_zero(ray.direction.x))
-		return (result);
-	t = -ray.origin.x / ray.direction.x;
-	result.count = 1;
-	create_intersection(&result.list, t, plane);
-	return (result);
+	translation((t_v3d)new_origin, &translation_mx);
+	multiply_transform(object, translation_mx);
 }

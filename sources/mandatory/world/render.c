@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:45:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 18:20:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:54:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	set_demo_camera(void)
 {
 	t_matrix	mx;
 
-	set_challenge_camera(600, 600, M_PI / 3.0);
+	set_challenge_camera(200, 200, M_PI / 3.0);
 	view_transformation(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0),
 		&mx);
 	set_camera_transform(mx);

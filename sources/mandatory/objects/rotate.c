@@ -6,13 +6,13 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:14:11 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 18:17:17 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:42:53 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	rotate_object_by_normal(t_object *object, t_v3d new_normal)
+void	rotate_object(t_object *object, t_v3d new_normal)
 {
 	t_matrix	identity_mx;
 	t_matrix	skew_mx;

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 16:31:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:52:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,15 @@ typedef t_t3d	t_p3d;
 t_p3d			point(double x, double y, double z);
 t_p3d			point_3d(double x, double y, double z);
 void			inspect_p3d(t_v3d point);
+
+/******************************************************************************\
+ * 3D SPACE
+\******************************************************************************/
+
+t_v3d			space_origin(void);
+t_v3d			x_axis_normal(void);
+t_v3d			y_axis_normal(void);
+t_v3d			z_axis_normal(void);
 
 /******************************************************************************\
  * COLORS

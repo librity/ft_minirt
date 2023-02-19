@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
+/*   3d_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:37:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:08:03 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2023/02/19 18:38:18 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/19 18:52:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-t_intxs	intersect_plane(t_object *plane, t_ray ray)
+t_v3d	space_origin(void)
 {
-	t_intxs	result;
-	double	t;
+	return (point(0, 0, 0));
+}
 
-	result.count = 0;
-	result.list = NULL;
-	if (double_near_zero(ray.direction.x))
-		return (result);
-	t = -ray.origin.x / ray.direction.x;
-	result.count = 1;
-	create_intersection(&result.list, t, plane);
-	return (result);
+t_v3d	x_axis_normal(void)
+{
+	return (vector(1, 0, 0));
+}
+
+t_v3d	y_axis_normal(void)
+{
+	return (vector(0, 1, 0));
+}
+
+t_v3d	z_axis_normal(void)
+{
+	return (vector(0, 0, 1.0));
 }

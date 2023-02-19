@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 18:21:06 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:47:16 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,8 @@ typedef struct s_lighting_params
 t_c3d			lighting(t_material material, t_light light,
 					t_lighting_params p);
 
-void			rotate_object_by_normal(t_object *object, t_v3d new_normal);
+void			rotate_object(t_object *object, t_v3d new_normal);
+void			translate_object(t_object *object, t_p3d new_origin);
 
 /******************************************************************************\
  * WORLD
@@ -281,9 +282,6 @@ typedef struct s_create_cylinder
 	double		diameter;
 	double		height;
 	t_rgb		color;
-
-	t_object	*cylinder;
-	t_matrix	translation_mx;
 }				t_create_cylinder;
 t_object		*create_cylinder(t_create_cylinder p);
 t_object		*cylinder(void);
