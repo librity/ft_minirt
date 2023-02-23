@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:08:20 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:51:50 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	parse_sphere(char *line)
 	diameter = ft_atof(line);
 	line = skip_field(line);
 	color = parse_color(line);
-	create_sphere(point(0, 0, 0), diameter, color);
+	create_sphere(origin, diameter, color);
 }
 
 void	parse_plane(char *line)
 {
 	t_p3d		origin;
-	t_p3d		normal;
+	t_v3d		normal;
 	t_rgb		color;
 
 	line = skip_field(line);
@@ -38,6 +38,7 @@ void	parse_plane(char *line)
 	line = skip_field(line);
 	normal = parse_vector(line);
 	normal = normalize(normal);
+	inspect_tuple(normal);
 	line = skip_field(line);
 	color = parse_color(line);
 	create_plane(origin, normal, color);

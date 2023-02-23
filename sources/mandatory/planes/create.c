@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:05:23 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:46:51 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	set_plane(t_object *plane, t_p3d origin, t_p3d normal, t_rgb color)
 	plane->intersect = &intersect_plane;
 	plane->normal_at = &plane_normal_at;
 	plane->normal = x_axis_normal();
+	translate_object(plane, origin);
 	rotate_object(plane, normal);
 	plane->origin = space_origin();
-	translate_object(plane, origin);
 }
 
 t_object	*create_plane(t_p3d origin, t_p3d normal, t_rgb color)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:25:32 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:15:10 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void	set_cylinder(t_object *cylinder, t_create_cylinder p)
 	cylinder->material.color = rgb_to_c3d(p.color);
 	cylinder->intersect = &intersect_cylinder;
 	cylinder->normal_at = &cylinder_normal_at;
-	cylinder->normal = x_axis_normal();
-	scale_object(cylinder, vector(p.diameter, 1, p.diameter));
-	rotate_object(cylinder, p.normal);
-	cylinder->origin = space_origin();
+	cylinder->normal = y_axis_normal();
 	translate_object(cylinder, p.origin);
+	rotate_object(cylinder, p.normal);
+	scale_object(cylinder, vector(p.diameter / 2, 1, p.diameter / 2));
+	cylinder->origin = space_origin();
 }
 
 t_object	*create_cylinder(t_create_cylinder params)
