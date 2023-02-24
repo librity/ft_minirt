@@ -6,7 +6,7 @@
 /*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/22 22:46:51 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:41:02 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	set_plane(t_object *plane, t_p3d origin, t_p3d normal, t_rgb color)
 	plane->material.color = rgb_to_c3d(color);
 	plane->intersect = &intersect_plane;
 	plane->normal_at = &plane_normal_at;
-	plane->normal = x_axis_normal();
+	plane->normal = y_axis_normal();
 	translate_object(plane, origin);
 	rotate_object(plane, normal);
 	plane->origin = space_origin();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:37:48 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:08:03 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/23 22:01:34 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_intxs	intersect_plane(t_object *plane, t_ray ray)
 
 	result.count = 0;
 	result.list = NULL;
-	if (double_near_zero(ray.direction.x))
+	if (double_near_zero(ray.direction.y))
 		return (result);
-	t = -ray.origin.x / ray.direction.x;
+	t = -ray.origin.y / ray.direction.y;
 	result.count = 1;
 	create_intersection(&result.list, t, plane);
 	return (result);
