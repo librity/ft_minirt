@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 19:18:56 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 19:21:47 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:52:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	set_camera(t_p3d origin, t_v3d orientation, double horz_fov_deg)
 	cam->orientation = orientation;
 	cam->fov_deg = horz_fov_deg;
 	cam->fov_rad = degrees_to_radians(horz_fov_deg);
+	set_challenge_camera(WINDOW_WIDTH, WINDOW_HEIGHT, cam->fov_rad);
+	view_transformation(origin,
+		add(origin, orientation), vector(0, 1, 0), &cam->transform);
 }
 
 void	inspect_camera(void)

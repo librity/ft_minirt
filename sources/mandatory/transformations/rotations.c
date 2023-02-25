@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 17:15:54 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 19:07:43 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:15:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,15 @@ void	rotation_z(double radians, t_matrix *result)
 	(*result)[0][1] = -sin(radians);
 	(*result)[1][0] = sin(radians);
 	(*result)[1][1] = cos(radians);
+}
+
+void	skew_symmetric_matrix(t_v3d axis, t_matrix *result)
+{
+	mx_clear(result);
+	(*result)[0][1] = -axis.z;
+	(*result)[0][2] = axis.y;
+	(*result)[1][2] = -axis.x;
+	(*result)[1][0] = axis.z;
+	(*result)[2][0] = -axis.y;
+	(*result)[2][1] = axis.x;
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/26 19:42:51 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:52:46 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,15 @@ t_p3d			point_3d(double x, double y, double z);
 void			inspect_p3d(t_v3d point);
 
 /******************************************************************************\
+ * 3D SPACE
+\******************************************************************************/
+
+t_v3d			space_origin(void);
+t_v3d			x_axis_normal(void);
+t_v3d			y_axis_normal(void);
+t_v3d			z_axis_normal(void);
+
+/******************************************************************************\
  * COLORS
 \******************************************************************************/
 
@@ -181,6 +190,9 @@ double			mx_determinant(t_matrix matrix, int size);
 
 bool			mx_is_invertible(t_matrix matrix, int size);
 void			mx_inverse(t_matrix matrix, int size, t_matrix *result);
+
+void			mx_scalar_multiply(t_matrix *matrix, double scalar);
+void			mx_add(t_matrix mx1, t_matrix mx2, t_matrix *result);
 
 /******************************************************************************\
  * RAYS

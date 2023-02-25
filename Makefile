@@ -6,7 +6,7 @@
 #    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2022/12/26 13:30:25 by lpaulo-m         ###   ########.fr        #
+#    Updated: 2023/02/25 17:24:10 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,14 @@ clean_libs: libft_clean ft_libbmp_clean
 ################################################################################
 
 run: re
-	./$(NAME) scenes/bad_cam_look_at.rt
+	./$(NAME) scenes/subject.rt
+#	./$(NAME) scenes/inside.rt
+#	./$(NAME) scenes/walls.rt
+#	./$(NAME) scenes/plane_2.rt
+#	./$(NAME) scenes/cylinder_2.rt
+#	./$(NAME) scenes/rgb_balls.rt
+#	./$(NAME) scenes/blue_light.rt
+#	./$(NAME) scenes/bad_cam_look_at.rt
 #	$(OPEN_IMAGE) bitmaps/camera_1.bmp
 
 ################################################################################

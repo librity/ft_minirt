@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translation.c                                      :+:      :+:    :+:   */
+/*   scale.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 16:35:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:20:59 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2023/02/19 18:14:11 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/22 22:05:47 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	translation(t_v3d trans_vector, t_matrix *result)
+void	scale_object(t_object *object, t_v3d new_scale)
 {
-	mx_set_identity(result);
-	(*result)[0][3] = trans_vector.x;
-	(*result)[1][3] = trans_vector.y;
-	(*result)[2][3] = trans_vector.z;
+	t_matrix	scale_mx;
+
+	scaling(new_scale, &scale_mx);
+	multiply_transform(object, scale_mx);
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:45:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 18:36:05 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:58:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,11 @@ void	render(void)
 		x++;
 	}
 	ft_endl();
+}
+
+void	render_to_window(void)
+{
+	render();
+	initialize_window();
+	mlx_put_image_to_window(mlx(), window(), camera_buffer()->img, 0, 0);
 }

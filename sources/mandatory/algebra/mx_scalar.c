@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translation.c                                      :+:      :+:    :+:   */
+/*   mx_scalar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 16:35:38 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:20:59 by lpaulo-m         ###   ########.fr       */
+/*   Created: 2022/12/29 20:54:40 by lpaulo-m          #+#    #+#             */
+/*   Updated: 2023/02/19 16:19:52 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
 
-void	translation(t_v3d trans_vector, t_matrix *result)
+void	mx_scalar_multiply(t_matrix *matrix, double scalar)
 {
-	mx_set_identity(result);
-	(*result)[0][3] = trans_vector.x;
-	(*result)[1][3] = trans_vector.y;
-	(*result)[2][3] = trans_vector.z;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			(*matrix)[i][j] = (*matrix)[i][j] * scalar;
+			j++;
+		}
+		i++;
+	}
 }

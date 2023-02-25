@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 20:03:17 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/01/25 20:34:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/12 20:41:29 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ MU_TEST(set_transformation_tst)
 MU_TEST(default_material_tst)
 {
 	_object = create_object();
-	m = material();
+	m = default_material();
 
 	assert_material_eq(m, _object->material);
 }
@@ -54,7 +54,7 @@ MU_TEST(default_material_tst)
 MU_TEST(assigning_material_tst)
 {
 	_object = create_object();
-	m = material();
+	m = default_material();
 	m.ambient = 1;
 	_object->material = m;
 

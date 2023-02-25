@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:52:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:21:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	parse_sphere(char *line)
 {
-	t_p3d	origin;
-	double	diameter;
-	t_rgb	color;
+	t_p3d		origin;
+	double		diameter;
+	t_rgb		color;
 
 	line = skip_field(line);
 	origin = parse_point(line);
@@ -29,14 +29,15 @@ void	parse_sphere(char *line)
 
 void	parse_plane(char *line)
 {
-	t_p3d	origin;
-	t_p3d	normal;
-	t_rgb	color;
+	t_p3d		origin;
+	t_v3d		normal;
+	t_rgb		color;
 
 	line = skip_field(line);
 	origin = parse_point(line);
 	line = skip_field(line);
 	normal = parse_vector(line);
+	normal = normalize(normal);
 	line = skip_field(line);
 	color = parse_color(line);
 	create_plane(origin, normal, color);
@@ -44,17 +45,18 @@ void	parse_plane(char *line)
 
 void	parse_cylinder(char *line)
 {
-	t_create_cylinder	params;
+	t_create_cylinder	p;
 
 	line = skip_field(line);
-	params.origin = parse_point(line);
+	p.origin = parse_point(line);
 	line = skip_field(line);
-	params.normal = parse_vector(line);
+	p.normal = parse_vector(line);
+	p.normal = normalize(p.normal);
 	line = skip_field(line);
-	params.diameter = ft_atof(line);
+	p.diameter = ft_atof(line);
 	line = skip_field(line);
-	params.height = ft_atof(line);
+	p.height = ft_atof(line);
 	line = skip_field(line);
-	params.color = parse_color(line);
-	create_cylinder(params);
+	p.color = parse_color(line);
+	create_cylinder(p);
 }

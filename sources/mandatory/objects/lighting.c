@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 19:11:27 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 19:49:26 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:14:07 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_c3d	lighting(t_material material, t_light light, t_lighting_params p)
 
 	p.light_vector = normalize(sub(light.origin, p.point));
 	p.effective_color = product(material.color, light.intensity);
+	p.effective_color = product(p.effective_color, ambient_light().intensity);
 	p.ambient = scalar_times(material.ambient, p.effective_color);
 	if (p.in_shadow == true)
 		return (p.ambient);

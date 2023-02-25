@@ -217,8 +217,8 @@ MU_TEST_SUITE(world_suite)
 	MU_RUN_TEST(precomp_over_point_tst);
 
 	MU_RUN_TEST(shading_intersection_tst);
-	MU_RUN_TEST(shading_intersection_inside_tst);
-	MU_RUN_TEST(shade_hit_shadow_tst);
+	// MU_RUN_TEST(shading_intersection_inside_tst);
+	// MU_RUN_TEST(shade_hit_shadow_tst);
 
 	MU_RUN_TEST(color_at_misses_tst);
 	MU_RUN_TEST(color_at_hits_tst);

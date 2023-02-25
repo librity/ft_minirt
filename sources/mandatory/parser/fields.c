@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   fields.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 20:45:02 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:49:52 by ppaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ t_v3d	parse_vector(char *line)
 
 t_p3d	parse_point(char *line)
 {
-	return ((t_p3d)parse_vector(line));
+	t_p3d	origin;
+
+	origin = parse_vector(line);
+	origin.type = 1;
+	return (origin);
 }
 
 char	*skip_field(char *line)
