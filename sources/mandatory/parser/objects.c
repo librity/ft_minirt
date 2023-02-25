@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:12:59 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/22 22:51:50 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:21:06 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	parse_plane(char *line)
 	line = skip_field(line);
 	normal = parse_vector(line);
 	normal = normalize(normal);
-	inspect_tuple(normal);
 	line = skip_field(line);
 	color = parse_color(line);
 	create_plane(origin, normal, color);

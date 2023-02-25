@@ -2,7 +2,7 @@
 
 - [x] Vectors, Matrices and Rays
 - [x] Validate `.rt` scene files
-- [ ] Parse `.rt` scene files
+- [x] Parse `.rt` scene files
 - [x] Ray tracing logic
   - [x] Camera
   - [x] Spheres
@@ -44,10 +44,10 @@
   - [ ] All `mlx.h`
   - [ ] All `libft.h`
 - [x] Create demo projects with miniLibX to see how it works
-- [ ] Load scene from `.rt` file
+- [x] Load scene from `.rt` file
   - [x] Validate file name: `*.rt`
   - [x] Validate `.rt` file format
-  - [ ] Ambient lightning: `A NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
+  - [x] Ambient lightning: `A NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [x] Camera: `C X,Y,Z OX,OY,OZ HORIZONTAL_FIELD_OF_VIEW`
   - [x] Light: `L X,Y,Z NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [x] Sphere: `sp X,Y,Z DIAMETER RED,GREEN,BLUE`
@@ -56,12 +56,12 @@
 - [x] Create Vectors functions
 - [x] Create Linear Algebra functions
 - [x] Define ray tracing logic
-- [ ] Objects
+- [x] Objects
   - [x] Spheres
   - [x] Planes
   - [x] Cylinders
-  - [ ] Correctly handle object intersections
-  - [ ] Correctly handle object inside
+  - [x] Correctly handle object intersections
+  - [x] Correctly handle object inside
 - [x] Create a user interface with `MiniLibX`
   - [x] Use `MiniLibX` ’s images
   - [x] Window management must remain smooth

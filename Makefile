@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 16:25:08 by lpaulo-m          #+#    #+#              #
-#    Updated: 2023/02/23 22:05:45 by ppaulo-d         ###   ########.fr        #
+#    Updated: 2023/02/25 17:18:24 by lpaulo-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,8 @@ clean_libs: libft_clean ft_libbmp_clean
 ################################################################################
 
 run: re
-	./$(NAME) scenes/walls.rt
+	./$(NAME) scenes/inside.rt
+#	./$(NAME) scenes/walls.rt
 #	./$(NAME) scenes/plane_2.rt
 #	./$(NAME) scenes/cylinder_2.rt
 #	./$(NAME) scenes/rgb_balls.rt

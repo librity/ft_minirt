@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:23:52 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/17 14:57:27 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:13:09 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ t_amb_light	ambient_light(void)
 
 void	set_ambient_light(double brightness, t_rgb color)
 {
+	t_c3d	intensity;
+
 	c()->ambient_light.brightness = brightness;
 	c()->ambient_light.color_rgb = color;
-	c()->ambient_light.color_3d = rgb_to_c3d(color);
+	intensity = scalar_times(brightness, rgb_to_c3d(color));
+	c()->ambient_light.intensity = intensity;
 }
 
 void	inspect_ambient_light(void)
@@ -33,6 +36,6 @@ void	inspect_ambient_light(void)
 	printf("\tbrightness: %f\n", amb.brightness);
 	printf("\tcolor_rgb: %d %d %d\n", amb.color_rgb.red, amb.color_rgb.green,
 		amb.color_rgb.blue);
-	printf("\tcolor_3d: %f %f %f\n", amb.color_3d.x, amb.color_3d.y,
-		amb.color_3d.z);
+	printf("\tintensity: %f %f %f\n", amb.intensity.x, amb.intensity.y,
+		amb.intensity.z);
 }

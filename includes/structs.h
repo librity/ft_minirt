@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/12 20:29:21 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:10:15 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 typedef struct s_amb_light
 {
 	double				brightness;
-
 	t_rgb				color_rgb;
-	t_c3d				color_3d;
+
+	t_c3d				intensity;
 }						t_amb_light;
 
 /******************************************************************************\
