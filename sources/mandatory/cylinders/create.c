@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/22 22:15:10 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:01:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	set_cylinder(t_object *cylinder, t_create_cylinder p)
 	cylinder->normal_at = &cylinder_normal_at;
 	cylinder->normal = y_axis_normal();
 	translate_object(cylinder, p.origin);
-	rotate_object(cylinder, p.normal);
+	fast_rotate_object(cylinder, p.normal);
 	scale_object(cylinder, vector(p.diameter / 2, 1, p.diameter / 2));
 	cylinder->origin = space_origin();
 }

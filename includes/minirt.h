@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 03:39:53 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/19 19:18:57 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:06:37 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,25 @@ typedef struct s_lighting_params
 t_c3d			lighting(t_material material, t_light light,
 					t_lighting_params p);
 
-void			rotate_object(t_object *object, t_v3d new_normal);
+void			fast_rotate_object(t_object *object, t_v3d new_normal);
 void			translate_object(t_object *object, t_p3d new_origin);
 void			scale_object(t_object *object, t_v3d new_scale);
+
+typedef struct s_rotate_object
+{
+	t_matrix	identity_mx;
+	t_matrix	skew_mx;
+	t_matrix	axis_mx;
+	t_matrix	axis_transposed_mx;
+	t_matrix	axis_scaled_mx;
+	t_matrix	mx_1;
+	t_matrix	mx_2;
+	t_v3d		old_normal;
+	t_v3d		rotation_axis;
+	double		theta;
+	double		cos_theta;
+}				t_rotate_object;
+void			rotate_object(t_object *object, t_v3d new_normal);
 
 /******************************************************************************\
  * WORLD

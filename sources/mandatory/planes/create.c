@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:28:15 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/24 12:41:02 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:01:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	set_plane(t_object *plane, t_p3d origin, t_p3d normal, t_rgb color)
 	plane->normal_at = &plane_normal_at;
 	plane->normal = y_axis_normal();
 	translate_object(plane, origin);
-	rotate_object(plane, normal);
+	fast_rotate_object(plane, normal);
 	plane->origin = space_origin();
 }
 
