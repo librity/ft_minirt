@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:45:41 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/22 21:46:53 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:58:04 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,8 @@ void	render(void)
 	ft_endl();
 }
 
-// static void	set_demo_camera(void)
-// {
-// 	t_matrix	mx;
-
-// 	set_challenge_camera(200, 200, M_PI / 3.0);
-// 	view_transformation(point(0, 1.5, -5), point(0, 1, 0), vector(0, 1, 0),
-// 		&mx);
-// 	set_camera_transform(mx);
-// }
-
 void	render_to_window(void)
 {
-	//set_demo_camera();
 	render();
 	initialize_window();
 	mlx_put_image_to_window(mlx(), window(), camera_buffer()->img, 0, 0);
