@@ -12,7 +12,7 @@
   - [x] Spot Light
   - [x] Hard Shadows
 - [x] Minilibx user interface
-- [ ] `norminette`
+- [x] `norminette`
 
 # - [ ] Mandatory
 
@@ -23,10 +23,10 @@
   - [x] `make all` shouldn't recompile/rearchive any objects or sources.
   - [x] Add `.keep` to object dirs
   - [X] Create non-phony rule for each lib archive
-- [ ] Compiles with workspace's `cc` (`clang` version `12.0.1`)
-  - [ ] Switch Makefile's `clang-12` to `CC` before submitting.
+- [x] Test in workspaces
+- [x] Compiles with workspace's `cc` (`clang` version `12.0.1`)
+  - [x] Switch Makefile's `clang-12` to `CC` before submitting.
 - [x] Program name `miniRT`
-- [ ] Test in workspaces
 - [x] Follows `norminette 3.3.51`
 - [x] Makefile rules: `$(NAME)` `all` `clean` `fclean` `re` `bonus`
 - [x] Make must compile without relinking
