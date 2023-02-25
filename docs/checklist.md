@@ -16,33 +16,32 @@
 
 # - [ ] Mandatory
 
-- [ ] Don't turn in libs as submodules.
-- [ ] Migrate `ft_libbmp` to `minirt.h`.
-- [ ] Makefile should explicitly name all source files (`make dump_sources`).
-- [ ] Make must compile without relinking
-  - [ ] `make all` shouldn't recompile/rearchive any objects or sources.
-  - [ ] Add `.keep` to object dirs
-  - [ ] Create non-phony rule for each lib archive
+- [x] Don't turn in libs as submodules.
+- [x] Migrate `ft_libbmp` to `minirt.h`.
+- [x] Makefile should explicitly name all source files (`make dump_sources`).
+- [x] Make must compile without relinking
+  - [x] `make all` shouldn't recompile/rearchive any objects or sources.
+  - [x] Add `.keep` to object dirs
+  - [X] Create non-phony rule for each lib archive
 - [ ] Compiles with workspace's `cc` (`clang` version `12.0.1`)
   - [ ] Switch Makefile's `clang-12` to `CC` before submitting.
-- [ ] Program name `miniRT`
+- [x] Program name `miniRT`
 - [ ] Test in workspaces
-- [ ] Follows `norminette 3.3.51`
-- [ ] Makefile rules: `$(NAME)` `all` `clean` `fclean` `re` `bonus`
-- [ ] Make must compile without relinking
-- [ ] Compiles with `-Wall -Wextra -Werror`
-- [ ] `Makefile` must not relink
-- [ ] Should not quit unexpectedly (segmentation fault, bus error, double
-      free, etc.)
-- [ ] All allocated heap memory properly freed, no memory leaks.
-  - [ ] Use gcc `-fsanitize=leak` flag.
-  - [ ] Check memory leaks with `valgrind`.
-- [ ] Turn in `Makefile`, `*.h`, `*.c`, `.gitignore`
-- [ ] Allowed functions:
-  - [ ] `open`, `close`, `read`, `write`, `printf`, `malloc`, `free`, `perror`, `strerror`, `exit`
-  - [ ] All `math.h`
-  - [ ] All `mlx.h`
-  - [ ] All `libft.h`
+- [x] Follows `norminette 3.3.51`
+- [x] Makefile rules: `$(NAME)` `all` `clean` `fclean` `re` `bonus`
+- [x] Make must compile without relinking
+- [x] `Makefile` must not relink
+- [x] Compiles with `-Wall -Wextra -Werror`
+- [x] Should not quit unexpectedly (segmentation fault, bus error, double free, etc.)
+- [x] All allocated heap memory properly freed, no memory leaks.
+  - [x] Use gcc `-fsanitize=leak` flag.
+  - [x] Check memory leaks with `valgrind`.
+- [x] Turn in `Makefile`, `*.h`, `*.c`, `.gitignore`
+- [x] Allowed functions:
+  - [x] `open`, `close`, `read`, `write`, `printf`, `malloc`, `free`, `perror`, `strerror`, `exit`
+  - [x] All `math.h`
+  - [x] All `mlx.h`
+  - [x] All `libft.h`
 - [x] Create demo projects with miniLibX to see how it works
 - [x] Load scene from `.rt` file
   - [x] Validate file name: `*.rt`
