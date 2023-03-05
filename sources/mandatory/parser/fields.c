@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fields.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:08:10 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2023/02/24 18:49:52 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:52:39 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_v3d	parse_vector(char *line)
 	vector.x = ft_atof(tokens[0]);
 	vector.y = ft_atof(tokens[1]);
 	vector.z = ft_atof(tokens[2]);
+	vector.type = VECTOR_TYPE;
 	ft_free_strarr(tokens);
 	return (vector);
 }
@@ -43,7 +44,7 @@ t_p3d	parse_point(char *line)
 	t_p3d	origin;
 
 	origin = parse_vector(line);
-	origin.type = 1;
+	origin.type = POINT_TYPE;
 	return (origin);
 }
 

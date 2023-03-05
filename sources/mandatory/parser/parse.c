@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 17:19:37 by lpaulo-m          #+#    #+#             */
-/*   Updated: 2022/12/14 21:46:22 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:53:44 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	parse_line(char *line)
 {
 	line = ft_skip_whitespace(line);
 	if (*line == '\0')
+		return ;
+	if (*line == '#')
 		return ;
 	if (ft_starts_with(line, "A"))
 		return (parse_ambient_light(line));

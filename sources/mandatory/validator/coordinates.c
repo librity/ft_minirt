@@ -6,7 +6,7 @@
 /*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:58:20 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/12 19:54:59 by lpaulo-m         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:21:49 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,17 @@ static int	val_norm_coordinate(char *line)
 	double	x;
 	double	y;
 	double	z;
+	t_v3d	normal;
 
 	cord = ft_split(line, ',');
 	x = ft_atof(cord[0]);
 	y = ft_atof(cord[1]);
 	z = ft_atof(cord[2]);
+	normal = vector(x, y, z);
 	ft_free_strarr(cord);
-	if (x < -1 || x > 1)
-		return (false);
-	if (y < -1 || y > 1)
-		return (false);
-	if (z < -1 || z > 1)
-		return (false);
-	return (true);
+	if (doubles_are_equal(magnitude(normal), 1.0))
+		return (true);
+	return (false);
 }
 
 int	check_coordinate(char *line)

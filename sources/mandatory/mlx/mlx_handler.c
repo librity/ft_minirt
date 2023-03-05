@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaulo-d <ppaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:18:30 by ppaulo-d          #+#    #+#             */
-/*   Updated: 2023/02/06 11:45:14 by ppaulo-d         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:07:41 by lpaulo-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,15 @@ static int	key_release(int key, void *mlx)
 	return (0);
 }
 
+static	int	redraw(void)
+{
+	mlx_put_image_to_window(mlx(), window(), camera_buffer()->img, 0, 0);
+	return (0);
+}
+
 static void	event_hook(void)
 {
+	mlx_expose_hook(window(), &redraw, mlx());
 	mlx_hook(window(), 17, 0, &exit_win, mlx());
 	mlx_key_hook(window(), &key_release, mlx());
 }
