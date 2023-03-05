@@ -14,7 +14,7 @@
 - [x] Minilibx user interface
 - [x] `norminette`
 
-# - [ ] Mandatory
+# - [x] Mandatory
 
 - [x] Don't turn in libs as submodules.
 - [x] Migrate `ft_libbmp` to `minirt.h`.
@@ -46,8 +46,11 @@
 - [x] Load scene from `.rt` file
   - [x] Validate file name: `*.rt`
   - [x] Validate `.rt` file format
+  - [x] Validate normalized vectors
+  - [x] Skip comment lines (`#`)
   - [x] Ambient lightning: `A NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [x] Camera: `C X,Y,Z OX,OY,OZ HORIZONTAL_FIELD_OF_VIEW`
+    - [x] Use a different up vector when orientation is also up.
   - [x] Light: `L X,Y,Z NORMALIZED_BRIGHTNESS RED,GREEN,BLUE`
   - [x] Sphere: `sp X,Y,Z DIAMETER RED,GREEN,BLUE`
   - [x] Plane: `pl X,Y,Z OX,OY,OZ RED,GREEN,BLUE`
@@ -66,6 +69,7 @@
   - [x] Window management must remain smooth
   - [x] Close window button exits the program cleanly
   - [x] `esc` key exits the program cleanly
+  - [x] Refresh image so it doesn't disappear on the VNC when window is minimized
 
 # - [ ] Bonus
 
